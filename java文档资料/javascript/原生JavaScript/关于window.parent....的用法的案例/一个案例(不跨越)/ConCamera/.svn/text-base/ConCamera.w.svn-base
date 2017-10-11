@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xui:window xmlns:xui="http://www.justep.com/xui" xmlns="http://www.justep.com/xui"
+  xmlns:xforms="http://www.justep.com/xforms" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:ev="http://www.w3.org/2001/xml-events" component="/UI/system/components/window.xbl.xml#window" id="cameraWindowId">  
+  <xforms:model id="mdMain" style="left:203px;top:365px;height:auto;"> 
+  <xforms:action id="action3" ev:event="xforms-ready"><xforms:script id="xformsScript3"><![CDATA[ConCamera.mdMainReady(event)]]></xforms:script></xforms:action>
+  </xforms:model>  
+  <xui:view id="rootView"> 
+    <xui:layout style="position:relative;width:100%;height:100%;" id="rootLayout" type="absolute"> 
+    <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;position:absolute;">
+   <center id="borderLayout-center1"><xui:place control="view2" id="controlPlace11" style="position:relative;width:100%;height:96%;"></xui:place></center>
+  <bottom size="35px" id="borderLayout-bottom1"><xui:place control="view1" id="controlPlace6" style="position:relative;width:100%;height:100%;"></xui:place></bottom></xhtml:div></xui:layout> 
+  <xui:view auto-load="true" id="view1" class="xui-container">
+   <layout type="absolute" style="position:relative;" id="layout1"><xui:place control="getPic" id="controlPlace7" style="position:absolute;top:9px;left:340px;"></xui:place>
+  <xui:place control="reGetPic" id="controlPlace8" style="top:9px;left:423px;position:absolute;"></xui:place>
+  <xui:place control="uploadPic" id="controlPlace9" style="top:9px;left:498px;position:absolute;"></xui:place>
+  <xui:place control="cancelPic" id="controlPlace10" style="top:9px;left:583px;position:absolute;"></xui:place>
+  <xui:place control="minusPug" id="controlPlace2" style="top:9px;left:260px;position:absolute;"></xui:place>
+  <xui:place control="addPug" id="controlPlace3" style="top:9px;left:177px;position:absolute;"></xui:place>
+  <xui:place control="bigPic" id="controlPlace12" style="top:9px;left:99px;position:absolute;"></xui:place>
+  <xui:place control="smallPic" id="controlPlace14" style="top:9px;left:20px;position:absolute;"></xui:place>
+  </layout>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="getPic" appearance="image-text">
+   <xforms:label id="snap"><![CDATA[拍照]]></xforms:label>
+  <xforms:action id="action5" ev:event="DOMActivate"><xforms:script id="xformsScript5"><![CDATA[ConCamera.getPic(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="reGetPic" appearance="image-text">
+   <xforms:label id="newsnap"><![CDATA[继续拍照]]></xforms:label>
+  <xforms:action id="action6" ev:event="DOMActivate"><xforms:script id="xformsScript6"><![CDATA[ConCamera.reGetPic(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="uploadPic" appearance="image-text">
+   <xforms:label id="uploadsnap"><![CDATA[上传]]></xforms:label>
+  <xforms:action id="action2" ev:event="DOMActivate"><xforms:script id="xformsScript2"><![CDATA[ConCamera.uploadPic(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="cancelPic">
+   <xforms:label id="cancel"><![CDATA[取消]]></xforms:label>
+  <xforms:action id="action1" ev:event="DOMActivate"><xforms:script id="xformsScript1"><![CDATA[cancelDOMActivate(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="minusPug" style="display:none;">
+   <xforms:label id="default1"><![CDATA[减少曝光]]></xforms:label>
+  <xforms:action id="action4" ev:event="DOMActivate"><xforms:script id="xformsScript4"><![CDATA[(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="addPug" style="display:none;">
+   <xforms:label id="default2"><![CDATA[增加曝光]]></xforms:label>
+  <xforms:action id="action7" ev:event="DOMActivate"><xforms:script id="xformsScript7"><![CDATA[(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="bigPic" style="display:none;">
+   <xforms:label id="default6"><![CDATA[放大]]></xforms:label>
+  <xforms:action id="action10" ev:event="DOMActivate"><xforms:script id="xformsScript10"><![CDATA[(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="smallPic" style="display:none;">
+   <xforms:label id="default8" ><![CDATA[缩小]]></xforms:label>
+  <xforms:action id="action8" ev:event="DOMActivate"><xforms:script id="xformsScript8"><![CDATA[(event)]]></xforms:script></xforms:action></xforms:trigger>
+  </xui:view>
+  <xui:view auto-load="true" id="view2" class="xui-container">
+   <layout type="flow" style="position:relative;" id="layout2">
+   	<xhtml:div id="contentHolder" class="xui-container">
+   		 <!-- 
+	  	<xhtml:section class="left">
+			<xhtml:div id="promoNode"></xhtml:div>
+			<xhtml:video id="video" width="700" height="380"></xhtml:video>
+			<xhtml:div id="con-canvas" style="overflow:auto;width:700px;height:370px;">
+			<xhtml:canvas id="canvas" width="1024" height="768" style="display:none;"></xhtml:canvas>
+			</xhtml:div>
+		</xhtml:section>
+		-->
+		 <!-- 修改人:吴波=======start========= -->
+		 
+		
+		 <xhtml:section id="sectionId" class="left" >
+		<xhtml:div id="commonDivId" style="clear: both; width: 690px; height: 380px;">
+			<xhtml:div id="cameraDivId" style="clear: both; width: 100%; height: 100%;">
+		   		 <xhtml:object id="VideoInputCtl" classid="CLSID:454C18E2-8B7D-43C6-8C17-B1825B49D7DE" style="width: 100%; height: 100%;"></xhtml:object>
+		    </xhtml:div>
+		    <!--  
+		    <xhtml:div id="pictureDivId" style="clear: both; width: 100%; height: 100%;display:none;">
+		    	<xhtml:img id="pictureImgId" src="data:image" style="clear: both; width: 100%; height: 100%;"></xhtml:img>
+		    </xhtml:div>
+		    -->
+	     </xhtml:div>
+	   </xhtml:section>
+	    
+	   
+		  <!-- 修改人:吴波=======end========= -->
+  	 </xhtml:div>
+   <xui:place control="photoReceiver" id="controlPlace1" style="position:absolute;left:194px;top:247px;"></xui:place>
+  </layout>
+  <xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="photoReceiver"></xhtml:div>
+  </xui:view>
+  </xui:view>  
+  <xui:resource id="resource"> 
+    <xhtml:script id="htmlScript" src="/UI/ED/doc/process/dialog/ConCamera/ConCamera.js"/>  
+    <xhtml:script src="/UI/system/components/windowDialog/FrameWindow.js"/> 
+  </xui:resource> 
+</xui:window>

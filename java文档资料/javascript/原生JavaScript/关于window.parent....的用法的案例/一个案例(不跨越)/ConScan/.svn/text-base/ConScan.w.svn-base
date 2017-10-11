@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xui:window xmlns:xui="http://www.justep.com/xui" xmlns="http://www.justep.com/xui"
+  xmlns:xforms="http://www.justep.com/xforms" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:ev="http://www.w3.org/2001/xml-events" component="/UI/system/components/window.xbl.xml#window" id="cameraWindowId">  
+  <xforms:model id="mdMain" style="left:203px;top:365px;height:auto;"> 
+  <xforms:action id="action5" ev:event="xforms-ready"><xforms:script id="xformsScript5"><![CDATA[ConScan.mdMainReady(event)]]></xforms:script></xforms:action></xforms:model>  
+  <xui:view id="rootView"> 
+    <xui:layout style="height:100%;width:100%" id="rootLayout"> 
+    <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;">
+   <center id="borderLayout-center1"><xui:place control="view2" id="controlPlace11" style="position:relative;width:100%;height:96%;"></xui:place></center>
+  <bottom size="35px" id="borderLayout-bottom1"><xui:place control="view1" id="controlPlace6" style="position:relative;width:100%;height:100%;"></xui:place></bottom></xhtml:div></xui:layout> 
+  <xui:view auto-load="true" id="view1" class="xui-container">
+   <layout type="absolute" style="position:relative;" id="layout1"><xui:place control="trigger8" id="controlPlace7" style="position:absolute;top:9px;left:336px;"></xui:place>
+  <xui:place control="trigger9" id="controlPlace8" style="position:absolute;top:9px;left:423px;"></xui:place>
+  <xui:place control="trigger10" id="controlPlace9" style="position:absolute;top:9px;left:499px;"></xui:place>
+  <xui:place control="trigger11" id="controlPlace10" style="position:absolute;top:9px;left:583px;"></xui:place>
+  </layout>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger8" appearance="image-text">
+   <xforms:label id="snap"><![CDATA[扫描]]></xforms:label>
+  <xforms:action id="action6" ev:event="DOMActivate"><xforms:script id="xformsScript6"><![CDATA[ConScan.trigger8Click(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger9" appearance="image-text">
+   <xforms:label id="newsnap"><![CDATA[重扫]]></xforms:label>
+  <xforms:action id="action8" ev:event="DOMActivate"><xforms:script id="xformsScript8"><![CDATA[ConScan.trigger9Click(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger10" appearance="image-text">
+   <xforms:label id="uploadsnap"><![CDATA[上传]]></xforms:label>
+  <xforms:action id="action7" ev:event="DOMActivate"><xforms:script id="xformsScript7"><![CDATA[ConScan.trigger10Click(event)]]></xforms:script></xforms:action></xforms:trigger>
+  <xforms:trigger component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger11">
+   <xforms:label id="cancel"><![CDATA[取消]]></xforms:label>
+  <xforms:action id="action9" ev:event="DOMActivate"><xforms:script id="xformsScript9"><![CDATA[ConScan.trigger11Click(event)]]></xforms:script></xforms:action></xforms:trigger>
+  </xui:view>
+  <xui:view auto-load="true" id="view2" class="xui-container">
+   <layout type="flow" style="position:relative;" id="layout2">
+   	<xhtml:div id="contentHolder" class="xui-container">
+   		 <!-- 
+	  	<xhtml:section class="left">
+			<xhtml:div id="promoNode"></xhtml:div>
+			<xhtml:video id="video" width="700" height="380"></xhtml:video>
+			<xhtml:div id="con-canvas" style="overflow:auto;width:700px;height:370px;">
+			<xhtml:canvas id="canvas" width="1024" height="768" style="display:none;"></xhtml:canvas>
+			</xhtml:div>
+		</xhtml:section>
+		-->
+		 <!-- 修改人:吴波=======start========= -->
+		 
+		
+		 <xhtml:section id="sectionId" class="left" >
+		<xhtml:div id="commonDivId" style="clear: both; width: 690px; height: 380px;">
+			<xhtml:div id="scanDivId" class="commonDivClass" style="clear: both; width: 100%; height: 100%;display:none;">
+				   <xhtml:div id="objectDiv" style="display:none;">
+						<xhtml:object id="DOcxtest1" classid="clsid:677C2EAE-057E-4900-97ED-1520F080942D" >
+							<xhtml:param NAME="_Version" VALUE="65536"></xhtml:param>
+							<xhtml:param NAME="_ExtentX" VALUE="17463"></xhtml:param>
+							<xhtml:param NAME="_ExtentY" VALUE="17727"></xhtml:param>
+							<xhtml:param NAME="_StockProps" VALUE="0"></xhtml:param>
+						</xhtml:object>
+						<!-- add by gj -->
+						
+						<xhtml:object ID="ocx" CLASSID="clsid:49903B72-9F44-41E1-A79B-B85A8BCEB89A" >
+						</xhtml:object>
+					</xhtml:div>
+		    </xhtml:div>
+		    <xhtml:div id="pictureDivId" class="commonDivClass" style="clear: both; width: 100%; height: 100%;display:block;">
+		    	<xhtml:img id="pictureImgId" src="data:image" style="clear: both; width: 100%; height: 100%;"></xhtml:img>
+		    </xhtml:div>
+		    <xhtml:div id="folderDivId" class="commonDivClass" style="clear: both; width: 100%; height: 100%;display:none;">
+		    	文件上传中,请等待...
+		    </xhtml:div>
+	     </xhtml:div>
+	   </xhtml:section>
+	    
+	   
+		  <!-- 修改人:吴波=======end========= -->
+  	 </xhtml:div>
+   <xui:place control="ScanReceiver" id="controlPlace1" style="position:absolute;top:248px;left:194px;"></xui:place>
+  </layout>
+  <xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="ScanReceiver"></xhtml:div>
+  </xui:view>
+  </xui:view>  
+  <xui:resource id="resource">  
+
+  	<xhtml:script id="htmlScript1" src="/UI/ED/doc/process/dialog/ConScan/ConScan.js"/>
+    <xhtml:script src="/UI/system/components/windowDialog/FrameWindow.js"/> 
+      	 <!-- add by gj  -->
+    <xhtml:script LANGUAGE="javascript"  FOR= "ocx" EVENT= "PostScanEveryPage(bSuccess)" >
+			 var base = ocx.GetImageBase64String();
+           	 if(!uploadToService(base)){
+           		  alert("上传失败");
+           	 }
+	</xhtml:script>
+ 	
+  </xui:resource> 
+</xui:window>

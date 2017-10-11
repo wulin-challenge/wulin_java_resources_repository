@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v5c8db4b0db9441b5a7aa67bb7a34451c/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v7c6b316aa8664241bf34bc928ec9e4f2/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v901a1d5935424ebaaf4bfc2cfef45254/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v681fa2025bb94c64b06c194a76aca881/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v3c7b8d9e8e5a47ab8f6a2b3d82414428/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$ve93349c8a6f3435c9645a6aac29e38a2/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v035644a3fe2c46e7997497cb9b078e1a/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v11775cf260a74508966b87d7d298cf70/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v1691e5bd72ce4ce799c4573cc891cd12/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v1f3452f1751b480fa0ca4a7eb89bbb8a/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v21cde072e95c4912b70d458daece7339/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <script language="javascript" src="/x5/$vba4a2c477b774121b0bcb24a0e2f6113/UI/system/components/windowReceiver/windowReceiver.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/x5/$v71d613446f4b47ac9aeab478ae9d2b3a/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v3310e27aa5bd4e7282e23f8236743f57/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript" src="/x5/$ve35b1ba8943c43e5b334aedab9dd7a8d/UI/EDT/archival/process/dialog/archivalConCamera/archivalConCamera.js?language=zh_CN">
+</script>      <script src="/x5/$vec0de5e8827c4004bafe77266c9b93aa/UI/system/components/windowDialog/FrameWindow.js?language=zh_CN">
+</script>      <script type="text/javascript" src="/x5/$v6bbb2ef12f3c41e18411948bce1e869b/UI/EDT/archival/process/dialog/archivalConCamera/.cache/archivalConCamera_zh_CN_x5_0aa50332dd934b01b2e33aa8f8dddbfa.js?language=zh_CN&amp;$version=3a48c4bf-7724-4ee5-8f5d-ecc5fd1506c4"/>  </head>    <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;">           <div borderSize="0" class="xui-borderlayout-root">             <div class="xui-borderlayout-area xui-borderlayout-center" style="">               <div class="xui-container" id="view2" lazy="false" style="position:relative;;position:relative;height:100%;width:100%;">                 <div class="xui-container" id="contentHolder">                   <section class="left">                     <div id="promoNode"></div>                      <video height="380" id="video" width="700"></video>                      <div id="con-canvas" style="overflow:auto;width:700px;height:370px;">                       <canvas height="768" id="canvas" style="display:none;" width="1024"></canvas>                     </div>                   </section>                 </div>                  <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="photoReceiver" style="position:absolute;top:417px;left:198px;">                   <script>
+new justep.WindowReceiver('photoReceiver');</script> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-area xui-borderlayout-bottom" size="35px" style=""> 
+              <div class="xui-container" id="view1" lazy="false" style="position:relative;;position:relative;width:100%;height:100%;"> 
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger8" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:336px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="snap">拍照</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger9" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:423px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="newsnap">重拍</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger10" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:498px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="uploadsnap">上传</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger11" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:583px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="cancel">取消</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"></div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

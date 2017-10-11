@@ -1,0 +1,133 @@
+var ConCamera = {};
+var szBase64 = "";
+//初始化事件
+ConCamera.mdMainReady = function(event){
+	alert(szBase64);
+	szBase64="";
+	//关闭并开启摄像头
+	var str = VideoInputCtl.bStopPlay();
+	var str1 = VideoInputCtl.bStartPlay();
+	if(!str1){
+		new justep.System.showMessage().open({'msg':'摄像头开启失败！',"title" : '提示'});
+	}
+};
+
+//放大
+ConCamera.bigPic = function(event){
+	alert('放大');
+	//VideoInputCtl.vZoomOut();
+	
+};
+//缩小
+ConCamera.smallPic = function(event){
+	alert('缩小');
+	//VideoInputCtl.vZoomIn();
+};
+
+//拍照事件
+
+ConCamera.getPic = function(event){
+	szBase64 = "";
+	var str = VideoInputCtl.bStopPlay();
+	var str1 = VideoInputCtl.bStartPlay();
+	if(!str1){
+		alert('摄像头开启失败');
+//		new justep.System.showMessage().open({'msg':'摄像头开启失败！',"title" : '提示'});
+	}else{
+		VideoInputCtl.vSetSkewFlag(true);//设置自动校正
+		VideoInputCtl.vSetDelHBFlag(true);//设置黑边去除
+		VideoInputCtl.vSetResolution(5);//1600*1200
+		VideoInputCtl.bStopPlay();
+	    VideoInputCtl.bStartPlay();
+		szBase64 = VideoInputCtl.sGetBase64();
+		var jpg = VideoInputCtl.bSaveJPG('D://','jpg');
+		if(jpg){
+			alert('保存本地图片成功');
+//			new justep.System.showMessage().open({'msg':'保存本地图片成功！',"title" : '提示'});
+		}else{
+			alert('保存本地图片失败');
+//			new justep.System.showMessage().open({'msg':'保存本地图片失败！',"title" : '提示'});
+		}
+//		pictureImgId.value = szBase64;
+//		pictureImgId.src = "data:image/tiff;base64," + szBase64;
+	}
+
+//	szBase64 = VideoInputCtl.GrabToBase64(".jpg");//拍照并传回其Base64编码字串.参数:影像格式，必须是.bmp、.jpg、.png或.tif。返回:Base64编码字串。
+//	$("#cameraDivId").css("display","none");
+//	$("#pictureDivId").css("display","block");
+//	pictureImgId.value = szBase64;
+//	pictureImgId.src = "data:image/tiff;base64," + szBase64;
+};
+
+//取消事件
+function cancelDOMActivate(event) {
+	szBase64 = "";
+	var str = VideoInputCtl.bStopPlay();//关闭摄像头
+	justep.xbl("photoReceiver").windowCancel();
+}
+
+//上传事件
+ConCamera.uploadPic = function(event){
+	var uploadFlag = true;
+	if(szBase64!=""){
+			//将数据上传到服务器
+		justep.Request.sendBizRequest2({
+			contentType: "application/json",
+			dataType: "application/json",
+			action: "FileUploadTool",
+			parameters: {
+				file:szBase64,
+				fileName:'',
+				fDocLink:''
+			} ,
+			callback: function(result) {
+				if(JSON.parse(result.state)){
+					var data = {"fDocLink":result.response};
+					justep.xbl("photoReceiver").windowEnsure(data);	
+					justep.xbl("photoReceiver").windowCancel();
+					uploadFlag = false;
+				}else{
+	//				throw new Error(result.response);
+					alert('上传失败！');
+				}
+			}
+		});
+		if(!uploadFlag){
+			szBase64="";
+			var str = VideoInputCtl.bStopPlay();//关闭摄像头
+		}
+	}else{
+		alert('请拍照！');
+	}
+	
+};
+
+//继续拍摄
+ConCamera.reGetPic = function(event){
+	szBase64 = "";
+	var str = VideoInputCtl.bStopPlay();
+	var str1 = VideoInputCtl.bStartPlay();
+	if(!str1){
+		alert('摄像头开启失败');
+//		new justep.System.showMessage().open({'msg':'摄像头开启失败！',"title" : '提示'});
+	}else{
+		VideoInputCtl.vSetSkewFlag(true);//设置自动校正
+		VideoInputCtl.vSetDelHBFlag(true);//设置黑边去除
+		VideoInputCtl.vSetResolution(5);//1600*1200
+		VideoInputCtl.bStopPlay();
+	    VideoInputCtl.bStartPlay();
+		szBase64 = VideoInputCtl.sGetBase64();
+		var jpg = VideoInputCtl.bSaveJPG('D://','jpg');
+		if(jpg){
+			alert('保存本地图片成功');
+//			new justep.System.showMessage().open({'msg':'保存本地图片成功！',"title" : '提示'});
+		}else{
+			alert('保存本地图片失败');
+//			new justep.System.showMessage().open({'msg':'保存本地图片失败！',"title" : '提示'});
+		}
+//		pictureImgId.value = szBase64;
+//		pictureImgId.src = "data:image/tiff;base64," + szBase64;
+	}
+};
+
+

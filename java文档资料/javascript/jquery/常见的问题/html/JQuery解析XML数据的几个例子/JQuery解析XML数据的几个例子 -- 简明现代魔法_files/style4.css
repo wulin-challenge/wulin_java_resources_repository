@@ -1,0 +1,357 @@
+body {
+	margin: 0px; padding: 0px;
+}
+div {
+	margin: 0px; padding: 0px;
+}
+dl {
+	margin: 0px; padding: 0px;
+}
+dt {
+	margin: 0px; padding: 0px;
+}
+dd {
+	margin: 0px; padding: 0px;
+}
+ul {
+	margin: 0px; padding: 0px;
+}
+ol {
+	margin: 0px; padding: 0px;
+}
+li {
+	margin: 0px; padding: 0px;
+}
+h1 {
+	margin: 0px; padding: 0px;
+}
+h2 {
+	margin: 0px; padding: 0px;
+}
+h3 {
+	margin: 0px; padding: 0px;
+}
+h4 {
+	margin: 0px; padding: 0px;
+}
+h5 {
+	margin: 0px; padding: 0px;
+}
+h6 {
+	margin: 0px; padding: 0px;
+}
+pre {
+	margin: 0px; padding: 0px;
+}
+form {
+	margin: 0px; padding: 0px;
+}
+fieldset {
+	margin: 0px; padding: 0px;
+}
+input {
+	margin: 0px; padding: 0px;
+}
+textarea {
+	margin: 0px; padding: 0px;
+}
+p {
+	margin: 0px; padding: 0px;
+}
+blockquote {
+	margin: 0px; padding: 0px;
+}
+th {
+	margin: 0px; padding: 0px;
+}
+td {
+	margin: 0px; padding: 0px;
+}
+body {
+	background: url("../../images/kuma-house.gif") 0px 0px rgb(255, 255, 255); color: rgb(95, 122, 119); font-family: Verdana,宋体; font-size: 12px;
+}
+a:link {
+	color: blue; font-family: Verdana, 宋体; font-size: 12px; font-weight: normal; text-decoration: none;
+}
+a:visited {
+	color: blue; font-family: Verdana, 宋体; font-size: 12px; font-weight: normal; text-decoration: none;
+}
+a:active {
+	color: blue; font-family: Verdana, 宋体; font-size: 12px; font-weight: normal; text-decoration: none;
+}
+a:hover {
+	color: red; text-decoration: underline;
+}
+a.titlelnk:link {
+	color: rgb(16, 92, 182); font-family: Arial; font-size: 14px; font-weight: bold; text-decoration: none;
+}
+a.titlelnk:active {
+	color: rgb(16, 92, 182); font-family: Arial; font-size: 14px; font-weight: bold; text-decoration: none;
+}
+a.titlelnk:visited {
+	color: rgb(16, 92, 182); font-family: Arial; font-size: 14px; font-weight: bold; text-decoration: none;
+}
+a.titlelnk:hover {
+	color: red; text-decoration: underline;
+}
+.gen3 {
+	margin-top: 12px;
+}
+.gen3 p {
+	line-height: 150%; text-indent: 2em;
+}
+.gen3 div {
+	margin: 8px 0px;
+}
+.gen3 h4 {
+	color: rgb(16, 92, 182); text-indent: 24px; font-family: Arial,宋体; font-size: 14px; font-weight: bold; margin-top: 8px;
+}
+.gen3_nav {
+	background: url("../../images/mer_bg.png") no-repeat 0px -5px; height: 26px; line-height: 26px; text-indent: 2em;
+}
+.contentNew {
+	line-height: 150%; text-indent: 24px; font-family: Verdana,宋体; font-size: 12px;
+}
+p {
+	padding: 6px 0px 4px; font-family: Verdana,宋体; font-size: 12px;
+}
+h1 {
+	padding: 6px 0px 5px; color: black; font-family: 微软雅黑, Arial; font-size: 22px; font-weight: normal; margin-top: 10px;
+}
+h4 {
+	padding: 8px 0px 5px;
+}
+h2 {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+h3 {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+table {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+tr {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+td {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+q {
+	font-family: Verdana,宋体; font-size: 12px;
+}
+#article {
+	padding: 0px 0px 0px 2em;
+}
+#article ul {
+	margin: 0px;
+}
+#article li {
+	line-height: 150%; font-family: Verdana,宋体; font-size: 12px;
+}
+.article {
+	padding: 0px 0px 0px 2em;
+}
+.article ul {
+	margin: 6px 0px;
+}
+.article li {
+	padding: 2px 0px; line-height: 150%; font-family: Verdana,宋体; font-size: 12px;
+}
+.fandq {
+	padding: 0px 0px 0px 2em;
+}
+.fandq li {
+	line-height: 150%; font-family: Verdana,宋体; font-size: 12px;
+}
+.underline4 {
+	background: url("../images/o_underline_4.gif") repeat-x 120% 100%; padding: 0px 3px 3px; text-decoration: none;
+}
+.clear {
+	clear: both;
+}
+#background {
+	margin: 10px 0px 0px -480px; padding: 0px; border: 1px solid gray; left: 50%; width: 960px; position: relative; background-color: white;
+}
+#top {
+	position: relative;
+}
+.leftfower {
+	left: 0px; top: 0px; position: absolute; z-index: 99;
+}
+.rightfower {
+	top: 0px; right: 0px; position: absolute; z-index: 99;
+}
+#header {
+	position: relative;
+}
+.headerword {
+	margin: 60px 0px 0px 28px;
+}
+#navigation {
+	left: 5px; width: 730px; float: left; position: relative;
+}
+#search {
+	width: 220px; float: right; position: relative;
+}
+#mainContent {
+	margin: 5px 0px 0px; padding: 3px 6px 3px 5px; left: 5px; width: 720px; color: rgb(18, 28, 70); clear: both; float: left; position: relative;
+}
+#additionalContent {
+	width: 215px; float: right; position: relative;
+}
+.white {
+	color: white;
+}
+#bottom {
+	clear: both; position: relative;
+}
+#siteInfo {
+	padding: 0px; font-family: Verdana,宋体; font-size: 12px; position: relative;
+}
+.ball_footer {
+	left: 0px; top: 25px; position: absolute;
+}
+.pages {
+	margin: 10px 0px 0px; font-family: Arial, 宋体; font-size: 12px;
+}
+.pages li {
+	background: rgb(255, 255, 255); padding: 0px 5px; border: 1px solid rgb(224, 224, 224); height: 21px; color: rgb(102, 102, 102); line-height: 21px; margin-right: 0.5em; float: left; display: inline;
+}
+.pages li span {
+	background: rgb(255, 255, 255); color: rgb(0, 68, 221);
+}
+.pages li.page_a {
+	padding: 0px; border: 0px currentColor;
+}
+.pages li.page_a a {
+	padding: 0px 5px; border: 1px solid rgb(224, 224, 224); color: rgb(0, 68, 221); float: left; display: block;
+}
+.pages li.page_a a:hover {
+	border: 1px solid rgb(160, 160, 160); color: red; display: block;
+}
+.pages li.pages_input {
+	padding: 0px; border: 1px solid rgb(160, 160, 160);
+}
+.pages li.pages_input input {
+	margin: 0px 3px; padding: 0px 3px; border: 0px currentColor; width: 18px; text-align: center; font-size: 14px;
+}
+.pages .on {
+	padding: 0px 5px; color: red; font-weight: bold;
+}
+.pages .page_clear {
+	clear: both;
+}
+pre {
+	background: rgb(245, 245, 245); margin: 5px 0px; padding: 10px; border: 1px dotted rgb(119, 136, 85); width: 650px; font-family: "Courier New",monospace; font-size: 12px;
+}
+pre code {
+	color: rgb(0, 0, 255); font-family: "Courier New",monospace;
+}
+#adition {
+	margin: 0px; padding: 0px 0px 0px 20px;
+}
+#adition li {
+	margin: 0px; line-height: 160%; font-family: Verdana,宋体; font-size: 12px; list-style-image: url("../../images/sidebarLi.gif");
+}
+#adition ul {
+	margin: 0px;
+}
+.adition {
+	margin: 0px; padding: 0px 0px 0px 20px;
+}
+.adition li {
+	margin: 0px; line-height: 160%; font-family: Verdana,宋体; font-size: 12px; list-style-image: url("../../images/sidebarLi.gif");
+}
+.adition ul {
+	margin: 0px;
+}
+.category {
+	margin: 0px; padding: 0px 0px 0px 20px;
+}
+.category li {
+	margin: 0px; line-height: 160%; font-family: Verdana,宋体; font-size: 12px; list-style-image: url("../../images/favorite.gif");
+}
+.category ul {
+	margin: 0px;
+}
+#navigationMenu {
+	background: rgb(255, 255, 255); border-bottom-color: rgb(166, 166, 166); border-bottom-width: 1px; border-bottom-style: solid; display: inline;
+}
+#menus {
+	display: inline-block; -ms-zoom: 1;
+}
+#menus li {
+	list-style: none; display: inline;
+}
+#licontent {
+	font-family: 宋体; font-size: 12px;
+}
+#menus li a {
+	background: url("../../images/menu.gif") no-repeat; padding: 0px 20px; height: 31px; color: rgb(56, 46, 31); line-height: 31px; font-size: 11px; text-decoration: none; margin-left: -10px; float: left; display: inline; z-index: 1;
+}
+#menus li a:hover {
+	background-position: 0px -31px;
+}
+#menus li a.current {
+	background-position: 0px -31px;
+}
+#menus li.current_page_item a {
+	background-position: 0px -62px;
+}
+#menus li.current-cat a {
+	background-position: 0px -62px;
+}
+#menus li a.home {
+	background-position: 0px -93px; padding: 0px; width: 45px; text-indent: -999em; margin-left: 0px;
+}
+#menus li a.home:hover {
+	background-position: 0px -124px;
+}
+#menus li.current_page_item a.home {
+	background-position: 0px -155px;
+}
+#menus li a.lastmenu:hover {
+	cursor: default;
+}
+#searchbox {
+	background: url("../../images/searchbox.gif") no-repeat; padding: 3px 2px; width: 213px; height: 21px; margin-top: 4px; margin-right: 10px !important; float: left; display: block;
+}
+#searchbox .textfield {
+	border: 0px currentColor; width: 185px; padding-left: 2px; margin-right: 2px; float: left;
+}
+#searchbox .button {
+	border: 0px currentColor; width: 18px; height: 18px; margin-top: 1px; float: left; cursor: pointer;
+}
+#searchbox .searchtip {
+	color: rgb(153, 153, 153);
+}
+#menus li ul {
+	background: rgb(244, 245, 247); border-width: 1px 1px 0px; border-style: solid; border-color: rgb(166, 166, 166); line-height: 0; display: none; position: absolute; z-index: 1;
+}
+#menus li li {
+	list-style: none; margin: 0px; padding: 0px; float: none;
+}
+#menus li li a {
+	margin: 0px; padding: 7px 18px 7px 10px; width: 175px; height: auto; color: rgb(153, 153, 153); line-height: 145%; text-decoration: none; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid; float: none; display: block; background-image: none;
+}
+#menus li li a.last {
+	border-color: rgb(166, 166, 166);
+}
+#menus li li a:hover {
+	color: rgb(56, 46, 31); background-color: rgb(237, 239, 240);
+}
+#menus li li a.current {
+	color: rgb(56, 46, 31); background-color: rgb(237, 239, 240);
+}
+#menus li li a.subtitle {
+	background-position: right; background-image: url("../../images/arrow.gif"); background-repeat: no-repeat;
+}
+#menus li li a.subtitle:hover {
+	background-position: right; background-image: url("../../images/arrow.gif"); background-repeat: no-repeat;
+}
+.fixed {
+	clear: both;
+}
+.clear {
+	clear: both;
+}

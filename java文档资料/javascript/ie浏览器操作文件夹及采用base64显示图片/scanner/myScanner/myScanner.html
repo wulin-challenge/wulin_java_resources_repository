@@ -1,0 +1,25 @@
+﻿<html>
+	<title>连接紫光扫描仪</title>
+	<head>
+		<script type="text/javascript" src="myScanner.js"></script>
+	</head>
+	<body>
+		<div id="objectDiv" style="display:none;">
+			<OBJECT id=DOcxtest1 classid=clsid:677C2EAE-057E-4900-97ED-1520F080942D>
+			<PARAM NAME="_Version" VALUE="65536">
+			<PARAM NAME="_ExtentX" VALUE="17463">
+			<PARAM NAME="_ExtentY" VALUE="17727">
+			<PARAM NAME="_StockProps" VALUE="0">
+			</OBJECT>
+		</div>
+		<div id="bodyDiv">
+			 <input  type="button"  style=" width:85px; height:45px; " name="btnScan" value="加载" onclick="Load();"> 
+			 <input  type="button"  style=" width:85px; height:45px; " name="btnScan" value="扫描" onclick="Scan(0);">  
+			 <input  type="button"  style=" width:85px; height:45px; " name="btnuperaddition" value="选择设备" onclick="SelectScanner();"> 
+			 <input  type="button"  style=" width:85px; height:45px; " name="btnTest" value="旋转" onclick="Rotate();">  
+		</div>
+		<div id="imgDiv">
+			<img id="Base64Image" src="data:image" style="height: 120px; width: 160px;"/>
+		</div>
+	</body>
+</html>

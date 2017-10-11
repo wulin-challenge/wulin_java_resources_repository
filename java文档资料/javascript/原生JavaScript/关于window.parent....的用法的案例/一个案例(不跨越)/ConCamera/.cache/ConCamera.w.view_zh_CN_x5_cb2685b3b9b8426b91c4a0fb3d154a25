@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v24e0ae0c78ba47b8b11ccdc8429c5a45/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vf1e6087c23cd4c8ba0f24cbcbe9be2bb/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2460134ab7614bf695e71e7718091bd6/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v96ecc2e3579e4255b4cd88467ed1c017/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v4f914ac75f644ac897cabf56c8f3b39d/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vf5fe4fd89a6347d1a9d9c2ab8535b879/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$ve8c8fd62ad294b3eb057c1118509760f/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v3705d1a4a59d492ba208677d1197b792/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v0306bcf2834d4ec3ae501bf9afeca5ef/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v6dc6748b06844a0982c6d9460b2ccaef/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v4c374b58a0ec401789e3d8439c859104/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$veb7cf292ec374df8bcf9feae25d41b68/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <script language="javascript" src="/x5/$v4e7d3a61e0ed47b1aed632b0777503d7/UI/system/components/windowReceiver/windowReceiver.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/x5/$v457a76b5d93a4b1c9ce7a0949c0c8bf9/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vef6a8c7190a6455fb692cde1589ead68/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$ve8acc73e79ee46679fbcf190a927ec22/UI/ED/doc/process/dialog/ConScan/ConScan.js?language=zh_CN">
+</script>      <script src="/x5/$v207c1e0f62b94f6ea1a312222f073590/UI/system/components/windowDialog/FrameWindow.js?language=zh_CN">
+</script>      <script id="htmlScript2" src="/x5/$v7f194c23680d49e5b8de662143bb36ef/UI/ED/doc/process/dialog/ConCamera/ConCamera.js?language=zh_CN">
+</script>      <script>
+new justep.XCommonData('colors',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"}, {});</script>  
+    <script>
+new justep.XCommonData('colorsSelect',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"}, {});</script>  
+    <script>
+new justep.XCommonData('scanType',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"}, {});</script>  
+    <script>
+new justep.XCommonData('scanTypeSelect',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"}, {});</script>  
+    <script type="text/javascript" src="/x5/$vb37aed72ffe44f0796d1330e8459c87e/UI/ED/doc/process/dialog/ConCamera/.cache/ConCamera_zh_CN_x5_6c92854b5ed04efeb8d5545b659adccf.js?language=zh_CN&amp;$version=bdfc171d-418e-4fe9-acdd-0030f021f6a4"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;"> 
+          <div borderSize="0" class="xui-borderlayout-root"> 
+            <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+              <div class="xui-container" id="view2" lazy="false" style="position:relative;;position:relative;width:100%;height:96%;"> 
+                <div class="xui-container" id="contentHolder" style="height:323px;width:622px;"> 
+                  <section class="left" id="sectionId"> 
+                    <div id="commonDivId" style="clear: both; width: 1150px; height: 340px;border:1px solid blue"> 
+                      <div> 
+                        <iframe height="0" name="FileScan3125cName" src="http://127.0.0.1:8080/test/oldTT.html" width="0"></iframe> 
+                      </div>  
+                      <div class="commonDivClass" id="scanDivId" style="clear: both; width: 100%; height: 100%;display:none;"> 
+                        <div id="objectDiv" style="display:none;"> 
+                          <object classid="clsid:677C2EAE-057E-4900-97ED-1520F080942D" id="DOcxtest1"> 
+                            <param NAME="_Version" VALUE="65536"></param>  
+                            <param NAME="_ExtentX" VALUE="17463"></param>  
+                            <param NAME="_ExtentY" VALUE="17727"></param>  
+                            <param NAME="_StockProps" VALUE="0"></param> 
+                          </object> 
+                        </div> 
+                      </div>  
+                      <div id="cameraDivId" style="width: 39%; height: 100%;float:left;border:1px solid green;"> 
+                        <object classid="CLSID:454C18E2-8B7D-43C6-8C17-B1825B49D7DE" id="VideoInputCtl" style="width: 100%; height: 100%;"></object> 
+                      </div>  
+                      <div id="pictureDivId" style="width: 59%; height: 100%;float:right;border:1px solid red;"> 
+                        <img id="pictureImgId" src="/x5/UI/ED/doc/process/dialog/ConCamera/data:image" style="clear: both; width: 100%; height: 100%;"></img> 
+                      </div> 
+                    </div> 
+                  </section> 
+                </div>  
+                <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="ScanReceiver" onReceive="ConCamera.ScanReceiverReceive" style="position:absolute;top:248px;left:194px;"> 
+                  <script>
+new justep.WindowReceiver('ScanReceiver');</script> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-area xui-borderlayout-bottom" size="147px" style=""> 
+              <div class="xui-container" id="view1" lazy="false" style="position:relative;;position:relative;height:100%;width:103%;"> 
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="openPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:84px;top:46px;left:5px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default2">开启高拍仪</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="setPin1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:76px;top:46px;left:97px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default3">设置分辨率</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="setPin2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:68px;top:46px;left:184px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default4">设置属性</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="closePic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:86px;top:46px;left:261px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default5">关闭高拍仪</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="firstPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:46px;left:380px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default7">第一张</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="upPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:46px;left:457px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default8">上一张</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="nextPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:46px;left:710px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default9">下一张</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="lastPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:67px;top:46px;left:782px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default10">最后一张</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="xuanZhuanPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:78px;left:380px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default11">旋转</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="deletePic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:78px;left:782px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default12">删除</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="uploadPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:114px;left:710px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default13">上传</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="cancelP" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:114px;left:782px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default14">取消</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <input class="xui-input" id="fileName" style="position:absolute;width:232px;top:114px;left:458px;" type="text" value=""></input>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="upMove" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:78px;left:457px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default1">前移</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="nextMove" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:78px;left:710px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default15">后移</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="fasterSao" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:79px;top:113px;left:90px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="default16">开启扫描仪</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="getPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:78px;left:184px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default6">拍照</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="picColor" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;height:23px;width:84px;top:78px;left:89px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="focus" style="display:none;width:0px"></td>  
+                      <td class="xxf-value"> 
+                        <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                          <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                            <tr style="border:none"> 
+                              <td style="width:100%;height:100%;border:none;"> 
+                                <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                              </td>  
+                              <td style="border:none" width="20px"> 
+                                <img align="absMiddle" src="/x5/$v5620481fdaef4d0ca72568a032caf65c/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="textTo" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;height:23px;top:78px;left:539px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default17">移到</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <label class="xui-label" id="label1" style="position:absolute;top:117px;left:386px;">文件名：</label>  
+                <label class="xui-label" id="label2" style="position:absolute;top:82px;left:660px;">张</label>  
+                <input class="xui-input" id="textToNum" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" style="position:absolute;position:absolute;width:29px;height:18px;top:78px;left:619px;" type="text" value=""></input>  
+                <label class="xui-label" id="fileLabel" style="position:absolute;top:50px;left:559px;">当前无预览，共0张</label>  
+                <label class="xui-label" id="label5" style="position:absolute;position:absolute;top:84px;left:8px;">照片格式：</label>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="fileScan" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:80px;top:113px;left:176px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default18">开始扫描</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="fileScanClose" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:80px;top:113px;left:266px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default19">关闭扫描仪</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:56px;top:115px;left:12px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="focus" style="display:none;width:0px"></td>  
+                      <td class="xxf-value"> 
+                        <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                          <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                            <tr style="border:none"> 
+                              <td style="width:100%;height:100%;border:none;"> 
+                                <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                              </td>  
+                              <td style="border:none" width="20px"> 
+                                <img align="absMiddle" src="/x5/$vfc8fd39851e14a5798a760d7c187367e/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="SoScan" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:85px;top:78px;left:263px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default40">高清扫描</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="openOldScan" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:103px;top:46px;left:892px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default41">开启旧式扫描仪</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="oldScan" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:106px;top:78px;left:892px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default42">旧式扫描仪扫描</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="getOldPic" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:114px;top:113px;left:892px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="default45">获取旧式扫描图像</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"></div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> 
+<head> 
+<title> New Document </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Generator" content="EditPlus">  
+<meta name="Author" content="">  
+<meta name="Keywords" content="">  
+<meta name="Description" content=""> 
+<script language="javascript">  
+	var onFlag = false;//扫描仪关闭状态  false 关闭
+	 /**检测**/  
+    function OpenCheck()
+    {  
+		try {
+			var pp= ocxTest.openScanner();
+			return true;
+		} catch (e) {
+			alert("中晶扫描仪驱动未安装。");
+			window.parent.closeDialog();
+		}
+    }
+	 /**打开**/  
+    function Open()
+    {  
+		try {
+			ocxTest.DSMode(0);
+			var pp= ocxTest.openScanner();
+			if(1==pp){
+				alert("中晶扫描仪开启成功");
+				onFlag = true;
+			}else{
+				var Error = ocxTest.GetErrorCode();
+				alert("中晶扫描仪开启失败，错误编码："+Error);
+				onFlag = false;
+			}
+		} catch (e) {
+			alert("中晶扫描仪驱动未安装。");
+			onFlag = false;
+		}
+    }
+    /**扫描**/
+    function Scan(){
+    	if(onFlag){
+	 		var file = window.parent.tempFile+'\\';//临时文件地址
+			var startIndex = window.parent.fileArray.length;//开始索引
+			var type = window.parent.scanType;//扫描类型
+			alert('临时文件夹:'+file+',已有照片数:'+startIndex+',扫描类型:'+(type==1?'单面':'双面') );
+			try {
+				//
+				ocxTest.SetImageName(file,"",startIndex, 5);//文件地址		
+				ocxTest.ScanResolution = 200;//1分辨率  	
+	 			ocxTest.ImageFormat = 1;//jpg	
+				ocxTest.ScanPixelType = 0;//1像素属性0黑白 1灰度 2彩色
+				ocxTest.AutoDiscardBlankPages = -1;//-1 自动去除空白页 -2 不去除	
+				ocxTest.AutoScan = 0;//1 1：自动扫描。 0：不自动扫描。
+				ocxTest.ScanSourceType = type;//1 0 Flatbed 平板扫描仪 1 ADF 2 ADF duplex 
+				if (1==ocxTest.Scan(-1,0)){					
+					var count =ocxTest.GetScanImageCount();
+					alert("扫描完成，共计"+count+"张");
+				}else{
+					var Error = ocxTest.GetErrorCode();
+					alert("获取图像失败，错误编码："+Error);
+				}
+			 }catch (e) {
+				alert("中晶扫描仪驱动未安装。");
+			 }  	   		
+    	}else{
+    		alert('请开启扫描仪!');		
+    	}
+    }
+    /**高清扫描**/
+    function SoScan(){
+    	if(onFlag){
+	 		var file = window.parent.tempFile+'\\';//临时文件地址
+			var startIndex = window.parent.fileArray.length;//开始索引
+			var type = window.parent.scanType;//扫描类型
+			alert('临时文件夹:'+file+',已有照片数:'+startIndex+',扫描类型:'+(type==1?'单面':'双面') );
+			try {
+				//
+				ocxTest.SetImageName(file,"",startIndex, 5);//文件地址		
+				ocxTest.ScanResolution = 300;//1分辨率  	
+	 			ocxTest.ImageFormat = 1;//jpg	
+				ocxTest.ScanPixelType = 0;//1像素属性0黑白 1灰度 2彩色
+				ocxTest.AutoDiscardBlankPages = -1;//-1 自动去除空白页 -2 不去除	
+				ocxTest.AutoScan = 0;//1 1：自动扫描。 0：不自动扫描。
+				ocxTest.ScanSourceType = type;//1 0 Flatbed 平板扫描仪 1 ADF 2 ADF duplex 
+				if (1==ocxTest.Scan(-1,0)){					
+					var count =ocxTest.GetScanImageCount();
+					alert("扫描完成，共计"+count+"张");
+				}else{
+					var Error = ocxTest.GetErrorCode();
+					alert("获取图像失败，错误编码："+Error);
+				}
+			 }catch (e) {
+				alert("中晶扫描仪驱动未安装。");
+			 }  	   		
+    	}else{
+    		alert('请开启扫描仪!');		
+    	}
+    }
+    /**关闭**/
+    function ScanClose(){
+    	if(onFlag){
+	    	try{
+	    		var cc = ocxTest.CloseScanner();//关闭
+	    		if(cc==1){
+	    			alert('扫描仪关闭成功!');
+				onFlag = false;
+	    		}else{
+	    			alert('扫描仪关闭失败!');
+	    		}
+	    	}catch(e){
+	    		alert('中晶扫描仪驱动未安装。');
+			onFlag = false;
+	    	}
+	    }else{
+	    	alert('扫描仪关闭成功!');
+	    }		
+    }
+</script>
+</head>
+<!-- -->
+<body>    
+<OBJECT 
+ID="ocxTest"  width="0" height="0" CLASSID="CLSID:49903B72-9F44-41E1-A79B-B85A8BCEB89A"> 
+</OBJECT>
+<!--每次传输时-->
+<script  LANGUAGE=Javascript  FOR= "ocxTest" EVENT= "PostScanEveryPage(bSuccess)" defer>
+	var filename = ocxTest.GetCurrentScanImagePath();
+	window.parent.tempFileName = filename; //
+	window.parent.fileArray.push(filename);//放进父页面
+	var base = ocxTest.GetImageBase64String();//显示图片
+	window.parent.zgArray.push(base);
+	window.parent.showPic(base);
+	window.parent.tempValue++;//改变label
+	window.parent.labelChange();
+</script>
+
+</body>
+</html>

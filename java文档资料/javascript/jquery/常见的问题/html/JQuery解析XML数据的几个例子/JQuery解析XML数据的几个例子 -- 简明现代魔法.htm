@@ -1,0 +1,547 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0057)http://www.nowamagic.net/jquery/jquery_ParsingXmlData.php -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<TITLE>JQuery解析XML数据的几个例子 -- 简明现代魔法</TITLE> 
+<META name="copyright" content="JQuery解析XML数据的几个例子"> 
+<META name="keywords" content="JQuery解析XML数据的几个例子"> 
+<META name="description" content="JQuery解析XML数据的几个例子"> <LINK href="../images/icon.gif" 
+rel="shortcut icon"> <LINK href="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/style4.css" 
+rel="stylesheet" type="text/css"> 
+<META name="GENERATOR" content="MSHTML 10.00.9200.17556"></HEAD> 
+<BODY>
+<DIV class="background" id="background">
+<DIV class="top" id="top"></DIV>
+<DIV class="header" id="header">
+<TABLE width="958" align="center" border="0">
+  <TBODY>
+  <TR>
+    <TD width="220"><IMG 
+    src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/logo.gif"></TD>
+    <TD width="520" rowspan="2">
+      <OBJECT name="scriptmain" width="515" height="270" id="scriptmain" 
+      classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/&#10;flash/swflash.cab#version=6,0,29,0"><PARAM 
+      name="movie" value="banner_english.swf?bcastr_xml_url=../xml/bcastr2.xml"> 
+          <PARAM name="quality" value="high">     <PARAM name="scale" value="noscale"> 
+          <PARAM name="LOOP" value="false">     <PARAM name="menu" 
+      value="false">     <PARAM name="wmode" value="transparent">     <EMBED 
+      name="scriptmain" width="515" height="270" pluginspage="http://www.macromedia.com/go/getflashplayer" 
+      src="banner_english.swf?bcastr_xml_url=../xml/bcastr2.xml" type="application/x-shockwave-flash" 
+      wmode="transparent" menu="false" salign="T" quality="high" loop="false">   
+      </OBJECT>    </TD>
+    <TD width="220" valign="top" style='background-image: url("../images/headerbg.jpg");' 
+    rowspan="2">
+      <DIV style="margin: 80px 35px 0px 30px;">
+<STYLE>
+.tbtns{width:143px; height:39px; background:url(../images/tbtn.gif) no-repeat; display:block; margin:0 auto; font:700 14px/34px Verdana, Geneva, sans-serif!important;color:#FFF!important; margin-top:6px}
+.t-b{background-position:0 -78px}
+.t-r{background-position:0 0}
+.t-g{background-position:0 -39px}
+</STYLE>
+       
+      <DIV align="center"><A class="tbtns t-b" href="http://www.nowamagic.net/librarys/news">互联网资讯</A><A 
+      class="tbtns t-r" href="http://www.nowamagic.net/admin/article_ArticleQuery.php">学习资料库</A><A 
+      class="tbtns t-g" 
+    href="http://www.nowamagic.net/">简明现代魔法</A></DIV></DIV></TD></TR>
+  <TR>
+    <TD align="center">    专注于互联网主流的各种技术     </TD></TR>
+  <TR>
+    <TD height="5" bgcolor="#66cc00" colspan="3"></TD></TR></TBODY></TABLE>
+<DIV class="leftfower">
+<OBJECT width="95" height="285" border="0"><PARAM name="movie" value="../images/swf/flower.swf"><PARAM 
+name="quality" value="High"><PARAM name="scale" value="ExactFit"> <PARAM name="wmode" 
+value="transparent"> <EMBED name="FlashH" width="95" height="285" pluginspage="http://www.macromedia.com/go/getflashplayer" 
+src="../images/swf/flower.swf" type="application/x-shockwave-flash" quality="High" 
+wmode="transparent" scale="ExactFit"> </OBJECT></DIV>
+<DIV class="rightfower">
+<OBJECT width="80" height="285" border="0"><PARAM name="movie" value="../images/swf/right.swf"><PARAM 
+name="quality" value="High"><PARAM name="scale" value="ExactFit"> <PARAM name="wmode" 
+value="transparent"><EMBED name="FlashH" width="80" height="285" pluginspage="http://www.macromedia.com/go/getflashplayer" 
+src="../images/swf/right.swf" type="application/x-shockwave-flash" quality="High" 
+wmode="transparent" scale="ExactFit"></OBJECT></DIV></DIV>
+<DIV class="navigation" id="navigation"><!-- navigation START --> 
+<DIV id="navigationMenu">
+<UL id="menus">
+  <LI class="current_page_item"><A title="首页" class="home" href="http://www.nowamagic.net/">首页</A></LI> 
+  		
+  <LI><A title="简明现代魔法" href="http://www.nowamagic.net/"><SPAN 
+  id="licontent">简明现代魔法</SPAN></A></LI> 		
+  <LI><A title="资料文献总汇" href="http://www.nowamagic.net/admin/article_ArticleQuery.php"><SPAN 
+  id="licontent">资料文献总汇</SPAN></A></LI> 		
+  <LI><A title="Veda 原型" href="http://www.nowamagic.net/librarys/veda/" target="_blank"><SPAN 
+  id="licontent">Veda 原型</SPAN></A></LI>         
+  <LI><A title="互联网资讯" href="http://www.nowamagic.net/librarys/news/"><SPAN id="licontent">互联网资讯</SPAN></A></LI> 
+  		
+  <LI><A title="图书馆" href="http://www.nowamagic.net/librarys/"><SPAN id="licontent">魔法图书馆</SPAN></A></LI>
+  		 
+  <LI><A title="晚八点" href="http://www.nowamagic.net/librarys/eight/"><SPAN id="licontent">晚上八点</SPAN></A></LI> 
+          <!-- <li><a href="../space.php" title="社区～魔法"><span id="licontent">社区～魔法</span></a></li> -->
+  		 
+  <LI><A class="lastmenu" href="javascript:void(0);"></A></LI> 	</UL></DIV> 
+<STYLE>.topads { border:2px solid #e6e6fa; margin-top:3px; overflow:hidden; }
+.topads:hover { border:2px solid #b0e0e6; margin-top:3px; }
+</STYLE>
+ <!-- navigation END --> 
+<DIV class="topads">
+<SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-3908995730077629";
+/* 728x90, 创建于 10-6-25 */
+google_ad_slot = "0450659969";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/f.txt" type="text/javascript"></SCRIPT>
+ </DIV></DIV>
+<DIV class="search" id="search">
+<DIV id="searchbox">
+<FORM name="search" action="../admin/article_SearchResult.php" method="post">
+<DIV class="content"><INPUT name="search" class="textfield" type="text" size="24"> 
+            <INPUT class="button" type="submit"> 		</DIV></FORM></DIV></DIV>
+<DIV class="mainContent" id="mainContent">
+<DIV class="gen3_nav"><A href="http://www.nowamagic.net/index.php">简明现代魔法</A> 
+-&gt; <A href="http://www.nowamagic.net/jquery/jquery.php">JQuery</A> -&gt; 
+JQuery解析XML数据的几个例子</DIV>
+<H1 align="center">JQuery解析XML数据的几个例子</H1>
+<P align="center">2011-05-13</P>
+<DIV class="gen3">
+<P>用JavaScript解析XML数据是常见的编程任务，JavaScript能做的，JQuery当然也能做。下面我们来总结几个使用JQuery解析XML的例子。</P>
+<P>第一种方案：</P>
+<PRE class="brush: javascript;">&lt;script type="text/javascript"&gt;
+$(document).ready(function() {
+	$.ajax({
+	  	url: 'http://www.nowamagic.net/cgi/test.xml',
+	  	dataType: 'xml',
+	  	success: function(data){
+		  	//console.log(data);
+		 	$(data).find("channel").find("item").each(function(index, ele) {
+				var titles = $(ele).find("title").text();
+				var links = $(ele).find("link").text();
+				console.log(titles+'-----');
+				$("#noticecon").find('ol').append('&lt;li&gt;&lt;a href="'+links+'"&gt;'+titles+'&lt;/a&gt;&lt;/li&gt;');
+			});
+		}
+	});
+}) 
+&lt;/script&gt;
+
+    &lt;div id="noticecon"&gt;
+		&lt;ol&gt;
+		&lt;/ol&gt;
+	&lt;/div&gt;
+</PRE>
+<P>第二种方案：</P>
+<PRE class="brush: javascript;">&lt;script type="text/javascript"&gt;
+	$.get("http://www.nowamagic.net/cgi/test.xml", function(data){
+		$(data).find('channel').find('item').each(function(index, ele){
+			var titles = $(ele).find('title').text();
+			var links = $(ele).find('link').text();
+			$("#noticecon").find('ol').append('&lt;li&gt;&lt;a href="'+links+'"&gt;'+titles+'&lt;/a&gt;&lt;/li&gt;');
+		})
+	});
+&lt;/script&gt;
+
+    &lt;div id="noticecon"&gt;
+		&lt;ol&gt;
+		&lt;/ol&gt;
+	&lt;/div&gt;
+</PRE>
+<P>一般步骤如下：</P>
+<P>1. 读取xml文件</P>
+<PRE class="brush: javascript;">$.get("xmlfile.xml",function(xml){
+	//xml即为可以读取使用的内容，具体读取见第2点
+});
+</PRE>
+<P>2. 读取xml内容</P>
+<P>如果读取的xml是来于xml文件，这结合上面的那点，处理如下：</P>
+<PRE class="brush: javascript;">$.get("xmlfile.xml",function(xml){    
+	$(xml).find("item").length;    
+});
+</PRE>
+<P>如果读取的是xml字符串，则要注意一点，xml字符串的必然被"&lt;xml&gt;"和"&lt;/xml&gt;"包围才可以被解析</P>
+<PRE class="brush: javascript;">$("&lt;xml&gt;&lt;root&gt;&lt;item&gt;&lt;/item&gt;&lt;/root&gt;&lt;/xml&gt;").find("item").length;
+</PRE>
+<P>解析xml内容：</P>
+<P>示例xml：</P>
+<PRE class="brush: javascript;">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;fields&gt;
+  &lt;field Name="Name1"&gt;
+    &lt;fieldname&gt;dsname&lt;/fieldname&gt;
+    &lt;datatype&gt;字符&lt;/datatype&gt;
+  &lt;/field&gt;
+  &lt;field Name="Name2"&gt;
+    &lt;fieldname&gt;dstype&lt;/fieldname&gt;
+    &lt;datatype&gt;字符&lt;/datatype&gt;
+  &lt;/field&gt;
+&lt;/fields&gt;
+</PRE>
+<P>以下是解析示例代码：</P>
+<PRE class="brush: javascript;">$(xml).find("field").each(function() {
+	var field = $(this);
+	var fName = field.attr("Name");//读取节点属性
+	var dataType = field.find("datatype").text();//读取子节点的值
+});
+</PRE></DIV></DIV>
+<DIV class="additionalContent" id="additionalContent">
+<STYLE type="text/css">
+#apDiv1 {
+	position:absolute;
+	left:-20px;
+	top:-15px;
+	width:55px;
+	height:70px;
+	z-index:1;
+	background-image: url(../images/ul_leaf_overhang.png);
+}
+</STYLE>
+ 
+<DIV id="apDiv1"></DIV>
+<TABLE width="215" border="0">
+  <TBODY>
+  <TR>
+    <TD height="50" align="center" background="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/sidebarHeader.gif" 
+    colspan="2"><SPAN class="white">随机文章推荐</SPAN></TD></TR></TBODY></TABLE>
+<UL class="adition">
+  <LI><A href="http://www.nowamagic.net/jquery/jquery_CommondSkills.php">JQuery 
+  常用技巧介绍</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_AutoCompletePlugin.php">JQuery实现自动补全的插件</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_ChangeSkins.php">JQuery简单的网页换肤</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_SimpleUseOfJqueryJson.php">JQuery 
+  JSON的简单使用</A></LI>
+  <LI><A href="http://www.nowamagic.net/jquery/jquery_Jquery1.5Beta1.php">JQuery 
+  1.5 beta1的改动细节</A></LI>
+  <LI><A href="http://www.nowamagic.net/jquery/jquery_SendSelectedWordToTwitter.php">将鼠标选中的文字发送到新浪微博</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_JqueryCookie.php">jquery.cookie.js使用介绍</A></LI>
+  <LI><A href="http://www.nowamagic.net/jquery/jquery_SelectControl.php">JQuery 
+  select控件的相关操作</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_SuperFish.php">JQuery菜单SuperFish</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_GetSelectedCheckbox.php">JQuery获取复选框选中的个数</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_AppendAndAppendTo.php">JQuery 
+  学习：追加HTML元素内容</A></LI>
+  <LI><A 
+  href="http://www.nowamagic.net/jquery/jquery_JqueryDrag.php">JQuery简单拖拽效果制作</A></LI></UL>
+<TABLE width="215" border="0"><!--
+  <tr>
+    <td height="50" align="center" background="../images/sidebarHeader.gif"><span class="white">赞助商链接</span></td>
+  </tr>
+--> 
+    
+  <TBODY>
+  <TR>
+    <TD height="5"></TD></TR>
+  <TR>
+    <TD align="center">
+<SCRIPT type="text/javascript"><!--
+google_ad_client = "pub-3908995730077629";
+/* 200x200, 创建于 10-6-23 */
+google_ad_slot = "6112530698";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</SCRIPT>
+       
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/f.txt" type="text/javascript"></SCRIPT>
+          </TD></TR></TBODY></TABLE>
+<TABLE width="215" border="0">
+  <TBODY>
+  <TR>
+    <TD height="50" align="center" background="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/sidebarHeader.gif" 
+    colspan="2"><SPAN class="white">网站分类</SPAN></TD></TR></TBODY></TABLE>
+<TABLE width="210" border="0">
+  <TBODY>
+  <TR>
+    <TD>
+      <UL class="adition">
+        <LI><A href="http://www.nowamagic.net/html/html.php" 
+        target="_blank">HTML</A> (44)</LI>
+        <LI><A href="http://www.nowamagic.net/csszone/css.php" 
+        target="_blank">CSS</A> (105)</LI>
+        <LI><A href="http://www.nowamagic.net/javascript/javascript.php" target="_blank">JavaScript</A> 
+        (232)</LI>
+        <LI><A href="http://www.nowamagic.net/jquery/jquery.php" 
+        target="_blank">JQuery</A> (53)</LI>
+        <LI><A href="http://www.nowamagic.net/ajax/ajax.php" 
+        target="_blank">Ajax</A> (34)</LI>
+        <LI><A href="http://www.nowamagic.net/php/php.php" 
+        target="_blank">PHP</A> (314)</LI>
+        <LI><A href="http://www.nowamagic.net/java/java.php" 
+        target="_blank">Java</A> (39)</LI>
+        <LI><A href="http://www.nowamagic.net/cpp/cpp.php" 
+        target="_blank">C/C++</A> (35)</LI>
+        <LI><A href="http://www.nowamagic.net/flex/flex.php" 
+        target="_blank">ActionScript</A> (21)</LI>
+        <LI><A href="http://www.nowamagic.net/photoshop/photoshop.php" target="_blank">PhotoShop</A> 
+        (4)</LI>
+        <LI><A href="http://www.nowamagic.net/xmlzone/xml.php" 
+        target="_blank">XML</A> (1)</LI>
+        <LI><A href="http://www.nowamagic.net/wordpress/wordpress.php" target="_blank">WordPress</A> 
+        (9)</LI>
+        <LI><A href="http://www.nowamagic.net/datastructures/datastructures.php" 
+        target="_blank">数据结构</A> (14)</LI>
+        <LI><A href="http://www.nowamagic.net/algorithm/algorithm.php" target="_blank">计算机算法</A> 
+        (56)</LI>
+        <LI><A href="http://www.nowamagic.net/database/database.php" target="_blank">数据库技术</A> 
+        (66)</LI>
+        <LI><A href="http://www.nowamagic.net/operatingsystem/operatingsystem.php" 
+        target="_blank">操作系统</A> (1)</LI>
+        <LI><A href="http://www.nowamagic.net/internet/internet.php" target="_blank">互联网时代</A> 
+        (160)</LI>
+        <LI><A href="http://www.nowamagic.net/projects/projects.php" target="_blank">软件项目</A> 
+        (27)</LI>
+        <LI><A href="http://www.nowamagic.net/program/program.php" target="_blank">编程思想</A> 
+        (57)</LI>
+        <LI><A href="http://www.nowamagic.net/seo/seo.php" 
+        target="_blank">搜索引擎优化</A> (31)</LI>
+        <LI><A href="http://www.nowamagic.net/webdesign/webdesign.php" target="_blank">Web设计理念</A> 
+        (77)</LI>
+        <LI><A href="http://www.nowamagic.net/architecture/architecture.php" 
+        target="_blank">软件架构技术</A> (31)</LI>
+        <LI><A href="http://www.nowamagic.net/tool/tool.php" 
+        target="_blank">信息化工具</A> (12)</LI>
+        <LI><A href="http://www.nowamagic.net/advertisement/ads.php" target="_blank">广告设计</A> 
+        (7)</LI>
+        <LI><A href="http://www.nowamagic.net/programlife/programlife.php" 
+        target="_blank">程序人生</A> (18)</LI>
+        <LI><A href="http://www.nowamagic.net/word/word.php" 
+        target="_blank">喃喃细语</A> (61)</LI></UL></TD></TR></TBODY></TABLE></DIV>
+<DIV class="bottom" id="bottom">﻿
+<STYLE>input { margin:5px 0px 5px 0px;}
+textarea { margin:5px 0px 5px 0px; }
+.bottomAds {
+	border:1px solid white;
+	margin:10px 3px 0 3px;
+}
+.bottomAds_quote{
+	width:700px;
+	margin:0px 5px 0px 5px;
+	line-height:150%;
+	font-family:Verdana,宋体;  
+    font-size: 12px;  
+	padding: 5px 5px 5px 5px;
+	border: 1px solid #CCC;	
+}
+.bottomAds_quote legend{
+	color:green;
+	font-family:微软雅黑;
+	font-size:16px;
+}
+.bottomAds_quote p{
+	margin:0;
+	padding:0;
+	text-indent:24px;
+	line-height:150%;
+}
+.ads {
+	margin:5px 5px 5px 5px;
+	width:350px;
+	float:left;
+}
+
+.ads_content {
+	margin:8px 5px 8px 10px;
+	width:305px;
+	float:right;
+}
+
+</STYLE>
+ 
+<P style="text-indent: 2em;">注：如需转载本文，请注明出处（原文链接），谢谢。更多精彩内容，请进入<A href="http://www.nowamagic.net/index.php" 
+target="_blank">简明现代魔法</A>首页。</P>
+<TABLE width="700" border="0">
+  <TBODY>
+  <TR>
+    <TD align="center"><A title="进入新博客" class="tbtns t-b" href="http://www.nowamagic.net/librarys/veda/" 
+      target="_blank">进入新博客</A></TD></TR></TBODY></TABLE>
+<DIV class="bottomAds">
+<FIELDSET class="bottomAds_quote"><LEGEND>你也许还会对以下文章感兴趣</LEGEND> 
+<TABLE width="700" border="0">
+  <TBODY>
+  <TR>
+    <TD>
+      <UL class="adition">
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_ChangeHtmlContent.php">JQuery 
+        学习：改变HTML元素的内容</A></LI>
+        <LI><A 
+        href="http://www.nowamagic.net/jquery/jquery_FunctionEach.php">谈谈JQuery中的each()方法</A></LI>
+        <LI><A 
+        href="http://www.nowamagic.net/jquery/jquery_MessageBox.php">JQuery优化的右下角消息框设计</A></LI>
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_Toggle.php">JQuery 
+        学习：切换HTML元素的显示与隐藏</A></LI>
+        <LI><A 
+        href="http://www.nowamagic.net/jquery/jquery_ParsingXmlData.php">JQuery解析XML数据的几个例子</A></LI></UL></TD>
+    <TD>
+      <UL class="adition">
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_Parents.php">JQuery 
+        学习：选取父节点</A></LI>
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_PrototypeAnalysis.php">JQuery 
+        中的原型分析</A></LI>
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_GetSelectedCheckbox.php">JQuery获取复选框选中的个数</A></LI>
+        <LI><A href="http://www.nowamagic.net/jquery/jquery_SimpleUseOfJqueryJson.php">JQuery 
+        JSON的简单使用</A></LI>
+        <LI><A 
+        href="http://www.nowamagic.net/jquery/jquery_MouseClickEvent.php">JQuery 
+        学习：鼠标点击触发事件</A></LI></UL></TD></TR></TBODY></TABLE></FIELDSET></DIV>
+<SCRIPT type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15029466-1");
+pageTracker._trackPageview();
+} catch(err) {}</SCRIPT>
+ 
+<SCRIPT language="javascript">
+function chkinput(form)
+{
+	if(form.name.value=="")
+	{
+		alert("请输入名称");
+	   	form.name.select();
+	   	return(false);
+	}
+	if(form.email.value=="")
+	{
+		alert("请输入电子邮件");
+	   	form.email.select();
+	   	return(false);
+	}
+	if(form.content.value=="")
+	{
+	   	alert("请输入留言");
+	   	form.content.select();
+	   	return(false);
+	}
+	if(form.check.value=="")
+	{
+	   	alert("请输入验证码");
+	   	form.check.select();
+	   	return(false);
+	}
+    return(true);
+}
+</SCRIPT>
+ 
+<STYLE type="text/css">
+.inputstyle { font-family: Verdana,Arial,Helvetica,sans-serif !important; font-size:14px !important; height:22px !important; padding-top:4px !important;}
+.reptext {
+	width:340px;
+	border:1px solid #6CAEDF;
+	height:120px;
+	word-wrap:break-word;
+	line-height: 150%;
+	overflow:auto;
+	overflow-x: hidden;
+	outline:none;
+	font-family: Verdana,Arial,Helvetica,sans-serif !important;
+    font-size: 14px !important;
+    padding-top: 4px !important;
+}
+</STYLE>
+ 
+<DIV style="margin: 10px 0px 0px 10px; height: 65px; overflow: hidden;">
+<SCRIPT type="text/javascript"> /*640*60，创建于2010-8-31*/ var cpro_id = 'u176816';</SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/c.js" type="text/javascript"></SCRIPT>
+</DIV>
+<DIV class="bottomAds">
+<FIELDSET class="bottomAds_quote" 
+style="padding: 12px 12px 12px 15px;"><LEGEND>喜欢本文，就分享它吧</LEGEND> <!-- JiaThis Button BEGIN --> 
+<DIV id="jiathis_style_32x32"><A class="jiathis_button_tsina"></A>	 <A class="jiathis_button_tqq"></A>
+	 <A class="jiathis_button_qzone"></A>	 <A class="jiathis_button_t163"></A>	 <A 
+class="jiathis_button_renren"></A>	 <A class="jiathis_button_kaixin001"></A>	 <A 
+class="jiathis_button_douban"></A>	 <A class="jiathis_button_xiaoyou"></A>	 <A 
+class="jiathis_button_googlereader"></A>	 <A class="jiathis_button_buzz"></A>
+	 <A class="jiathis_button_fb"></A>	 <A class="jiathis_button_twitter"></A>	 <A 
+class="jiathis_button_gmail"></A>	 <A class="jiathis_button_youdao"></A>	 <A 
+class="jiathis_button_taobao"></A>	 <A title="添加到收藏夹" 
+class="jiathis_button_fav"></A>	 <A class="jiathis jiathis_txt jtico jtico_jiathis" 
+href="http://www.jiathis.com/share/?uid=1511560" target="_blank"></A> </DIV>
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/jia.js" type="text/javascript" charset="utf-8"></SCRIPT>
+ <!-- JiaThis Button END --> </FIELDSET></DIV>
+<DIV class="bottomAds">
+<FIELDSET class="bottomAds_quote"><LEGEND>给我留言</LEGEND> 
+<DIV class="ads">
+<FORM onsubmit="return chkinput(this)" action="../utity/post.php" method="post">
+<TABLE width="300" border="0">
+  <TBODY>
+  <TR>
+    <TD width="22%">您的名字：</TD>
+    <TD width="78%"><INPUT name="name" class="inputstyle" type="text"> </TD></TR>
+  <TR>
+    <TD>您的邮件：</TD>
+    <TD><INPUT name="email" class="inputstyle" type="text"> </TD></TR>
+  <TR>
+    <TD>您的网站：</TD>
+    <TD><INPUT name="website" class="inputstyle" type="text"> </TD></TR>
+  <TR>
+    <TD colspan="2"><TEXTAREA name="content" class="reptext"></TEXTAREA></TD></TR>
+  <TR>
+    <TD><IMG src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/checkcode.gif"></TD>
+    <TD><INPUT name="check" class="inputstyle" type="text"> 
+</TD></TR></TBODY></TABLE><INPUT type="submit" value="提交"> </FORM></DIV>
+<DIV class="ads_content"><BR>
+<SCRIPT type="text/javascript"> /*300*250，创建于2010-5-31*/ var cpro_id = 'u34558';</SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/c.js" type="text/javascript"></SCRIPT>
+</DIV><BR clear="both"><!-- <a href="http://www.nowamagic.net/utity/MessageBoard.php">查看所有留言</a> --> 
+</FIELDSET></DIV></DIV>
+<DIV class="siteInfo" id="siteInfo">
+<DIV class="ball_footer"><!--
+<object height="204" width="960" border="0">
+<param value="templates/weeshine/images/flower.swf" name="movie"/><param value="High" name="quality"/><param value="ExactFit" name="scale"/> <param value="transparent" name="wmode"/>
+<embed height="204" width="960" scale="ExactFit" wmode="transparent" quality="High" name="FlashH" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" src="../swf/mnsv3.swf">
+</embed>
+</object>
+--> 
+</DIV>
+<TABLE width="960" height="204" align="center" background="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/footer_2.jpg" 
+border="0">
+  <TBODY>
+  <TR>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>
+      <P align="center"><FONT color="gray">copyright © 2009 简明现代魔法 &nbsp;&nbsp; 
+      学习、分享、进步</FONT></P>
+      <P align="center"><FONT color="gray">power by Gonn 
+      感谢所有关心和支持本站的朋友们</FONT></P></TD></TR></TBODY></TABLE></DIV></DIV>
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shCore.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushCpp.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushCSharp.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushCss.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushJava.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushJScript.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushPhp.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushPython.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushSql.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shBrushXml.js" type="text/javascript"></SCRIPT>
+ <LINK href="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shCore.css" rel="stylesheet" 
+type="text/css"> <LINK href="JQuery解析XML数据的几个例子%20--%20简明现代魔法_files/shThemeDefault.css" 
+rel="stylesheet" type="text/css"> 
+<SCRIPT type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = '../includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</SCRIPT>
+ </BODY></HTML>

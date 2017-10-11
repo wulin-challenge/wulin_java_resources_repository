@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <script language="javascript" src="/UI/system/components/windowReceiver/windowReceiver.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript" src="/UI/EDT/archival/process/dialog/archivalConCamera/archivalConCamera.js">
+</script>      <script src="/UI/system/components/windowDialog/FrameWindow.js">
+</script>      <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowReceiver.xbl.xml#windowReceiver"] = _xbl_JSClassDefine_windowReceiver;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/trigger.xbl.xml#trigger"] = _xbl_JSClassDefine_trigger;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_windowReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.domNode._xblObject.initXBL();
+			},
+			"initXBL2" : function() {
+				this.domNode._xblObject.initXBL2();
+			}
+		}));
+
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+function _xbl_JSClassDefine_trigger(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_trigger.prototype = justep.Object.extend(new justep.XBLObject(), eval({	
+			"initXBL" : function() {
+				this.$el = $(this.domNode);
+				justep.Utils.proxable(this, this.domNode.xformsObject, xforms.XFTrigger);
+			},
+			"initXBL2" : function() {
+				this.domNode.xformsObject.initOperation();
+			}
+		}));
+
+	var ids=[{id:'d4a07fcb0d104d49a056348817c68720', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'photoReceiver', name:'/UI/system/components/windowReceiver.xbl.xml#windowReceiver'},{id:'trigger8', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'snap', name:'xforms:label'}]},{id:'trigger9', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'newsnap', name:'xforms:label'}]},{id:'trigger10', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'uploadsnap', name:'xforms:label'}]},{id:'trigger11', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'cancel', name:'xforms:label'}]}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'trigger8');xf._a('trigger8','snap');xf._a(null,'trigger9');xf._a('trigger9','newsnap');xf._a(null,'trigger10');xf._a('trigger10','uploadsnap');xf._a(null,'trigger11');xf._a('trigger11','cancel');function init() {	
+var begin = new Date().getTime();	
+var xf_model_mdMain = new xforms.XFModel('mdMain',null);	
+xforms.load_parts('view2');	
+xforms.load_parts('view1');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+function load_view2(){if (justep("view2").getAttribute('loaded') &amp;&amp; justep("view2").getAttribute('loaded') == 'true') return;justep("view2").setAttribute('loaded', 'true');	
+if(typeof(load_view2_html) == 'function')load_view2_html();	
+}	
+function load_view2_xblinit(){if (justep("view2").getAttribute('xblloaded') &amp;&amp; justep("view2").getAttribute('xblloaded') == 'true') return;justep("view2").setAttribute('xblloaded', 'true');	
+}	
+function load_view1(){if (justep("view1").getAttribute('loaded') &amp;&amp; justep("view1").getAttribute('loaded') == 'true') return;justep("view1").setAttribute('loaded', 'true');	
+if(typeof(load_view1_html) == 'function')load_view1_html();	
+var xf_trigger_trigger8=new xforms.XFTrigger('trigger8',null,null,null,false,false,false,null,null,null);	
+var xf_trigger_trigger9=new xforms.XFTrigger('trigger9',null,null,null,false,false,false,null,null,null);	
+var xf_trigger_trigger10=new xforms.XFTrigger('trigger10',null,null,null,false,false,false,null,null,null);	
+var xf_trigger_trigger11=new xforms.XFTrigger('trigger11',null,null,null,false,false,false,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){cancelDOMActivate(event)}));xf._p(justep('trigger11'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'trigger11', evt,false)});	
+}	
+function load_view1_xblinit(){if (justep("view1").getAttribute('xblloaded') &amp;&amp; justep("view1").getAttribute('xblloaded') == 'true') return;justep("view1").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;">           <div borderSize="0" class="xui-borderlayout-root">             <div class="xui-borderlayout-area xui-borderlayout-center" style="">               <div class="xui-container" id="view2" lazy="false" style="position:relative;;position:relative;height:100%;width:100%;">                 <div class="xui-container" id="contentHolder">                   <section class="left">                     <div id="promoNode"></div>                      <video height="380" id="video" width="700"></video>                      <div id="con-canvas" style="overflow:auto;width:700px;height:370px;">                       <canvas height="768" id="canvas" style="display:none;" width="1024"></canvas>                     </div>                   </section>                 </div>                  <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="photoReceiver" style="position:absolute;top:417px;left:198px;">                   <script>
+new justep.WindowReceiver('photoReceiver');</script> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-area xui-borderlayout-bottom" size="35px" style=""> 
+              <div class="xui-container" id="view1" lazy="false" style="position:relative;;position:relative;width:100%;height:100%;"> 
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger8" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:336px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="snap">拍照</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger9" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:423px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="newsnap">重拍</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger10" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:498px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <i class="icon "></i>  
+                          <span class="xforms-label " id="uploadsnap">上传</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table>  
+                <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger11" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:9px;left:583px;;table-layout:fixed"> 
+                  <tbody> 
+                    <tr> 
+                      <td class="xxf-value"> 
+                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                          <span class="xforms-label " id="cancel">取消</span> 
+                        </button> 
+                      </td>  
+                      <td class="xxf-alert"> 
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                          <div class="xforms-alert-value" id=""></div> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </tbody> 
+                </table> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"></div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>
