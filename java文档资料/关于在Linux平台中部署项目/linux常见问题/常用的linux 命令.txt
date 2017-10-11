@@ -1,0 +1,163 @@
+﻿1，熟悉Linux常用终端命令
+
+进入某一目录：cd /目录1/目录2/……/目录n
+
+获取权限：sudo -i  回车后输入密码再回车即可
+
+将某一文件向所有用户添加权限：sudo chmod -R 777 /路径/文件名
+
+新建目录：mkdir /目的路径/目录名  (若已经使用终端命令进入到父目录中，则可以不用再加目的路径，下同)
+
+删除空目录或文件：rmdir /目的路径/目录名   
+
+强制删除非空目录或文件：rm -rf /目的路径/目录名 
+
+移动文件或目录：mv /源路径/目录名或文件名 /目的路径
+
+解压.tar.gz包：tar -zfvx /包所在目录路径/filename.tar.gz /目的路径（若想解压到包所在的目录下则可以省略目的 zxvf
+
+tar zfvx 需要解压的包 (要将文件移动到需要解压到的文件目录下即可)
+
+ifconfig  //查询Linux系统下的ip
+
+ ps -aux  //查询进程号
+
+ps -ef | grep mysql:
+先执行ps -ef,在查询出来的结果当中执行grep mysql
+ps -ef:查看进程信息
+
+pwd:查看当前目录
+  
+kill -9 端口号: 杀死指定进程
+
+加入-R 参数，就可以将读写权限传递给子文件夹例如chmod -R  777  /home/mypackage那么mypackage 文件夹和它下面的所有子文件夹的属性都变成了777,777是读、写、执行权限...
+或者 chmod 777 * -R
+
+userdel -r username 同时删除用户的宿主目录
+
+pkill -u username  这使用了粗暴的方法类杀掉已经登陆的用户
+
+------------------------------------------
+
+你是想把用户user的用户组改为staff吗？
+命令：
+usermod -g staff user
+使用root 执行上述命令
+
+-----------------------------------------
+
+
+创建一个用户jc 这个用户只能在/home/jc上面增加删除文件， jc不能在其他目录加减文件
+
+useradd -d /home/jc -m jc
+[root@b etc]# passwd jc
+
+chown jc -R /home/jc
+
+su － jc 就ok拉 :这是切换用户
+
+防火墙
+
+1.重启后永久性生效：
+
+　　开启：chkconfig iptables on
+
+　　关闭：chkconfig iptables off
+
+2. 即时生效，重启后失效：
+
+　　开启：service iptables start
+
+　　关闭：service iptables stop
+
+解压.rar文件
+
+unrar x aa.rar
+unrar e aa.rar
+x参数 是解压到一个文件夹里 
+e参数是把所有文件解压到当前目录下 
+注意这个命令比较特殊参数之前不能加-
+
+
+
+路径，最好是先进入目录再执行操作，否则可能报错，下同）
+解压.zip包：unzip /包所在目录路径/filename.zip /目的路径
+安装.rpm格式的文件：
+（1），先安装alien：sudo apt-get install alien 
+（2），使用命令进入到文件所在目录后把要安装的rpm转成deb：sudo alien filename. rpm filename.deb 
+（3），安装filename.deb：sudo dpkg -i filename.deb：rpm -ivh /包所在目录路径/filename.rpm （安装到包所在的目录中）
+启用root权限用户并设置密码：先在终端执行：sudo -i ，然后输入你的用户密码，再执行：passwd root 然后输入欲设置的密码，下一次启动Linux系统时请在登陆界面选择用户时选择“其他”，然后输入“root”并输入自己设置的密码，这样进入系统后就可以很方便地对系统文件进行操作了，尤其是鼠标右键的功能不再受到限制。
+
+
+
+
+
+
+
+2，创建目录
+在根目录下的usr目录下新建一个名为soft的目录用于存储程序安装包，再在usr目录下的local目录下新建一个名为gis的目录。在系统刚装上不久是可以使用鼠标右键完成移动操作的，但如不能使用鼠标右键功能完成操作，请在终端使用以下命令来完成：
+
+mkdir /usr/soft
+mkdir /usr/local/gis(mkdir只能一级一级的创建目录,不能一次创建多个目录)
+
+
+
+
+
+1,将文件从/etc/aaa.gz拷贝到/tmp/目录下：
+cp  /etc/aaa.gz  /tmp/
+  将文件从/etc/aaa.gz拷贝到/tmp/目录下，并给它命名为bbb.gz
+cp  /etc/aaa.gz  /tmp/bbb.gz
+  将目录/etc/fold/拷贝到/tmp/目录下
+cp  -rf  /etc/fold  /tmp/
+注：-r 用来拷贝文件夹，-f 用来强制拷贝不提示确认
+
+2，linux里给/etc/aaa.gz创建一个叫bbb.haha的链接,并移动到/usr目录下
+ln  -s  /etc/aaa.gz  /usr/bbb.haha
+注：-s是用来创建软连接，类似windows上的快捷方式。
+
+3，linux里给/etc/qqq.gz改名为bbb.gz 
+mv  /etc/qqq.gz  /etc/bbb.gz
+
+
+
+javajdk在linux系统中的配置
+
+
+unset i
+unset -f pathmunge
+export JAVA_HOME=/home/wb/java/jdk7/jdk1.7.0_67
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+"/etc/profile" 81L, 1943C written
+
+
+------------------------------------
+echo $ORACLE_HOME 查看oracle数据库ORACLE_HOME环境变量
+
+source ..... 将新增的环境变量启动生效
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

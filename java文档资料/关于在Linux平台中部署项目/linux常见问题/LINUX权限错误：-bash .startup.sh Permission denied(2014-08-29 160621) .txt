@@ -1,0 +1,21 @@
+LINUX权限错误：-bash: ./startup.sh: Permission denied(2014-08-29 16:06:21) 
+标签： linux权限permissiondenied 分类： IT  
+
+
+
+今天在Linux上部署项目，之前报过这个错误，通过以下方式解决了。现在发出来备份一下：
+
+
+
+
+ LINUX权限-bash: ./startup.sh: Permission denied
+
+
+
+
+执行./startup.sh,或者./shutdown.sh的时候，报：Permission denied，因为是执行tomcat时，用户无权限，导致出现以上错误。需要用命令：chmod 修改一下bin目录下的.sh权限。
+
+
+
+
+具体操作如下：chmod u+x *.sh 
