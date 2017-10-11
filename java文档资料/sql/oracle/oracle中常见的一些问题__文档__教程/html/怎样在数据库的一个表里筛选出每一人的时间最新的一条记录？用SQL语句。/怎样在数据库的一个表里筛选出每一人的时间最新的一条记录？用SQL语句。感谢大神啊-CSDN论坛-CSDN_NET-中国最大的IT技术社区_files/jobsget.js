@@ -1,0 +1,1 @@
+document.write('<li><a href="http://geek.csdn.net/news/detail/50376" target=_blank>2015数据库年度盘点</a></li>');

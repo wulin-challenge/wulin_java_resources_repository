@@ -1,0 +1,195 @@
+在Oracle中建库，通常有两种方法。一是使用Oracle的建库工且DBCA，这是一个图形界面工且，使用起来方便且很容易理解，因为它的界面友好、美观，而且提示也比较齐全。在Ｗindows系统中，这个工具可以在Oracle程序组中打开（”开始”—“程序”—“ Oracle - OraDb10g_home1”—“ Configuration and Migration Tools”—“ Database Configuration Assistant”），也可以在命令行（”开始”—“运行”—“cmd”）工具中直接输入dbca来打开。另一种方法就是手工建库，这也就是下面所要讲的内容。 
+
+手工建库比起使用DBCA建库来说，是比较麻烦的，但是如果我们学好了手工建库的话，就可以使我们更好地理解Oracle数据库的体系结构。手工建库须要经过几个步骤，每一个步骤都非常关键。它包括： 
+
+１、 创建必要的相关目录 
+
+２、 创建初始化参数文件 
+
+３、 设置环境变量Oracle_sid 
+
+４、 创建实例 
+
+５、 创建口令文件 
+
+６、 启动数据库到nomount(实例)状态 
+
+７、 执行建库脚本 
+
+８、 执行catalog脚步本创建数据字典 
+
+９、 执行catproc创建package包 
+
+１０、 执行pupbld 
+
+１１、 由初始化参数文件创建spfile文件 
+
+１２、 执行scott脚本创建scott模式 
+
+做完了以上的步骤之后就可以使用“SQL>alter database open;”打开数据库正常的使用了。下面，我将具体地把以上的几个步骤用实验展开来讲。 
+
+实验系统平台：Windows Server 2000　　　数据库系统版本：Oracle Database 10Ｇ 
+
+Oracle的安装路径：D盘　　　　　 　创建的数据库名称：book 
+
+１、打开命令行工具，创建必要有相关目录 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\bdump 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\ ump 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\cdump 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\pfile 
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\adump
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\udump
+
+C:\>mkdir D:\oracle\product\10.1.0\admin\book\create 
+
+C:\>mkdir D:\oracle\product\10.1.0\oradata\book 
+
+上面创建目录的过程也可以在Windows的图形界面中去创建。其中 D:\oracle\product\10.1.0\admin\book目录下的几个子目录主要用于存放数据库运行过程中的跟踪信息。最重要的两上子目录是bdump和 ump目录，bdump目录存放的是数据库动行过程中的各个后台进程的跟踪信息，当中alert文件是警告文件，其文件名称为 alert_book.log，当数据库出现问题时，首先就可以去查看此文件以找出原因，手工创建过程中出现的各种问题往往也可以通过查看这个文件找到原因。 ump目录存放和特定会话相关的跟踪信息。D:\oracle\product\10.1.0\oradata\book目录存放各种数据库文件，包括控制文件、数据文件、重做日志文件。 
+
+2、创建初始化参数文件 
+
+数据库系统启动时须要用初始化参数文件的设置分配内存、启动必要的后台进程的。因此，初始化参数文件创建的是否正确、参数设置是否正确关系着整个建库的“命运”。 
+
+创建初始化参数文件可以通过拷贝现在的初始化参数文件并将其做适当的修改即可，从而不必要用手工去一句一句地写出来，因为初始化参数文件的结构体系基本上都是一样的。在我们安装Oracle的时候，系统已经为我们安装了一个名为orcl 的数据库，于是我们可以从它那里得到一份初始化参数文件。打开D:\oracle\product\10.1.0\admin\orcl\pfile，找到init.ora文件，把它拷贝到D:\oracle\product\10.1.0\bd_1\databse下，并将其改名为 initbook.ora。接着用记事本的方式打开initbook.ora，修改以下的内容： 
+
+db_domain="" 
+
+db_name=book 
+
+control_files=("D:\oracle\product\10.1.0\oradata\book\control01.ctl", "D:\oracle\product\10.1.0\oradata\book\control02.ctl", "D:\oracle\product\10.1.0\oradata\book\control03.ctl") 
+
+undo_management=AUTO 
+
+undo_tablespace=UNDOTBS1　――注意此处的“UNDOTBS1”要和建库脚步本中对应 
+
+background_dump_dest=D:\oracle\product\10.1.0\admin\book\bdump 
+
+core_dump_dest=D:\oracle\product\10.1.0\admin\book\cdump 
+
+user_dump_dest=D:\oracle\product\10.1.0\admin\book\ ump 
+
+３、打开命令行，设置环境变量oracle_sid 
+
+C:\>set oracle_sid=book 
+
+设置环境变量的目地是在默认的情况下，指定命令行中所操作的数据库实例是book。 
+
+４、创建实例（即后台控制服务） 
+
+C:\>oradim –new –sid book 
+
+oradim是创建实例的工具程序名称，-new表明执行新建实例，-delete表明执行删掉实例，-sid指定害例的名称。 
+
+５、创建口令文件 
+
+C:\>orapwd file=D:\oracle\product\10.1.0\db_1\database\pwdbook.ora password=bookstore entries=2 
+
+orapwd是创建口令文件的工肯程序各称，file参数指定口令文件所在的目录和文件名称，password参数指定sys用户的口令，entries参数指定数据库拥用DBA权限的用户的个数，当然还有一个force参数，相信您不指即明，这里就不再细述。 
+
+请注意，这里的命令要一行输入，中间不得换行，否则会出现不必要的错误。 
+
+口令文件是专门存放sys用户的口令，因为sys用户要负责建库、启动数据库、关闭数据库等特殊任务，把以sys用户的中令单独存放于口令文件中，这样数据库末打开时也能进行口令验证。 
+
+6、启动数据库到nomount(实例)状态 
+
+C:\>sqlplus /nolog 
+
+SQL*Plus:Release 10.1.0.2.0 - Production on 星期三 6月 29 23:09:35 2005 
+
+Copyright 1982,2004,Oracle. All rights reserved. 
+
+SQL>connect sys/bookstore as sysdba ---这里是用sys连接数据库 
+
+已连接到空闲例程 
+
+SQL>startup nomount 
+
+ORACLE 例程已经启动。 
+
+Total System Global Area 319888364bytes 
+
+Fixed Size 453612bytes 
+
+Variable Size 209715200bytes 
+
+Database Buffers 109051904bytes 
+
+Redo Buffers 667648bytes 
+
+SQL> 
+
+7、执行建库脚本 
+
+执行建库脚本，首先要有建库的脚本。（去哪找建库脚本呢？我又没有！）不用着急，请接着往下看。 
+
+得到一个符合自己要求的建库脚本有两种方法，一种方法是在自己的电脑上用DBCA来建，接照它的提示一步步地去做，在做到第十二步的时候，请选择“生成建库脚本”，然后就大功告成，你就可以到相应的目录上去找到那个脚本并适当地修它便可便用。另一种方法就是自己手工去写一份建库脚本，这也是这里要见意使用的方法，用记事本编辑如下的内容，并将其保存为文件名任取而后缀名为（*.sql）的SQL脚本，这里保存到E盘根本录下且文件名称为book.sql。 
+
+Create database book 
+
+datafile 'D:\oracle\product\10.1.0\oradata\book\system01.dbf' size 300M reuse autoextend on next 10240K maxsize unlimited 
+
+extent management local 
+
+sysaux datafile 'D:\oracle\product\10.1.0\oradata\book\sysaux01.dbf' 
+
+size 120M reuse autoextend on next 10240K maxsize unlimited 
+
+default temporary tablespace temp 
+
+tempfile 'D:\oracle\product\10.1.0\oradata\book\temp01.dbf' size 20M reuse autoextend on next 640K maxsize unlimited 
+
+undo tablespace "UNDOTBS1" --请注意这里的undo表空间要和参数文件对应 
+
+datafile 'D:\oracle\product\10.1.0\oradata\book\undotbs01.dbf' size 200M reuse autoextend on next 5120K maxsize unlimited 
+
+logfile 
+
+group 1 ('D:\oracle\product\10.1.0\oradata\book\redo01.log') size 10240K, 
+
+group 2 ('D:\oracle\product\10.1.0\oradata\book\redo02.log') size 10240K, 
+
+group 3 ('D:\oracle\product\10.1.0\oradata\book\redo03.log') size 10240K 
+
+接着就执行刚建的建库脚本： 
+
+SQL>start E:\book.sql 
+
+8、执行catalog脚步本创建数据字典 
+
+SQL>start D:\oracle\product\10.1.0\db_1\rdbms\admin\catalog.sql 
+
+9、执行catproc创建package包 
+
+SQL>start D:\oracle\product\10.1.0\db_1\rdbms\admin\catproc.sql 
+
+10、执行pupbld 
+
+在执行pupbld之前要把当前用户（sys）转换成system,即以system账户连接数据库。因为此数据库是刚建的，所以system的口令是系统默认的口令，即manager。你可以在数据库建好以后再来重新设置此账户的口令。 
+
+SQL>connect system/manager 
+
+SQL>start D:\oracle\product\10.1.0\db_1\sqlplus\admin\pupbld.sql 
+
+11、由初始化参数文件创建spfile文件 
+
+SQL>create spfile from pfile; 
+
+12、执行scott脚本创建scott模式 
+
+SQL>start D:\oracle\product\10.1.0\db_1\rdbms\admin\scott.sql 
+
+13、把数据库打开到正常状态 
+
+SQL>alter database open; 
+
+14、以scott连接到数据库（口令为tiger），测试新建数据库是否可以正常运行 
+
+至此，整个数据库就已经建好了。接着你就可以在此数据库上建立自己的账户和表空间啦以及数据库对象，这里就不再作更多地叙述

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://blog.163.com/fly_sky_java/blog/static/14042223420106895310701/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta http-equiv="x-ua-compatible" content="ie=emulateie7">
+<title>union,union all 用法及区别 -  网易博客</title>
+<meta name="author" content="fly_sky_java,张振">
+<meta name="keywords" content="union,union all 用法及区别,日志,张振,dreamblue,网易博客,网易,blog">
+<meta name="description" content="union,union all 用法及区别,张振的网易博客,记录张振涛的生活经历,">
+<meta name="description" content="">
+
+    <link type="text/css" rel="stylesheet" href="./union,union all 用法及区别 - 网易博客_files/c.css">
+    <link type="text/css" rel="stylesheet" href="./union,union all 用法及区别 - 网易博客_files/m-160.css">
+<style>
+#blog-163-com {padding-top:0;}
+</style>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var visitorName='';
+var isNewBlogCenter=false
+location.dwr = 'http://api.blog.163.com/dwr';
+//--><!]]>
+document.domain = '163.com';
+</script>
+</head>
+<body id="blog-163-com" class="nb-body nb-hom">
+<noscript>请使用支持脚本的浏览器！</noscript>
+<div class="nb-layer" id="blog-163-com-layer">
+</div>
+<div class="body m-160">
+    <div class="g-hdwrap">
+        <div class="g-hd">
+            <div class="g-hdc">
+                <h1 class="m-logo"><a href="http://www.lofter.com/">LOFTER-网易轻博</a></h1>
+            </div>
+        </div>
+        <div class="joinin">
+            <a class="logo" href="http://www.lofter.com/?act=qbbkss_20151027_08" hidefocus="true">LOFTER-网易轻博 logo</a>
+            <a id="joinbtn" href="http://blog.163.com/fly_sky_java/blog/static/14042223420106895310701/#guidearea" class="joinbtn">加入LOFTER 免费冲印20张照片&gt;</a>
+        </div>
+    </div>
+    
+    <div class="g-bd12">
+        <div class="g-bdc">
+            <div id="cntarea" class="m-cntarea">
+    <div class="m-post m-post-text">
+        <div class="cnt expand-all">
+        
+            <div class="userinfo">
+                <a class="ava" href="http://blog.163.com/fly_sky_java/blog/static/14042223420106895310701"><img src="./union,union all 用法及区别 - 网易博客_files/ava.s"></a>
+                <a class="nick" href="http://blog.163.com/fly_sky_java/blog/static/14042223420106895310701">张振</a>
+            </div>
+           
+            <h2 class="ttl">union,union all 用法及区别</h2>
+            <div class="txt txt-digest">sql union用法和sql union all用法,sql union效率 <br>1、sql union用法 <br>sql union在查询中可以将两个SQL 语句的结果合并起来。如果这样看的话， UNION 跟 JOIN 是相似的，两个指令都可以由多个表格中撷取资料。 <br>sql union的一个限制是两个 SQL 语句所产生的栏位需要是同样的资料种类。另外，当我们用 UNION这个指令时，我们只会看到不同的资料值 (类似 SELECT DISTINCT)。 <br>sql union只是将两个结果联结起来一起显示，并不是联结两个表，sql用法如下： <br>两个表格， StoreData_200903 表格 StoreData_200904，这两张表格的数据结构是完全一样的，只是存放了不同月份的数据库（注意：这样做是为了能够分表，而且可以按月存档数据），现在需要联合查询，就是从两个表中查询出数据，SQL 语句： </div>
+            <div class="txt txt-all">sql union用法和sql union all用法,sql union效率 <br>1、sql union用法 <br>sql union在查询中可以将两个SQL 语句的结果合并起来。如果这样看的话， UNION 跟 JOIN 是相似的，两个指令都可以由多个表格中撷取资料。 <br>sql union的一个限制是两个 SQL 语句所产生的栏位需要是同样的资料种类。另外，当我们用 UNION这个指令时，我们只会看到不同的资料值 (类似 SELECT DISTINCT)。 <br>sql union只是将两个结果联结起来一起显示，并不是联结两个表，sql用法如下： <br>两个表格， StoreData_200903 表格 StoreData_200904，这两张表格的数据结构是完全一样的，只是存放了不同月份的数据库（注意：这样做是为了能够分表，而且可以按月存档数据），现在需要联合查询，就是从两个表中查询出数据，SQL 语句： <br>SELECT top 50 FROM StoreData_200903 <br>UNION <br>SELECT top 50 FROM StoreData_200904 <br>2、sql union all用法 <br>sql union all这个指令的目的也是要将两个 SQL 语句的结果合并在一起。 sql union all和 sql union不同之处在于 sql union all会将每一次符合条件的数据列出来，无论数据库有无重复。 <br>用法也很简单： <br>SELECT top 50 FROM StoreData_200903 <br>UNION ALL <br>SELECT top 50 FROM StoreData_200904 <br>值得注意的是，sql union all的执行效率要比sql union效率要高很多，这是因为，使用sql union需要进行排重，而sql union All 是不需要排重的，这一点非常重要，因为对于一些单纯地使用分表来提高效率的查询，完全可以使用sql union All。 <br>还有，如果使用了union，无论是sql union还是sql union all一定要记住对数据库表加上索引！ <br>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ <br>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ <br>在数据库中，union和union all 关键字都是将两个结果集合合并为一个，但这两者从使用和效率上来说都有所不同。 <br>UNION在进行表链接后会筛选掉重复的记录，所以在表链接后会对所产生的结果集进行排序运算，删除重复的记录再返回结果。实际大部分应用中是不会产生重复的记录，最常见的是过程表与历史表UNION。如： <br>select * from gc_dfys <br>union <br>select * from ls_jg_dfys <br>这个SQL在运行时先取出两个表的结果，再用排序空间进行排序删除重复的记录，最后返回结果集，如果表数据量大的话可能会导致用磁盘进行排序。 <br>而UNION ALL只是简单的将两个结果合并后就返回。这样，如果返回的两个结果集中有重复的数据，那么返回的结果集就会包含重复的数据了。 <br>从效率上说，UNION ALL 要比UNION快很多，所以，如果可以确认合并的两个结果集中不包含重复的数据的话，那么就使用UNION ALL，如下： <br>select * from gc_dfys <br>union all <br>select * from ls_jg_dfys <br></div>
+                <a class="open" style="display: none;">展开全文</a>
+            
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="guidearea" name="guidearea" class="m-guidearea">
+        <h2>2000万年轻人都在用，现在下载有好礼相送</h2>
+        <div class="arrowb"></div>
+        <div class="bg1">
+            <div class="dldappwrap">
+                <a class="iosdownload ztag" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_05" target="_blank" hidefocus="true">Apple Store 下载</a>
+                <a class="aosdownload ztag" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_04" target="_blank" hidefocus="true">Android 下载</a>
+                <img src="./union,union all 用法及区别 - 网易博客_files/code2d4blog.png">
+            </div>
+        </div>
+        <div class="bg2"></div>
+        <div class="bg3"></div>
+        <div class="bg4"></div>
+        <div class="bg5">
+            <div class="dldappwrap">
+                <a class="iosdownload ztag" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_05" target="_blank" hidefocus="true">Apple Store 下载</a>
+                <a class="aosdownload ztag" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_04" target="_blank" hidefocus="true">Android 下载</a>
+                <img src="./union,union all 用法及区别 - 网易博客_files/code2d4blog.png">
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div id="layercover" class="m-layercover"></div>
+
+<div id="iosdldlayer" class="m-iosdldlayer">
+    <a class="close" onclick="loft.m.fromse.g.closeDldLayer()"></a>
+    <img src="./union,union all 用法及区别 - 网易博客_files/code2d4blog.png">
+</div>
+
+<div id="aosdldlayer" class="m-aosdldlayer">
+    <a class="close" onclick="loft.m.fromse.g.closeDldLayer()"></a>
+    <img src="./union,union all 用法及区别 - 网易博客_files/code2d4blog.png">
+    <a class="dld dld-apk" target="_blank" hidefocus="true" href="http://lofter.com/app/QRCodedownload">直接下载</a>
+    <a class="dld dld-yyb" target="_blank" hidefocus="true" href="http://android.app.qq.com/myapp/detail.htm?apkName=com.lofter.android">应用宝</a>
+    <a class="dld dld-wdj" target="_blank" hidefocus="true" href="http://www.wandoujia.com/apps/com.lofter.android">豌豆荚</a>
+    <a class="dld dld-360" target="_blank" hidefocus="true" href="http://zhushou.360.cn/detail/index/soft_id/90765">360手机助手</a>
+    <a class="dld dld-xmi" target="_blank" hidefocus="true" href="http://app.mi.com/detail/16938">小米应用商店</a>
+</div>
+
+    <div id="btmlayer" class="m-btmlayer f-trans" style="visibility: visible; opacity: 1;">
+        <div class="blbg">
+            <div class="dldappwrap">
+                <a id="iosdownloadbtm" class="iosdownload" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_05" target="_blank" hidefocus="true">Apple Store 下载</a>
+                <a id="aosdownloadbtm" class="aosdownload" href="http://www.lofter.com/app/QRCodedownload?act=qbbkss_20151027_04" target="_blank" hidefocus="true">Android 下载</a>
+                <img src="./union,union all 用法及区别 - 网易博客_files/code2d4blog.png">
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script type="text/javascript" src="./union,union all 用法及区别 - 网易博客_files/nts.js"></script>
+    <script type="text/javascript" src="./union,union all 用法及区别 - 网易博客_files/em.js"></script><iframe width="0" height="0" src="./union,union all 用法及区别 - 网易博客_files/crossdomain.html" id="api.blog.163.com" name="api.blog.163.com" onload="J.a(&#39;api.blog.163.com&#39;);" style="display:none;"></iframe>
+
+
+</body></html>

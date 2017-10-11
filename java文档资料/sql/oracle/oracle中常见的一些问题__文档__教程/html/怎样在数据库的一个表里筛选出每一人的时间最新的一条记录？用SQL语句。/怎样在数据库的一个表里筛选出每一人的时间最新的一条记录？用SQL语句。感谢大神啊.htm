@@ -1,0 +1,1427 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0036)http://bbs.csdn.net/topics/390867651 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+class="csdn-bbs"><HEAD><META content="IE=10.000" http-equiv="X-UA-Compatible">
+     
+<SCRIPT id="allmobilize" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/allmobilize.min.js" charset="utf-8"></SCRIPT>
+ 
+<META http-equiv="Cache-Control" content="no-transform"> <LINK href="#" rel="alternate" 
+media="handheld">     
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">     
+<TITLE>怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN.NET-中国最大的IT技术社区</TITLE> 
+    <LINK href="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/main-65345c2929e9c99952ae23b373382977.css" 
+rel="stylesheet" type="text/css" media="screen">     <LINK href="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/btn.css" 
+rel="stylesheet" type="text/css" media="screen">     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/application-98fca89914df17e1543be29fef780be0.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/atsuggest.js" type="text/javascript"></SCRIPT>
+     
+<META name="csrf-param" content="authenticity_token"> 
+<META name="csrf-token" content="hSI8qZobDePzqcu8OA0XqG2RqZL4MvLeJqL/dtNgot8=">  
+   <LINK href="http://c.csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON"> 
+<LINK href="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/index.css" 
+rel="stylesheet">       <LINK href="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/sh-2bfcf65754f6d04d58df6ed87a3b6faf.css" 
+rel="stylesheet" type="text/css" media="all">   
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/sh-e7799bf9690a86571a685dd3015e559c.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/login.js" type="text/javascript"></SCRIPT>
+     
+<STYLE>
+        #topic-detail-ad-ul{width:960px;float:left;font-size:1px;margin:0;padding:0}
+        #topic-detail-ad-l{float:left;}
+        #topic-detail-ad-r{float:right;}
+        #topic-detail-ad-ul li{list-style: none;}
+    </STYLE>
+     <!--  js for ask-->       
+<SCRIPT type="text/javascript">
+          window.bbsInfoflag = true;
+      </SCRIPT>
+     <LINK href="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ask_float_block.css" 
+rel="stylesheet" type="text/css">     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/wmd.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/showdown.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/prettify.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ask_float_block.js" type="text/javascript"></SCRIPT>
+       
+<SCRIPT type="text/javascript">
+          // 快速回复
+          $(document).ready(function () {
+          $("#com-quick-reply-bbs").bind("click", function(){
+              //_gaq.push(['_trackEvent','function', 'onclick', 'BBS_articles_youhuifu']);
+              $("#post_body").focus();
+              window.scrollTo(0, $(document).height());
+          });
+        });
+      </SCRIPT>
+     <!--  js for ask  end-->   
+<META name="GENERATOR" content="MSHTML 10.00.9200.17566"></HEAD>   
+<BODY id="topics-show"><!-- <script type="text/javascript" src="http://c.csdnimg.cn/pubnav/js/pub_topnav_2011.js"></script> --> <!--全屏--> 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=allyestest|allyestest|allyestest0410&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+ <!--全屏--> <!--浮标--> 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|homepage|floating_1&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+ <!--浮标--> 
+<SCRIPT id="toolbar-tpl-scriptId" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/html.js" type="text/javascript" fixed="true" prod="bbs" skin="black"></SCRIPT>
+       <!-- 统计代码 --> 
+<SCRIPT type="text/javascript">
+  var protocol = window.location.protocol;
+  document.write('<script type="text/javascript" src="' +protocol+ '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></'+'script>');
+</SCRIPT>
+     
+<DIV class="news-nav">
+<DIV class="container">
+<DIV class="nav-bar"><A href="http://bbs.csdn.net/home">首页</A>       <SPAN 
+class="dropdown"><A href="http://bbs.csdn.net/topics/390867651#">精选版块</A>   
+<SPAN class="caret"></SPAN>   
+<DIV class="dropdown-menu">
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/Mobile">移动开发</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/ios">iOS</A>         <A href="http://bbs.csdn.net/forums/Android">Android</A> 
+          <A href="http://bbs.csdn.net/forums/Qt">Qt</A>         <A href="http://bbs.csdn.net/forums/WindowsMobile">WP</A> 
+        </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/CloudComputing">云计算</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/AWS">IaaS</A>         <A href="http://bbs.csdn.net/forums/CloudFoundry">Pass/SaaS</A> 
+          <A href="http://bbs.csdn.net/forums/hadoop">分布式计算/Hadoop</A>       
+  </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/Java">Java技术</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/J2SE">Java SE</A>         <A href="http://bbs.csdn.net/forums/Java_WebDevelop">Java 
+  Web 开发</A>         <A href="http://bbs.csdn.net/forums/J2EE">Java EE</A>       
+    <A href="http://bbs.csdn.net/forums/JavaOther">Java其他相关</A>       </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/DotNET">.NET技术</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/DotNETFramework">.NET Framework</A>    
+       <A href="http://bbs.csdn.net/forums/CSharp">C#</A>         <A href="http://bbs.csdn.net/forums/DotNETAnalysisAndDesign">.NET分析与设计</A> 
+          <A href="http://bbs.csdn.net/forums/ASPDotNET">ASP .NET</A>         <A 
+  href="http://bbs.csdn.net/forums/VBDotNET">VB .NET</A>       </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/WebDevelop">Web开发</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/PHP">PHP</A>         <A href="http://bbs.csdn.net/forums/JavaScript">JavaScript</A> 
+          <A href="http://bbs.csdn.net/forums/ASP">ASP</A>         <A href="http://bbs.csdn.net/forums/HTMLCSS">HTML(CSS)</A> 
+          <A href="http://bbs.csdn.net/forums/HTML5">HTML5</A>         <A href="http://bbs.csdn.net/forums/Apache">Apache</A> 
+        </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/topics/390867651#">开发语言/框架</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/Delphi">Delphi</A>         <A href="http://bbs.csdn.net/forums/VC">VC/MFC</A> 
+          <A href="http://bbs.csdn.net/forums/VB">VB</A>         <A href="http://bbs.csdn.net/forums/Cpp">C/C++</A> 
+          <A href="http://bbs.csdn.net/forums/BCB">C++ Builder</A>         <A 
+  href="http://bbs.csdn.net/forums/OtherLanguage">其他开发语言</A>       </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/topics/390867651#">数据库开发</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/MSSQL">MS-SQL Server</A>         <A 
+  href="http://bbs.csdn.net/forums/Oracle">Oracle</A>         <A href="http://bbs.csdn.net/forums/PowerBuilder">PowerBuilder</A> 
+          <A href="http://bbs.csdn.net/forums/Informatica">Informatica</A>       
+    <A href="http://bbs.csdn.net/forums/OtherDatabase">其他数据库开发</A>       
+</DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/Embedded">硬件/嵌入式开发</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/WinCE">嵌入开发(WinCE)</A>         <A 
+  href="http://bbs.csdn.net/forums/Embedded_driver">驱动开发/核心开发</A>         <A 
+  href="http://bbs.csdn.net/forums/Embedded_hardware">硬件设计</A>         <A href="http://bbs.csdn.net/forums/Embedded_SCM">单片机/工控</A> 
+          <A href="http://bbs.csdn.net/forums/ASM">汇编语言</A>         <A href="http://bbs.csdn.net/forums/VxWorks">VxWorks开发</A> 
+        </DD></DL>
+<DL>
+  <DT><A href="http://bbs.csdn.net/forums/Linux">Linux/Unix社区</A></DT>
+  <DD><A href="http://bbs.csdn.net/forums/Linux_System">系统维护与使用区</A>         <A 
+  href="http://bbs.csdn.net/forums/Linux_Development">应用程序开发区</A>         <A 
+  href="http://bbs.csdn.net/forums/Linux_Kernel">内核源代码研究区</A>         <A href="http://bbs.csdn.net/forums/Linux_Driver">驱动程序开发区</A> 
+          <A href="http://bbs.csdn.net/forums/Linux_Hardware">CPU和硬件区</A>       
+  </DD></DL></DIV></SPAN>       <A href="http://bbs.csdn.net/help">论坛帮助</A>       
+<A href="http://bbs.csdn.net/rank">论坛牛人</A>       <A href="http://bbs.csdn.net/map">论坛地图</A> 
+      <A href="http://bbs.csdn.net/ask">专家问答</A>     </DIV></DIV></DIV>
+<DIV class="wraper"><!-- 页顶通栏 -->     
+<DIV id="Topic_Top"><!--<style type="text/css">-->           <!--/*body,ul{width:960px;float:left;font-size:1px;margin:0;padding:0}*/--> 
+          <!--/*ul li.l{float:left;}*/-->           <!--/*ul li.r{float:right;}*/--> 
+          <!--/*li{list-style: none;}*/-->       <!--</style>-->       <!--<body>--> 
+      
+<UL id="topic-detail-ad-ul">
+  <LI class="l" id="topic-detail-ad-l">
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_banner4&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+           </LI>
+  <LI class="r" id="topic-detail-ad-r">
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_banner5&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+           </LI></UL><!--</body>-->     </DIV><!--[if IE]>
+<style type="text/css" media="screen">
+  .control_area .control .drop_menu{border:3px solid #ccc \9; _*border:3px solid #ccc;}
+</style>
+<![endif]--> <!-- 页顶Button (D3) --> 
+<DIV width="100%" scrolling="no" marginheight="0" marginwidth="0">   
+<STYLE>
+      body {margin:0px;padding:0px;}
+      .bbs_top_ad{clear:both; text-align:left; display:block; *display:inline-block; width:940px; margin:2px 0; padding:2px 9px; border:solid 1px #a9cbee; /* -moz-border-radius:8px; background:#d8d8d8; */ color:#000; list-style:none; font-size:12px; line-height:20px;}
+      .bbs_top_ad:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+      .bbs_top_ad a{color:#666; text-decoration:none;}
+      .bbs_top_ad a:hover{text-decoration:underline;}
+      .bbs_top_ad *{margin:0; padding:0; list-style:none;}
+      .bbs_top_ad h3{width:330px; max-width:330px; height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14px; line-height:20px;}
+      .bbs_top_ad h3:after{content:"...";}
+      .bbs_top_ad h3 a{color:#000;}
+      .bbs_top_ad .area_1 li,
+      .bbs_top_ad .area_2 li{padding:0 0 0 9px; background:url(http://c.csdnimg.cn/www/images/point_1.gif) no-repeat left 8px; width:340px; height:20px; overflow:hidden; display:inline-block;}
+      .bbs_top_ad .area_1{float:left; width:350px; overflow:hidden; margin:0 10px 0 0; padding:4px 0; /*background:#f8f8f8;*/}
+      .bbs_top_ad .area_2{position:relative; float:left; width:350px; overflow:hidden; margin:0 20px 0 0; padding:4px 0; /*background:#f8f8f8;*/}
+      .bbs_top_ad .area_2 ul{height:80px; overflow:hidden;}
+      .area_1 ul {height:40px; overflow:hidden;}
+      #scrollDiv li { display:inherit; width:200px; }
+      #scrollDiv2 li { background:url(http://c.csdnimg.cn/www/images/point_pin.gif) no-repeat left 4px; }
+      .bbs_top_ad #btn1{float:left; width:15px; height:15px; border:none; background:#5d5d5d; color:#fff; font-size:12px; line-height:15px; cursor:pointer;}
+      .bbs_top_ad #btn2{float:left; margin-left:10px; width:15px; height:15px; border:none; background:#5d5d5d; color:#fff; font-size:12px; line-height:15px; cursor:pointer;}
+      .bbs_top_ad .area_3{float:left; width:210px; overflow:hidden; padding:4px 0 0 0;}
+      .bbs_top_ad .area_3 a{color:#000;}
+      .bbs_top_ad .area_3 dt{margin-bottom: 5px;}
+      .bbs_top_ad .area_3 dd{width:193px; height:20px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding:0 0 0 17px; background:url(http://c.csdnimg.cn/www/images/point_huo.gif) no-repeat left 3px;}
+      /* .bbs_top_ad .area_3 dd:after{content:"...";}*/
+      .bbs_top_ad .area_1 h3 li,.bbs_top_ad .area_2 h3 li { list-style:none; background:none; padding:0;}
+  </STYLE>
+   
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jquery.scroll.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT type="text/javascript">
+      $(document).ready(function () {
+          $("#scrollDiv").Scroll({ line: 4, speed: 1, timer: 6000, left: "btn1", right: "btn2" });
+          $("#scrollDiv2").Scroll({ line: 8, speed: 1, timer: 6000 });
+          jQuery.noConflict();
+      });
+  </SCRIPT>
+ 
+<DIV class="bbs_top_ad">
+<DIV class="area_1">
+<H3>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jobsget.js" type="text/javascript"></SCRIPT>
+     </H3>
+<UL>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jobsget(1).js" type="text/javascript"></SCRIPT>
+       </UL>
+<DIV style="width: 260px; float: left;">
+<DIV id="scrollDiv1">
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ArticleGet.js" type="text/javascript"></SCRIPT>
+       </DIV></DIV>
+<DIV style="padding-top: 22px; float: left;"><BUTTON id="btn1">&lt;&lt;</BUTTON> 
+    <BUTTON id="btn2">&gt;&gt;</BUTTON></DIV></DIV>
+<DIV class="area_2">
+<H3>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/getcmsad.js" type="text/javascript"></SCRIPT>
+     </H3>
+<DIV class="scrollDiv" id="scrollDiv">
+<UL><!--<script type="text/javascript">-->         <!--var url = encodeURIComponent(location.href);--> 
+          <!--var id = 3;-->         <!--function ad_two_callback(ad_result){--> 
+          <!--$('#scrollDiv2 ul').append(ad_result);-->         <!--};-->        
+ <!--document.write(unescape('%3Cscript%20src%3D%22http%3A//a.pongo.cn/Job/GetAdForCallBack%3Fid%3D'+id+'%26UrlAdParam%3D'+encodeURIComponent(url)+'%26CallBack%3D'+ 'ad_two_callback' +'%22%20type%3D%22text/javascript%22%3E%3C/script%3E')); --> 
+          <!--</script>-->         
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/getcmsad(1).js" type="text/javascript"></SCRIPT>
+         </UL></DIV></DIV>
+<DIV class="area_3">
+<DL><!--<dt>-->         <!--<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_button1&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"></script>--> 
+        <!--</dt>-->       <!--<dt style="margin-bottom: 5px;">--> <!---->       
+    <!--<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_text1&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"></script>--> 
+        <!--</dt>-->       <!--<dt style="margin-bottom: 5px;">-->         <!--<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_text2&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"></script>--> 
+        <!--</dt>-->       
+  <DT>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_button2&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+         </DT></DL></DIV></DIV></DIV><!--<iframe id="frm_tt1" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="100%" src="/sda/TopicBodyTop.htm?v=1"></iframe>--> 
+<SCRIPT type="text/javascript">
+//  setTimeout(function () { document.getElementById("frm_tt1").src = "/sda/TopicBodyTop.htm?v="+new Date().getTime(); }, 5000);
+
+  $(function(){
+      //获取要定位元素距离浏览器顶部的距离
+      $ = jQuery;
+      var navH = $(".detail_title_fixed").offset().top;
+      $(".detail_title_fixed").hide();
+
+      var show_detail_title_fixed = true;
+      //滚动条事件
+      $(window).scroll(function(){
+
+          //获取滚动条的滑动距离
+          var scroH = $(this).scrollTop();
+
+          //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+          if(show_detail_title_fixed){
+              if(scroH>=navH){
+                  $(".detail_title_fixed").css({"position":"fixed","top":"0","border":"1px #198cc5 solid","z-index":"99999"});
+                  $(".detail_title_fixed").show();
+              }else if(scroH<navH){
+                  $(".detail_title_fixed").css({"position":"static"});
+                  $(".detail_title_fixed").hide();
+              }
+          }
+      });
+
+      $("#close_detail_title_fixed").click(function(){
+          show_detail_title_fixed = false;
+          $(".detail_title_fixed").hide();
+      });
+
+      $("#com-back-home").click(function(){
+        window.location.href="/";
+      });
+
+      $("#com-back-channel").click(function(){
+          window.location.href="/forums/MSSQL_Basic";
+      });
+  })
+</SCRIPT>
+ 
+<DIV class="bread_nav"><A href="http://www.csdn.net/" target="_blank">CSDN</A> 
+<EM>&gt;</EM>   <A href="http://bbs.csdn.net/" target="_blank">CSDN论坛</A> 
+<EM>&gt;</EM>     <A href="http://bbs.csdn.net/forums/MSSQL" 
+target="_blank">MS-SQL Server</A> <EM>&gt;</EM>   <A href="http://bbs.csdn.net/forums/MSSQL_Basic" 
+target="_blank">基础类</A> </DIV>
+<DIV class="flash_messages"></DIV>
+<DIV class="control_area top">
+<FORM name="form" id="form"><SPAN class="back_to_forum_list"><A href="http://bbs.csdn.net/forums/MSSQL_Basic">返回列表</A></SPAN> 
+    
+<DIV class="control">
+<UL>
+  <LI class="drop_menu_wrap drop_menu_down"><A class="drop_toggle btn_1 " href="http://bbs.csdn.net/topics/390867651#" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_set.gif">管理菜单<IMG 
+  alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/arrow_down.gif"> 
+              </SPAN>           </A>           
+  <UL class="drop_menu" style="top: 26px; display: none;">
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/top" rel="nofollow">置顶</A></LI>
+    <LI><A href="http://bbs.csdn.net/topics/390867651/recommend" rel="nofollow" 
+    data-method="put" 
+    data-confirm="您确定要推荐该帖吗？帖子被推荐后将奖励发帖用 户88个可用分和3个C币!">推荐</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/lock" 
+    rel="nofollow">锁定</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/move" 
+    rel="nofollow">移动</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/edit" 
+    rel="nofollow">编辑</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/destroy_edit" 
+    rel="nofollow">删除</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/add_point" 
+    rel="nofollow">帖子加分</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/highlight" 
+    rel="nofollow">帖子高亮</A></LI></UL></LI>
+  <LI><A class="btn_1 close_topic" href="http://bbs.csdn.net/topics/390867651/close" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_over.gif">结帖</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 create_topic" href="http://bbs.csdn.net/topics/new?forum_id=MSSQL_Basic" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_publish.gif">发帖</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 reply_topic" href="http://bbs.csdn.net/topics/390867651#new_post" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_return.gif">回复</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 reply_topic" href="http://bbs.csdn.net/topics/390867651/attetion" 
+  rel="nofollow"><SPAN><IMG title="关注" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_attention_topic.png">关注</SPAN> 
+              </A>           </LI></UL></DIV></FORM></DIV>
+<DIV class="h-entry"><A class="p-author" href="http://bbs.csdn.net/topics/390867651#">wenchuan408</A> 
+</DIV>
+<DIV class="detail_tbox">
+<DIV class="detail_title_fixed">
+<H1><SPAN 
+class="title text_overflow">怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊</SPAN>      
+   <SPAN>[问题点数：20分，结帖人wenchuan408]         </SPAN>       </H1>
+<DIV class="fixed-r"><A class="bbs-btn-blue26" href="http://bbs.csdn.net/topics/390867651#new_post">快速回复</A><A 
+class="bbs-btn-blue26" 
+href="http://bbs.csdn.net/topics/390867651?list=lz">只显示楼主</A><A class="bbs-btn-blue26" 
+href="http://bbs.csdn.net/topics/390867651/attetion">关注帖子</A><A class="bbs-btn-close" 
+id="close_detail_title_fixed" href="javascript:void(0);"></A></DIV></DIV>
+<DIV class="detail_title">
+<H1><SPAN 
+class="title text_overflow">怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊</SPAN>      
+   <SPAN>[问题点数：20分，结帖人wenchuan408]         </SPAN>       </H1>
+<DIV class="fr"><SELECT name="filter_posts"><OPTION 
+  value="default">不显示删除回复</OPTION>           <OPTION value="all">显示所有回复</OPTION> 
+            <OPTION value="star">显示星级回复</OPTION>           <OPTION value="pointed">显示得分回复</OPTION> 
+            <OPTION value="lz">只显示楼主</OPTION>         </SELECT>         <A class="fav" 
+id="fav" href="http://my.csdn.net/my/favorite/miniadd?u=http://bbs.csdn.net/topics/390867651&amp;t=%E6%80%8E%E6%A0%B7%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E4%B8%AA%E8%A1%A8%E9%87%8C%E7%AD%9B%E9%80%89%E5%87%BA%E6%AF%8F%E4%B8%80%E4%BA%BA%E7%9A%84%E6%97%B6%E9%97%B4%E6%9C%80%E6%96%B0%E7%9A%84%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%9F%E7%94%A8SQL%E8%AF%AD%E5%8F%A5%E3%80%82%E6%84%9F%E8%B0%A2%E5%A4%A7%E7%A5%9E%E5%95%8A" 
+rel="nofollow"><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/nolines_plus.gif">收藏</A> 
+      </DIV></DIV></DIV>
+<DIV class="detailed">
+<TABLE class="post topic " id="post-398035593" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398035593">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="wenchuan408"><A href="http://my.csdn.net/wenchuan408" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="wenchuan408" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_wenchuan408.gif"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="3338460_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/3338460/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="3338460_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/3338460/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="wenchuan408" href="http://my.csdn.net/wenchuan408" 
+        target="_blank" rel="nofollow">wenchuan408</A>                       
+        </DD>
+        <DD class="nickname"><SPAN class="name2nick">wenchuan408</SPAN>          
+         </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T1" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t1.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：0               </DIV></DIV></DD>
+        <DD title="用户结帖率：75%&#10;总发帖：8&#10;正常结帖：6&#10;未结帖：2" 
+        class="close_rate">结帖率：75%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info topic" valign="top" data-username="wenchuan408" 
+    data-floor="">
+      <DIV class="data"><STRONG class="fr">楼主             </STRONG>           
+      <SPAN class="time">              发表于：             2014-08-21 21:20:37      
+           </SPAN>         </DIV>
+      <DIV class="post_body">
+      <DIV class="tag"><SPAN><A href="http://www.csdn.net/tag/sql" target="_blank">sql</A></SPAN><SPAN><A 
+      href="http://www.csdn.net/tag/数据库" 
+      target="_blank">数据库</A></SPAN></DIV>yhh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;gdcs&nbsp;&nbsp;gdsj1&nbsp;&nbsp;&nbsp;gdtime<BR>
+      600040407&nbsp;&nbsp;&nbsp;&nbsp;王玲&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2011/6/21&nbsp;22:34&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040407&nbsp;&nbsp;&nbsp;&nbsp;王玲&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2011/6/24&nbsp;10:21&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040407&nbsp;&nbsp;&nbsp;&nbsp;王玲&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2011/12/7&nbsp;10:45&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040407&nbsp;&nbsp;&nbsp;&nbsp;王玲&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2012/1/15&nbsp;14:01&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040407&nbsp;&nbsp;&nbsp;&nbsp;王玲&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2012/12/26&nbsp;14:11&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040408&nbsp;&nbsp;&nbsp;&nbsp;魏武&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2011/6/21&nbsp;22:36&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040408&nbsp;&nbsp;&nbsp;&nbsp;魏武&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2013/11/15&nbsp;10:46&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040408&nbsp;&nbsp;&nbsp;&nbsp;魏武&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2014/1/19&nbsp;9:12&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040408&nbsp;&nbsp;&nbsp;&nbsp;魏武&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2014/1/10&nbsp;13:57&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040408&nbsp;&nbsp;&nbsp;&nbsp;魏武&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2014/1/22&nbsp;10:08&nbsp;&nbsp;<BR>
+      600040435&nbsp;&nbsp;&nbsp;&nbsp;于洋&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2011/6/22&nbsp;12:54&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040435&nbsp;&nbsp;&nbsp;&nbsp;于洋&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2013/3/11&nbsp;9:16&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040435&nbsp;&nbsp;&nbsp;&nbsp;于洋&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2014/1/10&nbsp;11:18&nbsp;&nbsp;&nbsp;&nbsp;<BR>
+      600040435&nbsp;&nbsp;&nbsp;&nbsp;于洋&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0.56&nbsp;&nbsp;&nbsp;&nbsp;2013/12/20&nbsp;15:09<BR><BR>我知道用&nbsp;select&nbsp;name,MAX(gdtime)&nbsp;from&nbsp;table1&nbsp;group&nbsp;by&nbsp;yhh&nbsp;挑选出每个人的最新登录实际,结果只有name,gdtime<BR>怎么将每个人的最新登录这条记录全部信息显示出来,不止name,gdtime,我还要yhh&nbsp;&nbsp;,gdcs,gdsj1&nbsp;这几列<BR><BR>
+      以上拜托了!<BR>
+      <DIV id="topic-extra-info">
+      <DIV class="social-share"><!-- Baidu Button BEGIN -->   <SPAN class="bdshare_t bds_tools get-codes-bdshare" 
+      id="bdshare"><A class="bds_tsina"></A>     <A class="bds_tqq"></A>     
+      <SPAN class="bds_more">更多</SPAN>     <A class="shareCount"></A>   </SPAN>  
+       <SPAN class="prompt">分享到：</SPAN>   
+<SCRIPT id="bdshare_js" type="text/javascript" data="type=tools&amp;uid=3329407"></SCRIPT>
+         
+<SCRIPT id="bdshell_js" type="text/javascript"></SCRIPT>
+         
+<SCRIPT type="text/javascript">
+    var bds_config = {
+      "snsKey": { 
+        'tsina': '3657746030',
+        'tqq': '801356742',
+      }
+    };
+
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+  </SCRIPT>
+         <!-- Baidu Button END --> </DIV></DIV><!-- 主帖下Banner (D4) -->           
+          <!-- 主帖下文字 (D5) -->                   
+      <DIV width="100%" scrolling="no" marginheight="0" marginwidth="0">
+<STYLE type="text/css">
+    /***Business text AD***/
+    /*body {margin:0; padding: 0;font:normal 12px simsun; }*/
+    .adtxt{text-align:center;}
+    .adtxt ul{margin:5px 0;border-top:1px solid #B9B9B9;border-bottom:1px solid #B9B9B9;background-color:#F2F6FB;padding:5px 0;}
+    .adtxt ul li{display: inline-block; margin: 0 40px 0 0;}
+    .adtxt ul li a{color:#333;}
+    /*a{color: #002D93;text-decoration:none;}*/
+    /*a:visited{color: #B00;text-decoration:none;}*/
+    /*a:hover{color: #B00; text-decoration: underline;}*/
+</STYLE>
+       
+      <DIV id="bd_ad_2" style="margin: 0px; text-align: center; padding-bottom: 5px; display: block;">
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_banner3&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+       </DIV>
+      <DIV class="adtxt">
+      <UL>
+        <LI>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_text3&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+             </LI>
+        <LI>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_text4&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+             </LI>
+        <LI>
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_text5&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+             </LI></UL></DIV></DIV></DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398035593/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398035593/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398035593/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/topics/390867651/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   </DIV><SPAN 
+      class="return_time">回复次数：7</SPAN> </DIV></TD></TR></TBODY></TABLE>
+<DIV id="topic-suggest">
+<DIV id="real_topic">
+<DIV class="related-tags" id="suggest_tags"></DIV>
+<DIV class="related-topics tracking-ad" id="suggest_topics" data-mod="popu_18" 
+data-pid="bbs"></DIV>
+<DIV class="related-topics" id="suggest_course" data-mod="popu_84" data-pid="bbs"></DIV></DIV><!--<div id="job_bbs_reco">--> 
+          <!--<script src="http://c.csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script>--> 
+        <!--</div>--> </DIV>
+<SCRIPT>
+        var topic_suggest = $('#topic-suggest');
+        $('#topic-extra-info').append(topic_suggest);
+      </SCRIPT>
+   
+<TABLE class="post  " id="post-398035693" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398035693">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="xzb001"><A href="http://my.csdn.net/xzb001" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="xzb001" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_xzb001.gif"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="17633440_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/17633440/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="17633440_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/17633440/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="xzb001" href="http://my.csdn.net/xzb001" 
+        target="_blank" rel="nofollow">xzb001</A>                       </DD>
+        <DD class="nickname"><SPAN class="name2nick">xzb001</SPAN>           
+        </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T3" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t3.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：615               </DIV></DIV></DD>
+        <DD title="用户结帖率：0%&#10;总发帖：0&#10;正常结帖：0&#10;未结帖：0" 
+        class="close_rate">结帖率：0%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info pointed" valign="top" data-username="xzb001" 
+    data-floor="1">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-398035693">#1</A> 
+                    得分：5             </SPAN>           <SPAN class="time">回复于：   
+                2014-08-21 21:40:27           </SPAN>         </DIV>
+      <DIV class="post_body">
+<PRE class="brush: sql"><BR>
+/*&nbsp;1&nbsp;用子查询&nbsp;*/<BR>
+select&nbsp;yhh,&nbsp;name,&nbsp;gdcs,&nbsp;gdsj1,&nbsp;gdtime<BR>
+from&nbsp;table1<BR>
+where&nbsp;exists<BR>
+(<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;select&nbsp;1&nbsp;from<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;(<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select&nbsp;yhh,&nbsp;max(gdtime)&nbsp;as&nbsp;gdtime<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;table1&nbsp;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group&nbsp;by&nbsp;yhh<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;x<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;x.yhh&nbsp;=&nbsp;table1.yhh&nbsp;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;x.gdtime&nbsp;=&nbsp;table1.gdtime<BR>
+)<BR>
+<BR>
+/*&nbsp;2&nbsp;用窗口函数&nbsp;*/<BR>
+select&nbsp;*&nbsp;from<BR>
+(<BR>
+select&nbsp;yhh,&nbsp;name,&nbsp;gdcs,&nbsp;gdsj1,&nbsp;gdtime<BR>
+,&nbsp;max(gdtime)&nbsp;over(partition&nbsp;by&nbsp;yhh)&nbsp;as&nbsp;gdtimeMax<BR>
+from&nbsp;table1<BR>
+)&nbsp;x<BR>
+where&nbsp;gdtime&nbsp;=&nbsp;gdtimeMax<BR>
+</PRE></DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-1" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398035693/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398035693/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398035693/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/398035693/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/398035693/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-398035882" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398035882">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="tangguangqiang"><A href="http://my.csdn.net/tangguangqiang" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="tangguangqiang" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_tangguangqiang.jpg"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="12607165_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/12607165/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="12607165_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/12607165/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="tangguangqiang" href="http://my.csdn.net/tangguangqiang" 
+        target="_blank" rel="nofollow">tangguangqiang</A>                       
+        </DD>
+        <DD class="nickname"><SPAN class="name2nick">tangguangqiang</SPAN>       
+            </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T5" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t5.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：4933               </DIV></DIV></DD>
+        <DD title="用户结帖率：100%&#10;总发帖：41&#10;正常结帖：41&#10;未结帖：0" class="close_rate">结帖率：100%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info pointed" valign="top" data-username="tangguangqiang" 
+    data-floor="2">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-398035882">#2</A> 
+                    得分：3             </SPAN>           <SPAN class="time">回复于：   
+                2014-08-21 22:19:52           </SPAN>         </DIV>
+      <DIV class="post_body">
+<PRE class="brush: sql"><BR>
+<BR>
+select&nbsp;yhh,name,gdcs,gdsj1,gdtime<BR>
+from&nbsp;tab&nbsp;a&nbsp;where&nbsp;not&nbsp;exists(select&nbsp;1&nbsp;from&nbsp;tab&nbsp;where&nbsp;yhh=a.yhh&nbsp;and&nbsp;gdtime&gt;a.gdtime)<BR>
+</PRE></DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-2" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398035882/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398035882/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398035882/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/398035882/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/398035882/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-398035901" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398035901">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info user_moderator">
+        <DT class="user_head" data-username="fredrickhu"><A href="http://my.csdn.net/fredrickhu" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="fredrickhu" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_fredrickhu.jpg"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="4168112_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/4168112/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="4168112_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/4168112/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="fredrickhu" href="http://my.csdn.net/fredrickhu" 
+        target="_blank" rel="nofollow">fredrickhu</A>             <IMG title="MS-SQL Server-基础类版版主,MS-SQL Server-非技术版版版主" 
+        alt="版主" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_BM-04df65c6033b993e1474606aa5ea59c5.png"> 
+                  </DD>
+        <DD class="nickname"><SPAN class="name2nick">fredrickhu</SPAN>           
+        </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T12" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t12.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：305442               </DIV></DIV></DD>
+        <DD title="用户结帖率：99.67%&#10;总发帖：303&#10;正常结帖：302&#10;未结帖：1" class="close_rate">结帖率：99.67%</DD>
+        <DD class="showTittleDD"><SPAN><IMG class="xunZhang" alt="Blank" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/mingren.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/mingrenmiddle.png"></DT>
+          <DD><STRONG>名人</STRONG>2012年 荣获名人称号                        
+        </DD></DL></DIV></SPAN>                 <SPAN><IMG class="xunZhang" alt="Blank" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jinshi.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jinshimiddle.png"></DT>
+          <DD><STRONG>进士</STRONG>2011年 总版技术专家分年内排行榜第四<BR>2010年 
+          总版技术专家分年内排行榜第九<BR>2009年 总版技术专家分年内排行榜第八                        
+        </DD></DL></DIV></SPAN>                 <SPAN><IMG class="xunZhang" alt="Blank" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jinpian.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/jinpianmiddle.png"></DT>
+          <DD><STRONG>金牌</STRONG>2011年10月 总版技术专家分月排行榜第一                        
+          </DD></DL></DIV></SPAN>                 <A class="more_medals" href="http://bbs.csdn.net/users/fredrickhu/medals" 
+        target="_blank">更多勋章</A></DD></DL></TD>
+    <TD class="post_info star pointed" valign="top" data-username="fredrickhu" 
+    data-floor="3">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-398035901">#3</A> 
+                    得分：2             </SPAN>           <SPAN class="time">回复于：   
+                2014-08-21 22:22:40           </SPAN>         </DIV>
+      <DIV class="post_body">
+<PRE class="brush: sql">select&nbsp;*&nbsp;from&nbsp;tb&nbsp;as&nbsp;t&nbsp;where&nbsp;not&nbsp;exists(select&nbsp;1&nbsp;from&nbsp;tb&nbsp;where&nbsp;yhh=t.yhh&nbsp;and&nbsp;&nbsp;name=t.&nbsp;name&nbsp;and&nbsp;gdtime&gt;t.gdtime)</PRE></DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-3" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398035901/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398035901/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398035901/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/398035901/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/398035901/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-398035915" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398035915">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info user_moderator">
+        <DT class="user_head" data-username="ap0405140"><A href="http://my.csdn.net/ap0405140" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="ap0405140" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_ap0405140.jpg"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="10545308_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/10545308/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="10545308_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/10545308/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="ap0405140" href="http://my.csdn.net/ap0405140" 
+        target="_blank" rel="nofollow">ap0405140</A>             <IMG title="MS-SQL Server-应用实例版版主" 
+        alt="版主" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_BM-04df65c6033b993e1474606aa5ea59c5.png"> 
+                  </DD>
+        <DD class="nickname"><SPAN class="name2nick">ap0405140</SPAN>           
+        </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T9" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t9.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：90922               </DIV></DIV></DD>
+        <DD title="用户结帖率：99.38%&#10;总发帖：160&#10;正常结帖：159&#10;未结帖：1" class="close_rate">结帖率：99.38%</DD>
+        <DD class="showTittleDD"><SPAN><IMG class="xunZhang" alt="Blank" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/youxiubanzhu.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/youxiubanzhumiddle.png"></DT>
+          <DD><STRONG>优秀版主</STRONG>2015年2月论坛优秀版主                        
+        </DD></DL></DIV></SPAN>                 <SPAN><IMG class="xunZhang" alt="Blank" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/weiruanmvp.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/weiruanmvpmiddle.png"></DT>
+          <DD><STRONG>微软MVP</STRONG>                         2014年4月 荣获微软MVP称号   
+                               </DD></DL></DIV></SPAN>                 <SPAN><IMG 
+        class="xunZhang" alt="Blank" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/huanghua.png"> 
+                           
+        <DIV class="showTittle">
+        <DIV style="left: 18%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV>
+        <DL>
+          <DT><IMG src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/huanghuamiddle.png"></DT>
+          <DD><STRONG>黄花</STRONG>2015年3月 MS-SQL Server大版内专家分月排行榜第二<BR>2015年2月 
+          MS-SQL Server大版内专家分月排行榜第二<BR>2014年7月 MS-SQL 
+          Server大版内专家分月排行榜第二<BR>2013年7月 MS-SQL Server大版内专家分月排行榜第二<BR>2013年6月 
+          MS-SQL Server大版内专家分月排行榜第二<BR>2013年5月 MS-SQL 
+          Server大版内专家分月排行榜第二<BR>2012年5月 MS-SQL Server大版内专家分月排行榜第二                
+                  </DD></DL></DIV></SPAN>                 <A class="more_medals" 
+        href="http://bbs.csdn.net/users/ap0405140/medals" 
+        target="_blank">更多勋章</A></DD></DL></TD>
+    <TD class="post_info star pointed" valign="top" data-username="ap0405140" 
+    data-floor="4">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-398035915">#4</A> 
+                    得分：10             </SPAN>           <SPAN class="time">回复于：  
+                 2014-08-21 22:26:11           </SPAN>         </DIV>
+      <DIV class="post_body">
+<PRE class="brush: sql"><BR>
+--&nbsp;方法1<BR>
+select&nbsp;a.*&nbsp;<BR>
+&nbsp;from&nbsp;table1&nbsp;a<BR>
+&nbsp;where&nbsp;not&nbsp;exists(select&nbsp;1&nbsp;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;table1&nbsp;b<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;b.name=a.name&nbsp;and&nbsp;b.gdtime&gt;a.gdtime)<BR>
+<BR>
+--&nbsp;方法2<BR>
+select&nbsp;a.*<BR>
+&nbsp;from&nbsp;table1&nbsp;a<BR>
+&nbsp;inner&nbsp;join<BR>
+&nbsp;(select&nbsp;name,<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max(gdtime)&nbsp;'maxgdtime'<BR>
+&nbsp;&nbsp;from&nbsp;table1&nbsp;<BR>
+&nbsp;&nbsp;group&nbsp;by&nbsp;name)&nbsp;b&nbsp;on&nbsp;a.name=b.name&nbsp;and&nbsp;a.gdtime=b.maxgdtime<BR>
+</PRE></DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-4" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398035915/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[1]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398035915/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398035915/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/398035915/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/398035915/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-398698962" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="398698962">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="nlh_2007"><A href="http://my.csdn.net/nlh_2007" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="nlh_2007" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_nlh_2007.jpg"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="13503868_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/13503868/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="13503868_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/13503868/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="nlh_2007" href="http://my.csdn.net/nlh_2007" 
+        target="_blank" rel="nofollow">nlh_2007</A>                       </DD>
+        <DD class="nickname"><SPAN class="name2nick">nlh_2007</SPAN>           
+        </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T1" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t1.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：0               </DIV></DIV></DD>
+        <DD title="用户结帖率：0%&#10;总发帖：0&#10;正常结帖：0&#10;未结帖：0" 
+        class="close_rate">结帖率：0%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info " valign="top" data-username="nlh_2007" 
+      data-floor="5"><DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-398698962">#5</A> 
+                    得分：0             </SPAN>           <SPAN class="time">回复于：   
+                2014-12-22 09:06:08           </SPAN>         </DIV>
+      <DIV class="post_body">能单聊吗？我也有这个问题。         </DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-5" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/398698962/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/398698962/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/398698962/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/398698962/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/398698962/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-400429414" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="400429414">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="l8686555_110"><A href="http://my.csdn.net/l8686555_110" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="l8686555_110" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_l8686555_110.gif"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="5324113_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/5324113/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="5324113_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/5324113/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="l8686555_110" href="http://my.csdn.net/l8686555_110" 
+        target="_blank" rel="nofollow">l8686555_110</A>                       
+        </DD>
+        <DD class="nickname"><SPAN class="name2nick">l8686555_110</SPAN>         
+          </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T1" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t1.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：0               </DIV></DIV></DD>
+        <DD title="用户结帖率：0%&#10;总发帖：0&#10;正常结帖：0&#10;未结帖：0" 
+        class="close_rate">结帖率：0%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info " valign="top" data-username="l8686555_110" data-floor="6">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-400429414">#6</A> 
+                    得分：0             </SPAN>           <SPAN class="time">回复于：   
+                2015-09-29 08:52:05           </SPAN>         </DIV>
+      <DIV class="post_body">            
+      mysql取分组后最新的一条记录,下面两种方法.一种是先筛选&nbsp;出最大和最新的时间,在连表查询.一种是先排序,然后在次分组查询(默认第一条),就是最新的一条数据了<BR><BR>#select&nbsp;*&nbsp;from&nbsp;t_assistant_article&nbsp;as&nbsp;a,&nbsp;(select&nbsp;max(base_id)&nbsp;as&nbsp;base_id,&nbsp;max(create_time)&nbsp;as&nbsp;create_time&nbsp;from&nbsp;t_assistant_article&nbsp;as&nbsp;b&nbsp;group&nbsp;by&nbsp;base_id&nbsp;)&nbsp;as&nbsp;b&nbsp;where&nbsp;a.base_id=b.base_id&nbsp;and&nbsp;a.create_time&nbsp;=&nbsp;b.create_time<BR>
+      #select&nbsp;base_id,max(create_time),&nbsp;max(article_id)&nbsp;as&nbsp;article_id&nbsp;from&nbsp;t_assistant_article&nbsp;as&nbsp;b&nbsp;group&nbsp;by&nbsp;base_id&nbsp;<BR>
+      select&nbsp;*&nbsp;from&nbsp;(select&nbsp;*&nbsp;from&nbsp;t_assistant_article&nbsp;order&nbsp;by&nbsp;create_time&nbsp;desc)&nbsp;as&nbsp;a&nbsp;group&nbsp;by&nbsp;base_id 
+              </DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-6" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/400429414/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/400429414/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/400429414/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/400429414/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/400429414/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="post  " id="post-400518568" border="0" cellspacing="0" 
+cellpadding="0" data-is-topic-locked="false" data-post-id="400518568">
+  <COLGROUP>
+  <COL width="180">
+  <COL></COLGROUP>
+  <TBODY>
+  <TR>
+    <TD class="wirter" valign="top" rowspan="2">
+      <DL class="user_info ">
+        <DT class="user_head" data-username="qq_15234971"><A href="http://my.csdn.net/qq_15234971" 
+        target="_blank" rel="nofollow"><IMG class="avatar" alt="qq_15234971" 
+        src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/1_qq_15234971.jpg"></A> 
+                  </DT>
+        <DD class="bbs-user-att" id="36478327_bbs-btn-close-attention" style="display: none;"><A 
+        class="bbs-btn-blue25 bbs-btn-close-attention" href="http://bbs.csdn.net/users/36478327/cancel_attention" 
+        data-method="get" data-remote="true">取消关注</A></DD>
+        <DD class="bbs-user-att" id="36478327_bbs-btn-attention"><A class="bbs-btn-blue25 bbs-btn-attention" 
+        href="http://bbs.csdn.net/users/36478327/attention" data-method="get" 
+        data-remote="true">关注</A></DD>
+        <DD class="username"><A title="qq_15234971" href="http://my.csdn.net/qq_15234971" 
+        target="_blank" rel="nofollow">qq_15234971</A>                       
+        </DD>
+        <DD class="nickname"><SPAN class="name2nick">qq_15234971</SPAN>          
+         </DD>
+        <DD>本版等级：<IMG class="topic_show_user_level" alt="T1" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/t1.png"> 
+                    
+        <DIV class="topic_show_posts">
+        <DIV class="smallTittle">
+        <DIV class="JianJiao" style="left: 40%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(255, 255, 255); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+                       本版专家分：0               </DIV></DIV></DD>
+        <DD title="用户结帖率：0%&#10;总发帖：1&#10;正常结帖：0&#10;未结帖：1" 
+        class="close_rate">结帖率：0%</DD>
+        <DD class="showTittleDD"></DD></DL></TD>
+    <TD class="post_info " valign="top" data-username="qq_15234971" data-floor="7">
+      <DIV class="data"><SPAN class="fr"><A href="http://bbs.csdn.net/topics/390867651#post-400518568">#7</A> 
+                    得分：0             </SPAN>           <SPAN class="time">回复于：   
+                2015-10-29 15:57:51           </SPAN>         </DIV>
+      <DIV class="post_body">
+      <FIELDSET><LEGEND 
+      class="font_bold">引用&nbsp;3&nbsp;楼&nbsp;fredrickhu&nbsp;的回复:</LEGEND>
+      <BLOCKQUOTE>
+<PRE class="brush: sql">select&nbsp;*&nbsp;from&nbsp;tb&nbsp;as&nbsp;t&nbsp;where&nbsp;not&nbsp;exists(select&nbsp;1&nbsp;from&nbsp;tb&nbsp;where&nbsp;yhh=t.yhh&nbsp;and&nbsp;&nbsp;name=t.&nbsp;name&nbsp;and&nbsp;gdtime&gt;t.gdtime)</PRE></BLOCKQUOTE></FIELDSET>查询的速度太慢了 
+              </DIV></TD></TR>
+  <TR>
+    <TD valign="bottom">
+      <DIV class="control">
+      <DIV class="fl tracking-ad" id="post-forum-bulletin-7" 
+      data-mod="popu_9"></DIV>
+      <DIV class="fr"><A class="red digg" href="http://bbs.csdn.net/posts/400518568/digg?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">对我有用[0]</A>       <A 
+      class="bury" href="http://bbs.csdn.net/posts/400518568/bury?topic_id=390867651" 
+      rel="nofollow" data-method="put" data-remote="true">丢个板砖[0]</A>       <A 
+      class="quote" href="http://bbs.csdn.net/topics/390867651#quote" rel="nofollow">引用</A> 
+      |       <A class="fancybox red report_spam" href="http://bbs.csdn.net/posts/400518568/report?topic_id=390867651" 
+      rel="nofollow">举报 </A> |     <SPAN class="manage-toggle">
+      <DIV class="manage" style="display: none;"><A class="fancybox" href="http://bbs.csdn.net/posts/400518568/edit" 
+      rel="nofollow">编辑</A>           <A class="fancybox" href="http://bbs.csdn.net/posts/400518568/destroy_edit" 
+      rel="nofollow">删除</A>       </DIV>      管理     </SPAN>   
+  </DIV></DIV></TD></TR></TBODY></TABLE></DIV>
+<SCRIPT type="text/javascript" charset="utf-8">
+    $(function(){
+        topics_page_js.show_page();
+    });
+</SCRIPT>
+ <INPUT id="autosave_post_val" type="hidden"> <INPUT id="autosave_old_post_val" 
+type="hidden"> <!-- <div class='around&#45;topics'> --> <!--   <span class='preview'> --> <!--      --> <!--   </span> --> <!--   | --> <!--   <span class='next'> --> <!--      --> <!--   </span> --> <!-- </div> --> 
+<DIV class="control_area bottom">
+<FORM name="form" id="form"><SPAN class="back_to_forum_list"><A href="http://bbs.csdn.net/forums/MSSQL_Basic">返回列表</A></SPAN> 
+    
+<DIV class="control">
+<UL>
+  <LI class="drop_menu_wrap drop_menu_up"><A class="drop_toggle btn_1 drop_toggle_up" 
+  href="http://bbs.csdn.net/topics/390867651#" rel="nofollow"><SPAN><IMG alt="" 
+  src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_set.gif">管理菜单<IMG 
+  alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/arrow_down.gif"> 
+              </SPAN>           </A>           
+  <UL class="drop_menu" style="bottom: 26px; display: none;">
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/top" rel="nofollow">置顶</A></LI>
+    <LI><A href="http://bbs.csdn.net/topics/390867651/recommend" rel="nofollow" 
+    data-method="put" 
+    data-confirm="您确定要推荐该帖吗？帖子被推荐后将奖励发帖用 户88个可用分和3个C币!">推荐</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/lock" 
+    rel="nofollow">锁定</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/move" 
+    rel="nofollow">移动</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/edit" 
+    rel="nofollow">编辑</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/destroy_edit" 
+    rel="nofollow">删除</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/add_point" 
+    rel="nofollow">帖子加分</A></LI>
+    <LI><A class="fancybox" href="http://bbs.csdn.net/topics/390867651/highlight" 
+    rel="nofollow">帖子高亮</A></LI></UL></LI>
+  <LI><A class="btn_1 close_topic" href="http://bbs.csdn.net/topics/390867651/close" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_over.gif">结帖</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 create_topic" href="http://bbs.csdn.net/topics/new?forum_id=MSSQL_Basic" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_publish.gif">发帖</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 reply_topic" href="http://bbs.csdn.net/topics/390867651#new_post" 
+  rel="nofollow"><SPAN><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_return.gif">回复</SPAN> 
+            </A>         </LI>
+  <LI><A class="btn_1 reply_topic" href="http://bbs.csdn.net/topics/390867651/attetion" 
+  rel="nofollow"><SPAN><IMG title="关注" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ico_attention_topic.png">关注</SPAN> 
+              </A>           </LI></UL></DIV></FORM></DIV><!--AdForward Begin:--> 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|banner4&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+ <!--AdForward End--> 
+<DIV class="comt">
+<DIV class="ad_l"><!-- 回复框文字 (D6) -->     
+<DIV id="topic_buttom_left_ad">
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|topics_button3&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+     </DIV>
+<UL class="tracking-ad" data-mod="popu_10">
+  <LI><A class="title_style_red title_style_bold" href="http://www.csdn.net/app/" 
+  target="_blank">CSDN 移动客户端正式发布</A></LI>
+  <LI><A class="title_style_red title_style_bold" href="http://edu.csdn.net/course/detail/282" 
+  target="_blank">微信公众平台开发入门</A></LI>
+  <LI><A class="title_style_blue title_style_bold" href="http://edu.csdn.net/course/detail/427" 
+  target="_blank">深入理解计算机网络</A></LI></UL>
+<DIV class="ad_new tracking-ad" style="padding: 0px 0px 50px;" data-mod="popu_11">
+<H4><IMG alt="" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/csdn_logo_blue.gif"></H4>
+<P class="title"><A href="http://bbs.csdn.net/topics/390762408" 
+target="_blank">CSDN</A>       </P>
+<P class="con"><A href="http://bbs.csdn.net/topics/390762408" 
+target="_blank">CSDN社区问答精华QA</A>       </P></DIV></DIV>
+<DIV class="reply">
+<FORM class="new_post" id="new_post" action="/posts?topic_id=390867651" method="post" 
+accept-charset="UTF-8">
+<DIV style="margin: 0px; padding: 0px; display: inline;"><INPUT name="utf8" 
+type="hidden" value="✓"><INPUT name="authenticity_token" type="hidden" value="hSI8qZobDePzqcu8OA0XqG2RqZL4MvLeJqL/dtNgot8="></DIV> 
+       
+<DIV><STRONG>回复内容</STRONG>             <SPAN class="login">匿名用户不能发表回复！<A 
+onclick="loginbox();" href="javascript:void(0);">登录</A>|<A href="https://passport.csdn.net/account/register" 
+target="_blank">注册</A></SPAN>           &nbsp;&nbsp;<A style="color: red;" href="http://www.csdn.net/app/" 
+target="_blank">移动客户端回帖所得专家分翻倍，下载体验！</A>         </DIV>
+<DIV class="editor"><TEXTAREA name="post[body]" class="required quoteOnly" id="post_body" style="width: 100%; height: 200px;" rows="20" cols="40"></TEXTAREA> 
+          
+<DIV class="pub"><SPAN class="fr">每天回帖即可获得10分可用分！小技巧：<A href="http://bbs.csdn.net/help#common_problem" 
+target="_blank" rel="nofollow">教您如何更快获得可用分</A>               <SPAN class="body_count_notice_fixed" 
+id="body_count_notice">你还可以输入10000个字符</SPAN>             </SPAN>             
+<INPUT name="commit" class="btn_b" id="submit_new_post_form" type="submit" value="提交回复">(Ctrl+Enter) 
+          </DIV></DIV>
+<OL class="notice">
+  <LI>请遵守CSDN<A href="http://bbs.csdn.net/help#user_criterion" 
+  rel="nofollow">用户行为准则</A>，不得违反国家法律法规。</LI>
+  <LI>转载文章请注明出自“CSDN（www.csdn.net）”。如是商业用途请联系原作者。</LI></OL></FORM>
+<SCRIPT id="countTemplate" type="text/x-jquery-tmpl">你还可以输入${count}个字符
+      </SCRIPT>
+   </DIV></DIV>
+<SCRIPT>
+  $(function(){
+    $('.refresh-captcha').on('click', function(e){
+      e.preventDefault();
+      $('.captcha').load('/captchas/new');
+    });
+  });
+  $(function(){
+      showsuggest('post_body');
+  });
+</SCRIPT>
+ <!-- 对联广告 --> 
+<DIV id="ad_left" style="left: 10px; top: 184px; width: 160px; display: none; position: absolute;"><A 
+style="float: right;" onclick="javascript:this.parentNode.style.display='none';return false;" 
+href="http://bbs.csdn.net/topics/390867651#">[关闭]</A>   
+<DIV>
+<SCRIPT type="text/javascript">
+  document.write('<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "604315";<\/script>');
+  document.write('<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|couplet3&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"><\/script>');
+  $(function(){
+      if ($(parent.window).width() >= 1280) {
+          parent.$('#ad_left').show();
+      }
+  });
+</SCRIPT>
+   </DIV></DIV>
+<DIV id="ad_right" style="top: 184px; width: 160px; right: 10px; display: none; position: absolute;"><A 
+style="float: left;" onclick="javascript:this.parentNode.style.display='none';return false;" 
+href="http://bbs.csdn.net/topics/390867651#">[关闭]</A>   
+<DIV>
+<SCRIPT type="text/javascript">
+    document.write('<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "604328";<\/script>');
+    document.write('<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|couplet4&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"><\/script>');
+    $(function(){
+        if ($(parent.window).width() >= 1280) {
+            parent.$('#ad_right').show();
+        }
+    });
+</SCRIPT>
+   </DIV></DIV>
+<SCRIPT>
+  $(function(){
+    window.onresize = function(){
+      if($(parent.window).width() <= 1280){
+        $('#ad_right').hide();
+        $('#ad_left').hide();
+      } else {
+          $('#ad_right').show();
+          $('#ad_left').show();
+      }
+    };
+      if ($(parent.window).width() >= 1280) {
+          $('#ad_right').show();
+          $('#ad_left').show();
+      }
+  });
+
+</SCRIPT>
+ <!-- 浮层弹窗广告 --> <!--AdForward Begin:--> 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/AllyesDeliver.min.js" type="text/javascript" charset="gbk" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|bbs|fumeiti&amp;db=csdnim&amp;border=0&amp;local=yes&amp;js=ie"></SCRIPT>
+ <!--AdForward End--> <!-- go-backhome   go-backchannel--> <!-- <button id="com-back-home" class="btn btn-top bbs-btn-gray28 bbs-btn-backhome" title="回到首页" style="cursor: pointer; border: 0px none; bottom: 35px; width: 80px; height: 28px; margin: 0px; padding: 0px; position: fixed; right: 40px; display: block; padding-right:13px;">回到首页</button>
+<button id="com-back-channel" class="btn btn-top bbs-btn-gray28 bbs-btn-backchannel" title="回到频道" style="cursor: pointer; border: 0px none; bottom:68px; width: 80px; height: 28px; margin: 0px; padding: 0px; position: fixed; right: 40px; display: block; padding-right:13px;">回到频道</button> --> 
+    </DIV>
+<SCRIPT type="text/javascript">
+            $(function()
+                {
+                    posts_page_js._form_page();
+                });
+        </SCRIPT>
+ 
+<SCRIPT language="javascript" type="text/javascript" charset="utf-8">
+window.bbsInfoflag = true;
+
+//<![CDATA[
+$(function(){
+  $('.post .post_body fieldset+br').remove();
+  $('.post .post_body blockquote').each(function(index, item) {
+    var first_child = $(item).find(':first');
+    if($(item).contents().get(0) !== undefined &&
+      $(item).contents().get(0).nodeName.toLowerCase() === 'br' &&
+      first_child.prop('tagName').toLowerCase() === 'br') {
+      first_child.remove();
+    }
+  });
+  
+    var bulletin_link = '<a href="http://www.csdn.net/app/" class="title_style_blue title_style_bold" target="_blank">随时随地逛论坛 论坛移动客户端</a>'
+    $('#post-forum-bulletin-1').html(bulletin_link);
+});
+
+$(".showTittleDD span").hover(
+        function () {
+            $(this).find(".showTittle")[0].style.display="inline-block";
+        },
+        function () {
+                $(this).find(".showTittle")[0].style.display="none";
+        }
+);
+
+$(".topic_show_user_level").hover(
+    function () {
+    $(this).next().find(".smallTittle")[0].style.display="inline-block";
+
+
+    },
+    function () {
+        $(this).next().find(".smallTittle")[0].style.display="none";
+    }
+);
+//]]>
+var auto_save_time = null;
+$(document).ready(function(){
+    autosavecontent = $("#autosave_post_val").val();
+    if(autosavecontent != ''){$("#post_body").val(autosavecontent);}
+    auto_save_time = setInterval(autosave, 90*1000);
+});
+function autosave(){
+    var content =  $("#post_body").val();
+    var old_content = $("#autosave_old_post_val").val();
+    topic_id = 390867651
+    if(content != "" && content != old_content) {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/posts/autosave_post',
+            data: {
+                content: content,
+                topic_id: topic_id
+            },
+            success: function (result) {
+                $("#autosave_old_post_val").val(content);
+            },
+            error: function (result) {
+              if(result.status == 403 && result.responseText == '需要登录'){
+                  clearInterval(auto_save_time);
+              }
+            }
+        })
+    }
+}
+
+$(function(){
+    // 课程推荐
+    $.ajax({
+        url: "http://internalapi.csdn.net/psearch/psearch/query",
+        type: "GET",
+        data: {_client_: "rcommend_course",
+                pro_id: "390867651",
+                pro_type: "discussion_topic",
+                fields: "created_at,tag,id,title,pic,stu_count,good_ratio,rc_flag,source_type",
+                size: 4,
+                user_id: "",
+                index_name: "pro_course_v2",
+                "x-acl-token": "wU4kru3sXrPwPGLhVloh9PV-n4YK"
+               },
+        dataType: 'JSONP',
+        success: function(result){
+            var res_arr = result['hits'];
+            var text = "";
+            if(res_arr.length > 0){
+                text = "<span>相关推荐：</span><ul>";
+                for(var key in res_arr){
+                    var id = res_arr[key]['object']['id'];
+                    var title = res_arr[key]['object']['title'];
+                    text += "<li><a href='http://edu.csdn.net/course/detail/" +  id + "'" + " target='_blank'>" + title + "</a></li>";
+                }
+                text += "</ul>";
+            }
+
+            $('#suggest_course').html(text);
+
+            var m = $("#suggest_course");
+
+            //控制新创基数据触发曝光开关
+            if(m.length>0){
+                m.each(function(i){
+                    console.log(i);
+                    trackingAd($(this));
+                });
+            }
+        }
+    });
+
+    // 标签推荐
+    $.ajax({
+        type: 'get',
+        url: 'http://internalapi.csdn.net/recommend/tag/suggest',
+        dataType: 'JSONP',
+        data: {title: "怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊",
+                body: "yhhnamegdcsgdsj1g...",
+                type: "csdn",
+                "x-acl-token": "b4PPTlauakrI2cRr1Tg3PzfykTMK"
+        },
+        success: function(data){
+            var text= "";
+            var es = [];
+            if(data.length > 0){
+                text += "<span>相关主题推荐：</span>";
+                for(var key in data){
+                    var name = data[key]['name'];
+                    es[key] = name;
+                    text += "<a href='http://www.csdn.net/tag/" +  name + "'" + " target='_blank'>" + name + "</a>";
+                }
+            }
+
+
+            $('#suggest_tags').html(text);
+
+            // 帖子推荐
+            if(es.length > 0){
+                $.ajax({
+                    url: "http://internalapi.csdn.net/tag/tag/search",
+                    size: 4,
+                    type: "GET",
+                    data: {
+                        types: "topic",
+                        tagNames: es.join(','),
+                        size: 4,
+                        "x-acl-token": "dDH/ijXIA58154g38-QLg8mnNAsK"
+                    },
+                    dataType: 'JSONP',
+                    success: function(result){
+                        var res_arr = result['result'];
+                        var text = "";
+                        if(res_arr.length > 0){
+                            text = "<span>相关推荐：</span><ul>";
+                            for(var key in res_arr){
+                                var id = res_arr[key]['id'];
+                                var title = res_arr[key]['title'];
+                                var url = res_arr[key]['url'];
+                                text += "<li><a href='" +  url + "'" + " target='_blank'>" + title + "</a></li>";
+                            }
+                            text += "</ul>";
+                        }
+
+                        $('#suggest_topics').html(text);
+                    }
+                });     
+            }
+
+        }
+    });
+
+});
+
+$(function(){
+    // 课程推荐
+    $.ajax({
+        url: "http://internalapi.csdn.net/psearch/psearch/query",
+        type: "GET",
+        data: {_client_: "rcommend_course",
+                pro_id: "390867651",
+                pro_type: "discussion_topic",
+                fields: "created_at,tag,id,title,pic,stu_count,good_ratio,rc_flag,source_type",
+                size: 4,
+                user_id: "",
+                index_name: "pro_course_v2",
+                "x-acl-token": "wU4kru3sXrPwPGLhVloh9PV-n4YK"
+               },
+        dataType: 'JSONP',
+        success: function(result){
+            var res_arr = result['hits'];
+            var text = "";
+            if(res_arr.length > 0){
+                text += "<span>相关课程推荐：</span><ul>";
+                for(var key in res_arr){
+                    var id = res_arr[key]['object']['id'];
+                    var title = res_arr[key]['object']['title'];
+                    text += "<li><a href='http://edu.csdn.net/course/detail/" +  id + "'" + " target='_blank'>" + title + "</a></li>";
+                }
+                text += "</ul>";
+            }
+
+            $('#suggest_course').html(text);
+
+            var m = $("#suggest_course");
+
+            //控制新创基数据触发曝光开关
+            if(m.length>0){
+                m.each(function(i){
+                    console.log(i);
+                    trackingAd($(this));
+                });
+            }
+        }
+    });
+
+    // 标签推荐
+    $.ajax({
+        type: 'get',
+        url: 'http://internalapi.csdn.net/recommend/tag/suggest',
+        dataType: 'JSONP',
+        data: {title: "怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊",
+                body: "yhhnamegdcsgdsj1g...",
+                type: "csdn",
+                "x-acl-token": "b4PPTlauakrI2cRr1Tg3PzfykTMK"
+        },
+        success: function(data){
+            var text= "";
+            var es = [];
+
+            if(data.length > 0){
+                text += "<span>相关主题推荐：</span>";
+                for(var key in data){
+                    var name = data[key]['name'];
+                    es[key] = name;
+                    text += "<a href='http://www.csdn.net/tag/" +  name + "'" + " target='_blank'>" + name + "</a>";
+                }
+            }
+
+            $('#suggest_tags').html(text);
+
+            // 帖子推荐
+            if(es.length > 0){
+                $.ajax({
+                    url: "http://internalapi.csdn.net/tag/tag/search",
+                    size: 4,
+                    type: "GET",
+                    data: {
+                        types: "topic",
+                        tagNames: es.join(','),
+                        size: 4,
+                        "x-acl-token": "dDH/ijXIA58154g38-QLg8mnNAsK"
+                    },
+                    dataType: 'JSONP',
+                    success: function(result){
+                        var res_arr = result['result'];
+                        var text = "";
+
+                        if(res_arr.length > 0){
+                            text += "<span>相关帖子推荐：</span><ul>";
+                            for(var key in res_arr){
+                                var id = res_arr[key]['id'];
+                                var title = res_arr[key]['title'];
+                                var url = res_arr[key]['url'];
+                                text += "<li><a href='" +  url + "'" + " target='_blank'>" + title + "</a></li>";
+                            }
+                            text += "</ul>";
+                        }
+
+                        $('#suggest_topics').html(text);
+                    }
+                });
+            }
+
+        }
+    });
+
+});
+
+</SCRIPT>
+ 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/ad-bbs.js" type="text/javascript"></SCRIPT>
+     
+<DIV id="pop_win" style="background: 0px 0px rgb(255, 255, 255); border: 1px solid rgb(220, 220, 220); left: 630px; top: 222.5px; display: none; position: absolute; z-index: 10000; opacity: 1;"></DIV>
+<DIV id="popup_mask"></DIV>
+<STYLE>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+ 
+</STYLE>
+     
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/component.js"></SCRIPT>
+     
+<SCRIPT type="text/javascript">
+  document.write('<script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date()/120000).toString(36) + '="></'+'script>');
+</SCRIPT>
+ 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/counter.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/cnick.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT id="csdn-toolbar-id" src="怎样在数据库的一个表里筛选出每一人的时间最新的一条记录？用SQL语句。感谢大神啊-CSDN论坛-CSDN_NET-中国最大的IT技术社区_files/toolbar.js" type="text/javascript" subcount="5" count="5" wrapid="note1" btnid="header_notice_num"></SCRIPT>
+   </BODY></HTML>

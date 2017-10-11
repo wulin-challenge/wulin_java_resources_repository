@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper>
+	<!-- 罪犯年龄情况统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select count(b.nl)as "hj1",
+		sum(case when b.nl=>14 and b.nl<15 then 1 else 0 end)as "dy14",
+		sum(case when b.nl>=15 and b.nl<16 then 1 else 0 end)as "dy15",
+		sum(case when b.nl>=16 and b.nl<17 then 1 else 0 end)as "dy16",
+		sum(case when b.nl>=17 and b.nl<18 then 1 else 0 end)as "dy17"
+		from(select months_between(sysdate,csrq)/12 nl from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and d.zfzt='在押' and instr(?,','||d.prison_id||',')>0)b]]>
+	</select>
+	<!-- 罪犯捕前文化程度统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select count(b.whcd)as "hj2",
+		sum(case when instr('文盲',b.whcd)>0 then 1 else 0 end)as "qwmbwm",
+		sum(case when instr('小学',b.whcd)>0 then 1 else 0 end)as "qxx",
+		sum(case when instr('初中',b.whcd)>0 then 1 else 0 end)as "qcz",
+		sum(case when instr('高中',b.whcd)>0 or instr('中专',b.whcd)>0 or instr('中技',b.whcd)>0 or instr('技校',b.whcd)>0 then 1 else 0 end)as "qgzzz",
+		sum(case when instr('大专',b.whcd)>0 or instr('专科',b.whcd)>0 then 1 else 0 end)as "qdz",
+		sum(case when instr('本科',b.whcd)>0 then 1 else 0 end)as "qdxbk",
+		sum(case when instr('研究生',b.whcd)>0 then 1 else 0 end)as "qyjs"
+		from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		left join bs_prison_state s on(d.zfzt=s.ps_id)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and d.zfzt='在押' and instr(?,','||d.prison_id||',')>0]]>
+	</select>
+	<!-- 罪犯现文化程度统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select count(d.xwhcd)as "hj3",
+		sum(case when instr('文盲',d.xwhcd)>0 then 1 else 0 end)as "xwmbwm",
+		sum(case when instr('小学',d.xwhcd)>0 then 1 else 0 end)as "xxx",
+		sum(case when instr('初中',d.xwhcd)>0 then 1 else 0 end)as "xcz",
+		sum(case when instr('高中',d.xwhcd)>0 or instr('中专',d.xwhcd)>0 or instr('中技',d.xwhcd)>0 or instr('技校',d.xwhcd)>0 then 1 else 0 end)as "xgzzz",
+		sum(case when instr('大专',d.xwhcd)>0 or instr('专科',d.xwhcd)>0 then 1 else 0 end)as "xdz",
+		sum(case when instr('本科',d.xwhcd)>0 then 1 else 0 end)as "xdxbk",
+		sum(case when instr('研究生',d.xwhcd)>0 then 1 else 0 end)as "xyjs"
+		from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and d.zfzt='在押' and instr(?,','||d.prison_id||',')>0]]>
+	</select>
+	<!-- 罪犯捕前身份统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select ts.*,(ts.hj4-ts.gb-ts.gr-ts.nmym-ts.js-ts.xs-ts.ys-ts.jr-ts.zy-ts.gtsf-ts.wy)as "qt4"
+		from(select count(db.bqzyfl)as "hj4",
+		sum(case when db.bqzyfl='干部' then 1 else 0 end)as "gb",
+		sum(case when db.bqzyfl='工人' or db.bqzyfl='民工' then 1 else 0 end)as "gr",
+		sum(case when db.bqzyfl='农林牧渔' then 1 else 0 end)as "nmym",
+		sum(case when db.bqzyfl='教师' then 1 else 0 end)as "js",
+		sum(case when db.bqzyfl='学生' then 1 else 0 end)as "xs",
+		sum(case when db.bqzyfl='医生' then 1 else 0 end)as "ys",
+		sum(case when db.bqzyfl='军人' then 1 else 0 end)as "jr",
+		sum(case when db.bqzyfl='职员' or db.bqzyfl='金融业人员' or db.bqzyfl='商业、服务业人员' then 1 else 0 end)as "zy",
+		sum(case when db.bqzyfl='个体' then 1 else 0 end)as "gtsf",
+		sum(case when db.bqzyfl='无业人员' then 1 else 0 end)as "wy"
+		from bs_zfsyqk db left join bs_bsinfo b on(db.zfid=b.id) left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and d.zfzt='在押' and instr(?,','||d.prison_id||',')>0)ts]]>
+	</select>
+	<!-- 原<<刑法>>罪名之一:反革命罪-->
+	<select>
+		<![CDATA[select 0 as yymdfzf,getsingleCount('x221')as yymflgj,
+		0 as ycdpl,0 as ycxjzpl,
+		getsingleCount('6035')as yzzyy,getsingleCount('108')as ytdpb,
+		getsingleCount('110')as yjd,0 as ytw,
+		0 as yzzldfgm,getsingleCount('x220')as yjjcjfgm,
+		0 as yfgmph,0 as yfgmxc,
+		getsingleCount('112')as yzd,0 as yfgmsr,
+		0 as ylyfjmx, 0 as yzzlyhdm,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('x211','6035','108','110','x220','112') start with fid='541' 
+		connect by prior zmid=fid) as yqt61 from dual ]]>
+	</select>
+<!-- 原<<刑法>>罪名之二:危害公共安全罪-->
+	<select>
+		<![CDATA[select getsingleCount('201')as yfh,getsingleCount('206')as ysh,
+		getsingleCount('x159')as ytd,0 as ygsyqzd,
+		getsingleCount('211')as yphjtgj,0 as ygshhjtgj,
+		0 as yphjtsb,0 as ygshhjtsb,
+		getsingleCount('213')as yphdlsb,getsingleCount('214')as yphyr,
+		0 as yphtxsb,getsingleCount('237')as yjtzs,
+		getsingleCount('239')as yzdzrsg,0 as yffzzbzw,
+		0 as ydqbzw, getsingleCount('221')as yhkq,
+		getsingleCount('203')as ybz,getsingleCount('208')as ygsbz,
+		0 as ygshhdl,0 as ygshhtx,
+		0 as ywfglgd,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('201','206','x159','211','213','214','237','239','221','203','208') 
+		start with fid='14' connect by prior zmid=fid) as yqt62 from dual]]>
+	</select>
+
+
+<!-- 原<<刑法>>罪名之三:破坏社会主义经济秩序罪-->
+	<select>
+		<![CDATA[select getsingleCount('302')as yzs,getsingleCount('x126')as yts,
+		getsingleCount('3062')as yks,0 as yjmsb,
+		0 as ywzzq,0 as ywzpz,
+		0 as ydlm,0 as yqjsk,
+		getsingleCount('803')as yscxswlcp,0 as ydmfp,
+		0 as yffbsysdw,0 as yykfp,
+		getsingleCount('3031')as yybzb,0 as yczqz,
+		0 as yqzgs,0 as ynytdkw,
+		getsingleCount('x107')as ytjdb,0 as ywzgypz,
+		0 as ywzhb,getsingleCount('6067')as yphsc,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('302','x126','3062','803','3031','x107','6067') 
+		start with fid='62' connect by prior zmid=fid) as yqt63 from dual]]>
+	</select>
+
+
+<!-- 原<<刑法>>罪名之四:侵害公民人身权利,民主权利罪-->
+	<select>
+		<![CDATA[select getsingleCount('401')as "ygysr",0 as "ygssr",
+		getsingleCount('403')as "ygysh",0 as "ygssh",
+		getsingleCount('x084')as "yqjfn",0 as "yjyyn",
+		getsingleCount('409')as "yffjj",getsingleCount('419')as "ywr",
+		getsingleCount('420')as "yfb",getsingleCount('421')as "yxxbg",
+		getsingleCount('414')as "ywgxh",getsingleCount('411')as "ygbfn",
+		0 as "ybjfn",0 as "ysmet",
+		getsingleCount('413')as "yjzzajj",0 as "yqpmy",
+		getsingleCount('x074')as "ygmrk",0 as  "yffgz",
+		getsingleCount('417')as "yffss",0 as "yffqr",
+		0 as "yffbdzy",getsingleCount('432')as "ybfxh",
+		getsingleCount('6021')as "ywz",0 as "ydzq",
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('401','403','x084','409','419','420','421','414','411','413',
+		'x074','417','432','6021') start with fid='179' connect by prior zmid=fid) as "yqt64" from dual]]>
+	</select>
+
+	
+<!-- 原<<刑法>>罪名之五:侵害财产罪-->
+	<select>
+		<![CDATA[select getsingleCount('501')as yqj,getsingleCount('504')as yqd,
+		getsingleCount('502')as ydq,getsingleCount('503')as yzp,
+		getsingleCount('510')as yqzls,getsingleCount('801')as ytw,
+		getsingleCount('802')as ynygk,getsingleCount('810')as yjecc,
+		getsingleCount('x151')as ybjls,getsingleCount('511')as yhhcw,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('501','504','502','503','510','801','802','810','x151','511') start with fid='222' 
+		connect by prior zmid=fid) as yqt65 from dual]]>
+	</select>
+
+<!-- 原<<刑法>>罪名之六:妨害社会管理秩序罪-->
+	<select>
+		<![CDATA[select getsingleCount('6011')as yzazxgw,getsingleCount('6013')as yzyzp,
+		getsingleCount('x034')as ywzxz,getsingleCount('x031')as ylm,
+		getsingleCount('607')as yzzdp,getsingleCount('x097')as yyymy,
+		getsingleCount('237')as ycsfz,getsingleCount('6071')as yffcd,
+		getsingleCount('6073')as yysdzly,getsingleCount('6076')as yffysxd,
+		getsingleCount('6078')as yffzzdp,getsingleCount('6080')as yqbtrxd,
+		getsingleCount('326')as ycsdp,getsingleCount('337')as ytgmzyp,
+		getsingleCount('338')as ycbyhsk,getsingleCount('339')as ycbyhwp,
+		getsingleCount('340')as ybfyhyx,0  as ydjgwh,
+		0  as yzztrmy,0  as yjstrmy,
+		getsingleCount('333')as ycbxb,getsingleCount('270')as ytgjcrj,
+		getsingleCount('217')as yfhgw,getsingleCount('259')as yjbzxpj,
+		getsingleCount('256')as ywcbb,getsingleCount('229')as yrlshzx,
+		getsingleCount('231')as yjzrlzx,getsingleCount('4124')as yscqz,
+		0  as yshwp,getsingleCount('247')as ydb,
+		getsingleCount('77')as yzsyhwp,getsingleCount('277')as yphzgwh,
+		getsingleCount('273')as ytygbj,getsingleCount('268')as yzzystr,
+		getsingleCount('317')as ybbdpfz,getsingleCount('318')as ywcdp,
+		getsingleCount('318')as ywcdpfz,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('6011','6013','x034','x031','607','x097','237','6071','6073','6076',
+		'6078','6080','326','337','338','340','333','270','217','259','256','229','231','4124','247'
+		,'77','277','273','268','317','318','318') start with fid='236' connect by prior zmid=fid) as yqt66 from dual]]>
+	</select>
+<!-- 原<<刑法>>罪名之七:妨害婚姻,家庭罪-->
+	<select>
+		<![CDATA[select getsingleCount('435')as ygswyzy,getsingleCount('436')as ych,
+		getsingleCount('437')as yphhy,getsingleCount('438')as ynd,
+		getsingleCount('439')as yyq,getsingleCount('440')as ygpet,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('435','436','437','438','439','440') start with fid='179'
+		connect by prior zmid=fid) as yqt67 from dual]]>
+	</select>
+
+
+
+<!-- 原<<刑法>>罪名之八:渎职罪-->
+	<select>
+		<![CDATA[select getsingleCount('803')as ysh,getsingleCount('806')as yxh,
+		getsingleCount('800')as yjshl,getsingleCount('903')as yxljm,
+		getsingleCount('902')as ywhzs,getsingleCount('905')as yxswf,
+		getsingleCount('423')as ytfnd,getsingleCount('910')as ysfzf,
+		getsingleCount('6023')as yfhydtx,getsingleCount('903')as yxlgjjm,
+	   0  as ylyzwzajj,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('803','806','800','903','902','905','423','910','6023','903') start with fid='408' 
+		connect by prior zmid=fid) as yqt68 from dual]]>
+	</select>
+
+<!-- 现<<刑法>>罪名之一:危害国家安全罪-->
+	<select>
+		<![CDATA[select 0 as xbpgj,getsingleCount('102')as xflgj,
+		getsingleCount('103')as xsdflgj,getsingleCount('104')as xwzplbl,
+		getsingleCount('105')as xdfgjzq,getsingleCount('106')as xsddfgjzq,
+		getsingleCount('109')as xpt,getsingleCount('108')as xtdpb,
+		getsingleCount('110')as xjd,getsingleCount('107')as xzzwhgjaqfzhd,
+		getsingleCount('111')as xwjwqqct,getsingleCount('112')as xdz,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(0,102,103,104,105,106,107,109,108,110,111,112) start with fid='1' 
+		connect by prior zmid=fid) as xqt71 from dual]]>
+	</select>
+
+
+<!-- 现<<刑法>>罪名之二:危害公共安全罪-->
+	<select>
+		<![CDATA[select getsingleCount('201')as xfh,getsingleCount('202')as xjs,
+		getsingleCount('203')as xbz,getsingleCount('x159')as xtd,
+		getsingleCount('206')as xsh,getsingleCount('207')as xgsjs,
+		getsingleCount('208')as xgsbz,0 as xgsyqzd,
+		getsingleCount('211')as xphjtgj,getsingleCount('212')as xphjtss,
+		getsingleCount('214')as xphyrybsb,getsingleCount('215')as xgsshgtgj,
+		getsingleCount('216')as xgsshgtss,getsingleCount('218')as xgsshyrybsb,
+		getsingleCount('221')as xjchkq,getsingleCount('213')as xphdlsb,
+		getsingleCount('217')as xgsshdlsb,getsingleCount('231')as xffcyscqzdy,
+		getsingleCount('226')as xffzzbzw,getsingleCount('229')as xdqqdbzw,
+		getsingleCount('232')as xffczcjqz,getsingleCount('237')as xjtzs,
+		getsingleCount('239')as xzdzrsg,
+		(select count(zm.zmdm) from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('201','202','203','x159','206','207','208','211','212','213','214','215','216','217',
+		'218','221','226','229','231','232','237','239') start with fid='14' connect by prior zmid=fid) as xqt72 from dual]]>
+	</select>
+
+<!-- 现<<刑法>>罪名之三:破坏社会主义市场经济秩序罪-->
+	<select>
+		<![CDATA[select getsingleCount('301')as xscxswlcp,getsingleCount('3019')as xscxshzp,
+		getsingleCount('3017')as xscxsbzdcp,getsingleCount('3021')as xzswq,
+		getsingleCount('3024')as xzsww,getsingleCount('3028')as xzsyhwp,
+		getsingleCount('3031')as xxbzczb,getsingleCount('3033')as xqzfxgpzq,
+		getsingleCount('x226')as xgsqyrysh,getsingleCount('3041')as xwzhb,
+		getsingleCount('3042')as xcsgmysjb,getsingleCount('3044')as xcysyjb,
+		getsingleCount('30411')as xwzbzjrpz,getsingleCount('30428')as xth,
+		getsingleCount('3051')as xjzzp,getsingleCount('3052')as xdkzp,
+		getsingleCount('3056')as xxykzp,getsingleCount('3058')as xbxzp,
+		getsingleCount('x126')as xts,getsingleCount('3062')as xks,
+		getsingleCount('3065')as xxkzzsfp,getsingleCount('3068')as xffcszzs,
+		getsingleCount('3071')as xjmzcsb,getsingleCount('3074')as xjmzl,
+		getsingleCount('3075')as xqfzzq,getsingleCount('3084')as xhtzp,
+		getsingleCount('3086')as xffjy,getsingleCount('3088')as xwzdm,
+		getsingleCount('30810')as xffzrdm,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(301,3019,3017,3021,3024,3028,3031,3033,'x226',3041,3042,3044,30411,30428,3051,3052,
+		3056,3058,'x126',3062,3065,3068,3071,3074,3075,3084,3086,3088,30810) start with fid='62' 
+		connect by prior zmid=fid) as xqt73 from dual]]>
+	</select>
+
+
+<!-- 现<<刑法>>罪名之四:侵犯公民人身权利、民主权利罪-->
+	<select>
+		<![CDATA[select getsingleCount('401')as xgysr,getsingleCount('402')as xgszrsw,
+		getsingleCount('403')as xgysh,getsingleCount('405')as xgszrzs,
+		getsingleCount('406')as xqj,getsingleCount('x079')as xjyyn,
+		getsingleCount('409')as xffjj,getsingleCount('410')as xbj,
+		getsingleCount('411')as xgmfnet,getsingleCount('414')as xwgxh,
+		getsingleCount('412')as xsmbgm,getsingleCount('417')as xffsc,
+		getsingleCount('418')as xffqrzz,getsingleCount('419')as xwr,
+		getsingleCount('420')as xfb,getsingleCount('421')as xxxbg,
+		getsingleCount('423')as xndbjgr,getsingleCount('426')as xffbdgm,
+		getsingleCount('432')as xbfxh,getsingleCount('434')as xphxj,
+		getsingleCount('435')as xblgshyzy,getsingleCount('436')as xch,
+		getsingleCount('437')as xphjh,getsingleCount('438')as xnd,
+		getsingleCount('439')as xyq,getsingleCount('440')as xgpet,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in('401','402','403','405','406','x079','409','410','411','414','412','417','418',
+		'419','420','421','423','426','432','434','435','436','437','438','439','440') start with fid='179'
+		connect by prior zmid=fid) as xqt74 from dual]]>
+	</select>
+
+
+
+<!-- 现<<刑法>>罪名之五:侵犯财产罪-->
+	<select>
+		<![CDATA[select getsingleCount('501')as xqj,getsingleCount('502')as xdq,
+		getsingleCount('503')as xzp,getsingleCount('504')as xqd,
+		getsingleCount('508')as xlyzj,getsingleCount('509')as xlytdkw,
+		getsingleCount('510')as xqzls,getsingleCount('511')as xgyhhcc,
+		getsingleCount('512')as xphscjy,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(501,502,503,504,508,509,510,511,512) start with fid='222' 
+		connect by prior zmid=fid) as xqt75 from dual]]>
+	</select>
+
+
+	
+<!-- 现<<刑法>>罪名之六:妨害社会管理秩序罪(一)-->
+	<select>
+		<![CDATA[select getsingleCount('6011')as xfhgw,getsingleCount('6013')as xzyzp,
+		getsingleCount('6014')as xwzbzyz,getsingleCount('6015')as xdqqdyz,
+		getsingleCount('6017')as xwzbzsfz,getsingleCount('6032')as xqzdo,
+		getsingleCount('6018')as xffhqgjmm,getsingleCount('6027')as xqzrlshzx,
+		getsingleCount('6029')as xqzrljtzx,getsingleCount('6033')as xxxzs,
+		getsingleCount('6034')as xzzld,getsingleCount('6035')as xrjfz,
+		getsingleCount('6036')as xbbzr,getsingleCount('6037')as xcsfzff,
+		getsingleCount('6042')as xzzlyhdm,getsingleCount('6043')as xzzllmx,
+		getsingleCount('6044')as xqzyl,getsingleCount('6047')as xdb,
+		getsingleCount('6021')as xwz,getsingleCount('6027')as xwcbb,
+		getsingleCount('6073')as xwczy,getsingleCount('6030')as xjbzx,
+		getsingleCount('6032')as xphjgzx,getsingleCount('6033')as xtt,
+		getsingleCount('6036')as xzzbdyy,getsingleCount('6037')as xqzcxjy,
+		getsingleCount('6031')as xzzys,getsingleCount('6036')as xtygbj,
+		getsingleCount('6038')as xphjb,getsingleCount('6041')as xshgj,
+		getsingleCount('6045')as xdmww,getsingleCount('6047')as xdjgmz,
+		getsingleCount('6049')as xqdqqgyda,0 as xtbdzwjy,
+		getsingleCount('6058')as xylsg,getsingleCount('6065')as xffdbshsg,
+		getsingleCount('6067')as xffsl,getsingleCount('6068')as xffzygd,
+		getsingleCount('6073')as xdflflm,getsingleCount('607')as xzsfmys,
+		getsingleCount('6071')as xffcydp,getsingleCount('6072')as xbbdpfzfz,
+		getsingleCount('6073')as xwczy,getsingleCount('6074')as xzszdwp,
+		getsingleCount('6076')as xffzz,getsingleCount('6078')as xyyjs,
+		getsingleCount('6079')as xqprl from dual]]>
+	</select>
+	
+<!-- 现《刑法》罪名之六:危害社会管理秩序罪(二)-->
+	<select>
+		<![CDATA[select getsingleCount('6081')as xfftgmz,getsingleCount('608')as xzzqpmy,
+		getsingleCount('6084')as xyyrljsmy,getsingleCount('6085')as xyyynmy,
+		getsingleCount('6086')as xcbxb,getsingleCount('609')as xzzfm,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(6011,6013,6014,6015,6017,6032,6018,6027,6029,6033,6034,6035,6036,
+		6037,6042,6043,6044,6047,6021,6073,6030,6031,6038,6041,6045,6049,6058,6065,6067,6068,
+		607,6071,6072,6074,6076,6078,6079,6081,608,6084,6085,6086,609)
+		start with fid='236' connect by prior zmid=fid) as xqt762 from dual]]>
+	</select>
+
+
+<!-- 现《刑法》罪名之七:危害国防利益罪-->
+	<select>
+		<![CDATA[select getsingleCount('701')as xzajrzxzw,getsingleCount('703')as xphwqzb,
+		getsingleCount('707')as xqzcjjsjq,getsingleCount('709')as xmcjrzyzp,
+		getsingleCount('718')as xzsjjtbh,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(701,703,707,709,718) start with fid='370' connect by prior zmid=fid) as xqt77
+		from dual]]>
+	</select>
+
+
+<!-- 现《刑法》罪名之八:贪污受贿罪-->
+	<select>
+		<![CDATA[select getsingleCount('801')as xtw,getsingleCount('802')as xlygk,
+		getsingleCount('803')as xsh,getsingleCount('806')as xxh,
+		getsingleCount('808')as xjshl,getsingleCount('810')as xjecc,
+		getsingleCount('812')as xsfgyzc,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(801,802,803,806,808,810,812) start with fid='394' connect by prior zmid=fid) as xqt78
+		from dual]]>
+	</select>
+
+<!-- 现《刑法》罪名之九:渎职罪-->
+	<select>
+		<![CDATA[select getsingleCount('901')as xlyzq,getsingleCount('902')as xwhzs,
+		getsingleCount('903')as xxlgjjm,getsingleCount('905')as xxswf,
+		getsingleCount('910')as xsfzyry,getsingleCount('912')as xxswb,
+		getsingleCount('925')as xfzzs,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(901,902,903,905,910,912,925) start with fid='408' connect by prior zmid=fid) as xqt79
+		from dual]]>
+	</select>
+
+
+
+<!-- 现《刑法》罪名之十:军人违反职责罪-->
+	<select>
+		<![CDATA[select getsingleCount('1001')as xzswkml,getsingleCount('1002')as xymhbjq,
+		getsingleCount('1006')as xslwhjszs,getsingleCount('1007')as xzazxjszw,
+		getsingleCount('1012')as xffhqjs,getsingleCount('1014')as xljsmm,
+		(select count(zm.zmdm)  from bs_zm zm  right join bs_dqxx dq on '%,'||zm.zmdm||',%'='%,'||dq.zmdm||',%'  
+		where  zm.zmdm not in(1001,1002,1006,1007,1012,1014) start with fid='446' connect by prior zmid=fid) as xqt710
+		from dual]]>
+	</select>
+	<!-- 居住地构成统计 -->
+	<select>
+		<![CDATA[
+		select 
+		sum(case when gj == '香港' then rs else 0 end) AS "xxg",
+		sum(case when gj == '澳门' then rs else 0 end) AS "xam",
+		sum(case when gj == '台湾' then rs else 0 end) AS "xtw",
+		sum(case when gj == '日本' then rs else 0 end) AS "xrb",
+		sum(case when gj == '美国' then rs else 0 end) AS "xmg",
+		sum(case when gj == '朝鲜' then rs else 0 end) AS "xcx",
+		sum(case when gj == '俄罗斯' then rs else 0 end) AS "xels",
+		sum(case when gj == '伊朗' then rs else 0 end) AS "xyl",
+		sum(case when gj == '越南' then rs else 0 end) AS "xyn",
+		sum(case when gj == '老挝' then rs else 0 end) AS "xlw",
+		sum(case when gj == '缅甸' then rs else 0 end) AS "xmd",
+		sum(case when gj == '印度' then rs else 0 end) AS "xyd",
+		sum(case when gj == '西班牙' then rs else 0 end) AS "xxby",
+		sum(case when gj == '泰国' then rs else 0 end) AS "xtg",
+		sum(case when gj == '尼泊尔' then rs else 0 end) AS "xnbe",
+		sum(case when gj == '韩国' then rs else 0 end) AS "xhg",
+		sum(case when gj == '其他' then rs else 0 end) AS "xqt8",
+		sum(case when gj == '小计' then rs else 0 end) AS "xxj8d"
+		from (
+			select bs.gj as gj,count(bs.id) as rs 
+			from bs_bsinfo bs
+			left join bs_dqxx dqxx on dqxx.zfid = bs.id
+			where dqxx.rjsj>=:kssj and dqxx.rjsj<=:jssj and dqxx.zfzt='在押' and bs.gj is not null and bs.gj <> '中国'
+			and instr(:jybh,','|| bs.prisonId ||',')>0
+			group by bs.gj
+			union all
+			select '小计' as gj,count(bs.id) as rs from bs_bsinfo bs
+			left join bs_dqxx dqxx on dqxx.zfid = bs.id
+			where dqxx.rjsj>=:kssj and dqxx.rjsj<=:jssj and dqxx.zfzt='在押' and bs.gj is not null and bs.gj <> '中国'
+			and instr(:jybh,','|| bs.prisonId ||',')>0
+			union all
+			select '其他' as gj,count(bs.id) as rs from bs_bsinfo bs
+			left join bs_dqxx dqxx on dqxx.zfid = bs.id
+			where dqxx.rjsj>=:kssj and dqxx.rjsj<=:jssj and dqxx.zfzt='在押' and bs.gj is not null and bs.gj <> '中国' 
+			and instr(:jybh,','|| bs.prisonId ||',')>0
+			and bs.gj not in('香港','澳门','台湾','日本','美国','朝鲜','俄罗斯','伊朗','越南','老挝','缅甸','印度','西班牙','泰国','尼泊尔','韩国')
+		) t
+		]]>
+	</select>
+	<!-- 入境犯其他补充说明统计 -->
+	<select name="rjfqtbcsm" params="kssj,jssj,jybh">
+		<![CDATA[
+		select bs.gj AS "gj",count(bs.id) AS "rs" from "bs_bsinfo" bs 
+		left join bs_dqxx dqxx on dqxx.zfid = bs.id
+		where dqxx.rjsj>=? and dqxx.rjsj<=? and dqxx.zfzt='在押' and bs.gj is not null and bs.gj <> '中国' 
+		and instr(?,','|| bs.prisonId ||',')>0
+		and bs.gj not in ('香港','澳门','台湾','日本','美国','朝鲜','俄罗斯','伊朗','越南','老挝','缅甸','印度','西班牙','泰国','尼泊尔','韩国')
+		group by bs.gj
+		]]>
+	</select>
+	<!-- 国籍构成 -->
+	<select >
+		<![CDATA[
+			select 
+			sum(case when gj== '小计' then rs else 0 end) as x9d,
+			sum(case when gj== '俄罗斯' then rs else 0 end) as xels9,
+			sum(case when gj =='美国' then rs else 0 end) as xmg9,
+			sum(case when gj =='越南' then rs else 0 end) as xyn9,
+			sum(case when gj== '泰国' then rs else 0 end) as xtg9,
+			sum(case when gj =='缅甸' then rs else 0 end) as xmd9,
+			sum(case when gj =='老挝' then rs else 0 end) as xlw9,
+			sum(case when gj== '乌克兰' then rs else 0 end) as xwkl,
+			sum(case when gj =='尼泊尔' then rs else 0 end) as xnbe9,
+			sum(case when gj =='印度' then rs else 0 end) as xyd9,
+			sum(case when gj== '朝鲜' then rs else 0 end) as xcx9,
+			sum(case when gj =='韩国' then rs else 0 end) as xhg9,
+			sum(case when gj =='英国' then rs else 0 end) as xyg,
+			sum(case when gj== '巴基斯坦' then rs else 0 end) as xbjst,
+			sum(case when gj =='葡萄牙' then rs else 0 end) as xpty,
+			sum(case when gj =='德国' then rs else 0 end) as xdg,
+			sum(case when gj =='阿根廷' then rs else 0 end) as xagt,
+			sum(case when gj =='日本' then rs else 0 end) as xrb9,
+			sum(case when gj =='法国' then rs else 0 end) as xfg,
+			sum(case when gj =='新加坡' then rs else 0 end) as xxjp,
+			sum(case when gj== '菲律宾' then rs else 0 end) as xflb,
+			sum(case when gj =='马来西亚' then rs else 0 end) as xmlxy,
+			sum(case when gj =='蒙古' then rs else 0 end) as xmg,
+			sum(case when gj =='其他' then rs else 0 end) as xqt9
+			from (
+			select '小计' as gj,count(t.id) as rs from bs_bsinfo  t
+			where t.gj is not null and t.gj  !='中国'
+			and t.rjsj >=:kssj and t.rjsj <=:jssj and instr(:jybh,','|| t.prisonId||',')>0
+			 union all
+			select t.gj as gj ,count(id) as rs from bs_bsinfo  t
+			where t.gj is not null and t.gj !='中国'
+			and t.rjsj >=:kssj and t.rjsj <=:jssj and instr(:jybh,','|| t.prisonId||',')>0
+			group by t.gj
+			 union all
+			 select '其他' as gj, count(t.id) as rs from bs_bsinfo  t
+			where t.gj is not null and t.gj not in('中国','俄罗斯','美国','越南','泰国','缅甸',
+			'老挝','乌克兰','尼泊尔','印度','朝鲜','韩国','英国','巴基斯坦','葡萄牙','德国','阿根廷','日本'
+			,'法国','新加坡','菲律宾','马来西亚','蒙古')
+		 	and t.rjsj >=:kssj and t.rjsj <=:jssj and instr(:jybh,','|| t.prisonId||',')>0
+			) t
+		]]>
+	</select>
+	<!-- 少数民族构成统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select count(b.id)as "ssmzhj84",
+		sum(case when b.mz='满族' then 1 else 0 end)as "manzu84",
+		sum(case when b.mz='回族' then 1 else 0 end)as "huizu84",
+		sum(case when b.mz='蒙古族' then 1 else 0 end)as "mgzu84",
+		sum(case when b.mz='藏族' then 1 else 0 end)as "zhangzu84",
+		sum(case when b.mz='维吾尔族' then 1 else 0 end)as "wwezu84",
+		sum(case when b.mz='朝鲜族' then 1 else 0 end)as "cxzu84",
+		sum(case when b.mz='壮族' then 1 else 0 end)as "zhuangzu84",
+		sum(case when b.mz='布依族' then 1 else 0 end)as "byzu84",
+		sum(case when b.mz='土家族' then 1 else 0 end)as "tjzu84",
+		sum(case when b.mz='瑶族' then 1 else 0 end)as "yaozu84",
+		sum(case when b.mz='彝族' then 1 else 0 end)as "yizu84",
+		sum(case when b.mz='苗族' then 1 else 0 end)as "miaozu84",
+		sum(case when b.mz='黎族' then 1 else 0 end)as "lizu84",
+		sum(case when b.mz='傣族' then 1 else 0 end)as "taizu84",
+		sum(case when b.mz='纳西族' then 1 else 0 end)as "nxzu84",
+		sum(case when b.mz='景颇族' then 1 else 0 end)as "jpzu84",
+		sum(case when b.mz='东乡族' then 1 else 0 end)as "dxzu84",
+		sum(case when b.mz='仡佬族' then 1 else 0 end)as "qlzu84",
+		sum(case when b.mz='侗族' then 1 else 0 end)as "dongzu84",
+		sum(case when b.mz='哈萨克族' then 1 else 0 end)as "hskzu84",
+		sum(case when b.mz='青族' then 1 else 0 end)as "qingzu84",
+		sum(case when b.mz='水族' then 1 else 0 end)as "shuizu84",
+		sum(case when b.mz='白族' then 1 else 0 end)as "baizu84",
+		sum(case when b.mz='哈尼族' then 1 else 0 end)as "hnzu84",
+		sum(case when b.mz='傈僳族' then 1 else 0 end)as "lszu84"
+		from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and d.zfzt='在押' and instr(?,','||d.prison_id||',')>0]]>
+	</select>
+	<!-- “外省（区、市）籍罪犯”统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select sum(case when d.zfzt!='释放' then 1 else 0 end)as "shouya185",
+		sum(case when d.zfzt='释放' then 1 else 0 end)as "shifang185",
+		sum(case when d.zfzt='在押' then 1 else 0 end)as "zaiya185"
+		from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and b.jgsss!='四川省' and instr(?,','||d.prison_id||',')>0]]>
+	</select>
+	<!-- “流窜犯”统计 -->
+	<select params="kssj,jssj,jybh">
+		<![CDATA[select sum(case when d.zfzt!='释放' then 1 else 0 end)as "shouya286",
+		sum(case when d.zfzt='释放' then 1 else 0 end)as "shifang286",
+		sum(case when d.zfzt='在押' then 1 else 0 end)as "zaiya286"
+		from bs_bsinfo b left join bs_dqxx d on(b.id=d.zfid)
+		where b.csrq is not null and b.rjsj>=? and b.rjsj<=? and b.lczalb is not null and instr(?,','||d.prison_id||',')>0]]>
+	</select>
+</mapper>

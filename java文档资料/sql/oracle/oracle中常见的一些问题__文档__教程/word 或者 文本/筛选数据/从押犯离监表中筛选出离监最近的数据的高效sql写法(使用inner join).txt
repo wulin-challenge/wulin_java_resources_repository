@@ -1,0 +1,4 @@
+select distinct b.zfztName,b.zfztid,b.Isdelete,x.zfid,x.ljlbId from criminal_base_info b left join (
+select zy.* from ZF_YFLJ zy
+inner join (select distinct zfid, max(ljrj) ljrj from ZF_YFLJ group by zfid) x on zy.zfid=x.zfid and zy.ljrj = x.ljrj and zy.zfid is not null
+) x on b.id = x.zfid

@@ -1,0 +1,117 @@
+.btn {
+	border-radius: 0px; border: currentColor; height: 28px; color: rgb(255, 255, 255); line-height: 16px; min-width: 80px;
+}
+.btn:hover {
+	color: rgb(255, 255, 255);
+}
+.btn:focus {
+	color: rgb(255, 255, 255);
+}
+.btn-default {
+	background-image: none;
+}
+.btn-success {
+	background-image: none;
+}
+.btn-danger {
+	background-image: none;
+}
+.btn-warning {
+	background-image: none;
+}
+.btn-primary {
+	background-image: none;
+}
+.btn-default {
+	background-color: rgb(153, 153, 153);
+}
+.btn-default:hover {
+	background-color: rgb(102, 102, 102);
+}
+.btn-default:focus {
+	background-color: rgb(102, 102, 102);
+}
+.dropdown-toggle.btn-default {
+	color: rgb(51, 51, 51); background-color: rgb(204, 204, 204);
+}
+.dropdown-toggle.btn-default:hover {
+	color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);
+}
+.dropdown-toggle.btn-default:focus {
+	color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);
+}
+.btn-default-reverse {
+	box-shadow: inset 0px 1px 0px rgba(255,255,255,0.15), 0px 1px 1px rgba(0,0,0,0.075); text-shadow: 0px 1px 0px #fff;
+}
+.btn-default-reverse:active {
+	box-shadow: inset 0px 3px 5px rgba(0,0,0,0.125);
+}
+.active.btn-default-reverse {
+	box-shadow: inset 0px 3px 5px rgba(0,0,0,0.125);
+}
+.dropdown-toggle.btn-default-reverse {
+	color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);
+}
+.dropdown-toggle.btn-default-reverse:hover {
+	color: rgb(51, 51, 51); background-color: rgb(204, 204, 204);
+}
+.dropdown-toggle.btn-default-reverse:focus {
+	color: rgb(51, 51, 51); background-color: rgb(204, 204, 204);
+}
+.dropdown-toggle {
+	padding: 6px; border: 1px solid rgb(198, 198, 198); line-height: 14px;
+}
+.btn-success {
+	background-color: rgb(122, 181, 33);
+}
+.btn-success:hover {
+	background-color: rgb(95, 152, 11);
+}
+.btn-success:focus {
+	background-color: rgb(95, 152, 11);
+}
+.btn-primary {
+	background-color: rgb(220, 60, 0);
+}
+.btn-primary:hover {
+	background-color: rgb(180, 50, 0);
+}
+.btn-primary:focus {
+	background-color: rgb(180, 50, 0);
+}
+.btn-warning {
+	background-color: rgb(255, 153, 0);
+}
+.btn-warning:hover {
+	background-color: rgb(255, 121, 0);
+}
+.btn-warning:focus {
+	background-color: rgb(255, 121, 0);
+}
+.btn-danger {
+	background-color: rgb(41, 129, 169);
+}
+.btn-danger:hover {
+	background-color: rgb(2, 93, 135);
+}
+.btn-danger:focus {
+	background-color: rgb(2, 93, 135);
+}
+.btn-lg {
+	height: 40px; line-height: 20px; font-family: "Microsoft YaHei", Helvetica, Tahoma, Arial, sans-serif; min-width: 110px;
+}
+.btn-sm {
+	height: 22px; line-height: 12px; min-width: 66px;
+}
+.btn-top {
+	width: 40px; height: 40px; background-color: rgb(204, 204, 204);
+}
+.btn-top:hover {
+	background-color: rgb(103, 103, 103);
+}
+.btn-top:focus {
+	background-color: rgb(103, 103, 103);
+}
+.btn-top .glyphicon-chevron-up {
+	font-size: 18px;
+}

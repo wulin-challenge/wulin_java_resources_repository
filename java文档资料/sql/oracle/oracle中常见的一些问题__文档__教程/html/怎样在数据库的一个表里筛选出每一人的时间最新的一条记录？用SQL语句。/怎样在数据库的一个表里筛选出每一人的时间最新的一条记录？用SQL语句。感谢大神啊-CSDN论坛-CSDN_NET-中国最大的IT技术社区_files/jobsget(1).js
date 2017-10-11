@@ -1,0 +1,1 @@
+document.write('<li><a href="http://www.csdn.net/article/2016-01-04/2826582-0penstack-alan-clark" target=_blank>OpenStack基金会主席：OpenStack已成为客户在开源云环境中的首选</a></li><li><a href="http://www.csdn.net/article/2015-12-29/2826573" target=_blank>程序员如何谋划出月薪3万</a></li>');

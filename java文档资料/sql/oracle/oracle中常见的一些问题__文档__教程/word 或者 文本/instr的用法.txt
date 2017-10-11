@@ -1,0 +1,77 @@
+Oracle instr函数  
+
+2011-03-29 12:10:09|  分类： 默认分类 |  标签：instr  code  select  字符串  occupation   |举报|字号 订阅
+INSTR
+　　(源字符串, 目标字符串, 起始位置, 匹配序号)
+
+　　在Oracle/PLSQL中，instr函数返回要截取的字符串在源字符串中的位置。只检索一次，就是说从字符的开始
+
+　　到字符的结尾就结束。
+
+　　语法如下：
+
+　　instr( string1, string2 [, start_position [, nth_appearance ] ] )
+
+　　参数分析：
+
+　　string1
+
+　　源字符串，要在此字符串中查找。
+
+　　string2
+
+　　要在string1中查找的字符串.
+
+　　start_position
+
+　　代表string1 的哪个位置开始查找。此参数可选，如果省略默认为1. 字符串索引从1开始。如果此参数为正，从左到右开始检索，如果此参数为负，从右到左检索，返回要查找的字符串在源字符串中的开始索引。
+
+　　nth_appearance
+
+　　代表要查找第几次出现的string2. 此参数可选，如果省略，默认为 1.如果为负数系统会报错。
+
+　　注意：
+
+　　如果String2在String1中没有找到，instr函数返回0.
+
+　　示例：
+
+　　SELECT instr('syranmo','s') FROM dual; -- 返回 1
+
+　　SELECT instr('syranmo','ra') FROM dual;  -- 返回 3
+
+　　1 SELECT instr('syran mo','a',1,2) FROM dual;  -- 返回 0
+
+　　（根据条件，由于a只出现一次，第四个参数2，就是说第2次出现a的位置，显然第2次是没有再出现了，所以结果返回0。注意空格也算一个字符！）
+
+　　SELECT instr('syranmo','an',-1,1) FROM dual;  -- 返回 4
+
+　　（就算是由右到左数，索引的位置还是要看‘an’的左边第一个字母的位置，所以这里返回4）
+
+　　SELECT instr('abc','d') FROM dual;  -- 返回 0
+
+　　注：也可利用此函数来检查String1中是否包含String2，如果返回0表示不包含，否则表示包含。
+
+　　对于上面说到的，我们可以这样运用instr函数。请看下面示例：
+
+　　如果我有一份资料，上面都是一些员工的工号（字段：CODE），可是我现在要查询出他们的所有员工情况，例如名字，部门，职业等等，这里举例是两个员工，工号分别是’A10001′，’A10002′，其中假设staff是员工表，那正常的做法就如下：
+
+　　1 2 SELECT  code , name , dept, occupation FROM staff  WHERE code IN ('A10001','A10002');
+
+　　或者：
+
+　　SELECT  code , name , dept, occupation FROM staff  WHERE code = 'A10001' OR code = 'A10002';
+
+　　有时候员工比较多，我们对于那个’觉得比较麻烦，于是就想，可以一次性导出来么？这时候你就可以用instr函数，如下：
+
+　　SELECT  code , name , dept, occupation FROM staff  WHERE instr('A10001,A10002',code)>0;
+
+　　查询出来结果一样，这样前后只用到两次单引号，相对方便点。
+
+　　还有一个用法，如下：
+
+　　SELECT code, name, dept, occupation  FROM staff  WHERE instr(code, '001') > 0;
+
+　　等同于
+
+　　SELECT code, name, dept, occupation  FROM staff  WHERE code LIKE '%001%' ;

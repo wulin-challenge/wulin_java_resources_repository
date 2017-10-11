@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0063)http://www.cnblogs.com/linjiqin/archive/2013/06/24/3152674.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/bundle-sea.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/linjiqin/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/linjiqin/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/linjiqin/wlwmanifest.xml">
+<script src="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'linjiqin', cb_enable_mathjax=false;</script>
+<script src="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<div align="center"><a href="http://www.amazingcounter.com/"><img border="0" src="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/counter.php" alt="track website visits"></a><br><a href="http://www.allonlinecoupons.com/">MCM</a> <a href="http://www.allonlinecoupons.com/st/mcm-electronics/">Discount Promos</a></div>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/linjiqin/">Ruthless</a><br>
+		J2EE+ANDROID+jQuery交流群: 158560018<br>
+百香果鸡蛋果批发群: 299017022<br>
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/linjiqin/">首页</a> &nbsp;
+<a href="http://q.cnblogs.com/" class="menu">博问</a> &nbsp;
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> &nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/Ruthless">联系</a> &nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/linjiqin/rss">订阅</a><a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/linjiqin/rss"><img src="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;
+<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats">
+<!--done-->
+随笔-660&nbsp;
+评论-498&nbsp;
+文章-0&nbsp;
+trackbacks-0
+</div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/linjiqin/p/3152674.html">Oracle 树操作(select…start with…connect by…prior)</a></h1>
+	<div id="cnblogs_post_body"><p>oracle树查询的最重要的就是select…start with…connect by…prior语法了。依托于该语法，我们可以将一个表形结构的以树的顺序列出来。在下面列述了oracle中树型查询的常用查询方式以及经常使用的与树查询相关的oracle特性函数等，在这里只涉及到一张表中的树查询方式而不涉及多表中的关联等。</p>
+<p>1、准备测试表和测试数据</p>
+<div>
+<div id="highlighter_636758" class="syntaxhighlighter  sql">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+<div class="line number9 index8 alt2">9</div>
+<div class="line number10 index9 alt1">10</div>
+<div class="line number11 index10 alt2">11</div>
+<div class="line number12 index11 alt1">12</div>
+<div class="line number13 index12 alt2">13</div>
+<div class="line number14 index13 alt1">14</div>
+<div class="line number15 index14 alt2">15</div>
+<div class="line number16 index15 alt1">16</div>
+<div class="line number17 index16 alt2">17</div>
+<div class="line number18 index17 alt1">18</div>
+<div class="line number19 index18 alt2">19</div>
+<div class="line number20 index19 alt1">20</div>
+<div class="line number21 index20 alt2">21</div>
+<div class="line number22 index21 alt1">22</div>
+<div class="line number23 index22 alt2">23</div>
+<div class="line number24 index23 alt1">24</div>
+<div class="line number25 index24 alt2">25</div>
+<div class="line number26 index25 alt1">26</div>
+<div class="line number27 index26 alt2">27</div>
+<div class="line number28 index27 alt1">28</div>
+<div class="line number29 index28 alt2">29</div>
+<div class="line number30 index29 alt1">30</div>
+<div class="line number31 index30 alt2">31</div>
+<div class="line number32 index31 alt1">32</div>
+<div class="line number33 index32 alt2">33</div>
+<div class="line number34 index33 alt1">34</div>
+<div class="line number35 index34 alt2">35</div>
+<div class="line number36 index35 alt1">36</div>
+<div class="line number37 index36 alt2">37</div>
+<div class="line number38 index37 alt1">38</div>
+<div class="line number39 index38 alt2">39</div>
+<div class="line number40 index39 alt1">40</div>
+<div class="line number41 index40 alt2">41</div>
+<div class="line number42 index41 alt1">42</div>
+<div class="line number43 index42 alt2">43</div>
+<div class="line number44 index43 alt1">44</div>
+<div class="line number45 index44 alt2">45</div>
+<div class="line number46 index45 alt1">46</div>
+<div class="line number47 index46 alt2">47</div>
+<div class="line number48 index47 alt1">48</div>
+<div class="line number49 index48 alt2">49</div>
+<div class="line number50 index49 alt1">50</div>
+<div class="line number51 index50 alt2">51</div>
+<div class="line number52 index51 alt1">52</div>
+<div class="line number53 index52 alt2">53</div>
+<div class="line number54 index53 alt1">54</div>
+<div class="line number55 index54 alt2">55</div>
+<div class="line number56 index55 alt1">56</div>
+<div class="line number57 index56 alt2">57</div>
+<div class="line number58 index57 alt1">58</div>
+<div class="line number59 index58 alt2">59</div>
+<div class="line number60 index59 alt1">60</div>
+<div class="line number61 index60 alt2">61</div>
+<div class="line number62 index61 alt1">62</div>
+<div class="line number63 index62 alt2">63</div>
+<div class="line number64 index63 alt1">64</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="sql comments">--菜单目录结构表</code></div>
+<div class="line number2 index1 alt1"><code class="sql keyword">create</code> <code class="sql keyword">table</code> <code class="sql plain">tb_menu(</code></div>
+<div class="line number3 index2 alt2"><code class="sql plain">&amp;nbsp;&amp;nbsp; id&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; number(10) </code><code class="sql color1">not</code> <code class="sql color1">null</code><code class="sql plain">, </code><code class="sql comments">--主键id</code></div>
+<div class="line number4 index3 alt1"><code class="sql plain">&amp;nbsp;&amp;nbsp; title&amp;nbsp; varchar2(50), </code><code class="sql comments">--标题</code></div>
+<div class="line number5 index4 alt2"><code class="sql plain">&amp;nbsp;&amp;nbsp; parent number(10) </code><code class="sql comments">--parent id</code></div>
+<div class="line number6 index5 alt1"><code class="sql plain">)</code></div>
+<div class="line number7 index6 alt2">&nbsp;</div>
+<div class="line number8 index7 alt1"><code class="sql comments">--父菜单</code></div>
+<div class="line number9 index8 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(1, </code><code class="sql string">'父菜单1'</code><code class="sql plain">,</code><code class="sql color1">null</code><code class="sql plain">);</code></div>
+<div class="line number10 index9 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(2, </code><code class="sql string">'父菜单2'</code><code class="sql plain">,</code><code class="sql color1">null</code><code class="sql plain">);</code></div>
+<div class="line number11 index10 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(3, </code><code class="sql string">'父菜单3'</code><code class="sql plain">,</code><code class="sql color1">null</code><code class="sql plain">);</code></div>
+<div class="line number12 index11 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(4, </code><code class="sql string">'父菜单4'</code><code class="sql plain">,</code><code class="sql color1">null</code><code class="sql plain">);</code></div>
+<div class="line number13 index12 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(5, </code><code class="sql string">'父菜单5'</code><code class="sql plain">,</code><code class="sql color1">null</code><code class="sql plain">);</code></div>
+<div class="line number14 index13 alt1"><code class="sql comments">--一级菜单</code></div>
+<div class="line number15 index14 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(6, </code><code class="sql string">'一级菜单6'</code><code class="sql plain">,1);</code></div>
+<div class="line number16 index15 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(7, </code><code class="sql string">'一级菜单7'</code><code class="sql plain">,1);</code></div>
+<div class="line number17 index16 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(8, </code><code class="sql string">'一级菜单8'</code><code class="sql plain">,1);</code></div>
+<div class="line number18 index17 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(9, </code><code class="sql string">'一级菜单9'</code><code class="sql plain">,2);</code></div>
+<div class="line number19 index18 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(10, </code><code class="sql string">'一级菜单10'</code><code class="sql plain">,2);</code></div>
+<div class="line number20 index19 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(11, </code><code class="sql string">'一级菜单11'</code><code class="sql plain">,2);</code></div>
+<div class="line number21 index20 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(12, </code><code class="sql string">'一级菜单12'</code><code class="sql plain">,3);</code></div>
+<div class="line number22 index21 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(13, </code><code class="sql string">'一级菜单13'</code><code class="sql plain">,3);</code></div>
+<div class="line number23 index22 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(14, </code><code class="sql string">'一级菜单14'</code><code class="sql plain">,3);</code></div>
+<div class="line number24 index23 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(15, </code><code class="sql string">'一级菜单15'</code><code class="sql plain">,4);</code></div>
+<div class="line number25 index24 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(16, </code><code class="sql string">'一级菜单16'</code><code class="sql plain">,4);</code></div>
+<div class="line number26 index25 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(17, </code><code class="sql string">'一级菜单17'</code><code class="sql plain">,4);</code></div>
+<div class="line number27 index26 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(18, </code><code class="sql string">'一级菜单18'</code><code class="sql plain">,5);</code></div>
+<div class="line number28 index27 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(19, </code><code class="sql string">'一级菜单19'</code><code class="sql plain">,5);</code></div>
+<div class="line number29 index28 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(20, </code><code class="sql string">'一级菜单20'</code><code class="sql plain">,5);</code></div>
+<div class="line number30 index29 alt1"><code class="sql comments">--二级菜单</code></div>
+<div class="line number31 index30 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(21, </code><code class="sql string">'二级菜单21'</code><code class="sql plain">,6);</code></div>
+<div class="line number32 index31 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(22, </code><code class="sql string">'二级菜单22'</code><code class="sql plain">,6);</code></div>
+<div class="line number33 index32 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(23, </code><code class="sql string">'二级菜单23'</code><code class="sql plain">,7);</code></div>
+<div class="line number34 index33 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(24, </code><code class="sql string">'二级菜单24'</code><code class="sql plain">,7);</code></div>
+<div class="line number35 index34 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(25, </code><code class="sql string">'二级菜单25'</code><code class="sql plain">,8);</code></div>
+<div class="line number36 index35 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(26, </code><code class="sql string">'二级菜单26'</code><code class="sql plain">,9);</code></div>
+<div class="line number37 index36 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(27, </code><code class="sql string">'二级菜单27'</code><code class="sql plain">,10);</code></div>
+<div class="line number38 index37 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(28, </code><code class="sql string">'二级菜单28'</code><code class="sql plain">,11);</code></div>
+<div class="line number39 index38 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(29, </code><code class="sql string">'二级菜单29'</code><code class="sql plain">,12);</code></div>
+<div class="line number40 index39 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(30, </code><code class="sql string">'二级菜单30'</code><code class="sql plain">,13);</code></div>
+<div class="line number41 index40 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(31, </code><code class="sql string">'二级菜单31'</code><code class="sql plain">,14);</code></div>
+<div class="line number42 index41 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(32, </code><code class="sql string">'二级菜单32'</code><code class="sql plain">,15);</code></div>
+<div class="line number43 index42 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(33, </code><code class="sql string">'二级菜单33'</code><code class="sql plain">,16);</code></div>
+<div class="line number44 index43 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(34, </code><code class="sql string">'二级菜单34'</code><code class="sql plain">,17);</code></div>
+<div class="line number45 index44 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(35, </code><code class="sql string">'二级菜单35'</code><code class="sql plain">,18);</code></div>
+<div class="line number46 index45 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(36, </code><code class="sql string">'二级菜单36'</code><code class="sql plain">,19);</code></div>
+<div class="line number47 index46 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(37, </code><code class="sql string">'二级菜单37'</code><code class="sql plain">,20);</code></div>
+<div class="line number48 index47 alt1"><code class="sql comments">--三级菜单</code></div>
+<div class="line number49 index48 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(38, </code><code class="sql string">'三级菜单38'</code><code class="sql plain">,21);</code></div>
+<div class="line number50 index49 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(39, </code><code class="sql string">'三级菜单39'</code><code class="sql plain">,22);</code></div>
+<div class="line number51 index50 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(40, </code><code class="sql string">'三级菜单40'</code><code class="sql plain">,23);</code></div>
+<div class="line number52 index51 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(41, </code><code class="sql string">'三级菜单41'</code><code class="sql plain">,24);</code></div>
+<div class="line number53 index52 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(42, </code><code class="sql string">'三级菜单42'</code><code class="sql plain">,25);</code></div>
+<div class="line number54 index53 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(43, </code><code class="sql string">'三级菜单43'</code><code class="sql plain">,26);</code></div>
+<div class="line number55 index54 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(44, </code><code class="sql string">'三级菜单44'</code><code class="sql plain">,27);</code></div>
+<div class="line number56 index55 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(45, </code><code class="sql string">'三级菜单45'</code><code class="sql plain">,28);</code></div>
+<div class="line number57 index56 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(46, </code><code class="sql string">'三级菜单46'</code><code class="sql plain">,28);</code></div>
+<div class="line number58 index57 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(47, </code><code class="sql string">'三级菜单47'</code><code class="sql plain">,29);</code></div>
+<div class="line number59 index58 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(48, </code><code class="sql string">'三级菜单48'</code><code class="sql plain">,30);</code></div>
+<div class="line number60 index59 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(49, </code><code class="sql string">'三级菜单49'</code><code class="sql plain">,31);</code></div>
+<div class="line number61 index60 alt2"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">tb_menu(id, title, parent) </code><code class="sql keyword">values</code><code class="sql plain">(50, </code><code class="sql string">'三级菜单50'</code><code class="sql plain">,31);</code></div>
+<div class="line number62 index61 alt1"><code class="sql keyword">commit</code><code class="sql plain">;</code></div>
+<div class="line number63 index62 alt2">&nbsp;</div>
+<div class="line number64 index63 alt1"><code class="sql keyword">select</code> <code class="sql plain">* </code><code class="sql keyword">from</code> <code class="sql plain">tb_menu;</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>parent字段存储的是上级id，如果是顶级父节点，该parent为null(得补充一句，当初的确是这样设计的，不过现在知道，表中最好别有null记录，这会引起全文扫描，建议改成0代替)。</p>
+<p>2、树操作<br>我们从最基本的操作，逐步列出树查询中常见的操作，所有查询出来的节点以家族中的辈份作比方。</p>
+<p><span>1)、查找树中的所有顶级父节点（辈份最长的人）。 假设这个树是个目录结构，那么第一个操作总是找出所有的顶级节点，再根据该节点找到其下属节点。</span></p>
+<div>
+<div id="highlighter_370650" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select * from tb_menu m where m.parent is </code><code class="java keyword">null</code><code class="java plain">;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p><span>2)、查找一个节点的直属子节点（所有儿子）。 如果查找的是直属子类节点，也是不用用到树型查询的。</span></p>
+<div>
+<div id="highlighter_792172" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select * from tb_menu m where m.parent=</code><code class="java value">1</code><code class="java plain">;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p><span>3)、查找一个节点的所有直属子节点（所有后代）。</span></p>
+<div>
+<div id="highlighter_145166" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select * from tb_menu m start with m.id=</code><code class="java value">1</code> <code class="java plain">connect by m.parent=prior m.id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>这个查找的是id为1的节点下的所有直属子类节点，包括子辈的和孙子辈的所有直属节点。</p>
+<p><span>4)、查找一个节点的直属父节点（父亲）。 如果查找的是节点的直属父节点，也是不用用到树型查询的。</span></p>
+<div>
+<div id="highlighter_556883" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">--c--&gt;child, p-&gt;parent</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">select c.id, c.title, p.id parent_id, p.title parent_title</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">from tb_menu c, tb_menu p</code></div>
+<div class="line number4 index3 alt1"><code class="java plain">where c.parent=p.id and c.id=</code><code class="java value">6</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p><span>5)、查找一个节点的所有直属父节点（祖宗）。</span></p>
+<div>
+<div id="highlighter_426100" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select * from tb_menu m start with m.id=</code><code class="java value">38</code> <code class="java plain">connect by prior m.parent=m.id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>这里查找的就是id为1的所有直属父节点，打个比方就是找到一个人的父亲、祖父等。但是值得注意的是这个查询出来的结果的顺序是先列出子类节点再列出父类节点，姑且认为是个倒序吧。</p>
+<p>上面列出两个树型查询方式，第3条语句和第5条语句，这两条语句之间的区别在于prior关键字的位置不同，所以决定了查询的方式不同。 当parent = prior id时，数据库会根据当前的id迭代出parent与该id相同的记录，所以查询的结果是迭代出了所有的子类记录；而prior parent = id时，数据库会跟据当前的parent来迭代出与当前的parent相同的id的记录，所以查询出来的结果就是所有的父类结果。</p>
+<p>以下是一系列针对树结构的更深层次的查询，这里的查询不一定是最优的查询方式，或许只是其中的一种实现而已。</p>
+<p><span>6)、查询一个节点的兄弟节点（亲兄弟）。</span></p>
+<div>
+<div id="highlighter_434029" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">--m.parent=m2.parent--&gt;同一个父亲</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">select * from tb_menu m</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">where exists (select * from tb_menu m2 where m.parent=m2.parent and m2.id=</code><code class="java value">6</code><code class="java plain">)</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p><span>7)、查询与一个节点同级的节点（族兄弟）。</span>&nbsp;如果在表中设置了级别的字段，那么在做这类查询时会很轻松，同一级别的就是与那个节点同级的，在这里列出不使用该字段时的实现!</p>
+<div>
+<div id="highlighter_246551" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">with tmp as(</code></div>
+<div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">select a.*, level leaf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tb_menu a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">start with a.parent is </code><code class="java keyword">null</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">connect by a.parent = prior a.id)</code></div>
+<div class="line number6 index5 alt1"><code class="java plain">select *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number7 index6 alt2"><code class="java plain">from tmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number8 index7 alt1"><code class="java plain">where leaf = (select leaf from tmp where id = </code><code class="java value">50</code><code class="java plain">);</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>这里使用两个技巧，一个是使用了level来标识每个节点在表中的级别，还有就是使用with语法模拟出了一张带有级别的临时表。</p>
+<p><span>8)、查询一个节点的父节点的的兄弟节点（伯父与叔父）。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<div>
+<div id="highlighter_659771" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+<div class="line number9 index8 alt2">9</div>
+<div class="line number10 index9 alt1">10</div>
+<div class="line number11 index10 alt2">11</div>
+<div class="line number12 index11 alt1">12</div>
+<div class="line number13 index12 alt2">13</div>
+<div class="line number14 index13 alt1">14</div>
+<div class="line number15 index14 alt2">15</div>
+<div class="line number16 index15 alt1">16</div>
+<div class="line number17 index16 alt2">17</div>
+<div class="line number18 index17 alt1">18</div>
+<div class="line number19 index18 alt2">19</div>
+<div class="line number20 index19 alt1">20</div>
+<div class="line number21 index20 alt2">21</div>
+<div class="line number22 index21 alt1">22</div>
+<div class="line number23 index22 alt2">23</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">with tmp as(</code></div>
+<div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">select tb_menu.*, level lev</code></div>
+<div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tb_menu</code></div>
+<div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">start with parent is </code><code class="java keyword">null</code></div>
+<div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">connect by parent = prior id)</code></div>
+<div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+<div class="line number7 index6 alt2"><code class="java plain">select b.*</code></div>
+<div class="line number8 index7 alt1"><code class="java plain">from tmp b,(select *</code></div>
+<div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tmp</code></div>
+<div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">where id = </code><code class="java value">21</code> <code class="java plain">and lev = </code><code class="java value">2</code><code class="java plain">) a</code></div>
+<div class="line number11 index10 alt2"><code class="java plain">where b.lev = </code><code class="java value">1</code></div>
+<div class="line number12 index11 alt1">&nbsp;</div>
+<div class="line number13 index12 alt2"><code class="java plain">union all</code></div>
+<div class="line number14 index13 alt1">&nbsp;</div>
+<div class="line number15 index14 alt2"><code class="java plain">select *</code></div>
+<div class="line number16 index15 alt1"><code class="java plain">from tmp</code></div>
+<div class="line number17 index16 alt2"><code class="java plain">where parent = (select distinct x.id</code></div>
+<div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tmp x, --祖父</code></div>
+<div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">tmp y, --父亲</code></div>
+<div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">(select *</code></div>
+<div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tmp</code></div>
+<div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">where id = </code><code class="java value">21</code> <code class="java plain">and lev &gt; </code><code class="java value">2</code><code class="java plain">) z --儿子</code></div>
+<div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">where y.id = z.parent and x.id = y.parent); </code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>这里查询分成以下几步。<br>首先，将第7个一样，将全表都使用临时表加上级别；<br>其次，根据级别来判断有几种类型，以上文中举的例子来说，有三种情况：<br>（1）当前节点为顶级节点，即查询出来的lev值为1，那么它没有上级节点，不予考虑。<br>（2）当前节点为2级节点，查询出来的lev值为2，那么就只要保证lev级别为1的就是其上级节点的兄弟节点。<br>（3）其它情况就是3以及以上级别，那么就要选查询出来其上级的上级节点（祖父），再来判断祖父的下级节点都是属于该节点的上级节点的兄弟节点。<br>最后，就是使用union将查询出来的结果进行结合起来，形成结果集。</p>
+<p><span>9)、查询一个节点的父节点的同级节点（族叔）。</span><br>这个其实跟第7种情况是相同的。</p>
+<div>
+<div id="highlighter_284767" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">with tmp as(</code></div>
+<div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">select a.*, level leaf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">from tb_menu a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">start with a.parent is </code><code class="java keyword">null</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">connect by a.parent = prior a.id)</code></div>
+<div class="line number6 index5 alt1"><code class="java plain">select *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number7 index6 alt2"><code class="java plain">from tmp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div>
+<div class="line number8 index7 alt1"><code class="java plain">where leaf = (select leaf from tmp where id = </code><code class="java value">6</code><code class="java plain">) - </code><code class="java value">1</code><code class="java plain">;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>基本上，常见的查询在里面了，不常见的也有部分了。其中，查询的内容都是节点的基本信息，都是数据表中的基本字段，但是在树查询中还有些特殊需求，是对查询数据进行了处理的，常见的包括列出树路径等。</p>
+<p>补充一个概念，对于数据库来说，根节点并不一定是在数据库中设计的顶级节点，对于数据库来说，根节点就是start with开始的地方。</p>
+<p>下面列出的是一些与树相关的特殊需求。</p>
+<p><span>10)、名称要列出名称全部路径。</span><br>这里常见的有两种情况，一种是从顶级列出，直到当前节点的名称（或者其它属性）；一种是从当前节点列出，直到顶级节点的名称（或其它属性）。举地址为例：国内的习惯是从省开始、到市、到县、到居委会的，而国外的习惯正好相反（老师说的，还没接过国外的邮件，谁能寄个瞅瞅&nbsp; ）。<br>从顶部开始：</p>
+<div>
+<div id="highlighter_274989" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select sys_connect_by_path (title, </code><code class="java string">'/'</code><code class="java plain">)</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">from tb_menu</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">where id = </code><code class="java value">50</code></div>
+<div class="line number4 index3 alt1"><code class="java plain">start with parent is </code><code class="java keyword">null</code></div>
+<div class="line number5 index4 alt2"><code class="java plain">connect by parent = prior id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>从当前节点开始：</p>
+<div>
+<div id="highlighter_583784" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select sys_connect_by_path (title, </code><code class="java string">'/'</code><code class="java plain">)</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">from tb_menu</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">start with id = </code><code class="java value">50</code></div>
+<div class="line number4 index3 alt1"><code class="java plain">connect by prior parent = id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>在这里我又不得不放个牢骚了。oracle只提供了一个sys_connect_by_path函数，却忘了字符串的连接的顺序。在上面的例子中，第一个sql是从根节点开始遍历，而第二个sql是直接找到当前节点，从效率上来说已经是千差万别，更关键的是第一个sql只能选择一个节点，而第二个sql却是遍历出了一颗树来。再次ps一下。</p>
+<p>sys_connect_by_path函数就是从start with开始的地方开始遍历，并记下其遍历到的节点，start with开始的地方被视为根节点，将遍历到的路径根据函数中的分隔符，组成一个新的字符串，这个功能还是很强大的。</p>
+<p><span>11)、列出当前节点的根节点。</span><br>在前面说过，根节点就是start with开始的地方。</p>
+<div>
+<div id="highlighter_401423" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select connect_by_root title, tb_menu.*</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">from tb_menu</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">start with id = </code><code class="java value">50</code></div>
+<div class="line number4 index3 alt1"><code class="java plain">connect by prior parent = id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>connect_by_root函数用来列的前面，记录的是当前节点的根节点的内容。</p>
+<p><span>12)、列出当前节点是否为叶子。</span><br>这个比较常见，尤其在动态目录中，在查出的内容是否还有下级节点时，这个函数是很适用的。</p>
+<div>
+<div id="highlighter_304508" class="syntaxhighlighter  java">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="java plain">select connect_by_isleaf, tb_menu.*</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">from tb_menu</code></div>
+<div class="line number3 index2 alt2"><code class="java plain">start with parent is </code><code class="java keyword">null</code></div>
+<div class="line number4 index3 alt1"><code class="java plain">connect by parent = prior id;</code></div>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<p>connect_by_isleaf函数用来判断当前节点是否包含下级节点，如果包含的话，说明不是叶子节点，这里返回0；反之，如果不包含下级节点，这里返回1。</p>
+<p>至此，oracle树型查询基本上讲完了，以上的例子中的数据是使用到做过的项目中的数据，因为里面的内容可能不好理解，所以就全部用一些新的例子来进行阐述。以上所有sql都在本机上测试通过，也都能实现相应的功能，但是并不能保证是解决这类问题的最优方案（如第8条明显写成存储过程会更好）.</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2013-06-24 16:07</span> <a href="http://www.cnblogs.com/linjiqin/">Ruthless</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=3152674" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/linjiqin/archive/2013/06/24/3152674.html#" onclick="AddToWz(3152674);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=83240,cb_entryId=3152674,cb_blogApp=currentBlogApp,cb_blogUserGuid='a6448c44-d92c-e011-ac81-842b2b196315',cb_entryCreatedDate='2013/6/24 16:07:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/linjiqin/archive/2013/06/24/3152674.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/linjiqin/archive/2013/06/24/3152674.html#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"></div>
+<div id="google_ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"></div>
+<div id="google_ad_c3" class="c_ad_block">
+    <script async="" src="./Oracle 树操作(select…start with…connect by…prior) - Ruthless - 博客园_files/adsbygoogle.js"></script>
+<!-- C3_BlogPost -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-4210569241504288" data-ad-slot="3239908880"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2015 Ruthless
+</div>
+
+
+
+
+
+</body></html>

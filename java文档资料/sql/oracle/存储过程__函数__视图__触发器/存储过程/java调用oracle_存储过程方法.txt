@@ -1,0 +1,368 @@
+这段时间开始学习写存储过程，主要原因还是因为工作需要吧，本来以为很简单的，但几经挫折，豪气消磨殆尽，但总算搞通了，为了避免后来者少走弯路，特记述与此，同时亦对自己进行鼓励。
+
+一：无返回值的存储过程
+
+存储过程为：
+
+CREATE OR REPLACE PROCEDURE TESTA(PARA1 IN VARCHAR2,PARA2 IN VARCHAR2)  AS
+
+BEGIN 
+
+   INSERT INTO HYQ.B_ID (I_ID,I_NAME) VALUES (PARA1, PARA2);
+
+END TESTA;
+
+然后呢，在java里调用时就用下面的代码：
+
+package com.hyq.src;
+
+ 
+
+import java.sql.*;
+
+import java.sql.ResultSet;
+
+ 
+
+public class TestProcedureOne {
+
+  public TestProcedureOne() {
+
+  }
+
+  public static void main(String[] args ){
+
+    String driver = "oracle.jdbc.driver.OracleDriver";
+
+    String strUrl = "jdbc:oracle:thin:@127.0.0.1:1521: hyq ";
+
+    Statement stmt = null;
+
+    ResultSet rs = null;
+
+    Connection conn = null;
+
+    CallableStatement cstmt = null;
+
+ 
+
+    try {
+
+      Class.forName(driver);
+
+      conn =  DriverManager.getConnection(strUrl, " hyq ", " hyq ");
+
+      CallableStatement proc = null;
+
+      proc = conn.prepareCall("{ call HYQ.TESTA(?,?) }");
+
+      proc.setString(1, "100");
+
+      proc.setString(2, "TestOne");
+
+      proc.execute();
+
+    }
+
+    catch (SQLException ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    catch (Exception ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    finally{
+
+      try {
+
+        if(rs != null){
+
+          rs.close();
+
+          if(stmt!=null){
+
+            stmt.close();
+
+          }
+
+          if(conn!=null){
+
+            conn.close();
+
+          }
+
+        }
+
+      }
+
+      catch (SQLException ex1) {
+
+      }
+
+    }
+
+  }
+
+}
+
+当然了，这就先要求要建张表TESTTB,里面两个字段（I_ID，I_NAME）。
+
+二：有返回值的存储过程（非列表）
+
+存储过程为：
+
+CREATE OR REPLACE PROCEDURE TESTB(PARA1 IN VARCHAR2,PARA2 OUT VARCHAR2)  AS
+
+BEGIN 
+
+   SELECT I_NAME INTO PARA2 FROM TESTTB WHERE I_ID= PARA1; 
+
+END TESTB;
+
+在java里调用时就用下面的代码：
+
+package com.hyq.src;
+
+ 
+
+public class TestProcedureTWO {
+
+  public TestProcedureTWO() {
+
+  }
+
+  public static void main(String[] args ){
+
+    String driver = "oracle.jdbc.driver.OracleDriver";
+
+    String strUrl = "jdbc:oracle:thin:@127.0.0.1:1521:hyq";
+
+    Statement stmt = null;
+
+    ResultSet rs = null;
+
+    Connection conn = null;
+
+    try {
+
+      Class.forName(driver);
+
+      conn =  DriverManager.getConnection(strUrl, " hyq ", " hyq ");
+
+      CallableStatement proc = null;
+
+      proc = conn.prepareCall("{ call HYQ.TESTB(?,?) }");
+
+      proc.setString(1, "100");
+
+      proc.registerOutParameter(2, Types.VARCHAR);
+
+      proc.execute();
+
+      String testPrint = proc.getString(2);
+
+      System.out.println("=testPrint=is="+testPrint);
+
+    }
+
+    catch (SQLException ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    catch (Exception ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    finally{
+
+      try {
+
+        if(rs != null){
+
+          rs.close();
+
+          if(stmt!=null){
+
+            stmt.close();
+
+          }
+
+          if(conn!=null){
+
+            conn.close();
+
+          }
+
+        }
+
+      }
+
+      catch (SQLException ex1) {
+
+      }
+
+    }
+
+  }
+
+}
+
+ 
+
+}
+
+注意，这里的proc.getString(2)中的数值2并非任意的，而是和存储过程中的out列对应的，如果out是在第一个位置，那就是proc.getString(1)，如果是第三个位置，就是proc.getString(3)，当然也可以同时有多个返回值，那就是再多加几个out参数了。
+
+三：返回列表
+
+由于oracle存储过程没有返回值，它的所有返回值都是通过out参数来替代的，列表同样也不例外，但由于是集合，所以不能用一般的参数，必须要用pagkage了.所以要分两部分，
+
+1，  建一个程序包。如下：
+
+CREATE OR REPLACE PACKAGE TESTPACKAGE  AS
+
+ TYPE Test_CURSOR IS REF CURSOR;
+
+end TESTPACKAGE;
+
+2，建立存储过程，存储过程为：
+
+CREATE OR REPLACE PROCEDURE TESTC(p_CURSOR out TESTPACKAGE.Test_CURSOR) IS 
+
+BEGIN
+
+    OPEN p_CURSOR FOR SELECT * FROM HYQ.TESTTB;
+
+END TESTC;
+
+可以看到，它是把游标（可以理解为一个指针），作为一个out 参数来返回值的。
+
+在java里调用时就用下面的代码：
+
+package com.hyq.src;
+
+import java.sql.*;
+
+import java.io.OutputStream;
+
+import java.io.Writer;
+
+import java.sql.PreparedStatement;
+
+import java.sql.ResultSet;
+
+import oracle.jdbc.driver.*;
+
+ 
+
+ 
+
+public class TestProcedureTHREE {
+
+  public TestProcedureTHREE() {
+
+  }
+
+  public static void main(String[] args ){
+
+    String driver = "oracle.jdbc.driver.OracleDriver";
+
+    String strUrl = "jdbc:oracle:thin:@127.0.0.1:1521:hyq";
+
+    Statement stmt = null;
+
+    ResultSet rs = null;
+
+    Connection conn = null;
+
+ 
+
+    try {
+
+      Class.forName(driver);
+
+      conn =  DriverManager.getConnection(strUrl, "hyq", "hyq");
+
+ 
+
+      CallableStatement proc = null;
+
+      proc = conn.prepareCall("{ call hyq.testc(?) }");
+
+      proc.registerOutParameter(1,oracle.jdbc.OracleTypes.CURSOR);
+
+      proc.execute();
+
+      rs = (ResultSet)proc.getObject(1);
+
+ 
+
+      while(rs.next())
+
+      {
+
+          System.out.println("<tr><td>" + rs.getString(1) + "</td><td>"+rs.getString(2)+"</td></tr>");
+
+      }
+
+    }
+
+    catch (SQLException ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    catch (Exception ex2) {
+
+      ex2.printStackTrace();
+
+    }
+
+    finally{
+
+      try {
+
+        if(rs != null){
+
+          rs.close();
+
+          if(stmt!=null){
+
+            stmt.close();
+
+          }
+
+          if(conn!=null){
+
+            conn.close();
+
+          }
+
+        }
+
+      }
+
+      catch (SQLException ex1) {
+
+      }
+
+    }
+
+  }
+
+}
+
+在这里要注意，在执行前一定要先把oracle的驱动包放到class路径里，否则会报错的。 
+
+我的心愿，愿我的学生都是超水平的程序员，加油~
+

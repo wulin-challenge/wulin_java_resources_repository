@@ -1,0 +1,300 @@
+. . 正在导出表                OA_DC_DOC_BACK_2导出了          78 行
+. . 正在导出表                OA_DC_DOC_BACK_3导出了          78 行
+. . 正在导出表                OA_DC_DOC_BACK_4导出了         219 行
+. . 正在导出表              OA_DC_EXTERNALUNIT导出了          17 行
+. . 正在导出表               OA_DC_READERRANGE导出了          86 行
+. . 正在导出表              OA_DC_RECEIVERANGE导出了          27 行
+. . 正在导出表       OA_DC_RECEIVERANGE_BACK_1导出了           3 行
+. . 正在导出表       OA_DC_RECEIVERANGE_BACK_2导出了           3 行
+. . 正在导出表       OA_DC_RECEIVERANGE_BACK_3导出了           2 行
+. . 正在导出表                   OA_DC_SIGNPSN导出了           0 行
+. . 正在导出表              OA_EM_RECEIVEEMAIL导出了          34 行
+. . 正在导出表                 OA_EM_SENDEMAIL导出了          34 行
+. . 正在导出表            OA_FL_FLOWLANCHAPPLY导出了           0 行
+. . 正在导出表                         OA_GZJH导出了           0 行
+. . 正在导出表                         OA_GZNR导出了           0 行
+. . 正在导出表                   OA_KM_BATCHKW导出了           0 行
+. . 正在导出表                 OA_KM_FDMANAGER导出了           0 行
+. . 正在导出表                    OA_KM_FOLDER导出了           3 行
+. . 正在导出表                 OA_KM_KNOWLEDGE导出了           0 行
+. . 正在导出表            OA_KM_KNOWLEDGEGZPSN导出了           0 行
+. . 正在导出表                  OA_KM_KWFOLDER导出了           0 行
+. . 正在导出表                OA_KM_KWPICTURES导出了           0 行
+. . 正在导出表                   OA_KM_READERS导出了           0 行
+. . 正在导出表                    OA_KM_RIGHTS导出了           0 行
+. . 正在导出表                  OA_KM_TEMPLATE导出了           0 行
+. . 正在导出表                 OA_PUB_BASECODE导出了         140 行
+. . 正在导出表                   OA_QB_MODULES导出了           0 行
+. . 正在导出表         OA_QB_QUESTIONSFEEDBACK导出了           0 行
+. . 正在导出表                     OA_RTX_BASE导出了           0 行
+. . 正在导出表    OA_SD_ESPECIALSCHEDULEPERSON导出了           6 行
+. . 正在导出表                  OA_SD_EXECUTOR导出了         111 行
+. . 正在导出表                  OA_SD_SCHEDULE导出了          33 行
+. . 正在导出表                OA_SD_SHARERANGE导出了           8 行
+. . 正在导出表                 OA_SL_SIGNATURE导出了           0 行
+. . 正在导出表          OA_V_ESPECIALSCHEDULE5导出了           1 行
+. . 正在导出表             V_OA_KW_FIRSTFOLDER导出了           0 行
+. . 正在导出表            V_OA_KW_SECONDFOLDER导出了           0 行
+. . 正在导出表                  V_ROSEBYPERSON导出了           0 行
+. . 正在导出表                     V_SA_OPORG5导出了           0 行
+. . 正在导出表                  V_SA_OPPERSON5导出了           1 行
+. 正在导出同义词
+. 正在导出视图
+. 正在导出存储过程
+. 正在导出运算符
+. 正在导出引用完整性约束条件
+. 正在导出触发器
+. 正在导出索引类型
+. 正在导出位图, 功能性索引和可扩展索引
+. 正在导出后期表活动
+. 正在导出实体化视图
+. 正在导出快照日志
+. 正在导出作业队列
+. 正在导出刷新组和子组
+. 正在导出维
+. 正在导出 post-schema 过程对象和操作
+. 正在导出统计信息
+成功终止导出, 没有出现警告。
+
+C:\export>exp OADOC/OADOC@X501 grants=yes compress=no file=oadoc
+
+Export: Release 10.2.0.3.0 - Production on 星期四 12月 18 16:43:13 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+连接到: Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+已导出 ZHS16GBK 字符集和 AL16UTF16 NCHAR 字符集
+
+即将导出指定的用户...
+. 正在导出 pre-schema 过程对象和操作
+. 正在导出用户 OADOC 的外部函数库名
+. 导出 PUBLIC 类型同义词
+. 正在导出专用类型同义词
+. 正在导出用户 OADOC 的对象类型定义
+即将导出 OADOC 的对象...
+. 正在导出数据库链接
+. 正在导出序号
+. 正在导出簇定义
+. 即将导出 OADOC 的表通过常规路径...
+. . 正在导出表                            ACLS导出了           1 行
+. . 正在导出表                ACL_ACCESSDETAIL导出了           0 行
+. . 正在导出表                     ACL_ENTRIES导出了           0 行
+. . 正在导出表                     ACL_OBJECTS导出了           0 行
+. . 正在导出表                   ACTIVEMQ_ACKS导出了           1 行
+. . 正在导出表                   ACTIVEMQ_LOCK导出了           1 行
+. . 正在导出表                   ACTIVEMQ_MSGS导出了           0 行
+. . 正在导出表                    ASYNCSERVERS导出了           1 行
+. . 正在导出表                        BRANCHES导出了           1 行
+. . 正在导出表                 BRANCH_SEQUENCE导出了           1 行
+. . 正在导出表                     COLLECTIONS导出了           0 行
+. . 正在导出表             COLLECTION_SEQUENCE导出了           0 行
+. . 正在导出表        COLLECTION_SUBSCRIPTIONS导出了           0 行
+. . 正在导出表                        COMMENTS导出了           0 行
+. . 正在导出表                COMMENT_SEQUENCE导出了           0 行
+. . 正在导出表                    CUSTOMFIELDS导出了        7900 行
+. . 正在导出表                DAISY_NAMESPACES导出了           2 行
+. . 正在导出表                    DAISY_SYSTEM导出了           1 行
+. . 正在导出表             DOCTYPES_FIELDTYPES导出了           0 行
+. . 正在导出表            DOCTYPE_CONTENTMODEL导出了          10 行
+. . 正在导出表                       DOCUMENTS导出了         504 行
+. . 正在导出表           DOCUMENTTYPE_SEQUENCE导出了           1 行
+. . 正在导出表            DOCUMENT_COLLECTIONS导出了           0 行
+. . 正在导出表               DOCUMENT_SEQUENCE导出了           2 行
+. . 正在导出表          DOCUMENT_SUBSCRIPTIONS导出了           0 行
+. . 正在导出表                  DOCUMENT_TASKS导出了           0 行
+. . 正在导出表                  DOCUMENT_TYPES导出了           4 行
+. . 正在导出表               DOCUMENT_VARIANTS导出了         504 行
+. . 正在导出表               DOCUMENT_VERSIONS导出了         522 行
+. . 正在导出表         EMAILNTFY_SUBSCRIPTIONS导出了           0 行
+. . 正在导出表                     EMAIL_QUEUE导出了           0 行
+. . 正在导出表                          EVENTS导出了           0 行
+. . 正在导出表                  EVENT_SEQUENCE导出了           1 行
+. . 正在导出表                 EXTRACTED_LINKS导出了           0 行
+. . 正在导出表              FIELDTYPE_SEQUENCE导出了           0 行
+. . 正在导出表                     FIELD_TYPES导出了           0 行
+. . 正在导出表                HIERQUERYSELLIST导出了           0 行
+. . 正在导出表         HIERQUERYSELLIST_FIELDS导出了           0 行
+. . 正在导出表                       LANGUAGES导出了           1 行
+. . 正在导出表               LANGUAGE_SEQUENCE导出了           1 行
+. . 正在导出表                LINKQUERYSELLIST导出了           0 行
+. . 正在导出表                           LINKS导出了           0 行
+. . 正在导出表        LOCALIZEDSTRING_SEQUENCE导出了           1 行
+. . 正在导出表               LOCALIZED_STRINGS导出了           0 行
+. . 正在导出表                           LOCKS导出了           0 行
+. . 正在导出表              NAMESPACE_SEQUENCE导出了           1 行
+. . 正在导出表             PARENTLINKEDSELLIST导出了           0 行
+. . 正在导出表                           PARTS导出了         589 行
+. . 正在导出表               PARTTYPE_SEQUENCE导出了           1 行
+. . 正在导出表                      PART_TYPES导出了           3 行
+. . 正在导出表                    QUERYSELLIST导出了           0 行
+. . 正在导出表                           ROLES导出了           2 行
+. . 正在导出表                   ROLE_SEQUENCE导出了           1 行
+. . 正在导出表              SELECTIONLIST_DATA导出了           0 行
+. . 正在导出表                       SUMMARIES导出了           0 行
+. . 正在导出表                TASK_DOC_DETAILS导出了           0 行
+. . 正在导出表                   TASK_SEQUENCE导出了           0 行
+. . 正在导出表                       THEFIELDS导出了           0 行
+. . 正在导出表                           USERS导出了           4 行
+. . 正在导出表                      USER_ROLES导出了           5 行
+. . 正在导出表                   USER_SEQUENCE导出了           1 行
+. . 正在导出表                 WFPOOL_SEQUENCE导出了           0 行
+. . 正在导出表                        WF_POOLS导出了           0 行
+. . 正在导出表                 WF_POOL_MEMBERS导出了           0 行
+. 正在导出同义词
+. 正在导出视图
+. 正在导出存储过程
+. 正在导出运算符
+. 正在导出引用完整性约束条件
+. 正在导出触发器
+. 正在导出索引类型
+. 正在导出位图, 功能性索引和可扩展索引
+. 正在导出后期表活动
+. 正在导出实体化视图
+. 正在导出快照日志
+. 正在导出作业队列
+. 正在导出刷新组和子组
+. 正在导出维
+. 正在导出 post-schema 过程对象和操作
+. 正在导出统计信息
+成功终止导出, 没有出现警告。
+
+C:\export>exp OAEDI/OAEDI@X501 grants=yes compress=no file=oaedi
+
+Export: Release 10.2.0.3.0 - Production on 星期四 12月 18 16:45:48 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+连接到: Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+已导出 ZHS16GBK 字符集和 AL16UTF16 NCHAR 字符集
+
+即将导出指定的用户...
+. 正在导出 pre-schema 过程对象和操作
+. 正在导出用户 OAEDI 的外部函数库名
+. 导出 PUBLIC 类型同义词
+. 正在导出专用类型同义词
+. 正在导出用户 OAEDI 的对象类型定义
+即将导出 OAEDI 的对象...
+. 正在导出数据库链接
+. 正在导出序号
+. 正在导出簇定义
+. 即将导出 OAEDI 的表通过常规路径...
+. . 正在导出表                    AUDIT_DETAIL导出了           9 行
+. . 正在导出表                    AUDIT_MASTER导出了           2 行
+. . 正在导出表             AUDIT_PROCESSRECORD导出了          28 行
+. . 正在导出表              BS_ARCHIVAL_BACK_1导出了           1 行
+. . 正在导出表                       BS_DETAIL导出了           9 行
+. . 正在导出表                      BS_DETAIL1导出了           0 行
+. . 正在导出表                  BS_DETAIL_BACK导出了           0 行
+. . 正在导出表                BS_DETAIL_BACK13导出了           0 行
+. . 正在导出表         BS_DETAIL_BACK_20140303导出了           9 行
+. . 正在导出表                       BS_MASTER导出了           3 行
+. . 正在导出表              BS_MASTER_20131231导出了           3 行
+. . 正在导出表                  BS_MASTER_BACK导出了           0 行
+. . 正在导出表                BS_MASTER_BACK_1导出了           3 行
+. . 正在导出表                BS_MASTER_BACK_2导出了           3 行
+. . 正在导出表         BS_MASTER_BACK_20140303导出了           8 行
+. . 正在导出表                BS_MASTER_BACK_3导出了           3 行
+. . 正在导出表                BS_PROCESSRECORD导出了           3 行
+. . 正在导出表  BS_PROCESSRECORD_BACK_20140303导出了           6 行
+. . 正在导出表                         CU_KHXX导出了           0 行
+. . 正在导出表                     X5_CUSTOMER导出了           6 行
+. 正在导出同义词
+. 正在导出视图
+. 正在导出存储过程
+. 正在导出运算符
+. 正在导出引用完整性约束条件
+. 正在导出触发器
+. 正在导出索引类型
+. 正在导出位图, 功能性索引和可扩展索引
+. 正在导出后期表活动
+. 正在导出实体化视图
+. 正在导出快照日志
+. 正在导出作业队列
+. 正在导出刷新组和子组
+. 正在导出维
+. 正在导出 post-schema 过程对象和操作
+. 正在导出统计信息
+成功终止导出, 没有出现警告。
+
+C:\export>dir
+ 驱动器 C 中的卷是 WIN7
+ 卷的序列号是 4C7F-D366
+
+ C:\export 的目录
+
+2014/12/18  16:45    <DIR>          .
+2014/12/18  16:45    <DIR>          ..
+2014/12/18  16:42         2,648,064 oaapp.DMP
+2014/12/18  16:45           866,304 oadoc.DMP
+2014/12/18  16:46        16,723,968 oaedi.DMP
+2014/12/18  16:39         5,824,512 oasys.DMP
+2014/12/18  16:32               789 sqlnet.log
+               5 个文件     26,063,637 字节
+               2 个目录 33,241,079,808 可用字节
+
+C:\export>cat sqlnet.log
+'cat' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+C:\export>more sqlnet.log
+
+
+***********************************************************************
+Fatal NI connect error 12560, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.7.239)(PORT=1521))(CONNECT_DA
+TA=(SERVICE_NAME=X501)(CID=(PROGRAM=D:\oracle\product\10.2.0\db_1\bin\exp.exe)(H
+OST=2011-20120726OM)(USER=Administrator))))
+
+  VERSION INFORMATION:
+        TNS for 32-bit Windows: Version 10.2.0.3.0 - Production
+        Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0
+.3.0 - Production
+  Time: 18-12月-2014 16:32:25
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12560
+    TNS-12560: TNS: 协议适配器错误
+    ns secondary err code: 0
+    nt main err code: 530
+    TNS-00530: 协议适配器错误
+    nt secondary err code: 53
+    nt OS err code: 0
+
+C:\export>dir
+ 驱动器 C 中的卷是 WIN7
+ 卷的序列号是 4C7F-D366
+
+ C:\export 的目录
+
+2014/12/18  16:45    <DIR>          .
+2014/12/18  16:45    <DIR>          ..
+2014/12/18  16:42         2,648,064 oaapp.DMP
+2014/12/18  16:45           866,304 oadoc.DMP
+2014/12/18  16:46        16,723,968 oaedi.DMP
+2014/12/18  16:39         5,824,512 oasys.DMP
+2014/12/18  16:32               789 sqlnet.log
+               5 个文件     26,063,637 字节
+               2 个目录 33,240,768,512 可用字节
+
+C:\export>del sqlnet.log
+
+C:\export>dir
+ 驱动器 C 中的卷是 WIN7
+ 卷的序列号是 4C7F-D366
+
+ C:\export 的目录
+
+2014/12/18  16:47    <DIR>          .
+2014/12/18  16:47    <DIR>          ..
+2014/12/18  16:42         2,648,064 oaapp.DMP
+2014/12/18  16:45           866,304 oadoc.DMP
+2014/12/18  16:46        16,723,968 oaedi.DMP
+2014/12/18  16:39         5,824,512 oasys.DMP
+               4 个文件     26,062,848 字节
+               2 个目录 33,240,772,608 可用字节
+
+C:\export>

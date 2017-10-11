@@ -1,0 +1,6 @@
+exp "user/password@db" file=d:\filename.dmp owner=table_owner feedback=10000 direct=y
+imp dest_owner/password@db file=d:\filename.dmp  fromuser=source_owner touser=dest_owner feedback=10000 buffer=819200 ignore=Y 
+
+帮助查询 exp help=Y or imp help=Y
+
+没错，exp 导出结构和数据，imp导入！
