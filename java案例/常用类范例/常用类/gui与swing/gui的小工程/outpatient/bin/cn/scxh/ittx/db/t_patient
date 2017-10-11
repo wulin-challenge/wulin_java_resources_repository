@@ -1,0 +1,28 @@
+CREATE TABLE t_patient(
+	id varchar(12) primary key,
+	name varchar(20),
+	sex char(2),
+	age number(3),
+	married char(2),
+	job char(2),
+	weight number(4),
+	blood char(2),
+	phone_number varchar(20),
+	register_time date ,
+	address varchar(50),
+	allergy varchar(100),
+	remark varchar(200)
+);
+
+INSERT INTO t_patient(id,name,sex,age,married,job,weight,blood,
+					  phone_number,register,address,allergy,remark)
+values('2014050301','王二','00',20,'00','02',65,'01','1234567890','XXXX路','无','无');
+
+INSERT INTO t_patient(id,name,sex,age,married,job,weight,blood,
+					  phone_number,register,address,allergy,remark)
+values('2014050302','王三','00',20,'00','02',65,'01','0987654321','XXXX路','无','无');
+
+
+
+
+

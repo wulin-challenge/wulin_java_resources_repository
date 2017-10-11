@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.6.js"></script>
+  </head>
+  <body>
+	<table border="1" align="center">
+		<tr>
+			<th>状态</th>
+			<th>用户名</th>
+		</tr>
+		<tr>
+			<td><input type="checkbox"/></td>
+			<td>赵</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"/></td>
+			<td>钱</td>
+		</tr>		
+		<tr>
+			<td><input type="checkbox"/></td>
+			<td>孙</td>
+		</tr>	
+		<tr>
+			<td><input type="checkbox"/></td>
+			<td>李</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"/></td>
+			<td>周</td>
+		</tr>	
+		<tr>
+			<td><input type="button" value="全选中"/></td>
+			<td><input type="button" value="全取消"/></td>
+			<td><input type="button" value="全反选"/></td>
+		</tr>		
+	</table>
+	<script type="text/javascript">
+		//将"全取消"按钮失效
+		$("input[value='全取消']").attr("disabled","disabled");
+		
+		$("input[value='全选中']").click(function(){
+			$(":checkbox").attr("checked","checked");
+			//"全选中"失效
+			$(this).attr("disabled","disabled");
+			//全"取消"生效	
+			$("input[value='全取消']").removeAttr("disabled");
+		});
+		
+		$("input[value='全取消']").click(function(){
+			$(":checkbox").removeAttr("checked");	
+			//"全取消"失效
+			$(this).attr("disabled","disabled");
+			//全"选中"生效	
+			$("input[value='全选中']").removeAttr("disabled");
+		});
+		
+		$("input[value='全反选']").click(function(){
+			//将选中的复选框失效
+			$(":checkbox:checked").attr("disabled","disabled");
+			//将未选中的复选框选中
+			$(":checkbox:not(:checked)").attr("checked","checked");
+			//将原失效的复选框生效且设置未选中
+			$(":checkbox:disabled").removeAttr("disabled").removeAttr("checked");
+		});
+	</script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,59 @@
+*0 jQuery常用操作DOM的API
+   1)jQuery对象.addClass().addClass();
+   2)removeClass()
+   3)toggleClass()
+   4)hasClass()
+   5)val()，如果将val()设置给一个select/raido/checkbox元素，内容取决于option元素的value或显示的内容值，value优先
+   6)text()和html():text()取得是标签之间的内容，html()不仅含有内容，还可能含有标签
+   7)prev()
+   8)siblings()：要能产生一个数组
+   9)show()和hide()
+  10)fadeIn()和fadeOut()
+
+*1 jQuery中常用事件
+   1)特殊事件，在面页加载时执行，无需等候所有的<html>元素加载完毕。
+    
+*2 基于jQuery的Ajax操作
+   1)load(url/sendData/回调函数)
+     如果没有发送参数到服务端，load()方法默认以GET方式发达，
+     如果有发送参数到服务端，load()方法默认以POST方式发达，
+     注意，发送的参数一定要符合json格式，标志是{},[{},{}]
+   2)回调函数有三个方法
+	backData：以HTML字符串的形式服务端返回的数据	
+	textStatus：服务端返回的信息“success/error/notmodify/timeout”
+       *xhr：通过他，可以取得xhr.responseXML/xhr.responseText/xhr.readyState/...
+        返回值是jQuery对象
+   3)$.get(url,sendData,回调方法,回传的类型)	
+      回调函数有二个方法
+	backData：以HTML字符串的形式服务端返回的数据	
+	textStatus：服务端返回的信息“success/error/notmodify/timeout”
+        返回值是XMLHttpRequest对象
+   4)$.post(url,sendData,回调方法,回传的类型)	
+      回调函数有二个方法
+	backData：以HTML字符串的形式服务端返回的数据	
+	textStatus：服务端返回的信息“success/error/notmodify/timeout”
+        返回值是XMLHttpRequest对象
+   5)使用serialize()能将jQuery对象中的参数自动转成Json格式的字符串参数，注意要为表单元素取一个name属性
+	var sendData = $("#formID").serialize();        	
+    
+   6)使用jQuery的插件
+     a)将插包导入工程的WebRoot/WebContent目录下 
+     b)写一个html或jsp页面，导入jquery核心包，导入插件相关的js和css文件
+     c)在页面加载时触发事件$(document).ready(function)({....})
+   
+ 3 JQuery加载并解析XML
+
+ 4 Servlet3.0中,基于注解创建Servlet/Filter/Listener 
+
+
+
+
+
+
+
+
+
+
+
+
+

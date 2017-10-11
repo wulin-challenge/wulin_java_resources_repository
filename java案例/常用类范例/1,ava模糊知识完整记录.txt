@@ -1,0 +1,552 @@
+
+
+
+
+<=====================================================================================================================================================================>
+
+listener监听器的完整范例:
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+//使用该监听器一定要在web.xml文件中进行如下的配置:
+
+<listener>
+ 	<listener-class>cn.itcast.bbs.listener.OnLineListener</listener-class>
+  </listener>
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+package cn.itcast.bbs.listener;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequestEvent;
+import javax.servlet.ServletRequestListener;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
+import cn.itcast.bbs.domain.User;
+
+public class OnLineListener implements HttpSessionAttributeListener,ServletRequestListener {
+	public void attributeAdded(HttpSessionBindingEvent se) {
+		String name = se.getName();//name="user"字符串
+		Object obj =  se.getValue();//value=user对象
+		if(obj instanceof User){
+			//确实是向HttpSession中绑定是的user对象
+			if("user".equals(name)){
+				HttpSession session = se.getSession();
+				ServletContext context = session.getServletContext();
+				Integer online = (Integer) context.getAttribute("online");
+				if(online==null){
+					online = 1;
+				}else{
+					online ++;
+				}
+				//在线人数  online:在线人数
+				context.setAttribute("online",online);
+				Integer caller = (Integer) context.getAttribute("caller");  //caller:第几个访问者
+				if(caller==null){
+					caller = 1;
+				}else{
+					caller ++;
+				}
+				//访问次序
+				context.setAttribute("caller",caller);//可变
+				session.setAttribute("caller",caller);//不变
+			}
+		}
+	}
+	public void attributeRemoved(HttpSessionBindingEvent se) {
+		String name = se.getName();//name="user"字符串
+		//确实是向HttpSession中绑定是的user对象
+		if("user".equals(name)){
+			HttpSession session = se.getSession();
+			ServletContext context = session.getServletContext();
+			Integer online = (Integer) context.getAttribute("online");
+			online --;
+			context.setAttribute("online",online);
+		}
+	}
+	public void attributeReplaced(HttpSessionBindingEvent se) {
+	}
+	public void requestDestroyed(ServletRequestEvent sre) {
+	}
+	public void requestInitialized(ServletRequestEvent sre) {
+		HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
+		HttpSession session = request.getSession();
+		if(session.isNew()){
+			//打开浏览器所产生的session如果没有经过isNew()方法判断过,就是新的session,
+			//一旦经过isNew()方法判断过了,就是就是旧的session
+			ServletContext context = sre.getServletContext();
+			Integer todayFlow = (Integer) context.getAttribute("todayFlow");
+			if(todayFlow==null){
+				todayFlow = 1;
+			}else{
+				todayFlow ++;
+			}
+			//将今日流量绑定到ServletContext对象中
+			context.setAttribute("todayFlow",todayFlow);
+		}else{
+			;
+		}
+	}
+}
+
+<--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+//使用该监听器一定要在web.xml文件中进行如下的配置:
+
+<listener>
+ 	<listener-class>cn.itcast.bbs.listener.SessionScannerListener</listener-class>
+ </listener>
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+package cn.itcast.bbs.listener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+import cn.itcast.bbs.domain.User;
+
+public class SessionScannerListener implements HttpSessionListener,ServletContextListener {
+	private Timer timer = new Timer();
+	private List<HttpSession> sessionList = new ArrayList<HttpSession>();
+	//实例变量只创建一次
+	public SessionScannerListener(){
+		sessionList = Collections.synchronizedList(sessionList);
+	}
+	public void sessionCreated(HttpSessionEvent se) {
+		//取得该用户的HttpSession
+		HttpSession session = se.getSession();
+		synchronized (sessionList) {
+			sessionList.add(session);
+		}
+	}
+	public void sessionDestroyed(HttpSessionEvent se) {
+	}
+	public void contextDestroyed(ServletContextEvent sce) {
+	}
+	public void contextInitialized(ServletContextEvent sce) {
+		timer.schedule(new MyTimerTask(sessionList),0,1*1000);
+	}
+}
+class MyTimerTask extends TimerTask{
+	private List<HttpSession> sessionList;
+	public MyTimerTask(List<HttpSession> sessionList) {
+		this.sessionList = sessionList;
+	}
+	public void run() {
+		//当有HttpSession存在时，再迭代
+		int i=1;
+		System.out.println("run()"+i);
+				i++;
+		if(sessionList.size()>0){
+			ListIterator<HttpSession> it = sessionList.listIterator();
+			synchronized (sessionList) {
+				while (it.hasNext()) {
+					HttpSession session = it.next();
+					User user = (User) session.getAttribute("user");
+					//用户未按"安全退出"
+					if(user!=null){
+						int mid = (int) ((System.currentTimeMillis()-session.getLastAccessedTime())/1000);
+						if(mid > 10){
+							//将该HttpSession从集合中删除
+							it.remove();
+							//取得在线用户列表
+							List<String> usernameList = (List<String>) session.getServletContext().getAttribute("usernameList");
+							//取得用户名
+							String username = user.getUsername();
+							//从列表中删除该用户名
+							usernameList.remove(username);
+							//销毁当前用户的HttpSession
+							session.removeAttribute("user");
+							int j=1;
+							System.out.println("exit()"+j);
+							j++;
+						}
+					}else{
+						//用户已按"安全退出"
+					}
+				}
+			}
+		}
+	}
+}
+
+<=====================================================================================================================================================================>
+
+filter使用的完整范例:
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+//使用该过滤器一定要在web.xml文件中进行如下的配置:
+
+<filter>
+ 	<filter-name>IpAddressFilter</filter-name>
+ 	<filter-class>cn.itcast.bbs.filter.IpAddressFilter</filter-class>
+ </filter>
+ <filter-mapping>
+	<filter-name>IpAddressFilter</filter-name>
+	<url-pattern>/welcome.jsp</url-pattern> 
+ </filter-mapping> 	 
+
+//---------------------//------------------//--------------------//-----------------//--------------------//-------------------//----------------//------------------//
+
+package cn.itcast.bbs.filter;
+
+import java.io.IOException;
+import java.util.Calendar;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import cn.itcast.bbs.domain.Address;
+import cn.itcast.bbs.domain.Flow;
+import cn.itcast.bbs.service.BbsService;
+
+//过滤welcome.jsp页面
+public class IpAddressFilter implements Filter {
+	public void destroy() {
+	}
+	public void doFilter(
+			ServletRequest req, 
+			ServletResponse res,
+			FilterChain chain) throws IOException, ServletException {
+		try {
+			//接口强转
+			HttpServletRequest request = (HttpServletRequest) req;
+			HttpServletResponse response = (HttpServletResponse) res;
+			// 取得HttpSession对象
+			HttpSession session = request.getSession();
+			// 判段当前用户HttpSession中是否存在IP归属地信息
+			Address address = (Address) session.getAttribute("address");
+			// 如果没有
+			if(address == null){
+				// 取得IP地址
+				String ip = request.getRemoteAddr();
+				BbsService bbsService = new BbsService();
+				// 取得对应的归属地
+				address = bbsService.findAddressByIP(ip);
+				// 绑定到HttpSession中
+				session.setAttribute("address",address);
+			}
+			
+			ServletContext context = session.getServletContext();
+			Integer yesterdayFlow = (Integer) context.getAttribute("yesterdayFlow");
+			//第一次
+			if(yesterdayFlow==null){
+				BbsService bbsService = new BbsService();
+				//取得昨天日期
+				Calendar c = Calendar.getInstance();
+				c.add(Calendar.DATE,-1);
+				//取得昨日流量
+				Flow flow = bbsService.findFlowByDate(c.getTime());
+				if(flow==null){
+					context.setAttribute("yesterdayFlow",0);
+				}else{
+					context.setAttribute("yesterdayFlow",flow.getNum());
+				}
+			}
+			//发行资源
+			chain.doFilter(request,response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	public void init(FilterConfig filterConfig) throws ServletException {
+	}
+}
+
+<=====================================================================================================================================================================>
+
+登录表单判断类范例:
+
+package cn.itcast.bbs.form;
+
+import java.util.HashMap;
+import java.util.Map;
+import cn.itcast.bbs.domain.User;
+
+public class LoginForm {
+	private String username;
+	private String password;
+	private Map<String,String> errors = new HashMap<String,String>();
+	public boolean validate(User user){
+		boolean flag = false;
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+		if(
+			this.validateUsername(username) &
+			this.validatePassword(password)
+		){
+			flag = true;
+		}
+		return flag;
+	}
+	//验证用户名[必填+中文]
+	private boolean validateUsername(String username){
+		boolean flag = false;
+		if(username!=null && username.trim().length()>0){
+			if(username.matches("[\u4E00-\uFA29]+")){
+				flag = true;
+			}else{
+				this.errors.put("username","<font color='red'>用户名必须是中文</font>");
+			}
+		}else{
+			this.errors.put("username","<font color='red'>用户名必填</font>");
+		}
+		return flag;
+	}
+	//验证密码[必填+数字6位]
+	private boolean validatePassword(String password){
+		boolean flag = false;
+		if(password!=null && password.trim().length()>0){
+			if(password.matches("[0-9]{6}")){
+				flag = true;
+			}else{
+				this.errors.put("password","<font color='red'>密码必须是6位数字</font>");
+			}
+		}else{
+			this.errors.put("password","<font color='red'>密码必填</font>");
+		}
+		return flag;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+}
+
+<=====================================================================================================================================================================>
+
+注册表单判断类范例:
+
+package cn.itcast.bbs.form;
+
+import java.util.HashMap;
+import java.util.Map;
+import cn.itcast.bbs.domain.User;
+
+public class RegisterForm {
+	private String username;
+	private String password;
+	private String gender;
+	private String email;
+	private Map<String,String> errors = new HashMap<String,String>();
+	public boolean validate(User user){
+		boolean flag = false;
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+		this.gender = user.getGender();
+		this.email = user.getEmail();
+		if(
+			this.validateUsername(username) &
+			this.validatePassword(password)&
+			this.validateEmail(email)
+		){
+			flag = true;
+		}
+		return flag;
+	}
+	//验证用户名[必填+中文]
+	private boolean validateUsername(String username){
+		boolean flag = false;
+		if(username!=null && username.trim().length()>0){
+			if(username.matches("[\u4E00-\uFA29]+")){
+				flag = true;
+			}else{
+				this.errors.put("username","<font color='red'>用户名必须是中文</font>");
+			}
+		}else{
+			this.errors.put("username","<font color='red'>用户名必填</font>");
+		}
+		return flag;
+	}
+	//验证密码[必填+数字6位]
+	private boolean validatePassword(String password){
+		boolean flag = false;
+		if(password!=null && password.trim().length()>0){
+			if(password.matches("[0-9]{6}")){
+				flag = true;
+			}else{
+				this.errors.put("password","<font color='red'>密码必须是6位数字</font>");
+			}
+		}else{
+			this.errors.put("password","<font color='red'>密码必填</font>");
+		}
+		return flag;
+	}
+	//验证箱邮[必填+格式合法邮箱]
+	private boolean validateEmail(String email){
+		boolean flag = false;
+		if(email!=null && email.trim().length()>0){
+			if(email.matches("\\w+@\\w+(\\.\\w+)+")){
+				flag = true;
+			}else{
+				this.errors.put("email","<font color='red'>邮箱格式不合法</font>");
+			}
+		}else{
+			this.errors.put("email","<font color='red'>邮箱必填</font>");
+		}
+		return flag;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+}
+
+
+<=====================================================================================================================================================================>
+
+发送邮件类范例:
+
+ package cn.itcast.bbs.util;
+
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class MailUtil {
+	//发送邮件
+	public static void sendMail(String email,String username) throws Exception {
+		Properties props = new Properties();
+		props.put("mail.transport.protocol","smtp");
+		props.put("mail.host","127.0.0.1");
+		Session session = Session.getDefaultInstance(props);
+		Transport transport = session.getTransport();
+		transport.connect("aaa@zhaojun.com","123456");
+		Message message = createMessage(session,email,username);
+		Thread.sleep(10*1000);
+		transport.send(message);
+		transport.close();
+	}
+	//创建邮件
+	public static Message createMessage(Session session,String email,String username) throws Exception{
+		MimeMessage message = new MimeMessage(session);
+		//网站管理员
+		message.setFrom(new InternetAddress("aaa@zhaojun.com"));
+		message.setRecipient(RecipientType.TO,new InternetAddress(email));
+		message.setSubject("BBS论坛");
+		message.setContent("<font color='red'>恭喜"+username+",登录成功</font>","text/html;charset=UTF-8");
+		return message;
+	}
+}
+
+
+<=====================================================================================================================================================================>
+
+单向加密类范例:
+
+package cn.itcast.bbs.util;
+
+import java.security.MessageDigest;
+
+//基于MD5单向加密
+public class Demo3 {
+	private static String[] hex = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+	//将明文字符中以MD5方式加密后返回可读的十六进制数字符串
+	public static String encodeByMd5(String password) throws Exception{
+		MessageDigest md5 = MessageDigest.getInstance("md5");
+		byte[] results = md5.digest(password.getBytes());
+		return byteArrayToString(results);
+	}
+	//将byte[]转成String返回
+	private static String byteArrayToString(byte[] results){
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<results.length;i++){
+			//将每一位byte转发String
+			sb.append(byteToString(results[i]));
+		}
+		return sb.toString();
+	}
+	//将每一位byte转发String(核心算法)
+	private static String byteToString(byte b){
+		int n = b;
+		if(n < 0 ){
+			n = 256 + n ; 
+		}
+		//十六进制的第一位
+		int d1 = n / 16;
+		
+		//十六进制的第二位
+		int d2 = n % 16;
+		
+		//(十)  0-255 共256个
+		//(十六)0-FF
+		
+		return hex[d1] + hex[d2];
+	}
+}
+
+
+<=====================================================================================================================================================================>
+
+JDBC工具类范例:
+
+package cn.itcast.bbs.util;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public final class JdbcUtil {
+	private static ComboPooledDataSource dataSource;
+	static{
+		dataSource = new ComboPooledDataSource();
+	}
+	public static ComboPooledDataSource getDataSource() {
+		return dataSource;
+	}
+}
+
+<=====================================================================================================================================================================>
+
+
+
+
+
+
+
+
+
+
+
+

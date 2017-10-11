@@ -1,0 +1,24 @@
+#Copyright (c) http://www.apel.org
+#Mon Dec 07 16:43:42 GMT+08:00 2015
+<<<<<<< .mine
+test=0
+acquireIncrement = 10
+initialPoolSize = 10
+maxPoolSize = 200
+minPoolSize = 10
+maxStatements = 200
+
+#-----------------------------oracle.jdbc.OracleDriver---------------------------------
+M2UyNTllMjFlNTA4ZTMyM2UyOWJiNzk1MmZlMzMyMGMN=t+xUcv6ow8/MMKlDL6oV91akg8m1UUCH9VTpEfUzYcYzoV3DRey85Kq1DlNEPhZ27Ic3k0i+X1Y/aD5X9tu3LfkrVTdAScPhs2OX4sCqjIE899NU2C5zlhwkyLf8namr
+ZjllZTMxMjBmNDM1NTAwMGYyZmZlYWRlMGYwNzk0MWEN=qFu06q8jmSM5jrkNo/EB6glxfgrAYR1fXNiA32yGvFi0pZuxrXtwyUdCv/pLGij7wihqvkrMQbMQ5jNnnJmZIxwkyLf8namr
+MzRjYjI2MDZmYmRkZmJmNmFjY2E5MTRkOGQwMmM5MzIN=8jDXeWqMkusMRiBEzewXrCFAUIVvQz6V0Zy7ZWH1FBMXszNUNtCDaxwkyLf8namr
+ZTU2MWNkZTI0NGQ5YWVhMDZlMzgzZjhiMzI1MGY0OTUN=ktQ715xK/zC3/g9Bp/EWB/pT5Y65KDQF8HV37yPc1ihZML3opAcLh+UsmRrLUo4i
+M2VjZDMwZDJiODU0NDEwY2ZjZjNmZTU3OTFkYzQwMDMN=FDMmUE35fTfAqen2WYsMWU/PA8NQaM31oMfU0hh1plC0pZuxrXtwyUdCv/pLGij7p/BPhoeiXybCEirI84tSPmXk33meXxc8wmJGDyMCV9uNDEe7C5EVBRwkyLf8namr
+=======
+#-----------------------------oracle.jdbc.OracleDriver---------------------------------
+M2UyNTllMjFlNTA4ZTMyM2UyOWJiNzk1MmZlMzMyMGMN=t+xUcv6ow8/MMKlDL6oV91akg8m1UUCH9VTpEfUzYcYzoV3DRey85Kq1DlNEPhZ27Ic3k0i+X1Y/aD5X9tu3LfkrVTdAScPhs2OX4sCqjIE899NU2C5zlhwkyLf8namr
+ZjllZTMxMjBmNDM1NTAwMGYyZmZlYWRlMGYwNzk0MWEN=qFu06q8jmSM5jrkNo/EB6glxfgrAYR1fXNiA32yGvFi0pZuxrXtwyUdCv/pLGij7wihqvkrMQbMQ5jNnnJmZIxwkyLf8namr
+MzRjYjI2MDZmYmRkZmJmNmFjY2E5MTRkOGQwMmM5MzIN=8jDXeWqMkusMRiBEzewXrCFAUIVvQz6V0Zy7ZWH1FBMXszNUNtCDaxwkyLf8namr
+ZTU2MWNkZTI0NGQ5YWVhMDZlMzgzZjhiMzI1MGY0OTUN=ktQ715xK/zC3/g9Bp/EWB/pT5Y65KDQF8HV37yPc1ihZML3opAcLh+UsmRrLUo4i
+M2VjZDMwZDJiODU0NDEwY2ZjZjNmZTU3OTFkYzQwMDMN=FDMmUE35fTfAqen2WYsMWU/PA8NQaM31oMfU0hh1plC0pZuxrXtwyUdCv/pLGij7p/BPhoeiXybCEirI84tSPmXk33meXxc8wmJGDyMCV9uNDEe7C5EVBRwkyLf8namr
+>>>>>>> .r35108

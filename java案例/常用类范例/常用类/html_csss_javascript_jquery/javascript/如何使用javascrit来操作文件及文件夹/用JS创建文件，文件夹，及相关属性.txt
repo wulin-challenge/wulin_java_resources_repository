@@ -1,0 +1,173 @@
+    
+ 用JS创建文件，文件夹，及相关属性 .   .
+
+
+
+一、功能实现核心：FileSystemObject 对象  
+要在java-script中实现文件操作功能，主要就是依靠FileSystemobject对象。  
+二、FileSystemObject编程  
+使用FileSystemObject 对象进行编程很简单，一般要经过如下的步骤： 创建FileSystemObject对象、应用相关方法、访问对象相关属性 。  
+（一）创建FileSystemObject对象  
+创建FileSystemObject对象的  
+代码只要1行：  
+var fso = new ActiveXObject("Scripting.FileSystemObject");  
+上述代码执行后，fso就成为一个FileSystemObject对象实例。  
+（二）应用相关方法  
+创建对象实例后，就可以使用对象的相关方法了。比如，使用CreateTextFile方法创建一个文本文件：  
+var fso = new ActiveXObject("Scripting.FileSystemObject");  
+ var f1 = fso.createtextfile("c:\\myjstest.txt",true");  
+（三）访问对象相关属性  
+要访问对象的相关属性，首先要建立指向对象的句柄，这就要通过get系列方法实现：GetDrive负责获取驱动器信息，GetFolder负责获取文件夹信息，GetFile负责获取文件信息。比如，指向下面的代码后，f1就成为指向文件c:\test.txt的句柄：  
+var fso = new ActiveXObject("Scripting.FileSystemObject");  
+ var f1 = fso.GetFile("c:\\myjstest.txt");  
+然后，使用f1访问对象的相关属性。比如：  
+var fso = new ActiveXObject("Scripting.FileSystemObject");  
+ var f1 = fso.GetFile("c:\\myjstest.txt");  
+ alert("File last modified: " + f1.DateLastModified);  
+执行上面最后一句后，将显示c:\myjstest.txt的最后修改日期属性值。  
+但有一点请注意：对于使用create方法建立的对象，就不必再使用get方法获取对象句柄了，这时直接使用create方法建立的句柄名称就可以：  
+var fso = new ActiveXObject("Scripting.FileSystemObject");  
+ var f1 = fso.createtextfile("c:\\myjstest.txt",true");  
+ alert("File last modified: " + f1.DateLastModified);  
+三、操作驱动器（Drives）  
+使用FileSystemObject对象来编程操作驱动器（Drives）和文件夹（Folders）很容易，这就象在Windows文件浏览器中对文件进行交互操作一样，比如：拷贝、移动文件夹，获取文件夹的属性。  
+（一）Drives对象属性  
+Drive对象负责收集系统中的物理或逻辑驱动器资源内容，它具有如下属性：  
+l TotalSize：以字节（byte）为单位计算的驱动器大小。  
+l AvailableSpace或FreeSpace：以字节（byte）为单位计算的驱动器可用空间。  
+l DriveLetter：驱动器字母。  
+l DriveType：驱动器类型，取值为：removable（移动介质）、fixed（固定介质）、network（网络资源）、CD-ROM或者RAM盘。  
+l SerialNumber：驱动器的系列码。  
+l FileSystem：所在驱动器的文件系统类型，取值为FAT、FAT32和NTFS。  
+l IsReady：驱动器是否可用。  
+l ShareName：共享名称。  
+l VolumeName：卷标名称。  
+l Path和RootFolder：驱动器的路径或者根目录名称。  
+（二）Drive对象操作例程  
+下面的例程显示驱动器C的卷标、总容量和可用空间等信息：  
+var fso, drv, s ="";  
+ fso = new ActiveXObject("Scripting.FileSystemObject");  
+ drv = fso.GetDrive(fso.GetDriveName("c:\\"));  
+ s += "Drive C:" + " - ";  
+s += drv.VolumeName + "\n";  
+ s += "Total Space: " + drv.TotalSize / 1024;  
+ s += " Kb" + "\n";  
+ s += "Free Space: " + drv.FreeSpace / 1024;  
+ s += " Kb" + "\n";  
+ alert(s);  
+四、操作文件夹（Folders）  
+涉及到文件夹的操作包括创建、移动、删除以及获取相关属性。  
+Folder对象操作例程 :  
+下面的例程将练习获取父文件夹名称、创建文件夹、删除文件夹、判断是否为根目录等操作：  
+var fso, fldr, s = "";  
+ // 创建FileSystemObject对象实例  
+fso = new ActiveXObject("Scripting.FileSystemObject");  
+ // 获取Drive 对象  
+fldr = fso.GetFolder("c:\\");  
+ // 显示父目录名称  
+alert("Parent folder name is: " + fldr + "\n");  
+ // 显示所在drive名称  
+alert("Contained on drive " + fldr.Drive + "\n");  
+ // 判断是否为根目录  
+if (fldr.IsRootFolder)  
+ alert("This is the root folder.");  
+ else  
+ alert("This folder isn't a root folder.");  
+ alert("\n\n");  
+ // 创建新文件夹  
+fso.CreateFolder ("C:\\Bogus");  
+ alert("Created folder C:\\Bogus" + "\n");  
+ // 显示文件夹基础名称，不包含路径名  
+alert("Basename = " + fso.GetBaseName("c:\\bogus") + "\n");  
+ // 删除创建的文件夹  
+fso.DeleteFolder ("C:\\Bogus");  
+ alert("Deleted folder C:\\Bogus" + "\n");  
+五、操作文件（Files）  
+对文件进行的操作要比以上介绍的驱动器（Drive）和文件夹（Folder）操作复杂些，基本上分为以下两个类别：对文件的创建、拷贝、移动、删除操作和对文件内容的创建、添加、删除和读取操作。下面分别详细介绍。  
+（一）创建文件  
+一共有3种方法可用于创建一个空文本文件，这种文件有时候也叫做文本流（text stream）。  
+第一种是使用CreateTextFile方法。代码如下：  
+var fso, f1;  
+ fso = new ActiveXObject("Scripting.FileSystemObject");  
+ f1 = fso.CreateTextFile("c:\\testfile.txt", true);  
+第二种是使用OpenTextFile方法，并添加上ForWriting属性，ForWriting的值为2。代码如下：  
+var fso, ts;  
+ var ForWriting= 2;  
+ fso = new ActiveXObject("Scripting.FileSystemObject");  
+ ts = fso.OpenTextFile("c:\\test.txt", ForWriting, true);  
+第三种是使用OpenAsTextStream方法，同样要设置好ForWriting属性。代码如下：  
+var fso, f1, ts;  
+ var ForWriting = 2;  
+ fso = new ActiveXObject("Scripting.FileSystemObject");  
+ fso.CreateTextFile ("c:\\test1.txt");  
+ f1 = fso.GetFile("c:\\test1.txt");  
+ ts = f1.OpenAsTextStream(ForWriting, true);  
+（二）添加数据到文件  
+当文件被创建后，一般要按照“打开文件－>填写数据－>关闭文件”的步骤实现添加数据到文件的目的。  
+打开文件可使用FileSystemObject对象的OpenTextFile方法，或者使用File对象的OpenAsTextStream方法。  
+填写数据要使用到TextStream对象的Write、WriteLine或者WriteBlankLines方法。在同是实现写入数据的功能下，这3者的区别在于：Write方法不在写入数据末尾添加新换行符，WriteLine方法要在最后添加一个新换行符，而WriteBlankLines则增加一个或者多个空行。  
+关闭文件可使用TextStream对象的Close方法。  
+（三）创建文件及添加数据例程  
+下面的代码将创建文件、添加数据、关闭文件几个步骤结合起来进行应用：  
+var fso, tf;  
+ fso = new ActiveXObject("Scripting.FileSystemObject");  
+ // 创建新文件  
+tf = fso.CreateTextFile("c:\\testfile.txt", true);  
+ // 填写数据，并增加换行符  
+tf.WriteLine("Testing 1, 2, 3.") ;  
+ // 增加3个空行  
+tf.WriteBlankLines(3) ;  
+ // 填写一行，不带换行符  
+tf.Write ("This is a test.");  
+ // 关闭文件  
+tf.Close();  
+（四）读取文件内容  
+从文本文件中读取数据要使用TextStream对象的Read、ReadLine或ReadAll 方法。Read方法用于读取文件中指定数量的字符； ReadLine方法读取一整行，但不包括换行符；ReadAll方法则读取文本文件的整个内容。读取的内容存放于字符串变量中，用于显示、分析。  
+
+方法或者属性 描述  
+BuildPath()  
+生成一个文件路径  
+CopyFile() 复制文件  
+CopyFolder() 复制目录  
+CreateFolder() 创建新目录  
+CreateTextFile() 生成一个文件  
+DeleteFile() 删除一个文件  
+DeleteFolder() 删除一个目录  
+DriveExists() 检验盘符是否存在  
+Drives 返回盘符的集合  
+FileExists() 检验文件是否存在  
+FolderExists 检验一个目录是否存在  
+GetAbsolutePathName() 取得一个文件的绝对路径  
+GetBaseName() 取得文件名  
+GetDrive() 取得盘符名  
+GetDriveName() 取得盘符名  
+GetExtensionName() 取得文件的后缀  
+GetFile() 生成文件对象  
+GetFileName() 取得文件名  
+GetFolder() 取得目录对象  
+GetParentFolderName 取得文件或目录的父目录名  
+GetSpecialFolder() 取得特殊的目录名  
+GetTempName() 生成一个临时文件对象  
+MoveFile() 移动文件  
+MoveFolder() 移动目录  
+OpenTextFile() 打开一个文件流  
+
+f.Files //目录下所有文件集合  
+f.attributes //文件属性  
+Case 0 Str="普通文件。没有设置任何属性。 "  
+Case 1 Str="只读文件。可读写。 "  
+Case 2 Str="隐藏文件。可读写。 "  
+Case 4 Str="系统文件。可读写。 "  
+Case 16 Str="文件夹或目录。只读。 "  
+Case 32 Str="上次备份后已更改的文件。可读写。 "  
+Case 1024 Str="链接或快捷方式。只读。 "  
+Case 2048 Str=" 压缩文件。只读。"  
+f.Datecreated // 创建时间  
+f.DateLastAccessed //上次访问时间  
+f.DateLastModified // 上次修改时间  
+f.Path //文件路径  
+f.Name //文件名称  
+f.Type //文件类型  
+f.Size // 文件大小（单位：字节）  
+f.ParentFolder //父目录  
+f.RootFolder // 根目录  

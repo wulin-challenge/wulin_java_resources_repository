@@ -1,0 +1,1 @@
+http://localhost:8080/openPicture/image/IMG_0073.JPG

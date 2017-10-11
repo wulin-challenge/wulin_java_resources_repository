@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>紫光扫描仪网络控件</title>
+</head>
+
+<body>
+
+<SCRIPT LANGUAGE="Javascript" type = "text/javascript">
+function Load()
+{
+   var tt = DOcxtest1.LoadDll();
+   //if (tt < 0)
+  	alert(tt);
+}
+
+function Scan(nScan)
+{
+  //debugger;
+  //DOcxtest1.SelectScanner("Uniscan F25A");
+  //DOcxtest1.SelectScanner("Uniscan B6800");
+
+  //DOcxtest1.SetAutoLevels(0);
+  var ts;
+  ts = DOcxtest1.EnConnect(1);
+  //alert(ts);
+  
+  var rt;
+  rt = DOcxtest1.SetScannerSource(1);
+  //alert(rt);
+
+  DOcxtest1.SetScannerImageType(2);
+
+  //alert(tcf);
+  //DOcxtest1.SetThreshold(128);
+  //DOcxtest1.SetScannerBright(-100); 
+  //DOcxtest1.SetScannerContrast(0);
+  //DOcxtest1.SetScannerScanRgn(0,0,210,297);
+  //DOcxtest1.SetScanInvert(0);
+  DOcxtest1.SetScannerDPI(200);
+  DOcxtest1.SetScanner(0,1,70,1,0);
+
+  DOcxtest1.SetCoverFile(1);
+
+
+  var tt = DOcxtest1.StartScanner("C:\\", "image");
+
+  // if (tt < 0)
+  //alert(tt);
+  //var fn = DOcxtest1.GetFileName();
+  //alert(fn);
+  //var ffn = DOcxtest1.GetFullFileName();
+  //alert(ffn);
+  //var base = DOcxtest1.FileToBase64(ffn);
+  //alert(base);
+
+  //var bf = DOcxtest1.Base64ToFile("C:\\image1.jpg","C:\\base.txt");
+  //alert(bf);
+  
+  var ImageNumber = DOcxtest1.GetImageNumber();
+  alert(ImageNumber);
+
+  //DOcxtest1.RotateImage("C:\\1.bmp",90);
+
+  DOcxtest1.DisConnect();
+}
+
+
+function SelectScanner()
+{
+  var ts;
+  ts = DOcxtest1.SelectScanner("");
+ 
+  //alert(ts);
+}
+
+function Rotate()
+{
+  var ts;
+  ts = DOcxtest1.RotateImage("C:\\1.jpg",90);
+  alert(ts);
+}
+
+</SCRIPT>
+
+<script   language= "JavaScript "   for= "DOcxtest1"   Event= "PreScanEveryPage(filename, nIndex)"> 
+var ss = "c:\\image";
+filename = ss + nIndex + ".jpg";
+alert(filename); 
+
+DOcxtest1.SetOCXSize(1,1);
+</script> 
+
+<table width="1000" border="0" cellpadding="0" cellspacing="0" bgcolor="" >
+  <!--DWLayoutTable-->
+ <tr>
+    <td width="44" height="28">&nbsp;</td></tr>
+  <tr>
+<td width="44" height="28">
+
+
+</td>
+    <td height="28">　</td>
+    <td align="center" valign="top">
+    <input  type="button"  style=" width:85px; height:45px; " name="btnScan" value="加载" onclick="Load();">          </td>
+    <td width="44" height="28">&nbsp;</td>
+    <td width="86" align="center" valign="top">
+    <input  type="button"  style=" width:85px; height:45px; " name="btnScan" value="扫描" onclick="Scan(0);">  
+    </td>
+     <td width="86" valign="top">
+    <input  type="button"  style=" width:85px; height:45px; " name="btnuperaddition" value="选择设备" onclick="SelectScanner();">    </td>
+     <td width="86" valign="top">
+    <td width="86" align="center" valign="top">
+    <input  type="button"  style=" width:85px; height:45px; " name="btnTest" value="旋转" onclick="Rotate();">  
+    </td>
+  </tr>
+
+
+<OBJECT id=DOcxtest1 classid=clsid:677C2EAE-057E-4900-97ED-1520F080942D>
+
+<PARAM NAME="_Version" VALUE="65536">
+
+<PARAM NAME="_ExtentX" VALUE="17463">
+
+<PARAM NAME="_ExtentY" VALUE="17727">
+
+<PARAM NAME="_StockProps" VALUE="0">
+</OBJECT>
+<SCRIPT>
+
+DOcxtest1.SetOCXSize(1,1);
+
+</SCRIPT>
+
+
+</table>
+
+
+
+</body>
+
+ 
+
+</html>

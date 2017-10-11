@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.6.js"></script>
+  </head>
+  <body>
+	<p>
+		<img src="../images/zgl.jpg"/>
+	</p>  	
+	<div>
+		<!-- 加载完毕 -->
+	</div>
+	<script type="text/javascript">
+		//$("p").first().show(5000,function(){
+		//	$("div").first().html("<font color='red'>加载完毕</font>");
+		//});
+		
+		$("p").first().hide(5000,function(){
+			$("div").first().html("<font color='red'>隐藏完毕</font>");
+		});
+	</script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,15 @@
+#body1{
+	background-color:#0000FF;
+}
+
+#firstDiv{
+	border-style :solid ;
+	border-color:#CC00CC;
+	border-width :3px;
+	background-color:green;
+	color:red;
+}
+
+#secondDiv{
+	color:#CC00CC;
+}

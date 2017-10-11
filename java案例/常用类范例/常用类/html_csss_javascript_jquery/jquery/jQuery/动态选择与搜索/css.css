@@ -1,0 +1,96 @@
+#mainFrame{
+	border-style:solid;
+	border-width:1px;
+	border-color:blue;
+	width:1000px;
+	position:relative;
+	top:100px;
+	left:150px;
+}
+
+#queryFrame{
+	height:40px;
+	position:relative;
+	top:10px;
+	left:10px;
+}
+
+#tableFrame{
+	border-style:solid;
+	border-width:1px;
+	border-color:blue;
+}
+
+#tableHeader{
+	height:40px;
+}
+
+#tableHeaderSpan1{
+	position:relative;
+	top:10px;
+	left:100px;
+}
+
+#tableHeaderSpan2{
+	position:relative;
+	top:10px;
+	left:400px;
+}
+
+#tableHeaderSpan3{
+	position:relative;
+	top:10px;
+	left:700px;
+}
+
+.conputerArea1{
+	background-color:black;
+	color:white;
+}
+
+.acerTable{
+	width:1000px;
+	border-collapse:collapse;
+}
+
+.allCheckBox{
+	width:50px;
+	
+}
+
+#bottontr{
+	background-color:#66CCCC;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

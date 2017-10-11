@@ -1,0 +1,126 @@
+ 1 jQuery快速入门
+   1)服务端和客户端有三种方式传递数据
+     a)HTML(无需与其它应用程序共享数据的情况下）
+     b)XML(需与其它应用程序共享数据，尤其是在不同的系统中，平台中，同时内容较多的情况下)
+     c)JSON(需与其它应用程序共享数据，同时内容不多的情况下）	
+   2)为了将JS代码简化，同时要达到业务的需要，  
+   3）jQuery的目标是做更多事情，写更少代码
+   4）jQuery是一个开源，免费的JavaScript库，有不同的版本，真正上线运行时，可以使用min版本。
+   5)jQuery开发步骤：
+     a)通过<script/>导入jquery的js类库	   
+     b)使用$("#id")，通过id来定位html元素
+     c)通过val()和html()分别取得html元素的值
+       注意：val()和html()是能由jQuery对象调用，不能由dom对象调用
+	     val()---value属性
+	     html()---innerHMTL属性
+   6)将dom对象，通过$()转换，就变成了jquery对象，dom对象能做的情况，jquery对象也能，只是方式不一样，
+     反之，jquery对象能做的事情，dom不一定行 
+
+*2 DOM对象和jQuery对象相互转换
+   1)jquery对象是一个数组对象，下标从0开始
+   2）dom->jquery，通过$(dom对象)->jquery对象
+   3)jquery->dom，通过
+	a)$div[index下标从0开始]
+	b)$div.get(index下标从0开始)
+   
+*3 DOM操作与jQuery操作对错误的处理方式比较
+   1)使用三种方式定位html中的元素
+     a)通过ID
+	$("#ID")
+     b)通过标签名
+        $("标签名")
+     c)通过样式名
+	$(".样式名")
+   2)dom中，需要判段查找到的元素是否为null，
+     而jquery中，无需判段，因为jquery本身内置判段器，在查找不到的情况下，返回"undefined" 
+    
+*4 jQuery九类选择器
+   1)基本选择器
+	#id/标签名/样式名/选择器A,选择器B			
+   2)层次选择器
+       *form input：查询form下所有input元素，含有后代关系
+	form>input：查询form下所有input元素，有有父子关系，没有后代关系
+	form+input：查询与form同级的第一个input元素，是兄弟关系
+	form~input：查询与form同级的所有input元素，是兄弟关系
+   3)增强型基本选择器
+	:first：查询第一个元素
+	:last：查询最后个元素
+	:checked：查询选中的复选框
+	:not(:checked)：查询未选中的复选框
+	:even：偶数
+	:odd：奇数
+	:eq()：索引从0开始
+	:gt():大于索引号
+	:lt()：小于索引号
+	:header：查询所有<h1/2/3/4/5/6>标签
+	 .css("key","value")为查询到的所有标签添加CSS样式
+    4)内容选择器
+	:contains('john')：表示包含指定字符串的标签，字符串大小写敏感
+	:empty：表示查询空标签的元素
+	:has('p')：表示查询有子元素的元素
+	 .addClass("样式名")：为查询到的所有标签添加样式
+	:parent：表示查询非空标签
+    5)可见性选择器	
+	:hidden：表示查询所有隐蔽的标签
+	:visible：表示查询所有显示的标签
+		或:not(:hidden)
+    6)属性选择器
+	div[id]：表示查询含有id属性的div元素
+	input[name='newsletter']：表示查询含有name属性，且其值是"newsletter"的input元素
+	input[name!='newsletter：表示查询含有name属性，且其值不是"newsletter"的input元素
+	input[name^='newsletter：表示查询含有name属性，且其值以"news"开头的input元素
+	"input[name$='letter'：表示查询含有name属性，且其值以"letter"结尾的input元素
+	input[name*='news']：：表示查询含有name属性，且其包含"news"的input元素
+	input[id][name$='letter']：表示查询含有id属性，且含有name属性，其值以"letter"字符串结束的input元素  
+    7)子元素选择器
+	:first-child：表示查询第一个子元素
+	:last-child：表示查询最后一个子元素
+	:only-child:表示查询只有一个子元素的元素
+	:nth-child(编号从1开始)，表示查询指定编号的元素	
+    8)表单选择器
+	:input：查找所有input元素的个数，注：包含所有input,textarea,select和button元素
+	:text
+	:password
+	:radio
+	:checkbox
+	:file
+	:submit
+	:reset
+	:image
+	:file
+     9)表单对象属性
+	:enabled：表示查询可用的元素
+	:disabled：表示查询不可用的元素
+	:checked：表示查询选中的复选/单选框的元素
+	:selected：表示查询选中的下拉框元素
+	
+*5 jQuery中DOM常用方法或属性
+   1)val()：取得标签中value属性的值
+   2)html()：取得标签内的内容
+   3)size()或length：取得数组的长度
+   4)each()：该方法必须由jQuery对象调用（即数组对象），each(function)方法，会自动将数组中的每个元素自动调用
+     function函数
+   5)click(function)
+   6)dblclick(function)
+   ... ...
+   7)父.append(子)，子元素位于父元素之后，但依然是父子关系 
+   8)父.prepend(子)，子元素位于父元素之前，但依然是父子关系 
+   9)text()：取得标签的内容，优先考虑html()方法
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

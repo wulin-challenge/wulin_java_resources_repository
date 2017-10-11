@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>json_3.html</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+  	<script type="text/javascript">
+		var p = {
+			"province1":[
+				{city:"广州"},
+				{city:"佛山"},
+				{city:"深圳"}
+			],
+			"province2":[
+				{city:"长沙"},
+				{city:"株洲"}
+			]
+		};
+		window.alert(p.province1[2].city);
+		window.alert(p.province2[1].city);
+  	</script>
+  </body>
+</html>

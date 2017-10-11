@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>  </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body{background:#ccc;}
+.block{position:absolute;left:0;top:100px;border:1px solid #000;background:red;width:30px;height:30px;}
+#google{width:300px;height:300px;border:2px inset #fff;background:#fff;position:relative;overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="google"><div id="main" class="block"></div></div>
+</body>
+<script type="text/javascript">
+//<![CDATA[
+function Drag(title,body,range){
+    var w=window,win=body||title,x,y,_left,_top,range=range||function(x){return x};
+    title.style.cursor='move';
+    title.onmousedown=function (e){
+        e=e||event;
+        x=e.clientX,y=e.clientY,_left=win.offsetLeft,_top=win.offsetTop;
+        this.ondragstart=function(){return false};
+        document.onmousemove=e_move;
+        document.onmouseup=undrag
+    };
+    function e_move(e){
+        e=e||event;
+        var cl=range(_left+e.clientX-x,'x'),ct=range(_top+e.clientY-y,'y');
+        win.style.left=cl+'px';
+        win.style.top=ct+'px';
+        w.getSelection?w.getSelection().removeAllRanges():
+            document.selection.empty();        
+    };
+    function undrag(){this.onmousemove=null};
+};
+
+function $(x){return typeof x=='string'?document.getElementById(x):x};
+var google=$("google"),main=$('main');
+var max={
+    x:google.offsetWidth-main.offsetWidth-4,
+    y:google.offsetHeight-main.offsetHeight-4
+}
+Drag(
+    main,
+    false,
+    function(x,type){return Math.max(0,Math.min(max[type],x))}
+)
+ //]]>
+</script>
+</html>

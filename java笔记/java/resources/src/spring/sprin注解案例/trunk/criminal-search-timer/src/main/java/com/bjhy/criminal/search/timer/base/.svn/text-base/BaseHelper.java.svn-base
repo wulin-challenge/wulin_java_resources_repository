@@ -1,0 +1,223 @@
+package com.bjhy.criminal.search.timer.base;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.springframework.util.StringUtils;
+
+import com.bjhy.criminal.search.timer.domain.JcsjJdbcTemplate;
+
+/**
+ * 同步工具类
+ * @author 吴波
+ *
+ */
+public class BaseHelper {
+	
+
+	
+	/**
+	 * 数据同步的静态方法
+	 * @param fromTemplate
+	 * @param toTemplate
+	 * @param toTableName
+	 * @param fromSql
+	 */
+	public static void dataSynchronization(JcsjJdbcTemplate fromTemplate,JcsjJdbcTemplate toTemplate,String toTableName,String fromSql){
+		List<Map<String,Object>> dataList = fromTemplate.queryForList(fromSql);
+		BaseHelper bh = new BaseHelper();
+		try {
+			bh.update(toTemplate, toTableName, dataList);
+			System.out.println("监狱名称:"+fromTemplate.getConnectConfig().getPrisonName()+
+					" , 监狱编号 : "+fromTemplate.getConnectConfig().getPrisonNumber()+
+					" , 同步到表  : "+toTableName+
+					" 时 [同步成功] !!");
+		} catch (Exception e) {
+			System.err.println("监狱名称:"+fromTemplate.getConnectConfig().getPrisonName()+
+					" , 监狱编号 : "+fromTemplate.getConnectConfig().getPrisonNumber()+
+					" , 同步到表  : "+toTableName+
+					" 时 [同步失败] !!");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 数据同步的静态方法,带监狱名称与监狱编号
+	 * @param fromTemplate
+	 * @param toTemplate
+	 * @param toTableName
+	 * @param fromSql
+	 */
+	public static void dataSynchronizationDelete(JcsjJdbcTemplate fromTemplate,JcsjJdbcTemplate toTemplate,String toTableName,String fromSql){
+		List<Map<String,Object>> dataList = fromTemplate.queryForList(fromSql);
+		BaseHelper bh = new BaseHelper();
+		try {
+			if(StringUtils.isEmpty(fromTemplate.getConnectConfig().getPrisonNumber())){
+				System.err.println("监狱名称:"+fromTemplate.getConnectConfig().getPrisonName()+
+						" , 监狱编号 : "+fromTemplate.getConnectConfig().getPrisonNumber()+
+						" , 同步到表  : "+toTableName+
+						" 时 [同步失败] !!");
+				System.err.println("原因 : 监狱编号为空!!");
+			}else{
+				String deleteSql = "DELETE FROM "+toTableName+" WHERE jybh=?";
+				toTemplate.update(deleteSql, new Object[]{fromTemplate.getConnectConfig().getPrisonNumber()});
+				
+				bh.update(toTemplate, toTableName, 
+						fromTemplate.getConnectConfig().getPrisonName(),
+						fromTemplate.getConnectConfig().getPrisonNumber(),
+						dataList);
+				System.out.println("监狱名称:"+fromTemplate.getConnectConfig().getPrisonName()+
+						" , 监狱编号 : "+fromTemplate.getConnectConfig().getPrisonNumber()+
+						" , 同步到表  : "+toTableName+
+						" 时 [同步成功] !!");
+			}
+		} catch (Exception e) {
+			System.err.println("监狱名称:"+fromTemplate.getConnectConfig().getPrisonName()+
+					" , 监狱编号 : "+fromTemplate.getConnectConfig().getPrisonNumber()+
+					" , 同步到表  : "+toTableName+
+					" 时 [同步失败] !!");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 将数据同步到toTableName中
+	 * @param toTemplate
+	 * @param toTableName
+	 * @param dataList
+	 */
+	@SuppressWarnings("unchecked")
+	private void update(JcsjJdbcTemplate toTemplate,String toTableName,List<Map<String,Object>> dataList)throws Exception{
+		List<Map<String,Object>> insertList = this.getInsertSqlAndParams(toTableName, dataList);
+		for (Map<String, Object> map : insertList) {
+			String sql = (String) map.get("sql");
+		
+			List<Object> params = (List<Object>) map.get("params");
+			toTemplate.update(sql, params.toArray());
+		}
+	}
+	
+	/**
+	 * 将数据同步到toTableName中,带监狱名称与监狱编号
+	 * @param toTemplate
+	 * @param toTableName
+	 * @param dataList
+	 */
+	@SuppressWarnings({ "unchecked"})
+	private void update(JcsjJdbcTemplate toTemplate,String toTableName,String jymc,String jybh,List<Map<String,Object>> dataList)throws Exception{
+		List<Map<String,Object>> insertList = this.getInsertSqlAndParams(toTableName,jymc,jybh,dataList);
+		for (Map<String, Object> map : insertList) {
+			String sql = (String) map.get("sql");
+			List<Object> params = (List<Object>) map.get("params");
+			toTemplate.update(sql, params.toArray());
+		}
+	}
+	
+	/**
+	 * 得到insert的sql与params
+	 * @param toTableName
+	 * @param dataList
+	 * @return
+	 */
+	private List<Map<String,Object>> getInsertSqlAndParams(String toTableName,List<Map<String,Object>> dataList)throws Exception{
+		List<Map<String,Object>> insertList = new ArrayList<Map<String,Object>>();
+		for (Map<String, Object> map : dataList) {
+			String sql = "";
+			boolean isFirst = true;
+			StringBuffer insert = new StringBuffer();
+			StringBuffer values = new StringBuffer();
+			List<Object> params = new ArrayList<Object>();
+			Map<String,Object> row = new HashMap<String,Object>();
+			Set<Entry<String,Object>> entrySet = map.entrySet();
+			insert.append("INSERT INTO "+toTableName+"(");
+			values.append("VALUES(");
+			for (Entry<String, Object> entry : entrySet) {
+				if(isFirst){
+					insert.append(entry.getKey());
+					values.append("?");
+					params.add(entry.getValue());
+					isFirst = false;
+				}else{
+					insert.append(","+entry.getKey());
+					values.append(",?");
+					params.add(entry.getValue());
+				}
+			}
+			insert.append(") ");
+			values.append(")");
+			sql = insert.toString()+values.toString();
+			row.put("sql", sql);
+			row.put("params", params);
+			insertList.add(row);
+		}
+		
+		return insertList;
+	}
+	
+	/**
+	 * 得到insert的sql与params,带监狱名称与监狱编号
+	 * @param toTableName
+	 * @param dataList
+	 * @return
+	 */
+	private List<Map<String,Object>> getInsertSqlAndParams(String toTableName,String jymc,String jybh,List<Map<String,Object>> dataList)throws Exception{
+		List<Map<String,Object>> insertList = new ArrayList<Map<String,Object>>();
+		for (Map<String, Object> map : dataList) {
+			String sql = "";
+			boolean isFirst = true;
+			StringBuffer insert = new StringBuffer();
+			StringBuffer values = new StringBuffer();
+			List<Object> params = new ArrayList<Object>();
+			Map<String,Object> row = new HashMap<String,Object>();
+			Set<Entry<String,Object>> entrySet = map.entrySet();
+			insert.append("INSERT INTO "+toTableName+"(jymc,jybh,");
+			values.append("VALUES(?,?,");
+			for (Entry<String, Object> entry : entrySet) {
+				if(isFirst){
+					if("jymc".equalsIgnoreCase(entry.getKey().trim())){
+						continue;
+					}
+					if("jybh".equalsIgnoreCase(entry.getKey().trim())){
+						continue;
+					}
+					params.add(jymc);
+					params.add(jybh);
+					insert.append(entry.getKey());
+					values.append("?");
+					params.add(entry.getValue());
+					isFirst = false;
+				}else{
+					insert.append(","+entry.getKey());
+					values.append(",?");
+					params.add(entry.getValue());
+				}
+			}
+			insert.append(") ");
+			values.append(")");
+			sql = insert.toString()+values.toString();
+			row.put("sql", sql);
+			row.put("params", params);
+			insertList.add(row);
+		}
+		
+		return insertList;
+	}
+	
+	/**
+	 * 开启一个线程
+	 * @param br
+	 */
+	public static void startRun(BaseRunnable br){
+		Thread thread = new Thread(br);
+		thread.start();
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}

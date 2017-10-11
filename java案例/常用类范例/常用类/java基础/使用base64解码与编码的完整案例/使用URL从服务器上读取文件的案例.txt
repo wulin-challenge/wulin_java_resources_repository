@@ -1,0 +1,29 @@
+	System.out.println("Start");
+	try {
+	  //  URL url = new URL("http://ww4.sinaimg.cn/large/6592c2e0jw1eqnjtyr98ej20f00qot9t.jpg");
+		URL url = new URL("http://localhost:8888/signature1/1001.pdf");
+
+		InputStream inputStream = url.openStream();
+
+		File file = new File("D:\\s.pdf");
+		// FileOutputStream继承自抽象类OutPutStream 实例化了write方法
+		FileOutputStream fileOutputStream = new FileOutputStream(file);
+		// 接收缓冲
+		byte[] bytes = new byte[0x400];
+		int count = inputStream.read(bytes);
+		do {
+			// 从bytes的第0个字节开始，把count个字节写到文件里
+			fileOutputStream.write(bytes, 0, count);
+			// 把数据从url读出count个字节，保存在bytes
+			count = inputStream.read(bytes);
+		} while (count != -1);// 如果inputStream中的数据全部读完了，则count为-1
+
+		inputStream.close();
+		fileOutputStream.close();
+
+	} catch (IOException e) {
+		e.printStackTrace();
+		System.out.println("IOException");
+	}
+
+	System.out.println("The End");

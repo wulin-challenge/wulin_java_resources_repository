@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="openPicture"
+  id="myeclipse.1418548217646"
+  context-root="/openPicture"
+  j2ee-spec="5.0"
+  archive="openPicture.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

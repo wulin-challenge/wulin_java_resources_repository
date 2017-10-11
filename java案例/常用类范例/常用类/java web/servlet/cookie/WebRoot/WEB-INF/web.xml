@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+  <servlet>
+  	<servlet-name>writeCookie</servlet-name>
+  	<servlet-class>cn.scxh.testCookie.WriterCookieServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>writeCookie</servlet-name>
+  	<url-pattern>/writeCookie</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>readCookieServlet</servlet-name>
+  	<servlet-class>cn.scxh.testCookie.ReadCookieServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>readCookieServlet</servlet-name>
+  	<url-pattern>/readCookieServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>deleteCookieServlet</servlet-name>
+  	<servlet-class>cn.scxh.testCookie.DeleteCookieServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>deleteCookieServlet</servlet-name>
+  	<url-pattern>/deleteCookieServlet</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

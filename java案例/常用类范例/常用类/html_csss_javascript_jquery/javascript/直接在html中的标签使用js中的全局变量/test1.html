@@ -1,0 +1,20 @@
+<html>
+<body>
+<head><script type="text/javascript" src="mytest.js"></script></head>
+<input type="text" id="clock" size="35" />
+<script language=javascript>
+var int=self.setInterval("clock()",50)
+var j = 23;
+function clock()
+  {
+  var t=new Date()
+  document.getElementById("clock").value=t
+  }
+  function test1(i){
+	alert(i);
+  }
+</script>
+<button onclick="int=window.clearInterval(int)">Stop interval</button>
+<button onclick="test1(t)">test</button>
+</body>
+</html>

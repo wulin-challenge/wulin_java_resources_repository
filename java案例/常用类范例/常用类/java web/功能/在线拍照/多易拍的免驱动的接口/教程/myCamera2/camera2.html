@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script type="text/javascript" src="camera2.js"></script>
+	</head>
+	<body onload="initialize()" style="background-color: #C0C0C0;">
+    <div style="clear: both; width: 640px; height: 440px;">
+        <object id="VideoInputCtl" classid="CLSID:30516390-004F-40B9-9FC6-C9096B59262E" style="width: 100%; height: 100%;"></object>
+    </div>
+	<input id="FileName" type="text" value="D:\TEST.jpg" style="width: 300px">
+    <input id="GrabImage" type="button" value="Grab" onclick="grabimage()" style="width: 60px" />
+    <br />
+	 Rotate:
+    <input id="Rotate0" type="radio" onclick="rotateangle(0)" />0
+    <input id="Rotate90" type="radio" onclick="rotateangle(90)" />90
+    <input id="Rotate180" type="radio" onclick="rotateangle(180)" />180
+    <input id="Rotate270" type="radio" onclick="rotateangle(270)" />270
+	<br />
+	 Base64:
+    <input id="GrabBase64" type="button" value="GrabBase64" onclick="grabbase64()" style="width: 120px" />
+    <textarea id="Base64Text" readonly="readonly" style="height: 120px; width: 480px;"></textarea>
+	<img id="Base64Image" src="data:image" style="height: 120px; width: 160px;"/>
+     <br />
+	   GrabToPdf:
+    <input id="PdfFile" type="text" value="D:\TEST.pdf" style="width: 300px">
+    <input id="GrabToPdf" type="button" value="GrabToPdf" onclick="grabtopdf()" style="width: 60px" />
+    <br>
+	
+</body>
+</html>

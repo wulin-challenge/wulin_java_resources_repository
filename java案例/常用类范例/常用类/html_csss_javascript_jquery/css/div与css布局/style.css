@@ -1,0 +1,166 @@
+body {font:12px Tahoma;margin:0px;text-align:center;background:#FFF;}
+
+a:link,a:visited {font-size:12px;text-decoration:none;}
+
+a:hover{}
+
+#container {width:800px;margin:10px auto;}
+
+#header {background:url(mig/logo.gif) no-repeat;}
+
+#menu {padding:20px 20px 0 0}
+
+#menu ul {float:right;list-style:none;margin:0px;}
+
+#menu ul li {float:left;margin:0 10px;display:block;line-height:28px}
+
+.menuDiv {width:1px;height:28px;background:#999}
+
+#menu ul li a:link,#menu ul li a:visited {font-weight:bold;color:#666}
+
+#menu ul li a:hover{}
+
+#banner {
+	 background:url(mig/banner.jpg) 0 30px no-repeat; /*加入背景图片*/
+	 width:730px; /*设定层的宽度*/
+	 margin:auto; /*层居中*/
+	 height:240px; /*设定高度*/
+	 border-bottom:5px solid #EFEFEF; /*画一条浅灰色实线*/
+	 clear:both /*清除浮动*/
+}
+
+#pagebody {
+	 width:730px; /*设定宽度*/
+	 margin:8px auto; /*居中*/
+}
+
+#sidebar {
+	 width:160px; /*设定宽度*/
+	 text-align:left; /*文字左对齐*/
+	 float:left; /*浮动居左*/
+	 clear:left; /*不允许左侧存在浮动*/
+	 overflow:hidden; /*超出宽度部分隐藏*/
+	 border:1px solid #E00;
+	 height:400px;
+}
+
+#mainbody {
+	 border:1px solid #E00;
+	 height:400px;
+	 width:568px;
+	 text-align:left;
+	 float:right; /*浮动居右*/
+	 clear:right; /*不允许右侧存在浮动*/
+	 overflow:hidden;
+	 position:relative;
+	 top:-402px;
+ 
+}
+
+#search{
+    position:relative;
+	top:5px;
+	left:2px;
+	width:150px;
+	height:40px;
+	background-color:#009999;
+}
+#searchText{
+	margin:10px 0px 10px 10px;
+	width:60px;
+}
+
+#searchSubmit{
+	width:60px;
+}
+
+#loginFont{
+	position:relative;
+	left:5px;
+	font-weight:bold;
+}
+
+#loginUsername{
+	width:100px;
+}
+
+#loginPassword{
+	width:100px;
+}
+
+#loginRegister{
+	position:relative;
+	left:20px;
+}
+
+#textInformation{
+	position:relative;
+	top:120px;
+}
+
+.information{
+	font-weight:bold;
+}
+
+.img2{
+	position:relative;
+	top:20px;
+	left:20px;
+	width:50px;
+	height:40px;
+}
+
+.img2Introduce{
+	position:relative;
+	top:-20px;
+	left:250px;
+	font-size :large ;
+}
+
+#imageText{
+	position:relative;
+	top:0px;
+	left:80px;
+	width:60px;
+	height:10px;
+}
+
+#line{
+	position:relative;
+	top:20px;
+	width:568px;
+	height:-1px;
+	outline-style :dashed ;
+	outline-color :red;
+	outline-width:thin;
+}
+
+#layout3{
+    border:1px solid blue;
+	position:relative;
+	top:20px;
+	width:568px;
+	height:200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

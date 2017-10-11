@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="testPictureOfPDF"
+  id="myeclipse.1425126343019"
+  context-root="/testPictureOfPDF"
+  j2ee-spec="5.0"
+  archive="testPictureOfPDF.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

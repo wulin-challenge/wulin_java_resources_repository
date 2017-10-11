@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.custom.i18n.resources" value="test"></constant>
+	
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="inter" class="cn.scxh.action.InterAction">
+        	<result>/index.jsp</result>
+        </action>
+        <action name="inter1" class="cn.scxh.action.Inter1Action">
+        	<result>/index.jsp</result>
+        </action>
+        <action name="inter2" class="cn.scxh.action.Inter2Action">
+        	<result>/index.jsp</result>
+        </action>
+    </package>
+
+</struts>

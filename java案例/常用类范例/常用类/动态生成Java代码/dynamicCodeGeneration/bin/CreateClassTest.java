@@ -1,0 +1,1 @@
+public class CreateClassTest{public void println() {System.out.println("=" + CLASS_NAME + "=");}}

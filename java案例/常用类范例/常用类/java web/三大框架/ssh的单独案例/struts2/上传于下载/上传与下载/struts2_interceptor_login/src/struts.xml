@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="action"></constant>
+    
+    <package name="struts-myDefaul" extends="struts-default">
+    	<interceptors>
+    		<interceptor name="myLogin" class="cn.wulin.action.LoginInterceptor"></interceptor>
+    		<interceptor-stack name="myInterceptor">
+    			<interceptor-ref name="myLogin"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+    	<default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+    	<global-results>
+    		 <result name="input">/WEB-INF/jsp/login/login.jsp</result>
+    		 <result name="success">/WEB-INF/jsp/login/success.jsp</result>
+    		 <result name="exception">/WEB-INF/jsp/login/exception.jsp</result>
+    	</global-results>
+    	<global-exception-mappings>
+    		<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
+    	</global-exception-mappings>
+    </package>
+
+    <package name="firstPackage" namespace="/" extends="struts-myDefaul">
+        <action name="login_*" class="cn.wulin.action.LoginAction" method="{1}">
+        </action>
+         <action name="various_*" class="cn.wulin.action.variousAction" method="{1}">
+            <result name="intercept">/WEB-INF/jsp/login/interceptor.jsp</result>
+        </action>
+        <action name="upload_*" class="cn.wulin.action.Upload" method="{1}">
+        </action>
+         <action name="download_*" class="cn.wulin.action.Download">
+         	<result name="success" type="stream">
+         		<param name="contentDisposition ">attachment;filename=${fileName}</param>
+         		<param name="inputName">downloadFile</param>
+         	</result>
+        </action>
+    </package>
+
+</struts>

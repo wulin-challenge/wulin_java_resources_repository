@@ -1,0 +1,4 @@
+#Sun Nov 23 16:08:50 CST 2014
+eclipse.preferences.version=1
+validator.Checked=src/cn/lh/template/approve.xml,src/cn/lh/template/approve1.xml,src/cn/lh/template/approve2.xml
+validator.Unchecked=

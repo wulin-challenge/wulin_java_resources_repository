@@ -1,0 +1,403 @@
+﻿
+<=====================================================================================================================================================================>
+
+jsp页面转发范例:
+
+<jsp:forward page="/VoteServlet?method=findAllVote"/>  //使用该语句进行连接转发
+
+<jsp:useBean id="now" class="java.util.Date" scope="page" />
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<jsp>页面包含范例:
+
+<jsp:include page="back.jsp"/>   //之所以将连接这样写,是因为这两个连接在同一个文件夹目录下
+
+<=====================================================================================================================================================================>
+
+<jsp:useBean>标签应用范例:
+
+<jsp:useBean id="now" class="java.util.Date" scope="page" />
+
+<=====================================================================================================================================================================>
+
+${message} //该语句可以有也可以无该<%@ page isELIgnored="false" %>的修饰
+
+<=====================================================================================================================================================================>
+
+表单写法:
+
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+表单提交范例:
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+ 		<table border="1" align="center" width="60%">
+ 			<caption>用户登录</caption>
+ 			<tr>
+ 				<th>用户名</th>
+ 				<td><input type="text" name="username"/></td>
+ 			</tr>
+ 			<tr>
+ 				<th>密码</th>
+ 				<td><input type="password" name="password"/></td>
+ 			</tr>
+ 			<tr>
+ 				<td colspan="2" align="center">
+ 					<input type="submit" value="提交"/>
+ 				</td>
+ 			</tr>
+ 		</table>
+ 	</form>
+
+<=====================================================================================================================================================================>
+
+三目运算在EL表达式中的应用:
+欢迎${!empty sessionScope.user?user.username:'游客'}光临
+
+<=====================================================================================================================================================================>
+
+条件语句范例:
+ <c:choose>
+    	<c:when test="${!empty sessionScope.user}">
+		    <a style="text-decoration:none" href="${pageContext.request.contextPath}/VoteServlet?method=exit">
+		    	安全退出
+		    </a>
+    	</c:when>
+    	<c:otherwise>
+		    	安全退出
+    	</c:otherwise>
+    </c:choose>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+     	<c:if test="${!empty sessionScope.user}">
+		 <a style="text-decoration:none" href="${pageContext.request.contextPath}/VoteServlet?method=exit">
+		    	安全退出
+		    </a>
+	</c:if>
+
+<=====================================================================================================================================================================>
+
+循环语句范例:
+
+//需要导入 Jstl.jar 和 Standard.jar 包,此外还好在jsp中写入命令<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:forEach var="info" items="${requestScope.infoList}">
+			<tr>
+				<td>
+					${info.ip}
+				</td>
+				<td>
+					<fmt:formatDate
+						type="both"
+						dateStyle="default"
+						timeStyle="default"
+						value="${info.votetime}"
+					/>
+				</td>
+			</tr>
+		</c:forEach>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+循环语句与<select>语句嵌套应用范例：
+
+<select name="year">
+  					<c:forEach var="year" begin="1990" end="2001">
+  						<option ${y==year?'selected':''}>${year}</option>
+   					</c:forEach>
+  				</select>年
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+真正的for循环语句:
+
+//这里的var是类型,相对于是int等之类的类型,而a则就相当于变量i;step则是每次循环后应加的值,默认值为1;
+
+<c:forEach var="a" begin="1" end="10" step="1">
+
+</c:forEach>
+
+<=====================================================================================================================================================================>
+
+<select>标签应用举例：
+
+//需要导入 Jstl.jar 和 Standard.jar 包,此外还好在jsp中写入命令<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<select name="year">
+  					<c:forEach var="year" begin="1990" end="2001">
+  						<option>${year}</option>
+   					</c:forEach>
+  				</select>
+
+<=====================================================================================================================================================================>
+
+<fmt:>的应用范例:
+
+//该语句是用来显示时间和日期的,但需要导入 Jstl.jar 和 Standard.jar 包,此外还好在jsp中写入命令<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<fmt:formatDate
+						value="${tz}"
+						type="both"
+						dateStyle="default"
+						timeStyle="long"
+						
+					/>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//该语句是用来显示时间和日期的,但需要导入 Jstl.jar 和 Standard.jar 包,此外还好在jsp中写入命令<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<body>
+		<%
+			//创建时区(默认+08:00时区，即北京时区
+			TimeZone tz = TimeZone.getDefault();
+			pageContext.setAttribute("tz", tz);
+		%>
+		<jsp:useBean id="now" class="java.util.Date" scope="page" />
+		中国
+		<fmt:timeZone value="${tz}">
+			<fmt:formatDate 
+				value="${now}" 
+				type="both" 
+				dateStyle="full"
+				timeStyle="full" />
+		</fmt:timeZone>
+		<hr />
+		美国
+		<fmt:timeZone value="GMT-08:00">
+			<fmt:formatDate 
+				value="${now}" 
+				type="both" 
+				dateStyle="full"
+				timeStyle="full" />
+		</fmt:timeZone>
+		<hr />
+		开罗
+		<fmt:timeZone value="GMT+02:00">
+			<fmt:formatDate 
+				value="${now}" 
+				type="both" 
+				dateStyle="full"
+				timeStyle="full" />
+		</fmt:timeZone>
+		<hr />
+		<fmt:formatDate 
+			value="${now}" 
+			pattern="yyyy-MM-dd-w-F-E hh:mm:ss"
+			timeZone="GMT-08:00" />
+	</body>
+</html>
+
+<--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+Integer类型：
+		<fmt:formatNumber value="315.123" type="number"/>
+		<hr/>
+		货币类型：
+		<fmt:formatNumber value="315.123" type="currency"/>
+		<hr/>
+		百分类型
+		<fmt:formatNumber value="315.123" type="percent"/>
+		<hr/>
+
+<--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+ <fmt:setLocale value="${pageContext.request.locale}"/>
+  <fmt:setBundle basename="cn/itcast/web/jsp/config/message"/>	
+
+<body>
+	<table border="1" align="center"> 
+		<caption>
+			<fmt:message key="login.title"/>
+		</caption>
+		<tr>
+			<th><fmt:message key="login.username"/></th>
+			<td><input type="text" name="username"/></td>
+		</tr> 
+		<tr>
+			<th><fmt:message key="login.password"/></th>
+			<td><input type="password" name="password"/></td>
+		</tr> 
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value='<fmt:message key="login.submit"/>'/>		
+			</td>
+		</tr>
+	</table>
+	<hr/>
+	<fmt:message key="hello">
+		<fmt:param value="jack"/>
+		<fmt:param value="marry"/>
+	</fmt:message>
+  </body>
+
+<=====================================================================================================================================================================>
+
+<a>标签的应用范例:
+
+ <a style="text-decoration:none" href="${pageContext.request.contextPath}/VoteServlet?method=exit">
+		    	安全退出
+		    </a>
+<--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<a  style="text-decoration:none"
+						href="${pageContext.request.contextPath}/VoteServlet?method=findVoteById&id=${vote.id}">
+						${vote.content}
+					</a>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<td>
+ 				<a href="/hotelManagementSystem/CustomerServlet?method=outOfTheRoom&vid=${customer.vid }"
+ 				style="text-decoration">退房</a>
+ 			</td>
+
+<=====================================================================================================================================================================>
+
+<p>标签与<a>标签的嵌套应用范例:
+
+<p align="right">
+		<a  style="text-decoration:none"
+			href="${pageContext.request.contextPath}/welcome.jsp">
+			返回
+		</a> 	
+	</p>
+
+<=====================================================================================================================================================================>
+
+<c:url>标签使用范例:
+
+//需要导入 Jstl.jar 和 Standard.jar 包,此外还好在jsp中写入命令<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<td>
+	  				<c:url var="myURL" value="/DownloadServlet">
+	  					<c:param name="uuidFileName" value="${entry.key}"/>
+	  				</c:url>
+	  				<a  href="${myURL}" 
+	  					style="text-decoration:none">
+	  					下载
+	  				</a>
+	  			</td>
+
+<=====================================================================================================================================================================>
+
+<input>标签应用举例：
+
+<input type="file" name="photo"/>
+
+<input type="submit" value="保存到数据库"/>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<td>
+  				<input checked type="radio" name="gender" value="男"/>男
+  				<input type="radio" name="gender" value="女"/>女
+  			</td>
+
+<---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<td><input type="text" name="address"/></td>
+
+<=====================================================================================================================================================================>
+
+<div>标签的使用范例:
+
+<div style="position:absolute;left:1100px;top:120px;font-size:12px">	
+    	论坛<b>今日</b>流量：<font color="red">${!empty applicationScope.todayFlow?applicationScope.todayFlow:'0'}</font><br/>
+    	论坛<b>昨日</b>流量：<font color="red">${!empty applicationScope.yesterdayFlow?applicationScope.yesterdayFlow:'0'}</font><br/>
+    </div>
+
+<=====================================================================================================================================================================>
+
+如何用javaScript取得input标签中的值,且进行中文编码
+
+输入用户名：<input type="text"/>光标移出后，立即查检结果
+
+	<script type="text/javascript">
+  		document.getElementsByTagName("input")[0].onblur=function(){
+  			//取得用户输入的用户名
+  			var username = this.value;
+  			//对中文编码
+  			username = encodeURI(username);
+	</script>
+
+<=====================================================================================================================================================================>
+
+对于在jsp中图片的相对路径的写法:
+
+<img src="/test2/images/MsgError.gif"></img>
+
+<=====================================================================================================================================================================>
+
+对于this[this.selectedIndex]这个语句的解释
+
+                          var province = this[this.selectedIndex].innerHTML;
+			//this[this.selectedIndex];表示得到对应的<option>标签
+			//var province = this[this.selectedIndex].innerHTML;表示得到对应<option>标签内容
+			//其实也可以这样写var province = this[this.selectedIndex].firstChild.nodeValue;
+
+<=====================================================================================================================================================================>
+
+css的用法:
+
+  <style type="text/css">
+    	.oneClass{
+    		font-size:44px;
+    		color:red
+    	}
+    </style>
+
+	<div id="divID" class="oneClass">这是div中的内容</div>
+
+<=====================================================================================================================================================================>
+
+<div>标签与<span>的区别:
+	
+	<div>标签有换行,而<span>标签没有换行
+
+<=====================================================================================================================================================================>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+CREATE TABLE t_sick_case(
+	id varchar(12) primary key,
+	main_symptom varchar(50),
+	now_symptom varchar(50),
+	past_symptom vharchar(50), 
+	personal_symptom vharchar(50),
+	body_test vharchar(50),
+	lab_test vharchar(50),
+	examination vharchar(50),
+	advice vharchar(50),
+	other_explain vharchar(50),
+	examination_time date,
+	patient_id_fk varchar(12)
+);
+
+
+

@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>validate</title>
+		<script type="text/javascript" src="validate.js"></script>
+	</head>
+	<body>
+		<form action="success.html" method="get" onsubmit="return validate()">
+			<table border="1" align="center">
+				<caption>validate</caption>
+				<tr>
+					<th>
+						用户名:
+					</th>
+					<td>
+						<input id="loginUsername" type="text" name="username"/>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						密码:
+					</th>
+					<td>
+						<input id="loginPassword" type="password" name="password"/>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						性别:
+					</th>
+					<td>
+						<input id="loginGender1" type="radio" name="gender" value="female"/>女
+						<input id="loginGender2" type="radio" name="gender" value="male" checked/>男
+					</td>
+				</tr>
+				<tr>
+					<th>
+						爱好:
+					</th>
+					<td>
+						<input id="loginCheckbox1" type="checkbox" name="like" value="篮球"/>篮球
+						<input id="loginCheckbox2" type="checkbox" name="like" value="象棋"/>象棋
+						<input id="loginCheckbox3" type="checkbox" name="like" value="java"/>java
+					</td>
+				</tr>
+				<tr>
+					<th>
+						年龄:
+					</th>
+					<td>
+						<select id="loginSelect" name="age">
+							<option value="10">10岁</option>
+							<option value="20">20岁</option>
+							<option value="30">30岁</option>
+							<option value="40">40岁</option>
+							<option value="50">50岁</option>
+							<option value="60">60岁</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" value="提交 "/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+﻿<html>
+	<head>
+		<script type="text/javascript" src="PinYin.js"></script>
+		<script type="text/javascript">
+			function getPinyin(){
+				//调用的方法
+			var chinese = document.getElementById("chinese");
+			alert(chinese.value);
+			var pinyin = codefans_net_CC2PY(chinese.value);
+			alert(pinyin);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input id="chinese" type="text" name="chinese"><input type="button" value="获得全拼音" onClick="getPinyin()">
+	</body>
+</html>

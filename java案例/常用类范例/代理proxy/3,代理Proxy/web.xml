@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+  <!-- 
+  <filter>
+	<filter-name>EncodingFilter</filter-name>
+  	<filter-class>cn.itcast.java.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>EncodingFilter</filter-name>
+  	<servlet-name>GetPostServlet</servlet-name>
+  </filter-mapping>
+   -->
+   
+  <filter>
+	<filter-name>GzipFilter</filter-name>
+  	<filter-class>cn.itcast.java.filter.GzipFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>GzipFilter</filter-name>
+    <url-pattern>/ShowServlet</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+  	<servlet-name>GetPostServlet</servlet-name>
+  	<servlet-class>cn.itcast.java.servlet.GetPostServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowServlet</servlet-name>
+    <servlet-class>cn.itcast.java.servlet.ShowServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Server</servlet-name>
+    <servlet-class>cn.itcast.java.phone2web.Server</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+  	<servlet-name>GetPostServlet</servlet-name>
+  	<url-pattern>/GetPostServlet</url-pattern>	
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowServlet</servlet-name>
+    <url-pattern>/ShowServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Server</servlet-name>
+    <url-pattern>/Server</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+</web-app>

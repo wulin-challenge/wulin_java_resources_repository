@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<my-mapping>
+	<class name="wulin.wubo.baseDomain.Book" table="t_book">
+		<property name="id"></property>
+		<property name="name"></property>
+		<property name="price"></property>
+		<property name="number"></property>
+		<property name="address"></property>
+		
+	</class>
+	<class name="wulin.wubo.baseDomain.Person" table="t_person">
+		<property name="id"></property>
+		<property name="gender"></property>
+		<property name="name"></property>
+		<property name="high"></property>
+		<property name="weight"></property>
+	</class>
+</my-mapping>

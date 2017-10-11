@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>ajax体验，关注现像</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+  	<input type="button" value="ajax体验，请点击我"/>	
+  	<hr/>
+  	<div>
+  		<!-- 显示结果 -->
+  	</div>
+  	<script type="text/javascript">
+  	
+  		var inputElement = document.getElementsByTagName("input")[0];
+  		
+  		inputElement.onclick=function(){
+  		
+  			//创建AJAX引擎对象
+  			var xhr = createXHR();
+  			
+  			//为AJAX引擎对象设置状态改变事件[0-4共5个]
+  			xhr.onreadystatechange = function(){
+  				
+  				//如果请求和响应已经完成
+  				if(xhr.readyState==4){
+  					
+  					//响应是否正确
+  					if(xhr.status==200){
+  					
+  						//取得AJAX引擎的响应结果
+  						var msg = xhr.responseText;
+  						
+  						//查询<div>标签
+  						var divElement = document.getElementsByTagName("div")[0];
+  						
+  						//将内容写入<div>标签内
+  						divElement.innerHTML = msg;
+  					
+  					}
+  					
+  				}
+  			}
+  			
+  			
+  			//准备发送异步请求到服务端
+  			xhr.open("get","/day31/AjaxServlet?time="+new Date().getTime());
+  			
+  			//真正发送异步请求
+  			xhr.send(null);
+  			
+  			
+  		}
+  		//根据不同浏览器创建AJAX引擎对象
+  		function createXHR(){
+  			var xhr = null;
+  			//如果是IE
+  			if(window.ActiveXObject){
+  				xhr = new ActiveXObject("microsoft.xmlhttp");
+  			//如果非IE
+    		}else{
+    			xhr = new XMLHttpRequest();
+  			}
+  			return xhr;
+  		}
+  	</script>
+  </body>
+</html>

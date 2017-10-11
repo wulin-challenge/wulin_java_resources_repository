@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ajaxAndcookie"
+  id="myeclipse.1402026408133"
+  context-root="/ajaxAndcookie"
+  j2ee-spec="5.0"
+  archive="ajaxAndcookie.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

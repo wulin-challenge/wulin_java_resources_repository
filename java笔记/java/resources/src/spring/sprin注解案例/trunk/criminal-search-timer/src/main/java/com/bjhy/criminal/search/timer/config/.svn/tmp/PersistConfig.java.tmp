@@ -1,0 +1,89 @@
+package com.bjhy.criminal.search.timer.config;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+import com.bjhy.criminal.search.timer.domain.DataSourceAndTemplate;
+import com.bjhy.criminal.search.timer.domain.JcsjJdbcTemplate;
+import com.bjhy.criminal.search.timer.tool.DBUtil;
+
+
+
+@Component
+//@PropertySource("classpath:db.properties")
+public class PersistConfig{
+	
+	@Bean(name="yzJdbcTemplateList")
+	public DataSourceAndTemplate yzJdbcTemplateList(){
+		DataSourceAndTemplate template = new DataSourceAndTemplate();
+		List<JcsjJdbcTemplate> oracleTemplateList = new DBUtil().getJdbcTemplateList("YZ", "JLYZ", "ORACLE");
+		List<JcsjJdbcTemplate> dmTemplateList = new DBUtil().getJdbcTemplateList("YZ", "JLYZ", "DM");
+		List<JcsjJdbcTemplate> jdbcTemplateList = new ArrayList<JcsjJdbcTemplate>();
+		jdbcTemplateList.addAll(oracleTemplateList);
+		jdbcTemplateList.addAll(dmTemplateList);
+		template.setJcsjJdbcTemplateList(jdbcTemplateList);
+		return template;
+	}
+	
+<<<<<<< .mine
+	@Bean(name="jcsjJdbcTemplateList")
+	public DataSourceAndTemplate jcsjJdbcTemplateList(){
+		DataSourceAndTemplate template = new DataSourceAndTemplate();
+		template.setJcsjJdbcTemplateList(new DBUtil().getJdbcTemplateList("JCSJ", "JLJCSJ", "ORACLE"));
+		return template;
+=======
+	@Bean
+	public DataSource zfjcDataSource(){//连接汇聚数据库
+		//env.getProperty("url");
+		Properties env=this.readPropFileByInPutStream();
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(env.getProperty("zfjcclassName"));
+		dataSource.setUrl(env.getProperty("zfjcurl"));
+		dataSource.setUsername(env.getProperty("zfjcusername"));
+		dataSource.setPassword(env.getProperty("zfjcpassword"));
+		return dataSource;
+>>>>>>> .r35215
+	}
+	
+<<<<<<< .mine
+=======
+	@Bean
+	public JdbcTemplate zfjcJdbcTemplate(){
+		return new JdbcTemplate(zfjcDataSource());
+	}
+	
+	@Bean
+	public JdbcTemplate yzJdbcTemplate(){
+		return new JdbcTemplate(yzDataSource());
+	}
+	public Properties readPropFileByInPutStream() {
+        InputStream in2 = null;
+        Properties p = new Properties();
+        try {
+//            in2 = new BufferedInputStream(new FileInputStream(
+//                    "src/config/db.properties"));
+        	in2 = new FileInputStream("config/db.properties");
+            p.load(in2);
+            //return p;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in2 != null) {
+                try {
+                    in2.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+           
+        }
+        return p;
+    }
+
+>>>>>>> .r35215
+}

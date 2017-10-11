@@ -1,0 +1,24 @@
+1.   LoadDll()
+加载要封装的dll文件
+返回值：
+  1 ：成功
+  0： 失败
+
+
+19.BSTR FileToBase64(LPCTSTR filePath)
+	用于获得对应文件的base64编码流
+	参数：	 filePath 需求获得base64流的文件名，为客户端本地文件(当此扫描的文件),请填写有效路径及全文件名；
+	返回值： Base64流，为空时表示转化失败；
+
+
+
+<OBJECT id=DOcxtest1 classid=clsid:677C2EAE-057E-4900-97ED-1520F080942D>
+
+<PARAM NAME="_Version" VALUE="65536">
+
+<PARAM NAME="_ExtentX" VALUE="17463">
+
+<PARAM NAME="_ExtentY" VALUE="17727">
+
+<PARAM NAME="_StockProps" VALUE="0">
+</OBJECT>

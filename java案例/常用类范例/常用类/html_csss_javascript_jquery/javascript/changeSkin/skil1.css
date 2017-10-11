@@ -1,0 +1,14 @@
+#body1{
+	background-color:#00FFFF;
+}
+
+#firstDiv{
+	border-style :solid ;
+	border-color:red;
+	border-width :2px;
+	background-color:yellow;
+	color:red;
+}
+#secondDiv{
+	color:red;
+}

@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>
+			员工添加
+		</title>
+		<meta http-equiv="content-type" content="text/html; charset=gbk">
+		<script src="../../js/WebCalendar.js" type="text/javascript"></script> 
+	</head>
+	
+	<body>
+		<form action="add" method="get">
+			<table>
+				<tr>
+					<td>
+						姓名
+					</td>
+					<td>
+						<input type="text" name="username">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						性别
+					</td>
+					<td>
+						男<input type="radio" value="00" name="sex">
+						女<input type="radio" value="01" name="sex">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						部门
+					</td>
+					<td>
+						<select name="dept">
+							<option value="00">市场部</option>
+							<option value="01">研发部</option>
+							<option value="02">财务部</option>
+							<option value="03">人力资源部</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						出生日期
+					</td>
+					<td>
+						<input type="text" name="birthday" maxlength="100" id="Txt_CreateDateST03"  onclick="SelectDate(this,'yyyy-MM-dd')" readonly="true" style="width:200px;cursor:pointer" /><br />         
+					</td>
+				</tr>
+				<tr>
+					<td>
+						个人特长
+					</td>
+					<td>
+						篮球<input type="checkbox" value="00" name="hobby">
+						足球<input type="checkbox" value="01" name="hobby">
+						乒乓球<input type="checkbox" value="02" name="hobby">
+						高尔夫<input type="checkbox" value="03" name="hobby">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						个人说明
+					</td>
+					<td>
+						<textarea  name="description"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						个人头像
+					</td>
+					<td>
+						<input type="file" name="img">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="保存">
+					</td>
+					
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

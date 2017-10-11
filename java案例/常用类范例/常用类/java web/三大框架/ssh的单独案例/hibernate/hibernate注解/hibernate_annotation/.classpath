@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/hibernate3.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/mysql-connector-java-3.1.13-bin.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/slf4j-nop-1.5.8.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/annotation/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/annotation/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate3.3/annotation/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

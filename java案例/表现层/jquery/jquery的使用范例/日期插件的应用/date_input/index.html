@@ -1,0 +1,19 @@
+<script type="text/javascript" src="../js/jquery-1.6.js"></script>
+<script type="text/javascript" src="jquery.datepick-zh-CN.js"></script>
+<script type="text/javascript" src="jquery.datepick.js"></script>
+<link rel="stylesheet" href="jquery.datepick.css" type="text/css"></link>
+<div><b>jQuery插件datePicker日期选择器</b></div>
+<input type="text" name="time" value="2011-09-30"  class="myClass"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/*
+		 * datepick({dateFormat: 'yy/mm/dd'}); 
+		 *   * --jquery日历插件中的函数
+		 *   * dateFormat 该函数的参数 设置日期的格式
+		 *   * 四位的年用yy表示
+		 *   
+		 *  $('#biuuu')   --文本框组件
+		 */
+		$('.myClass').datepick({dateFormat: 'yy-mm-dd'}); 
+	});
+</script>

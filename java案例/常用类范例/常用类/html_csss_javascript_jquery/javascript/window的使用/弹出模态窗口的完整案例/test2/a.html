@@ -1,0 +1,39 @@
+﻿<html> 
+      <head> 
+          <meta http-equiv="Content-Type"content="text/html; charset=gb2312"/> 
+          <meta name="author" content="www.niutw.com" /> 
+          <title>弹出窗口登录效果</title> 
+          <link type="text/css" rel="stylesheet" href="dragCss.css"/>
+		  <script type="text/javascript" src="dragJs.js"></script>
+      </head> 
+   <body> 
+    <div id="bgDiv" style="display:none;"> 
+    </div> 
+       <a href="javascript:" onClick="bgDiv.style.display='';loginBox.style.display='';">登录1</a> 
+          <div id="loginBox" style="position:absolute; left:367px; top:150px; z-index:1;display: none;" > 
+              <div class="title" id="Mdown"> 
+                  <span class="t1">登录2</span> 
+                  <span class="t2" title="关闭" onClick="loginBox.style.display='none';bgDiv.style.display='none'">X</span> 
+              </div> 
+              <div class="login"> 
+                  <form method="post" action="#"> 
+                      <table> 
+                          <tr> 
+                              <td>用户名:</td><td><input id="username" type="text"name="username" size="12" maxlength="10"></td> 
+                          </tr> 
+                          <tr> 
+                              <td>密 码:</td><td><input type="text"name="password" size="12" maxlength="10"></td> 
+                          </tr> 
+                          <tr> 
+                              <td></td><td><button class="submit" type="submit">登陆3</button></td> 
+                          </tr> 
+                      </table> 
+					  <input type="button" value="确定" onClick="loginBox.style.display='none';bgDiv.style.display='none';getFormValue()"/>
+                  </form> 
+              </div> 
+          </div> 
+		  <script>
+			dragWindows();
+		  </script>
+  </body> 
+  </html>  

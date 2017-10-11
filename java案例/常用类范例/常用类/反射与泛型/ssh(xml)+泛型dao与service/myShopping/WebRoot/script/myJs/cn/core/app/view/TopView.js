@@ -1,0 +1,50 @@
+Ext.define("cn.app.view.TopView",{
+	extend:"Ext.panel.Panel",
+	alias:"widget.topView",
+	id:"topView",
+	height:70,
+	bodyStyle:{
+		background:"#7598e0",
+		padding:"80px",
+	},
+	layout:"absolute",
+	items:[{
+		x:0,
+		y:0,
+		width:250,
+		bodyStyle:{
+			background:"#7598e0",
+			border:0,
+			padding:"10px",
+		},
+		html:"<h1><font color='white' size='5'>&nbsp;&nbsp;我的个人管理系统</font></h1>",
+	},{
+		x:250,
+		y:0,
+		width:100,
+		height:69,
+		html:"<img src='style/css/imgs/wf/back.png'/>"
+	},{
+		x:1000,
+		y:40,
+		ref:"loginInfo",
+		xtype:"displayfield",
+		id:"displayLogin",
+		value:"<font color='white'><b>未登录</b></font>"
+	},{
+		x:1090,
+		y:40,
+		xtype:"button",
+		ref:"logout",
+		text:"注销"
+	},{
+		x:1160,
+		y:40,
+		xtype:"button",
+		ref:"exit",
+		text:"退出系统"
+	}],
+	initComponent:function(){
+		this.callParent(arguments);
+	}
+});

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean name="parentDao" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="userDao" class="cn.wulin.dao.impl.UserDaoImpl" parent="parentDao" />
+	<bean name="departmentDao" class="cn.wulin.dao.impl.DepartmentDaoImpl" parent="parentDao" />
+	<bean name="typeDao" class="cn.wulin.dao.impl.TypeDaoImpl" parent="parentDao" />
+	<bean name="testDao" class="cn.wulin.dao.impl.TestDaoImpl" parent="parentDao" />
+</beans>

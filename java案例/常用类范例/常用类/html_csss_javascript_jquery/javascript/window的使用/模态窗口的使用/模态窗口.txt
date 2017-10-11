@@ -1,0 +1,88 @@
+javascript模态窗口详解2012-02-08 13:49:20     我来说两句       收藏   我要投稿
+基本介绍：
+           showModalDialog()         (IE 4+ 支持)
+           showModelessDialog()      (IE 5+ 支持)
+           window.showModalDialog()                  方法用来创建一个显示HTML内容的模态对话框。
+           window.showModelessDialog()             方法用来创建一个显示HTML内容的非模态对话框。
+ 使用方法：
+           vReturnValue = window.showModalDialog(sURL [, vArguments] [,sFeatures])
+           vReturnValue = window.showModelessDialog(sURL [, vArguments] [,sFeatures])
+ 参数说明：
+          sURL          --  必选参数，类型：字符串。用来指定对话框要显示的文档的URL。
+          vArguments    -- 可选参数，类型：变体。用来向对话框传递参数。传递的参数类型不限，包括数组等。对话框通过
+ 
+                          window.dialogArguments来取得传递进来的参数。
+          sFeatures     -- 可选参数，类型：字符串。用来描述对话框的外观等信息，可以使用以下的一个或几个，用分号“;”隔开。
+ ----------------
+ 1.    dialogHeight:    对话框高度，不小于100px
+ 2.    dialogWidth:    对话框宽度。
+ 3.    dialogLeft:     离屏幕左的距离。
+ 4.    dialogTop:     离屏幕上的距离。
+ 5.    center:          { yes | no | 1 | 0 } ：              是否居中，默认yes，但仍可以指定高度和宽度。
+ 6.    help:             {yes | no | 1 | 0 }：                是否显示帮助按钮，默认yes。
+ 7.    resizable:       {yes | no | 1 | 0 } [IE5+]：     是否可被改变大小。默认no。
+ 8.    status:          {yes | no | 1 | 0 } [IE5+]：      是否显示状态栏。默认为yes[ Modeless]或no[Modal]。
+ 9.    scroll:            { yes | no | 1 | 0 | on | off }：是否显示滚动条。默认为yes。
+ 
+下面几个属性是用在HTA中的，在一般的网页中一般不使用。
+ 10.    dialogHide:{ yes | no | 1 | 0 | on | off }：在打印或者打印预览时对话框是否隐藏。默认为no。
+ 11.    edge:{ sunken | raised }：指明对话框的边框样式。默认为raised。
+ 12.    unadorned:{ yes | no | 1 | 0 | on | off }：默认为no。
+ 
+参数传递：
+ 1. 要想对话框传递参数，是通过vArguments来进行传递的。类型不限制，对于字符串类型，最大为4096个字符。也可以传递对象，例如：
+ -------------------------------
+ parent.htm
+ <script>
+           var obj = new Object();
+           obj.name="51js";
+           window.showModalDialog("modal.htm",obj,"dialogWidth=200px;dialogHeight=100px");
+ </script>
+ modal.htm
+ <script>
+           var obj = window.dialogArguments
+           alert("您传递的参数为：" + obj.name)
+ </script>
+ -------------------------------
+ 2.可以通过window.returnValue向打开对话框的窗口返回信息，当然也可以是对象。例如：
+ ------------------------------
+ parent.htm
+ <script>
+           str =window.showModalDialog("modal.htm",,"dialogWidth=200px;dialogHeight=100px");
+           alert(str);
+ </script>
+ modal.htm
+ <script>
+           window.returnValue="http://wwww.2cto.com";
+ </script>
+ 
+常见技巧：
+ 
+一、怎样才让在showModalDialog和showModelessDialog的超连接不弹出新窗口？
+ 在被打开的网页里加上<base target="_self">就可以了。这句话一般是放在<head>之间的。
+ 
+二、怎样才刷新showModalDialog和showModelessDialog里的内容？
+ 在showModalDialog和showModelessDialog里是不能按F5刷新的，又不能弹出菜单。这个只能依靠
+ 
+javascript了，以下是相关代码：
+ 
+<body onkeydown="if (event.keyCode==116){reload.click()}">
+ <a id="reload" href="filename.htm" style="display:none">reload...</a>
+ 
+将filename.htm替换成网页的名字然后将它放到你打开的网页里，按F5就可以刷新了，注意，这个要
+ 
+配合<base target="_self">使用，不然你按下F5会弹出新窗口的。
+ 
+三、如何用javascript关掉showModalDialog(或showModelessDialog)打开的窗口。
+ <input type="button" value="关闭" onclick="window.close()">
+ 也要配合<base target="_self">，不然会打开一个新的IE窗口，然后再关掉的。
+ 
+四、Math.random与showModalDialog。
+ 
+   当你设置的弹出网页固定时（如上面的"modal.htm"页面），ie很可能到临时文件区，下载上次产生的该页面(openPage.html),而没有重新加载，
+ 
+   对于动态加载的页面来说，这样往往产生误会，如没有及时更新数据，也就更不利于开发者测试。所以，你可以采用如下方式：
+ 
+      var strPage = “/medal.htm?random="+Math.random();
+ 
+   这样每次产生的strPage是不一样的，原因也就不言自明了。

@@ -1,0 +1,8 @@
+#firstDiv1{
+	background-image:url(./image/dress1.png);
+	width:220px;
+	height:224px;
+	border-style:solid;
+	border-color:red;
+	border-width:2px;
+}

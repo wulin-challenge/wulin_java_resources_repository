@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/asm-commons-3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/asm-tree-3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/freemarker-2.3.16.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/javassist-3.11.0.GA.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/ognl-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/struts2-core-2.2.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2/xwork-core-2.2.3.1.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

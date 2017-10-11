@@ -1,0 +1,72 @@
+package com.bjhy.criminal.search.timer.service.impl;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.bjhy.criminal.search.timer.base.BaseHelper;
+import com.bjhy.criminal.search.timer.base.BaseRunnable;
+import com.bjhy.criminal.search.timer.command.Command;
+import com.bjhy.criminal.search.timer.domain.DataSourceAndTemplate;
+import com.bjhy.criminal.search.timer.domain.JcsjJdbcTemplate;
+import com.bjhy.criminal.search.timer.service.MyTestService;
+
+@Service(value="myTestServiceImpl")
+public class MyTestServiceImpl implements Command,MyTestService{
+
+	@Autowired
+	@Qualifier("yzJdbcTemplateList")
+	private DataSourceAndTemplate yzJdbcTemplateList;
+	
+	@Autowired
+	@Qualifier("jcsjJdbcTemplateList")
+	private DataSourceAndTemplate jcsjJdbcTemplateList;
+	
+	
+	public void analyze() {
+		
+	}
+
+	public void transfort() {
+		
+	}
+
+	public void test() {
+		List<JcsjJdbcTemplate> jdbcTemplateList = yzJdbcTemplateList.getJcsjJdbcTemplateList();
+		for (JcsjJdbcTemplate jdbcTemplate : jdbcTemplateList) {
+			List<Map<String,Object>> list = jdbcTemplate.queryForList("select * from T_USER");
+			for (Map<String, Object> map : list) {
+				Set<Entry<String, Object>> entrySet = map.entrySet();
+				for (Entry<String, Object> entry : entrySet) {
+					System.out.println(entry.getKey()+" : "+entry.getValue());
+				}
+			}
+			System.out.println(jdbcTemplate.getConnectConfig().getHttpUrl());
+			System.out.println(jdbcTemplate.getConnectConfig().getPrisonName());
+			System.out.println(jdbcTemplate.getConnectConfig().getPrisonNumber());
+			System.out.println("========================");
+		}
+	}
+	
+	public void test2() {
+		List<JcsjJdbcTemplate> jdbcTemplateList = yzJdbcTemplateList.getJcsjJdbcTemplateList();
+		final JcsjJdbcTemplate toTemplate = jcsjJdbcTemplateList.getJcsjJdbcTemplateList().get(0);
+		for (final JcsjJdbcTemplate jdbcTemplate : jdbcTemplateList) {
+			BaseHelper.startRun(new BaseRunnable(){
+				public void run() {
+					String fromSql = "select * from testSynchronization";
+					//BaseHelper.dataSynchronization(jdbcTemplate, toTemplate, "T_USER2", fromSql);
+					//BaseHelper.dataSynchronization(jdbcTemplate, toTemplate, "testSynchronization2", fromSql);
+					//BaseHelper.dataSynchronizationDelete(jdbcTemplate, toTemplate, "T_USER3", fromSql);
+					BaseHelper.dataSynchronizationDelete(jdbcTemplate, toTemplate, "testSynchronization3", fromSql);
+				}
+			});
+		}
+	}
+
+}

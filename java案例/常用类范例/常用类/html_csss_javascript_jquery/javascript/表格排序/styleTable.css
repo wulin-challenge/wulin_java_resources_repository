@@ -1,0 +1,10 @@
+#firstTable{
+	border-collapse:collapse;
+	width:300px;
+	text-align:center;
+}
+
+#firstTr th{
+	text-decoration:underline;
+	color:red;
+}

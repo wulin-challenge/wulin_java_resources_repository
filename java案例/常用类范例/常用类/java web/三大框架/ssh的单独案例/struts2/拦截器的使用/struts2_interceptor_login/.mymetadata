@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="struts2_interceptor_login"
+  id="myeclipse.1404119136294"
+  context-root="/struts2_interceptor_login"
+  j2ee-spec="5.0"
+  archive="struts2_interceptor_login.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

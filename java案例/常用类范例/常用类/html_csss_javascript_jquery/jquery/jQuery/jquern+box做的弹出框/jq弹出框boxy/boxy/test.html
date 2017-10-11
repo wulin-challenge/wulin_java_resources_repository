@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/boxy.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.5.js"></script>
+<script type="text/javascript" src="js/jquery.boxy.js"></script>
+
+<script type="text/javascript">
+        $(function() {
+            $(".boxy").boxy();
+        });
+		
+		
+		  function change(){
+		  var yesno = document.getElementById("td1").value;
+		  if (yesno == "是"){
+        document.getElementById("a1").setAttribute("href","#m1");
+		}else if (yesno == "否"){
+        document.getElementById("a1").removeAttribute("href");
+       }return false;
+        }
+        </script>
+
+</head>
+
+<body>
+
+
+<div id="m1" style="display:none;">这里显示发票信息内容这里显示发票信息内容这里显示发票</div>
+<table width="50" border="1">
+  <tr>
+    <td>发票</td>
+  </tr>
+  <tr>
+    <td id="td1"><div align="center"><a href="#m1" class="boxy" title="发票信息" id="a1" onclick="change()">是</a></div></td>
+  </tr>
+</table>
+</body>
+</html>
+

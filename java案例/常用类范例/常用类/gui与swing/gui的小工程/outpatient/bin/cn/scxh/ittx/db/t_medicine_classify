@@ -1,0 +1,20 @@
+
+CREATE TABLE t_medicine_classify(
+  id number(12) primary key,
+  name varchar(20),
+	p_id number(12),
+	constraint p_id_FK foreign key(p_id) references t_medicine_classify(id)
+);
+
+SELECT * FROM t_medicine_classify;
+
+INSERT INTO t_medicine_classify(id,name,p_id) values(1,'皮肤科常用药',1);
+INSERT INTO t_medicine_classify(id,name,p_id) values(2,'皮肤科中药',2);
+INSERT INTO t_medicine_classify(id,name,p_id) values(3,'西药成分外用药',3);
+INSERT INTO t_medicine_classify(id,name,p_id) values(4,'中药成分外用药',4);
+INSERT INTO t_medicine_classify(id,name,p_id) values(5,'内科用药',5);
+INSERT INTO t_medicine_classify(id,name,p_id) values(6,'儿科用药',6);
+INSERT INTO t_medicine_classify(id,name,p_id) values(7,'收费项目',7);
+INSERT INTO t_medicine_classify(id,name,p_id) values(8,'消耗品项',8);
+
+

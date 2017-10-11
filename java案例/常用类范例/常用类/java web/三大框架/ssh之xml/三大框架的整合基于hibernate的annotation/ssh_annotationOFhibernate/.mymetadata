@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ssh_annotationOFhibernate"
+  id="myeclipse.1405470229633"
+  context-root="/ssh_annotationOFhibernate"
+  j2ee-spec="5.0"
+  archive="ssh_annotationOFhibernate.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

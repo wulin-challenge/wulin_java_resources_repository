@@ -1,0 +1,98 @@
+--建立一个表（表名自定），表结构与EMP相同，没有任何记录。
+
+--SELECT * FROM emp_bak;
+--SELECT * FROM dept_bak;
+
+--TRUNCATE TABLE emp_bak;
+
+
+CREATE TABLE emp_bak
+AS
+SELECT * FROM emp
+WHERE 1>2;
+
+--用Insert语句输入5条记录，并提交。
+
+INSERT INTO emp_bak(empno,ename,job,hiredate,sal,deptno)
+VALUES(1001,'张三','SALESMAN',sysdate,6000,10);
+
+INSERT INTO emp_bak(empno,ename,job,hiredate,sal,deptno)
+VALUES(1002,'李四','SALESMAN',sysdate,8000,10);
+
+INSERT INTO emp_bak(empno,ename,job,hiredate,sal,deptno)
+VALUES(1003,'王五','CLERK',sysdate,3000,30);
+
+INSERT INTO emp_bak(empno,ename,job,hiredate,sal,deptno)
+VALUES(1004,'赵六','CLERK',sysdate,2500,20);
+
+INSERT INTO emp_bak(empno,ename,job,hiredate,sal,deptno)
+VALUES(1005,'孙七','ANALYST',sysdate,10000,10);
+
+
+-- 建立一个与DEPT表结构和记录完全相同的新表，并与前项新表建立参照完整性约束。
+
+CREATE TABLE dept_bak
+AS
+SELECT * FROM dept;
+
+
+--添加主键约束
+
+ALTER TABLE emp_bak
+ADD CONSTRAINT PK_EMP_ID primary key(empno);
+
+ALTER TABLE dept_bak
+ADD CONSTRAINT UK_ID unique(deptno);
+
+
+--添加外键约束
+
+ALTER TABLE emp_bak
+ADD CONSTRAINT FK_DEPTNO1
+FOREIGN KEY(DEPTNO)
+REFERENCES dept_bak(DEPTNO)
+
+
+--对在‘NEW YORK’工作的雇员加工资，每人加200。
+
+UPDATE (SELECT *
+FROM emp_bak e,dept_bak d
+WHERE d.loc='NEW YORK' 
+AND e.deptno=d.deptno) a
+SET a.sal=sal+200;
+
+
+
+
+--删除部门号为30的记录，并删除该部门的所有成员。
+
+
+ALTER TABLE emp_bak
+  ADD CONSTRAINT FK_DEPTNO1 FOREIGN KEY(deptno)
+  REFERENCES dept_bak(deptno) ON DELETE CASCADE;
+
+DELETE FROM dept_bak
+WHERE deptno=30
+
+
+--新增列性别SEX，字符型
+
+ALTER TABLE emp_bak
+ADD (sex varchar(2));
+
+--修改新雇员表中的MGR列，为字符型。
+
+ALTER TABLE emp_bak
+MODIFY(mgr varchar2(4))
+
+
+--试着去删除新表中的一个列。
+ALTER TABLE emp_bak
+DROP(sex);
+
+
+
+
+
+
+

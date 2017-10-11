@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>Cookie</title>
+		<style type="text/css">
+			img{
+				width:200px;
+				height:200px;
+			}
+			tr{
+				text-align:center;
+			}
+		</style>
+		<script type="text/javascript" src="./js/jquery-1.2.6.min.js"></script>
+		<script type="text/javascript">
+			$().ready(function(){
+				$("input[type=button]").click(function(){
+					var value = $(this).val();
+					var key = value.substring(0,value.indexOf(" ￥"));
+					var value = value.substring(value.indexOf(" ￥")+3,value.length-1);
+					$.ajax({
+					   type: "POST",
+					   url: "writeCookie",
+					   data: "name="+key+"&price="+value,
+					   success: function(msg){
+					     alert( "成功加入购物车" + msg);
+					   }
+					}); 
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<a id = "a" href="readCookieServlet">查看购物车</a>
+		<table>
+			<tr>
+				<td>
+					<img src="./images/1.jpg" /><br/>
+					<input type="button" value="bangwan ￥:300.00元" />
+				</td>
+				<td><img src="./images/2.jpg" /><br/>
+					<input type="button" value="shenglin ￥:500.00元" />
+				</td>
+				<td><img src="./images/3.jpg" /><br/>
+					<input type="button" value="paopao ￥:250.00元" />
+				</td>
+				<td><img src="./images/4.jpg" /><br/>
+					<input type="button" value="caoyuan ￥:400.00元" />
+				</td>
+				<td><img src="./images/5.jpg" /><br/>
+					<input type="button" value="daimou ￥:250.00元" />
+				</td>
+				<td><img src="./images/6.jpg" /><br/>
+					<input type="button" value="gongyuan ￥:200.00元" />
+				</td>
+			</tr>
+			<tr>
+				<td><img src="./images/7.jpg" /><br/>
+					<input type="button" value="huahai ￥:500.00元" />
+				</td>
+				<td><img src="./images/8.jpg" /><br/>
+					<input type="button" value="jiongjiong ￥:30.00元" />
+				</td>
+				<td><img src="./images/9.jpg" /><br/>
+					<input type="button" value="yuanlin ￥:500.00元" />
+				</td>
+				<td><img src="./images/10.jpg" /><br/>
+					<input type="button" value="gaoyuan ￥:400.00元" />
+				</td>
+				<td><img src="./images/11.jpg" /><br/>
+					<input type="button" value="xueshan ￥:650.00元" />
+				</td>
+				<td><img src="./images/12.jpg" /><br/>
+					<input type="button" value="pubu ￥:350.00元" />
+				</td>
+			</tr>
+		</table>
+		<div style="width: 300px;height300px;background-color:red;">1</div>
+	</body>
+</html>

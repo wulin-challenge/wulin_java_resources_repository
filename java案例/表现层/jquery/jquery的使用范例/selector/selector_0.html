@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.6.js">
+    </script>
+    <style type="text/css">
+    	.oneClass{
+    		font-size:44px;
+    		color:red
+    	}
+    </style>
+   <body>
+  	<input type="text" id="usernameID" value="这就是jQuery"/>
+  	<div id="divID" class="oneClass">这是div中的内容</div>
+  	<script type="text/javascript">
+  	
+  		//通过"#id"定位<input>
+  		//alert($("#usernameID").val());	
+  		
+  		//通过"标签名"定位<input><div>
+  		//alert($("div").html());
+  		//alert($("input").val());
+  		
+  		//通过"样式名"定位<div>
+  		//alert($(".oneClass").html());
+  		
+  		//dom错误处理和jquery错误处理
+  		var $input = $("#usernameIDD");
+  		alert($input.val());
+  		
+  		
+  		
+  		
+  		/*
+  		var inputElement = document.getElementById("usernameID");
+  		if(inputElement!=null){
+  			alert(inputElement.value);
+  		}else{
+  			alert("查无此元素");
+  		}
+  		*/
+  	</script>
+  </body>
+</html>
+
+
+
+
+

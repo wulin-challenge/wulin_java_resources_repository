@@ -1,0 +1,60 @@
+CREATE TABLE t_medicine(
+	id number(12) primary key,
+	name varchar(50),
+	classification varchar(50),
+	standard varchar(50),
+	enter_company varchar(50),
+	enter_price varchar(12),
+	shopping_price varchar(12),
+	validate_number number(12),
+	sale_price number(12),
+	simple_name varchar(20),
+	upper_limit varchar(20),
+	down_limit varchar(20),
+	approve_number varchar(20),
+	produce_company varchar(50),
+	main_component varchar(500),
+	medicine_effect varchar(500),
+	use_method varchar(200),
+	matters_need_attention varchar(200),
+	t_medicine_classify_id number(12),
+	constraint meidicine_classify_id_FK foreign key(id) references t_medicine(id) on delete cascade
+);
+
+SELECT * FROM t_medicine;
+
+INSERT INTO t_medicine(id,name,classification,standard,
+            enter_company,enter_price,shopping_price,validate_number,sale_price,
+					simple_name,upper_limit,down_limit,approve_number,produce_company,
+					main_component,medicine_effect,use_method,matters_need_attention,t_medicine_classify_id) 
+values(2,'山药','皮肤科常用药','很好','美国','5000','1000000',1234,10000,'java',
+          '6666','666','43123','欧洲','高科技','好好的','自己想','随便',1);
+          
+INSERT INTO t_medicine(id,name,classification,standard,
+            enter_company,enter_price,shopping_price,validate_number,sale_price,
+					simple_name,upper_limit,down_limit,approve_number,produce_company,
+					main_component,medicine_effect,use_method,matters_need_attention,t_medicine_classify_id) 
+values(3,'山药','皮肤科常用药','很好','美国','5000','1000000',1234,10000,'java',
+          '6666','666','43123','欧洲','高科技','好好的','自己想','随便',1);
+          
+INSERT INTO t_medicine(id,name,classification,standard,
+            enter_company,enter_price,shopping_price,validate_number,sale_price,
+					simple_name,upper_limit,down_limit,approve_number,produce_company,
+					main_component,medicine_effect,use_method,matters_need_attention,t_medicine_classify_id) 
+values(4,'山药','皮肤科常用药','很好','美国','5000','1000000',1234,10000,'java',
+          '6666','666','43123','欧洲','高科技','好好的','自己想','随便',1);
+          
+INSERT INTO t_medicine(id,name,classification,standard,
+            enter_company,enter_price,shopping_price,validate_number,sale_price,
+					simple_name,upper_limit,down_limit,approve_number,produce_company,
+					main_component,medicine_effect,use_method,matters_need_attention,t_medicine_classify_id) 
+values(5,'山药','皮肤科常用药','很好','美国','5000','1000000',1234,10000,'java',
+          '6666','666','43123','欧洲','高科技','好好的','自己想','随便',1);
+          
+INSERT INTO t_medicine(id,name,classification,standard,
+            enter_company,enter_price,shopping_price,validate_number,sale_price,
+					simple_name,upper_limit,down_limit,approve_number,produce_company,
+					main_component,medicine_effect,use_method,matters_need_attention,t_medicine_classify_id) 
+values(6,'山药','皮肤科常用药','很好','美国','5000','1000000',1234,10000,'java',
+          '6666','666','43123','欧洲','高科技','好好的','自己想','随便',1);
+          

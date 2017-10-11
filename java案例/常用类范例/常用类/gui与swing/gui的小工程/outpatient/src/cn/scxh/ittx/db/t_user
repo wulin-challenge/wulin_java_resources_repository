@@ -1,0 +1,15 @@
+CREATE TABLE t_user(id number(10) primary key,
+					name varchar2(20),
+					password varchar2(20),
+					status char(2)
+					);
+
+
+
+
+
+
+
+
+
+

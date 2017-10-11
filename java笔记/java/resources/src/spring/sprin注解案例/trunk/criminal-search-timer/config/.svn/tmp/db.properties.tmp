@@ -1,0 +1,124 @@
+<<<<<<< .mine
+####################################################################################
+#<----------------------------------\u6570\u636e\u6e90\u8fde\u63a5\u5fc5\u8bfb-------------------------------------->
+#YZ.THE.FIRST.FEW0 = 0 
+#YZ.IS.ENABLE0 = true
+#YZ.SYSTEM.TYPE0 = JLYZ
+#YZ.DATABASE.TYPE0 = ORACLE
+#YZ.PRISON.NAME0 = \u7b2c\u4e8c\u76d1\u72f1
+#YZ.PRISON.NUMBER0 = 1102
+#YZ.HTTP.URL0 = http://192.168.0.222:96/platform
+#YZ.CONNECT.DRIVER0 = oracle.jdbc.driver.OracleDriver
+#YZ.CONNECT.URL0 = jdbc:oracle:thin:@localhost:1521:orcl
+#YZ.CONNECT.USERNAME0 = wulin
+#YZ.CONNECT.PASSWORD0 = wulin
+#YZ.CONNECT.DIALECT0 = org.hibernate.dialect.OracleDialect
+#\u4ee5\u4e0a\u662f\u6570\u636e\u6e90\u914d\u7f6e\u7684\u5b8c\u6574\u683c\u5f0f,\u4ee5\u540e\u914d\u7f6e\u6570\u636e\u6e90\u8bf7\u53c2\u8003\u4ee5\u4e0a\u7684\u914d\u7f6e
+#\u89e3\u6790:
+# [YZ] \u8fd9\u91cc\u7684YZ\u8868\u793a\u524d\u7f00,\u8be5\u524d\u7f00\u4e00\u822c\u6709 YZ \u548c JCSJ \u8fd9\u4e24\u4e2a.
+#YZ.THE.FIRST.FEW\u540e\u7f00\u662f\u4e00\u4e2a\u6570\u5b57,\u8be5\u6570\u5b57\u5fc5\u987b\u4ece0\u5f00\u59cb,\u4f9d\u6b21\u52a0 1 \u9012\u589e,YZ.THE.FIRST.FEW \u7684\u503c\u5fc5\u987b\u4e0e\u540e\u7f00\u76f8\u540c
+#	\u5e76\u4e14\u8be5\u7ec4\u7684\u5176\u4ed6key\u7684\u540e\u7f00\u5fc5\u987b\u4e0eYZ.THE.FIRST.FEW\u7684\u503c\u76f8\u540c.
+#YZ.IS.ENABLE : \u8868\u793a\u8be5\u6570\u636e\u6e90\u662f\u5426\u542f\u7528,true\u8868\u793a\u542f\u7528,false\u8868\u793a\u505c\u7528
+#YZ.SYSTEM.TYPE : \u8868\u793a \u8868\u793a\u8f6f\u4ef6\u7cfb\u7edf\u7c7b\u578b
+#YZ.DATABASE.TYP : \u8868\u793a\u6570\u636e\u5e93\u7c7b\u578b
+#YZ.PRISON.NAME : \u8868\u793a\u6240\u914d\u7f6e\u7684\u76d1\u72f1\u7684\u540d\u79f0
+#YZ.PRISON.NUMBER : \u8868\u793a\u6240\u914d\u7f6e\u7684\u76d1\u72f1\u7f16\u53f7
+#YZ.HTTP.URL : \u8868\u793a\u5bf9\u5e94\u72f1\u653f\u7cfb\u7edf\u7684\u8fde\u63a5URL
+#YZ.CONNECT.DRIVER : \u8868\u793a \u6570\u636e\u6e90\u7684\u9a71\u52a8
+#YZ.CONNECT.URL : \u8868\u793a\u6570\u636e\u6e90\u8fde\u63a5
+#YZ.CONNECT.USERNAME : \u8868\u793a\u767b\u9646\u6570\u636e\u6e90\u7684\u7528\u6237\u540d
+#YZ.CONNECT.PASSWORD : \u8868\u793a\u767b\u9646\u6570\u636e\u6e90\u7684\u5bc6\u7801
+#YZ.CONNECT.DIALEC : \u8fd9\u662fhibernate\u7684\u5bf9\u5e94\u7684\u6570\u636e\u6e90\u65b9\u8a00
+=======
+yzclassName=oracle.jdbc.OracleDriver
+yzurl=jdbc:oracle:thin:@192.168.0.49:1521:ORCL
+yzusername=yzpt
+yzpassword=123456789
+>>>>>>> .r35215
+
+<<<<<<< .mine
+####################################################################################
+
+################################ YZ \u7b2c\u4e8c\u76d1\u72f1  ############################################
+
+YZ.THE.FIRST.FEW0 = 0 
+YZ.IS.ENABLE0 = true
+YZ.SYSTEM.TYPE0 = JLYZ
+YZ.DATABASE.TYPE0 = ORACLE
+YZ.PRISON.NAME0 = \u7b2c\u4e8c\u76d1\u72f1
+YZ.PRISON.NUMBER0 = 1102
+YZ.HTTP.URL0 = http://192.168.0.222:96/platform
+YZ.CONNECT.DRIVER0 = oracle.jdbc.driver.OracleDriver
+YZ.CONNECT.URL0 = jdbc:oracle:thin:@localhost:1521:orcl
+YZ.CONNECT.USERNAME0 = wulin
+YZ.CONNECT.PASSWORD0 = wulin
+YZ.CONNECT.DIALECT0 = org.hibernate.dialect.OracleDialect
+
+################################ YZ \u7b2c\u4e8c\u76d1\u72f1  ############################################
+
+YZ.THE.FIRST.FEW1 = 1 
+YZ.IS.ENABLE1 = true
+YZ.SYSTEM.TYPE1 = JLYZ
+YZ.DATABASE.TYPE1 = ORACLE
+YZ.PRISON.NAME1 = \u7b2c\u4e8c\u76d1\u72f11
+YZ.PRISON.NUMBER1 = 11021
+YZ.HTTP.URL1 = http://192.168.0.222:96/platform
+YZ.CONNECT.DRIVER1 = oracle.jdbc.driver.OracleDriver
+YZ.CONNECT.URL1 = jdbc:oracle:thin:@localhost:1521:orcl
+YZ.CONNECT.USERNAME1 = wulin
+YZ.CONNECT.PASSWORD1 = wulin
+YZ.CONNECT.DIALECT1 = org.hibernate.dialect.OracleDialect
+
+################################ YZ \u7b2c\u4e8c\u76d1\u72f1  ############################################
+
+YZ.THE.FIRST.FEW2 = 2 
+YZ.IS.ENABLE2 = false
+YZ.SYSTEM.TYPE2 = JLYZ
+YZ.DATABASE.TYPE2 = ORACLE
+YZ.PRISON.NAME2 = \u7b2c\u4e8c\u76d1\u72f12
+YZ.PRISON.NUMBER2 = 11022
+YZ.HTTP.URL2 = http://192.168.0.222:96/platform
+YZ.CONNECT.DRIVER2 = oracle.jdbc.driver.OracleDriver
+YZ.CONNECT.URL2 = jdbc:oracle:thin:@localhost:1521:orcl
+YZ.CONNECT.USERNAME2 = wulin
+YZ.CONNECT.PASSWORD2 = wulin
+YZ.CONNECT.DIALECT2 = org.hibernate.dialect.OracleDialect
+
+################################ YZ \u7b2c\u4e8c\u76d1\u72f1  ############################################
+
+YZ.THE.FIRST.FEW3 = 3 
+YZ.IS.ENABLE3 = true
+YZ.SYSTEM.TYPE3 = JLYZ
+YZ.DATABASE.TYPE3 = ORACLE
+YZ.PRISON.NAME3 = \u7b2c\u4e8c\u76d1\u72f13
+YZ.PRISON.NUMBER3 = 11023
+YZ.HTTP.URL3 = http://192.168.0.222:96/platform
+YZ.CONNECT.DRIVER3 = oracle.jdbc.driver.OracleDriver
+YZ.CONNECT.URL3 = jdbc:oracle:thin:@localhost:1521:orcl
+YZ.CONNECT.USERNAME3 = wulin
+YZ.CONNECT.PASSWORD3 = wulin
+YZ.CONNECT.DIALECT3 = org.hibernate.dialect.OracleDialect
+
+
+################################ JCSJ ###########################################
+
+JCSJ.THE.FIRST.FEW0 = 0 
+JCSJ.IS.ENABLE0 = true
+JCSJ.SYSTEM.TYPE0 = JLJCSJ
+JCSJ.DATABASE.TYPE0 = ORACLE
+JCSJ.PRISON.NAME0 = 
+JCSJ.PRISON.NUMBER0 = 
+JCSJ.HTTP.URL0 = 
+JCSJ.CONNECT.DRIVER0 = oracle.jdbc.driver.OracleDriver
+JCSJ.CONNECT.URL0 = jdbc:oracle:thin:@192.168.0.49:1521:orcl
+JCSJ.CONNECT.USERNAME0 = zfjc
+JCSJ.CONNECT.PASSWORD0 = 123456789
+JCSJ.CONNECT.DIALECT0 = org.hibernate.dialect.OracleDialect
+
+################################ JCSJ ###########################################
+=======
+zfjcclassName=oracle.jdbc.OracleDriver
+zfjcurl=jdbc:oracle:thin:@192.168.0.49:1521:ORCL
+zfjcusername=zfjc
+zfjcpassword=123456789
+>>>>>>> .r35215

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="cn.itcast.g_hbm_collection.User" table="user">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+
+		<!--
+			Set集合映射 table：集合表的名称 <key>中的column：集合外键 <element>：集合元素列的信息
+
+			sort属性：如果指定为natural，就会像TreeSet那样进行排序。 order-by属性：指定查询集合元素用的SQL中的order
+			by部分，这里写的是SQL语句。
+		-->
+		<set name="addressSet" table="user_addressSet" order-by="address DESC">
+			<key column="userId" />
+			<element column="address" type="string"></element>
+		</set>
+
+		<!-- addressList属性，List集合 -->
+		<list name="addressList" table="user_addressList">
+			<key column="userId"></key>
+			<list-index column="idx"></list-index>
+			<element column="address" type="string"></element>
+		</list>
+
+		<!-- addressMap属性，Map集合 -->
+		<map name="addressMap" table="user_addressMap">
+			<key column="userId"></key>
+			<map-key column="key_" type="string"></map-key>
+			<element column="address" type="string"></element>
+		</map>
+
+		<!-- addressArray属性，数组类型 -->
+		<array name="addressArray" table="user_addressArray">
+			<key column="userId" />
+			<list-index column="idx"></list-index>
+			<element column="address" type="string"></element>
+		</array>
+
+		<!-- addressBag属性，Bag类型（Hibernate中的类型） -->
+		<bag name="addressBag" table="user_addressBag">
+			<key column="userId"></key>
+			<element column="address" type="string"></element>
+		</bag>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+regsvr32 "%~dp0\SDKOCX2.0.ocx"
