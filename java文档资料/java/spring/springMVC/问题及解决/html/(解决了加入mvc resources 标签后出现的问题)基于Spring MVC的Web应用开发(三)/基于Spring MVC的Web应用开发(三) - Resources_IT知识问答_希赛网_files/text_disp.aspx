@@ -1,0 +1,1 @@
+document.write("<div><a target=\"_blank\" href=\"http://www.educity.cn/self_text/text_go.aspx?id=62\" title=\"软考培训整体解决方案\"/><img src=\"http://www.educity.cn/self_text/text_images/980_60_rk_all.jpg\" alt=\"软考培训整体解决方案\" border=\"0\" height=\"60\" width=\"980\"/></a></div>");

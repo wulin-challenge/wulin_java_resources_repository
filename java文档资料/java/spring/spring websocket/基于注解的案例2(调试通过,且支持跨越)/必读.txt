@@ -1,0 +1,4 @@
+1.将项目启动后访问:http://localhost:8989/face-recognition/testChat/index
+
+2.测试跨越:访问静态页面的 index.html页面
+

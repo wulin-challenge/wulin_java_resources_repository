@@ -1,0 +1,1301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039)http://www.educity.cn/wenda/117654.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网</title>
+    <meta name="keywords" content="基于Spring MVC的Web应用开发(三) - Resources">
+    <meta name="description" content="基于Spring MVC的Web应用开发(3) - Resources
+    　　上一篇介绍了在基于Spring MVC的Web项目中加入日志，本文介绍Spring MVC如何处理资源文件。
+　　注意到本项目的web.xml配置的DispatcherServlet对应的url-pattern为&#39;/..">
+    <link href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/askview.css" rel="stylesheet" type="text/css">
+    <link href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/nei.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://www.educity.cn/wenda/js/artDialog4.1.7/skins/default.css?4.1.7"><script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/artDialog.source.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/iframeTools.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/ueditor.config.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/ueditor.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/createxg.js"></script>
+
+    <link rel="stylesheet" href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/base.css" type="text/css">
+</head>
+<body><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_nw"></td><td class="aui_n"></td><td class="aui_ne"></td></tr><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move; display: block;"></div><a class="aui_close" href="javascript:/*artDialog*/;" style="display: block;">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+        <div class="ty_nav">
+        <div class="width980">
+            <div class="ty_navleft fl"><a href="http://www.educity.cn/usercenter/card_to_money.aspx" target="_blank">充值卡充值</a></div>
+            <div class="ty_navleft fl">客服热线：400-777-1218</div>
+            <div class="ty_navright fr"><script language="javascript" type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/user_state.aspx"></script><a href="http://www.educity.cn/usercenter/login.aspx?page=http%3a%2f%2fwww.educity.cn%2fwenda%2f117654.html" target="_parent">登录</a>&nbsp;&nbsp;<a href="http://www.educity.cn/usercenter/" target="_parent">我的希赛</a>&nbsp;&nbsp;<a href="http://www.educity.cn/usercenter/user_reg.aspx" target="_blank">注册</a></div>
+        </div>
+    </div>
+    <div class="width980">
+        <div class="z_logo fl"><a href="http://www.educity.cn/wenda/" title="希赛网问答中心"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/wd_logo.jpg" alt="希赛网问答中心" width="320" height="69" border="0"></a></div>
+        <!--搜索开始-->
+          <form action="http://zhannei.baidu.com/cse/search" target="_blank">
+            <div class="search fl">
+               <div class="search_input fl"><input name="q" id="top_keyword" class="ser_input" placeholder="请输入要搜索的内容" type="text"></div>
+               <div class="fl"><input type="submit" id="" class="inputnone" value="" style="cursor:pointer;"><input type="hidden" name="s" value="17363339108322086375"><input type="hidden" name="entry" value="1"><input type="hidden" name="ie" value="utf-8"><input name="nsid" type="hidden" value="2"></div>
+            </div>
+            <input name="type" type="hidden" value="1" id="Select1">
+            
+          </form>
+        <!--搜索结束-->
+        <div class="header_icon fr">
+            <dl>
+                <dt><a href="http://www.educity.cn/tiku/" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/header_icon1_zys.jpg" width="15" height="16" border="0" alt="在线测试平台"></a></dt>
+                <dd><a href="http://www.educity.cn/tiku/" target="_blank">在线考试</a></dd>
+            </dl>
+            <dl>
+                <dt><a href="http://platform.educity.cn/v/" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/header_icon2_zys.jpg" width="15" height="16" border="0" alt="视频教学平台"></a></dt>
+                <dd><a href="http://platform.educity.cn/v/" target="_blank">视频课程</a></dd>
+            </dl>
+            <dl>
+                <dt><a href="http://www.educity.cn/jiaocheng/" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/header_icon2_zys.jpg" width="15" height="16" border="0" alt="在线阅读"></a></dt>
+                <dd><a href="http://www.educity.cn/jiaocheng/" target="_blank">在线阅读</a></dd>
+           </dl>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div class="menu_bg">
+        <div class="menu">
+            <ul>
+                <li style="padding: 0px;">
+                    <div class="sidelist" style="z-index: 999">
+                        <h3>
+                            <a href="http://www.educity.cn/wenda/"><span class="downer">问题分类</span></a></h3>
+                        <div style="display: none;" class="i-list">
+                            <div class="i-list_bg fl">
+                                <!--<div class="h20">
+                                </div>-->
+                                <div class="scrollcontent_c" id="topclass">
+    <ul class="leftmenu">
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t1.html">
+            新手起步</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c4.html" target="_blank">常用工具使用</a> <a href="http://www.educity.cn/wenda/c3.html" target="_blank">互联网应用</a> <a href="http://www.educity.cn/wenda/c2.html" target="_blank">
+                        WPS Office办公软件</a> <a href="http://www.educity.cn/wenda/c1.html" target="_blank">MS
+                            Office办公软件</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t2.html">
+            专业课程</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c18.html" target="_blank">管理科学基础</a> <a href="http://www.educity.cn/wenda/c154.html" target="_blank">数据通信原理</a> <a href="http://www.educity.cn/wenda/c23.html" target="_blank">
+                        专业英语</a> <a href="http://www.educity.cn/wenda/c22.html" target="_blank">系统可靠性分析</a>
+                <a href="http://www.educity.cn/wenda/c21.html" target="_blank">多媒体基础</a> <a href="http://www.educity.cn/wenda/c20.html" target="_blank">标准化知识</a> <a href="http://www.educity.cn/wenda/c19.html" target="_blank">
+                        知识产权与法律法规</a> <a href="http://www.educity.cn/wenda/c17.html" target="_blank">信号与系统</a>
+                <a href="http://www.educity.cn/wenda/c16.html" target="_blank">微机与接口</a> <a href="http://www.educity.cn/wenda/c15.html" target="_blank">数字逻辑</a> <a href="http://www.educity.cn/wenda/c14.html" target="_blank">
+                        数据结构与算法</a> <a href="http://www.educity.cn/wenda/c13.html" target="_blank">人工智能</a>
+                <a href="http://www.educity.cn/wenda/c12.html" target="_blank">计算机组成原理</a> <a href="http://www.educity.cn/wenda/c11.html" target="_blank">计算机系统结构</a> <a href="http://www.educity.cn/wenda/c10.html" target="_blank">
+                        计算机图形学</a> <a href="http://www.educity.cn/wenda/c9.html" target="_blank">汇编语言</a>
+                <a href="http://www.educity.cn/wenda/c8.html" target="_blank">管理信息系统</a> <a href="http://www.educity.cn/wenda/c7.html" target="_blank">高级语言程序设计</a> <a href="http://www.educity.cn/wenda/c6.html" target="_blank">
+                        编译原理</a> <a href="http://www.educity.cn/wenda/c5.html" target="_blank">毕业论文</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t3.html">
+            程序开发</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c148.html" target="_blank">Web开发</a> <a href="http://www.educity.cn/wenda/c142.html" target="_blank">Ruby</a> <a href="http://www.educity.cn/wenda/c141.html" target="_blank">
+                        Perl</a> <a href="http://www.educity.cn/wenda/c140.html" target="_blank">Python</a>
+                <a href="http://www.educity.cn/wenda/c35.html" target="_blank">游戏开发</a> <a href="http://www.educity.cn/wenda/c34.html" target="_blank">移动开发</a> <a href="http://www.educity.cn/wenda/c33.html" target="_blank">
+                        嵌入式系统</a> <a href="http://www.educity.cn/wenda/c31.html" target="_blank">PowerBuilder</a>
+                <a href="http://www.educity.cn/wenda/c30.html" target="_blank">Delphi</a> <a href="http://www.educity.cn/wenda/c29.html" target="_blank">Visual FoxPro</a> <a href="http://www.educity.cn/wenda/c28.html" target="_blank">Visual Basic</a> <a href="http://www.educity.cn/wenda/c27.html" target="_blank">
+                            C/C++/VC</a> <a href="http://www.educity.cn/wenda/c26.html" target="_blank">PHP</a>
+                <a href="http://www.educity.cn/wenda/c25.html" target="_blank">Java</a> <a href="http://www.educity.cn/wenda/c24.html" target="_blank">.NET</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t4.html">
+            数据库</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c145.html" target="_blank">Informix</a> <a href="http://www.educity.cn/wenda/c42.html" target="_blank">SQL Server</a> <a href="http://www.educity.cn/wenda/c41.html" target="_blank">
+                        DB2</a> <a href="http://www.educity.cn/wenda/c40.html" target="_blank">Sybase</a>
+                <a href="http://www.educity.cn/wenda/c39.html" target="_blank">MySQL</a> <a href="http://www.educity.cn/wenda/c38.html" target="_blank">Oracle</a> <a href="http://www.educity.cn/wenda/c37.html" target="_blank">
+                        Access</a> <a href="http://www.educity.cn/wenda/c144.html" target="_blank">数据仓库</a>
+                <a href="http://www.educity.cn/wenda/c43.html" target="_blank">数据库开发</a> <a href="http://www.educity.cn/wenda/c36.html" target="_blank">数据库系统原理</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t12.html">
+            项目管理</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c108.html" target="_blank">项目管理基础</a> <a href="http://www.educity.cn/wenda/c109.html" target="_blank">大型项目管理</a> <a href="http://www.educity.cn/wenda/c110.html" target="_blank">
+                        组织级项目管理</a> <a href="http://www.educity.cn/wenda/c156.html" target="_blank">信息系统工程监理</a>
+                <a href="http://www.educity.cn/wenda/g44.html" target="_blank">PMP考试</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t7.html">
+            网络工程</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c67.html" target="_blank">计算机网络基础</a> <a href="http://www.educity.cn/wenda/c68.html" target="_blank">网络协议</a> <a href="http://www.educity.cn/wenda/c74.html" target="_blank">
+                        物联网与云计算</a> <a href="http://www.educity.cn/wenda/c75.html" target="_blank">数据安全</a>
+                <a href="http://www.educity.cn/wenda/c76.html" target="_blank">网络安全</a> <a href="http://www.educity.cn/wenda/c77.html" target="_blank">系统安全</a> <a href="http://www.educity.cn/wenda/c78.html" target="_blank">
+                        手机安全</a> <a href="http://www.educity.cn/wenda/c79.html" target="_blank">安全管理</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t11.html">
+            网站建设</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c97.html" target="_blank">Dreamwaver</a> <a href="http://www.educity.cn/wenda/c98.html" target="_blank">HTML</a> <a href="http://www.educity.cn/wenda/c99.html" target="_blank">CSS</a> <a href="http://www.educity.cn/wenda/c100.html" target="_blank">
+                            Frontpage</a> <a href="http://www.educity.cn/wenda/c101.html" target="_blank">网站优化</a>
+                <a href="http://www.educity.cn/wenda/c102.html" target="_blank">Web设计</a> <a href="http://www.educity.cn/wenda/c103.html" target="_blank">CMS</a> <a href="http://www.educity.cn/wenda/c107.html" target="_blank">
+                        网站运营</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t17.html">
+            软考</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g1.html" target="_blank">网络规划设计师</a> <a href="http://www.educity.cn/wenda/g2.html" target="_blank">系统分析师</a> <a href="http://www.educity.cn/wenda/g3.html" target="_blank">
+                        系统架构设计师</a> <a href="http://www.educity.cn/wenda/g4.html" target="_blank">信息系统项目管理师</a>
+                <a href="http://www.educity.cn/wenda/g5.html" target="_blank">系统集成项目管理工程师</a> <a href="http://www.educity.cn/wenda/g6.html" target="_blank">软件评测师</a> <a href="http://www.educity.cn/wenda/g7.html" target="_blank">软件设计师</a> <a href="http://www.educity.cn/wenda/g8.html" target="_blank">
+                            数据库系统工程师</a> <a href="http://www.educity.cn/wenda/g9.html" target="_blank">网络工程师</a>
+                <a href="http://www.educity.cn/wenda/g10.html" target="_blank">信息系统管理工程师</a> <a href="http://www.educity.cn/wenda/g11.html" target="_blank">信息系统监理师</a> <a href="http://www.educity.cn/wenda/g12.html" target="_blank">
+                        网络管理员</a> <a href="http://www.educity.cn/wenda/g13.html" target="_blank">信息技术处理员</a>
+                <a href="http://www.educity.cn/wenda/g14.html" target="_blank">程序员</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t18.html">
+            通信考试</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g15.html" target="_blank">初级通信工程师</a> <a href="http://www.educity.cn/wenda/g16.html" target="_blank">中级通信工程师：传输与接入</a> <a href="http://www.educity.cn/wenda/g17.html" target="_blank">中级通信工程师：互联网技术</a> <a href="http://www.educity.cn/wenda/g18.html" target="_blank">中级通信工程师：交换技术</a> <a href="http://www.educity.cn/wenda/g19.html" target="_blank">
+                                中级通信工程师：设备环境</a> <a href="http://www.educity.cn/wenda/g20.html" target="_blank">中级通信工程师：终端与业务</a>
+                <a href="http://www.educity.cn/wenda/g21.html" target="_blank">高级通信工程师</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t19.html">
+            等级考试</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g22.html" target="_blank">一级MS Office</a> <a href="http://www.educity.cn/wenda/g23.html" target="_blank">一级WPS Office</a>
+                <a href="http://www.educity.cn/wenda/g24.html" target="_blank">一级Photoshop</a> <a href="http://www.educity.cn/wenda/g25.html" target="_blank">二级C语言</a> <a href="http://www.educity.cn/wenda/g26.html" target="_blank">二级C++语言</a> <a href="http://www.educity.cn/wenda/g27.html" target="_blank">
+                            二级Java语言</a> <a href="http://www.educity.cn/wenda/g28.html" target="_blank">二级Visual
+                                Basic语言务</a> <a href="http://www.educity.cn/wenda/g29.html" target="_blank">二级Visual
+                                    FoxPro语言</a> <a href="http://www.educity.cn/wenda/g30.html" target="_blank">二级Access数据库</a>
+                <a href="http://www.educity.cn/wenda/g31.html" target="_blank">二级MySQL数据库</a> <a href="http://www.educity.cn/wenda/g32.html" target="_blank">二级Web程序设计</a> <a href="http://www.educity.cn/wenda/g33.html" target="_blank">二级MS Office</a> <a href="http://www.educity.cn/wenda/g34.html" target="_blank">
+                            三级网络技术</a> <a href="http://www.educity.cn/wenda/g35.html" target="_blank">三级数据库技术</a>
+                <a href="http://www.educity.cn/wenda/g36.html" target="_blank">三级软件测试技术</a> <a href="http://www.educity.cn/wenda/g37.html" target="_blank">三级信息安全技术</a> <a href="http://www.educity.cn/wenda/g38.html" target="_blank">
+                        三级嵌入式系统开发技术</a> <a href="http://www.educity.cn/wenda/g39.html" target="_blank">四级计算机网络</a>
+                <a href="http://www.educity.cn/wenda/g40.html" target="_blank">四级计算机组成与接口</a> <a href="http://www.educity.cn/wenda/g41.html" target="_blank">四级操作系统原理</a> <a href="http://www.educity.cn/wenda/g42.html" target="_blank">四级数据库原理</a> <a href="http://www.educity.cn/wenda/g43.html" target="_blank">
+                            四级软件工程</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t22.html">
+            IT认证</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g65.html" target="_blank">Adobe认证</a> <a href="http://www.educity.cn/wenda/g64.html" target="_blank">Java认证</a> <a href="http://www.educity.cn/wenda/g63.html" target="_blank">
+                        IBM认证</a> <a href="http://www.educity.cn/wenda/g62.html" target="_blank">Oracle认证</a>
+                <a href="http://www.educity.cn/wenda/g61.html" target="_blank">Microsoft认证</a> <a href="http://www.educity.cn/wenda/g60.html" target="_blank">Linux认证</a> <a href="http://www.educity.cn/wenda/g59.html" target="_blank">H3C认证</a> <a href="http://www.educity.cn/wenda/g58.html" target="_blank">
+                            华为认证</a> <a href="http://www.educity.cn/wenda/g57.html" target="_blank">Cisco认证</a>
+            </ul>
+        </li>
+    </ul>
+    <!--<div class="i_list_title">
+        <ul>
+            <a href="http://www.educity.cn/wenda/t1.html" target="_blank"><li class="class01" id="_rf1" onmouseover="switchTag('_rf','_rf_list',1,11,'class01','class02');">新手起步</li></a>
+            <a href="http://www.educity.cn/wenda/t2.html" target="_blank"><li class="class02" id="_rf2" onmouseover="switchTag('_rf','_rf_list',2,11,'class01','class02');">专业课程</li></a>
+            <a href="http://www.educity.cn/wenda/t3.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf3" onmouseover="switchTag('_rf','_rf_list',3,11,'class01','class02');">程序开发</li></a>
+            <a href="http://www.educity.cn/wenda/t4.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf4" onmouseover="switchTag('_rf','_rf_list',4,11,'class01','class02');">数据库</li></a>
+            <a href="http://www.educity.cn/wenda/t12.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf5" onmouseover="switchTag('_rf','_rf_list',5,11,'class01','class02');">项目管理</li></a>
+            <a href="http://www.educity.cn/wenda/t7.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf6" onmouseover="switchTag('_rf','_rf_list',6,11,'class01','class02');">网络工程</li></a>
+            <a href="http://www.educity.cn/wenda/t11.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf7" onmouseover="switchTag('_rf','_rf_list',7,11,'class01','class02');">网站建设</li></a>
+            <a href="http://www.educity.cn/wenda/t17.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf8" onmouseover="switchTag('_rf','_rf_list',8,11,'class01','class02');">软考</li></a>
+            <a href="http://www.educity.cn/wenda/t18.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf9" onmouseover="switchTag('_rf','_rf_list',9,11,'class01','class02');">通信考试</li></a>
+            <a href="http://www.educity.cn/wenda/t19.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf10" onmouseover="switchTag('_rf','_rf_list',10,11,'class01','class02');">等级考试</li></a>
+            <a href="http://www.educity.cn/wenda/t22.html" target="_blank"><li class="class02" id="_rf11" onmouseover="switchTag('_rf','_rf_list',11,11,'class01','class02');">IT认证</li></a>
+        </ul>
+    </div>
+    <div class="i_list_content">
+        <div id="_rf_list1">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c4.html" target="_blank">常用工具使用</a></li>
+                <li><a href="http://www.educity.cn/wenda/c3.html" target="_blank">互联网应用</a></li>
+                <li><a href="http://www.educity.cn/wenda/c2.html" target="_blank">WPS Office办公软件</a></li>
+                <li><a href="http://www.educity.cn/wenda/c1.html" target="_blank">MS Office办公软件</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list2" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c18.html" target="_blank">管理科学基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c154.html" target="_blank">数据通信原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c23.html" target="_blank">专业英语</a></li>
+                <li><a href="http://www.educity.cn/wenda/c22.html" target="_blank">系统可靠性分析</a></li>
+                <li><a href="http://www.educity.cn/wenda/c21.html" target="_blank">多媒体基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c20.html" target="_blank">标准化知识</a></li>
+                <li><a href="http://www.educity.cn/wenda/c19.html" target="_blank">知识产权与法律法规</a></li>
+                <li><a href="http://www.educity.cn/wenda/c17.html" target="_blank">信号与系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c16.html" target="_blank">微机与接口</a></li>
+                <li><a href="http://www.educity.cn/wenda/c15.html" target="_blank">数字逻辑</a></li>
+                <li><a href="http://www.educity.cn/wenda/c14.html" target="_blank">数据结构与算法</a></li>
+                <li><a href="http://www.educity.cn/wenda/c13.html" target="_blank">人工智能</a></li>
+                <li><a href="http://www.educity.cn/wenda/c12.html" target="_blank">计算机组成原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c11.html" target="_blank">计算机系统结构</a></li>
+                <li><a href="http://www.educity.cn/wenda/c10.html" target="_blank">计算机图形学</a></li>
+                <li><a href="http://www.educity.cn/wenda/c9.html" target="_blank">汇编语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/c8.html" target="_blank">管理信息系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c7.html" target="_blank">高级语言程序设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/c6.html" target="_blank">编译原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c5.html" target="_blank">毕业论文</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list3" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c148.html" target="_blank">Web开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c142.html" target="_blank">Ruby</a></li>
+                <li><a href="http://www.educity.cn/wenda/c141.html" target="_blank">Perl</a></li>
+                <li><a href="http://www.educity.cn/wenda/c140.html" target="_blank">Python</a></li>
+                <li><a href="http://www.educity.cn/wenda/c35.html" target="_blank">游戏开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c34.html" target="_blank">移动开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c33.html" target="_blank">嵌入式系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c31.html" target="_blank">PowerBuilder</a></li>
+                <li><a href="http://www.educity.cn/wenda/c30.html" target="_blank">Delphi</a></li>
+                <li><a href="http://www.educity.cn/wenda/c29.html" target="_blank">Visual FoxPro</a></li>
+                <li><a href="http://www.educity.cn/wenda/c28.html" target="_blank">Visual Basic</a></li>
+                <li><a href="http://www.educity.cn/wenda/c27.html" target="_blank">C/C++/VC</a></li>
+                <li><a href="http://www.educity.cn/wenda/c26.html" target="_blank">PHP</a></li>
+                <li><a href="http://www.educity.cn/wenda/c25.html" target="_blank">Java</a></li>
+                <li><a href="http://www.educity.cn/wenda/c24.html" target="_blank">.NET</a></li>
+                </ul>
+        </div>
+        <div id="_rf_list4" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c145.html" target="_blank">Informix</a></li>
+                <li><a href="http://www.educity.cn/wenda/c42.html" target="_blank">SQL Server</a></li>
+                <li><a href="http://www.educity.cn/wenda/c41.html" target="_blank">DB2</a></li>
+                <li><a href="http://www.educity.cn/wenda/c40.html" target="_blank">Sybase</a></li>
+                <li><a href="http://www.educity.cn/wenda/c39.html" target="_blank">MySQL</a></li>
+                <li><a href="http://www.educity.cn/wenda/c38.html" target="_blank">Oracle</a></li>
+                <li><a href="http://www.educity.cn/wenda/c37.html" target="_blank">Access</a></li>
+                <li><a href="http://www.educity.cn/wenda/c144.html" target="_blank">数据仓库</a></li>
+                <li><a href="http://www.educity.cn/wenda/c43.html" target="_blank">数据库开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c36.html" target="_blank">数据库系统原理</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list5" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c108.html" target="_blank">项目管理基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c109.html" target="_blank">大型项目管理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c110.html" target="_blank">组织级项目管理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g44.html" target="_blank">PMP考试</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list6" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c67.html" target="_blank">计算机网络基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c68.html" target="_blank">网络协议</a></li>
+                <li><a href="http://www.educity.cn/wenda/c74.html" target="_blank">物联网与云计算</a></li>
+                <li><a href="http://www.educity.cn/wenda/c75.html" target="_blank">数据安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c76.html" target="_blank">网络安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c77.html" target="_blank">系统安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c78.html" target="_blank">手机安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c79.html" target="_blank">安全管理</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list7" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c97.html" target="_blank">Dreamwaver</a></li>
+                <li><a href="http://www.educity.cn/wenda/c98.html" target="_blank">HTML</a></li>
+                <li><a href="http://www.educity.cn/wenda/c99.html" target="_blank">CSS</a></li>
+                <li><a href="http://www.educity.cn/wenda/c100.html" target="_blank">Frontpage</a></li>
+                <li><a href="http://www.educity.cn/wenda/c101.html" target="_blank">网站优化</a></li>
+                <li><a href="http://www.educity.cn/wenda/c102.html" target="_blank">Web设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/c103.html" target="_blank">CMS</a></li>
+                <li><a href="http://www.educity.cn/wenda/c107.html" target="_blank">网站运营</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list8" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g1.html" target="_blank">网络规划设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g2.html" target="_blank">系统分析师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g3.html" target="_blank">系统架构设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g4.html" target="_blank">信息系统项目管理师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g5.html" target="_blank">系统集成项目管理工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g6.html" target="_blank">软件评测师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g7.html" target="_blank">软件设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g8.html" target="_blank">数据库系统工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g9.html" target="_blank">网络工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g10.html" target="_blank">信息系统管理工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g11.html" target="_blank">信息系统监理师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g12.html" target="_blank">网络管理员</a></li>
+                <li><a href="http://www.educity.cn/wenda/g13.html" target="_blank">信息技术处理员</a></li>
+                <li><a href="http://www.educity.cn/wenda/g14.html" target="_blank">程序员</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list9" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g15.html" target="_blank">初级通信工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g16.html" target="_blank">中级通信工程师：传输与接入</a></li>
+                <li><a href="http://www.educity.cn/wenda/g17.html" target="_blank">中级通信工程师：互联网技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g18.html" target="_blank">中级通信工程师：交换技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g19.html" target="_blank">中级通信工程师：设备环境</a></li>
+                <li><a href="http://www.educity.cn/wenda/g20.html" target="_blank">中级通信工程师：终端与业务</a></li>
+                <li><a href="http://www.educity.cn/wenda/g21.html" target="_blank">高级通信工程师</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list10" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g22.html" target="_blank">一级MS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g23.html" target="_blank">一级WPS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g24.html" target="_blank">一级Photoshop</a></li>
+                <li><a href="http://www.educity.cn/wenda/g25.html" target="_blank">二级C语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g26.html" target="_blank">二级C++语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g27.html" target="_blank">二级Java语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g28.html" target="_blank">二级Visual Basic语言务</a></li>
+                <li><a href="http://www.educity.cn/wenda/g29.html" target="_blank">二级Visual FoxPro语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g30.html" target="_blank">二级Access数据库</a></li>
+                <li><a href="http://www.educity.cn/wenda/g31.html" target="_blank">二级MySQL数据库</a></li>
+                <li><a href="http://www.educity.cn/wenda/g32.html" target="_blank">二级Web程序设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/g33.html" target="_blank">二级MS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g34.html" target="_blank">三级网络技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g35.html" target="_blank">三级数据库技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g36.html" target="_blank">三级软件测试技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g37.html" target="_blank">三级信息安全技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g38.html" target="_blank">三级嵌入式系统开发技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g39.html" target="_blank">四级计算机网络</a></li>
+                <li><a href="http://www.educity.cn/wenda/g40.html" target="_blank">四级计算机组成与接口</a></li>
+                <li><a href="http://www.educity.cn/wenda/g41.html" target="_blank">四级操作系统原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g42.html" target="_blank">四级数据库原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g43.html" target="_blank">四级软件工程</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list11" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g65.html" target="_blank">Adobe认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g64.html" target="_blank">Java认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g63.html" target="_blank">IBM认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g62.html" target="_blank">Oracle认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g61.html" target="_blank">Microsoft认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g60.html" target="_blank">Linux认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g59.html" target="_blank">H3C认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g58.html" target="_blank">华为认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g57.html" target="_blank">Cisco认证</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="h25">
+    </div>-->
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="http://www.educity.cn/zhibo/" target="_blank">直播课堂</a></li>
+                <li><a href="http://www.educity.cn/shipin/" target="_blank">视频课程</a></li>
+                <li><a href="http://www.educity.cn/jiaocheng/" target="_blank">云阅读</a></li>
+                <li><a href="http://www.educity.cn/tiku/" target="_blank">在线题库</a></li>
+                <li><a href="http://www.educity.cn/biaoqian/zhishi.aspx" target="_blank">IT知识库</a></li>
+            </ul>
+        </div>
+    </div>
+<script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/eduPlay.js"></script>
+    <div>
+        
+        <div class="width980">
+      <div style="margin-top:6px;padding:0px 0px;border:#CCC 1px solid;background:#FFF">
+        <script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/text_disp.aspx"></script><div><a target="_blank" href="http://www.educity.cn/self_text/text_go.aspx?id=62" title="软考培训整体解决方案"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/980_60_rk_all.jpg" alt="软考培训整体解决方案" border="0" height="60" width="980"></a></div>
+      </div>
+  </div>
+
+        <div class="bd">
+            
+    <form method="post" action="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网.html" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNzc3ODE3NjM5ZGQGJNPT6FPz1V8FVOCN4acKS8iVYhteYqIsUESah8Z/fg==">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAUT715Bn6J5gQZCoqPXO3RMrT8ASlZle0wYgY6U1lsTXzyWfHcRnufHMVNqZxVQMdo0bTugwxwGNzlhL3o1cs0hnn0N5OGbbVTVOwapTrv520CYxMRvQZHbwAps5i++C8rurT/MMdtwXTPwKMaAw2n2">
+</div>
+    <div class="daohang"><a href="http://www.educity.cn/" target="_blank">希赛网</a> &gt; <a href="http://www.educity.cn/wenda/">问答</a> &gt; <a href="http://www.educity.cn/wenda/t3.html" target="_blank">程序开发</a> &gt; <a href="http://www.educity.cn/wenda/c148.html" target="_blank">Web开发</a> &gt; <a href="http://www.educity.cn/wenda/s612.html" target="_blank">Web前端</a> &gt; 基于Spring MVC的Web应用开发(三) - Resources</div>
+    <div id="askview" class="askview context_left fl" style="background:#FFF;">
+        <div class="hd">
+            <h1 class="title">基于Spring MVC的Web应用开发(三) - Resources</h1>
+            <div class="bar">
+                <div style="float: left;">
+                    <span>提问者：
+                        yangjiajiang</span> &nbsp; &nbsp; 
+                        <span>发布时间：2014-07-23</span> &nbsp; &nbsp; 
+                        <span>浏览：98</span> &nbsp; &nbsp; 
+                        <span>回复：0</span> &nbsp; &nbsp; 
+                        <span>悬赏：0.0希赛币</span>
+                        </div>
+                
+            </div>
+            <div class="clear"></div>
+            <div class="wet" id="buchong1" style="display:none;border: 1px solid #CCC; padding: 10px; margin-top: 10px; line-height: 24px;">
+                <span style="font-size: 14px;">请点击下面回答中的"<a>采纳为答案</a>"按钮，选择贡献（希赛币）比率后，点击"<a>确认结算</a>"按钮。</span><br>
+                <div style="padding-left:40px; line-height: 28px;">
+                    <table width="45%" border="0" cellspacing="0" cellpadding="0" id="jiesuantable" class="jiesuan" style="margin: 0px;">
+                        <tbody><tr>
+                            <th width="40%">
+                            </th>
+                            <th width="32%">
+                            </th>
+                            <th width="28%">
+                            </th>
+                        </tr>
+                    </tbody></table>
+                    <div style="height: 25px; line-height: 25px;">
+                        <table id="jiesuantable_count" width="55%" border="0" cellpadding="0" cellspacing="0" style="display: none; margin: 0px;">
+                            <tbody><tr>
+                                <td width="50%">
+                                    合计<span id="sumCount" style="color: Red;">0</span>人
+                                </td>
+                                <td width="32%">
+                                    <span id="sumjiesuan" style="color: Red;">0</span>%
+                                </td>
+                                <td width="18%">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                    <div style="text-align: center; width: 35%;">
+                        <input name="ctl00$main$answeridlist" type="hidden" id="answeridlist">
+                        <input name="ctl00$main$Bilvlist" type="hidden" id="Bilvlist">
+                        <input class="btn_jiesuan" onclick="jiesuan_Submit()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cnt" id="textContext">
+            
+            <div class="h10"></div>基于Spring MVC的Web应用开发(3) - Resources<br>
+    <p>　　上一篇介绍了在基于Spring MVC的Web项目中加入日志，本文介绍Spring MVC如何处理资源文件。</p>
+<p>　　注意到本项目的web.xml配置的DispatcherServlet对应的url-pattern为"/"，即所有的URL请求都会经过Spring MVC的处理。实际的Web项目有大量的资源文件，如javascript文件，css文件，png，jpg等图片文件，甚至是Flash等等，我们没有必要对这些静态文件的访问都设置对应的URL，那样会造成大量重复性的劳动，以及维护上的复杂性。Spring MVC提供了一种机制，可以映射一种URL和一个location，此URL后面接的静态文件，对应着location目录下对应的静态文件。此配置为：</p>
+<p>　　&lt;resources mapping="/resources/**" location="/resources/" /&gt;</p>
+<p>　　说明一下，</p>
+<p>　　1. 访问，浏览器显示webapp/resources/test.png</p>
+<p>　　2. 访问，浏览器显示webapp/resources/scripts/test.js</p>
+<p>　　3. 访问，浏览器显示webapp/resources/css/2012/test.css</p>
+<p>　　注意到mapping的值"/resources/**"有两个*，它表示映射resources/下所有的URL，包括子路径（即接多个/），如上面的1、2、3，如果只有一个*，将只能映射1级路径，即只能访问1，访问2、3将会报错。</p>
+<p>　　很遗憾，如果只加这一行，带有@Controller类里面的@RequestMapping映射都不会生效。我是搜索到stackoverflow上的这个帖子联想到解决方案的，后来在stackoverflow搜到另外一个帖子有个还算比较详细的解释，帖子上说使用&lt;mvc:resources/&gt;时必须添加&lt;mvc:annotation-driven/&gt;，然后带有@Controller注解类的@RequestMapping映射信息才能被读取到。</p>
+<p>　　现在servlet-context.xml为：</p>
+<p>　　&lt; xml version="1.0" encoding="UTF-8" &gt;
+&lt;beans:beans xmlns=""
+	xmlns:xsi=""
+	xmlns:beans=""
+	xmlns:context=""
+	xmlns:mvc=""
+	xsi:schemaLocation="
+        rg/schema/beans pringframework.org/schema/context/spring-context-3.1.xsd"&gt;
+
+	&lt;!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure --&gt;
+	
+	&lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory --&gt;
+	&lt;resources mapping="/resources/**" location="/resources/" /&gt;
+	
+	&lt;!-- Imports user-defined @Controller beans that process client requests --&gt;
+	&lt;beans:import resource="controllers.xml" /&gt;
+	
+	&lt;!-- You have to add this because you had a &lt;resources/&gt; declare --&gt;
+	&lt;mvc:annotation-driven/&gt;
+	
+&lt;/beans:beans&gt;
+</p>
+<p>　　访问，浏览器上显示的正是test.js的内容。</p>
+
+<p>　　下面解决HelloWorld那篇文章中遗留的一个问题，在那一篇文章中，@RequestMapping只有一个"/simple"，但从日志中发现，有三种URL"/simple"，"/simple.*"，"/simple/"映射</p>
+<p>　　INFO : org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping - Mapped URL path [/simple] onto handler 'simpleController'
+INFO : org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping - Mapped URL path [/simple.*] onto handler 'simpleController'
+INFO : org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping - Mapped URL path [/simple/] onto handler 'simpleController'</p>
+<p>　　看看DefaultAnnotationHandlerMapping，这个类有个useDefaultSuffixPattern成员变量，默认为true，即默认识别一个URL的3种URL变种，在addUrlsForPath方法中如果if条件成立（useDefaultSuffixPattern=true），就加入了另外两种映射("/simple.*"，"/simple/")，</p>
+<p>　　因此访问http://localhost:8080/web/simple/，，甚至（杜撰的后缀名）时，实际上和http://localhost:8080/web/simple这个URL是等效的。</p>
+
+<p>　　处理完HelloWorld的遗留问题，很自然地，看看在增加了&lt;mvc:resources/&gt;后，启动日志中是如何映射的：</p>
+<p>　　INFO : org.springframeworthod.annotation.RequestMappingHandlerMapping - Mapped "{[/simple],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String org.springframework.samples.mvc.simple.SimpleController.simple()</p>
+<p>　　不再是DefaultAnnotationHandlerMapping，而换成了RequestMappingHandlerMapping。</p>
+<p>　　我们改变一下思路，从请求端看看SpringMVC如何处理上面说的三种URL。</p>
+<p>　　访问http://localhost:8080/web/simple</p>
+<p>　　DEBUG: org.springframeworthod.annotation.RequestMappingHandlerMapping - Looking up handler method for path /simple
+TRACE: org.springframeworthod.annotation.RequestMappingHandlerMapping - Found 1 matching mapping(s) for [/simple] : [{[/simple],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}]</p>
+<p>　　访问</p>
+<p>　　DEBUG: org.springframeworthod.annotation.RequestMappingHandlerMapping - Looking up handler method for path /simple.html
+TRACE: org.springframeworthod.annotation.RequestMappingHandlerMapping - Found 1 matching mapping(s) for  : [{[/simple.*],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}]</p>
+<p>　　访问（杜撰的后缀名）</p>
+<p>　　DEBUG: org.springframeworthod.annotation.RequestMappingHandlerMapping - Looking up handler method for path /simple.foo
+TRACE: org.springframeworthod.annotation.RequestMappingHandlerMapping - Found 1 matching mapping(s) for [/simple.foo] : [{[/simple.*],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}]</p>
+<p>　　很奇妙，SpringMVC自动的识别了三种URL，这一切是怎么做到的呢？启动日志明明只Mapped了一个URL嘛。</p>
+<p>　　还是要看看RequestMappingHandlerMapping的源代码，有两个属性useSuffixPatternMatch和useTrailingSlashMatch，</p>
+<p>　　useSuffixPatternMatch（使用后缀模式匹配）默认为true，即可以识别"/simple.*"，</p>
+<p>　　useTrailingSlashMatch（末尾斜线匹配）默认为true，即可以识别"/simple/"。</p>
+<p>　　最后注意到两次启动日志打印的类并不相同，</p>
+<p>　　前面一个为DefaultAnnotationHandlerMapping，后面一个为RequestMappingHandlerMapping，这又是为什么呢？</p>
+<p>　　原因就在加入了&lt;mvc:resources/&gt;后，Spring工厂对Bean的选型改变了，</p>
+<p>　　没加&lt;mvc:resouces/&gt;前，SpringMVC使用默认策略，所以DefaultAnnotationHandlerMapping被使用了，</p>
+<p>　　加了&lt;mvc:resources/&gt;后，SpringMVC不再使用默认策略，而是使用了RequestMappingHandlerMapping这个类，这应该是在源代码中写死的。</p>
+
+<p>　　====================================================================</p>
+
+<p>　　［补充说明，可不看，翻译的也很渣］Spring Reference Document（Spring官方手册）的16.14.5 Configuraing Serving of Resources这一节中对于Resources的介绍：</p>
+
+<p>　　这个配置（&lt;mvc:resources/&gt;）给ResourceHttpRequestHandler配置了Resource位置，这样handler就可以处理一个特殊的URL模式对应的静态资源请求。它提供了一个很方便的方法直接从物理路径访问到静态资源，包括web应用的root路径和classpath上的路径。cache-period属性可以被用来设置未来可能会用上的实验性的header（可能一年以后吧，这要看诸如Page Speed和YSlow这样的优化工具的给力程度了），这样可以让它被客户端更有效的使用。这个handler也恰当地评估了Last-Modified这个header（如果有的话），因此304状态码（HTTP状态码，如我们常知道浏览器上返回的404错误 译者）会恰当的返回，避免已经被客户端缓存的资源再次访问服务端，造成负载。比如，要使用/resources/**这样的URL模式请求访问一个web应用的root内部public-resources目录下的服务端资源，你可以使用：</p>
+<p>　　@EnableWebMvc
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+      
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/resources/**").addResourceLocations("/public-resources/");
+  }
+
+}</p>
+<p>　　XML中的相同配置在：</p>
+<p>　　&lt;mvc:resources mapping="/resources/**" location="/public-resources/"/&gt;</p>
+<p>　　下面对处理资源的配置可以满足刚才说的一年后的实验性特性，确保了浏览器缓存的最大化使用率和减少浏览器发起的HTTP请求：</p>
+<p>　　@EnableWebMvc
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+      
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/resources/**").addResourceLocations("/public-resources/").setCachePeriod(31556926);
+  }
+
+}</p>
+<p>　　同样在XML中：</p>
+<p>　　&lt;mvc:resources mapping="/resources/**" location="/public-resources/" cache-period="31556926"/&gt;</p>
+<p>　　mapping这个属性必须是一个Ant模式（不太清楚什么是Ant模式 译者），该Ant模式可以被SimpleHandlerMapping使用，location属性必须指定一个或者多个有效的资源目录位置。多个资源位置可以通过使用逗号分隔符的列表值指定。指定的位置会根据任何给定的请求的资源的表现，按照一个特定的顺序被检查一遍。比如为了使我们即能访问web应用root路径又能访问classpath路径下任何一个jar包里一个已知的/META-INF/public-web-resources/路径，我们这样写：</p>
+<p>　　@EnableWebMvc
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+      
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/resources/**")
+      .addResourceLocations("/", "classpath:/META-INF/public-web-resources/");
+  }
+
+}</p>
+<p>　　在XML中：</p>
+<p>　　&lt;mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/public-web-resources/"/&gt;</p>
+<p>　　当资源有可能随着新版本的应用的发布而改变时，推荐你将一个版本字符串放进请求资源时使用的映射模式中，因此你可以强制客户端请求应用资源中部署的新版本。这样一个版本字符串使用SpEL配置，因此当部署新版本时，它可以很容易的在单个地方管理起来。</p>
+<p>　　举个例子，我们考虑一个应用，它在生产环境使用一个性能优化过的定制的Dojo JavaScript库的构件，这个构件通常在一个web应用中的/public-resources/dojo/dojo.js路径下部署。因为对于应用的每个新版本，Dojo的不同部分可能会合并成一个定制构件，客户端浏览器需要强制性的重新下载定制构件dojo.js资源，只要一个新版本的应用被部署了。一个简单的打包方式就是在一个.properties配置文件中管理应用的版本，比如：</p>
+<p>　　application.version=1.0.0</p>
+<p>　　然后在一个bean中使用&lt;util:properties/&gt;标签来让properties文件中的值可以被SpEL访问到:</p>
+<p>　　&lt;util:properties id="applicationProps" location="/WEB-INF/spring/application.properties"/&gt;</p>
+<p>　　现在通过SpEL，application.version可以访问了，我们可以将它合并到&lt;resource/&gt;标签里。</p>
+<p>　　&lt;mvc:resources mapping="/resources-#{applicationProps['application.version']}/**" location="/public-resources/"/&gt;</p>
+<p>　　在Java类中，你可以使用@PropertiesSource注解，然后注入Environment抽象类，来访问到所有预定义的属性值：</p>
+<p>　　@EnableWebMvc
+@Configuration
+@PropertySource("/WEB-INF/spring/application.properties")
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+  @Inject Environment env;
+
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/resources-" + env.getProperty("application.version") + "/**")
+      .addResourceLocations("/public-resources/");
+  }
+
+}</p>
+<p>　　最后，为了使用合适的URL请求资源，我们可以利用Spring JSP标签：（在JSP页面中使用的 译者）</p>
+<p>　　&lt;spring:eval expression="@applicationProps['application.version']" var="applicationVersion"/&gt;
+
+&lt;spring:url value="/resources-{applicationVersion}" var="resourceUrl"&gt;
+    &lt;spring:param name="applicationVersion" value="${applicationVersion}"/&gt;
+&lt;/spring:url&gt;
+
+&lt;script src="${resourceUrl}/dojo/dojo.js" type="text/javascript"&gt; &lt;/script&gt;</p><div class="h10"></div>
+            <script type="text/javascript">
+    /*edu_ask_640_60_���ͼ2*/
+    var cpro_id = "u2048479";
+</script>
+<script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u2048479_0"><iframe id="cproIframe_u2048479_1" width="640" height="60" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(6).html" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom"></script>
+
+        </div>
+        <script>
+            (function () {
+                var timer = null,
+            uploadWrap = $('#test-news');
+
+                function autoPlay() {
+                    timer = setInterval(function () {
+                        $('#test-news').animate({
+                            top: -43
+                        }, function () {
+                            var firstLi = uploadWrap.find('li:eq(0)');
+                            uploadWrap.append(firstLi);
+                            uploadWrap.css('top', 0);
+                        });
+                    }, 3000);
+                }
+
+                autoPlay();
+
+                uploadWrap.on('mouseenter', function () {
+                    clearInterval(timer);
+                });
+
+                uploadWrap.on('mouseleave', function () {
+                    autoPlay();
+                });
+            })();
+            </script>
+        <div class="hdtitle">
+            条回答
+        </div>
+        
+        <div style="padding-bottom:15px;">
+<script type="text/javascript">
+    var cpro_id = "u2048432";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"640",rsi1:"125",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u2048432_0"><iframe id="cproIframe_u2048432_2" width="640" height="125" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(4).html" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(1)"></script>
+</div>
+         <div class="titleurl">
+            <ul>
+                <li>本问题标题：<a href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网.html" title="基于Spring MVC的Web应用开发(三) - Resources">基于Spring MVC的Web应用开发(三) - Resources</a></li>
+                <li>本问题地址：<a href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网.html" title="基于Spring MVC的Web应用开发(三) - Resources">http://www.educity.cn/wenda/117654.html</a></li>
+            </ul>
+        </div>
+        <a id="huida" name="huida" style="height:0px; line-height:0px;">&nbsp;</a>
+        
+        
+        <div class="jd-box">
+            
+        </div>
+        <div id="clore">
+            温馨提示：本问题已经关闭，不能解答。
+        </div>
+        
+         <div style="padding-bottom:15px;">
+<script type="text/javascript">
+    var cpro_id = "u2048434";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"640",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u2048434_0"><iframe id="cproIframe_u2048434_3" width="640" height="250" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(5).html" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(2)"></script>
+</div>
+
+
+    </div>
+    <div class="content_right fr">
+        <div class="gn">
+           <a href="javascript:location.reload();">
+                <img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/fresh_btn.png"></a> 
+          <a id="sc" href="javascript:;"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/collect_btn.png"></a>
+        </div>
+        
+
+
+<div class="problem_btn">
+    <a href="http://www.educity.cn/wenda/post_ask.aspx?type_id=3&class_id=148&subclass_id=612" id="postask" target="_blank">
+        <img width="300" height="43" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/nei_btn2.png"></a></div>
+<div class="h10">
+</div>
+<script type="text/javascript">
+    /*edu_ask_300_250_�Ҳඥ��*/
+    var cpro_id = "u2048462";
+    (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "300", rsi1: "250", pat: "17", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "0", titFF: "%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91", titFS: "14", rss2: "#000000", titSU: "0" }
+</script>
+<script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u2048462_0"><iframe id="cproIframe_u2048462_4" width="300" height="250" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom.html" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/acom(3)"></script>
+
+<div class="h10">
+</div>
+<div class="experts_recommend">
+    <div class="title">
+        专家推荐</div>
+    <div class="content">
+        <div id="Nozj" class="notzj">
+            暂无合适的专家</div>
+        
+    </div>
+</div>
+<div class="h10">
+</div>
+
+<div class="h10">
+</div>
+<div class="experts_recommend">
+    <div class="title">
+        最新问题</div>
+    <div class="content">
+        
+                <li><a href="http://www.educity.cn/wenda/695626.html" target="_blank">
+                    关于试题（编号：84757）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695624.html" target="_blank">
+                    学习“2015年上半年系统集成真题解析试听”的疑问</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695623.html" target="_blank">
+                    学习“系统集成资质申报政策解读”的疑问</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695622.html" target="_blank">
+                    学习“流水线周期及流水线执行时间计算”的疑问</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695619.html" target="_blank">
+                    关于试题（编号：84737）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695620.html" target="_blank">
+                    关于试题（编号：68969）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695618.html" target="_blank">
+                    关于试题（编号：85055）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695617.html" target="_blank">
+                    关于试题（编号：85099）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695616.html" target="_blank">
+                    关于试题（编号：84918）的疑问集中解答贴</a></li>
+            
+                <li><a href="http://www.educity.cn/wenda/695612.html" target="_blank">
+                    学习“Cache存储器 - Cache的实现”的疑问</a></li>
+            
+    </div>
+</div>
+<div class="h10">
+</div>
+<div id="xhdiv">
+    <link href="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/edu_wen_xiaohua.css" rel="stylesheet" type="text/css">
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/xiaohua.js" type="text/javascript"></script><div class="csai_xiaohua_tbcss"><li><a href="http://www.ixueyi.com/xiaohua/27109.html" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/min-1.jpg"><br>是在练缩骨功吗？</a></li><li><a href="http://www.ixueyi.com/xiaohua/27143.html" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/min-2.jpg"><br>有些喵是种出来的</a></li><li><a href="http://www.ixueyi.com/xiaohua/27519.html" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/min-3.jpg"><br>不愧是闺蜜</a></li><li><a href="http://www.ixueyi.com/xiaohua/27792.html" target="_blank"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/min-4.jpg"><br>第一眼看吓屎了</a></li></div>
+    <div class="h10">
+    </div>
+</div>
+<div class="experts_recommend">
+    <div class="title">
+        最新视频</div>
+    <div class="content">
+        
+                <li><a href="http://www.educity.cn/shipin/v3677.html" target="_blank">
+                    2015年中级通信工程师考试终端与业务真题分析与解答（综合能力）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3676.html" target="_blank">
+                    2015年中级通信工程师考试设备环境真题分析与解答（综合能力）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3675.html" target="_blank">
+                    2015年中级通信工程师考试交换技术真题分析与解答（综合能力）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3674.html" target="_blank">
+                    2015年中级通信工程师考试互联网技术真题分析与解答（综合能力）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3673.html" target="_blank">
+                    2015年中级通信工程师考试传输与接入真题分析与解答（综合能力）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3672.html" target="_blank">
+                    信息系统监理师考前串讲（2015下半年）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3671.html" target="_blank">
+                    系统集成项目管理工程师考前串讲（2015下半年）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3670.html" target="_blank">
+                    信息系统项目管理师考前串讲（2015下半年）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3669.html" target="_blank">
+                    网络工程师考前串讲（2015下半年）</a></li>
+            
+                <li><a href="http://www.educity.cn/shipin/v3668.html" target="_blank">
+                    网络工程师考前冲刺（2015下半年）</a></li>
+            
+        
+    </div>
+</div>
+<div class="h10">
+</div>
+
+<div class="h10">
+</div>
+<div class="experts_recommend">
+    <div class="title">
+        热门教程</div>
+    <div class="content">
+        
+                <li><a href="http://www.educity.cn/jiaocheng/zt172.html" target="_blank">
+                    系统架构设计师教程（第3版）</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt39.html" target="_blank">
+                    信息系统项目管理师教程（第3版）</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt110.html" target="_blank">
+                    PHP开发从入门到精通</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt117.html" target="_blank">
+                    Java Web标签应用开发</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt111.html" target="_blank">
+                    ASP.NET应用开发(C#版)</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt165.html" target="_blank">
+                    计算机科学与技术学科联考计算机学科专业基础综合教程（上册）</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt87.html" target="_blank">
+                    网络工程师考试试题分类精解（2014版）</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt113.html" target="_blank">
+                    贯通AJAX+PHP+Dreamweaver CS3动态网站开发</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt167.html" target="_blank">
+                    系统架构设计师考试全程指导（2014版）</a></li>
+            
+                <li><a href="http://www.educity.cn/jiaocheng/zt91.html" target="_blank">
+                    软件设计师考试考点突破、案例分析、实战练习一本通（2014版）</a></li>
+            
+    </div>
+</div>
+<div class="h10">
+</div>
+
+<input id="Hidtypeid" type="hidden" value="3">
+<input id="Hidgradeid" type="hidden" value="0">
+<input id="Hidclassid" type="hidden" value="148">
+<input id="HidXGtjzj" type="hidden" value="1">
+<input id="HidXGzxwt" type="hidden" value="0">
+<input id="HidXGzxsp" type="hidden" value="0">
+<input id="HidXGtjjc" type="hidden" value="0">
+    </div>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/top.js" type="text/javascript"></script>
+    <input name="ctl00$main$titleId_h" type="hidden" id="titleId_h" value="117654">
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/viewask.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/jyWidth.js" type="text/javascript"></script>
+    <input name="ctl00$main$hid_userrole" type="hidden" id="hid_userrole" value="0">
+    </form>
+
+        </div>    
+        
+        <div class="width980">
+      <div style="padding:0px 0px;background-color:#FFF;margin-top:6px"><script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/text_disp(1).aspx"></script><div><a target="_blank" href="http://www.educity.cn/self_text/text_go.aspx?id=92" title="码农谷，专业的在线编程网站"><img src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/980_60_manonggu.jpg" alt="码农谷，专业的在线编程网站" border="0" height="60" width="980"></a></div></div>
+  </div>
+    <!--
+  <script type="text/javascript">
+
+    /*问答页面悬浮广告*/
+    
+var cpro_id = "u1460098";
+  
+</script>
+
+  <script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>
+-->
+
+        <!--foot start-->
+        <div class="h10"></div>
+        <div class="width980">
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="menu1" style="margin-top: 10px; margin-bottom: 20px; line-height: 24px;">
+    <tbody><tr>
+        <td align="center">
+            <a href="http://www.educity.cn/" target="_blank">网站首页</a>&nbsp;&nbsp;&nbsp;<a href="http://www.educity.cn/hzzx/about.htm" target="_blank">关于希赛</a>&nbsp;&nbsp;&nbsp;<a href="http://www.educity.cn/hzzx/job.htm" target="_blank">工作机会</a>&nbsp;&nbsp;&nbsp;<a href="http://www.educity.cn/hzzx/xieyi.htm" target="_blank">服务协议</a>&nbsp;&nbsp;&nbsp;<a href="http://www.educity.cn/hzzx/right.htm" target="_blank">免责声明</a>&nbsp;&nbsp;&nbsp;<a href="http://www.educity.cn/hzzx/contact.htm" target="_blank">联系希赛</a><br>
+            希赛网 版权所有 © 2001-2015&nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">湘ICP备10026015号</a>&nbsp;&nbsp;增值电信业务经营许可证湘B2-20070093
+        </td>
+    </tr>
+</tbody></table>
+<!--微信-->
+<script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/web_sales_utf8.js"></script><style>
+*{ margin:0; padding:0; list-style:none;}
+img{ border:0;}
+.main-im{ position:fixed; right:-2px; top:150px; z-index: 100; width: 110px; height: 272px; }
+.main-im .qq-a { display: block; width: 106px; height: 116px; font-size: 14px; color: #0484cd; text-align: center; position: relative; }
+.main-im .qq-a span { bottom: 5px; position: absolute; width: 90px; left: 10px; }
+.main-im .qq-hover-c { width: 70px; height: 70px; border-radius: 35px; position: absolute; left: 18px; top: 10px; overflow: hidden; z-index: 9; }
+.main-im .qq-container { z-index: 99; position: absolute; width: 109px; height: 118px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #dddddd; background: url(http://www.educity.cn/js/images/qq-icon-bg.png) no-repeat center 8px; }
+.main-im .img-qq {max-width: 60px; display: block; position: absolute; left: 6px; top: 3px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
+.main-im .im-qq:hover .img-qq{ max-width: 70px; left: 1px; top: 8px; position: absolute; }
+.main-im .im_main {background: #F9FAFB; border: 1px solid #dddddd; border-radius: 10px; background: #F9FAFB;display:none;}
+.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 45px; border-bottom: 1px solid #dddddd; }
+.main-im .im_main .im-tel div{font-weight:bold;font-size: 12px;margin-top:11px;}
+.main-im .im_main .im-tel .tel-num { font-family: Arial; font-weight: bold; color: #e66d15;}
+.main-im .im_main .im-tel:hover { background: #fafafa; }
+.main-im .im_main .weixing-container {width: 55px; height: 47px; border-right: 1px solid #dddddd; background: #f5f5f5; border-bottom-left-radius: 10px; background: url(http://www.educity.cn/js/images/weixing-icon.png) no-repeat center center;float:left;}
+.main-im .im_main .weixing-show {width: 115px; height: 170px; background: #ffffff; border-radius: 10px; border: 1px solid #dddddd; position: absolute; left: -125px; top: -126px; }
+.main-im .im_main .weixing-show .weixing-sanjiao {width:0; height: 0; border-style: solid; border-color: transparent transparent transparent #ffffff; border-width: 6px; left: 115px; top: 138px; position: absolute; z-index: 2;}
+.main-im .im_main .weixing-show .weixing-sanjiao-big { width: 0; height: 0; border-style: solid; border-color: transparent transparent transparent #dddddd; border-width: 8px; left: 115px; top: 136px; position: absolute; }
+.main-im .im_main .weixing-show .weixing-ma { width: 105px; height: 134px; padding-left: 5px; padding-top: 5px; }
+.main-im .im_main .weixing-show .weixing-txt{position:absolute;top:140px;left:7px;width:100px;margin:0 auto; text-align:center; font-size:12px;height:20px;line-height:20px}
+.main-im .im_main .go-top { width: 50px; height: 47px; background: #f5f5f5; border-bottom-right-radius: 10px; background: url(http://www.educity.cn/js/images/toTop-icon.png) no-repeat center center;float:right;}
+.main-im .im_main .go-top a { display: block; width: 52px; height: 47px; }
+.main-im .close-im { position: absolute; right: 10px; top: -12px; z-index: 100; width: 24px; height: 24px; }
+.main-im .close-im a { display: block; width: 24px; height: 24px; background: url(http://www.educity.cn/js/images/close_im.png) no-repeat left top; }
+.main-im .close-im a:hover { text-decoration: none; }
+.main-im .open-im { cursor: pointer; margin-left: 68px; width: 40px; height: 133px; background: url(http://www.educity.cn/js/images/open_im.png) no-repeat left top; }
+</style>
+<div class="main-im">
+  <div id="open_im" class="open-im"></div>  
+  <div class="im_main" id="im_main">
+    <div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭"></a></div>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2318577953&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服">
+    <div class="qq-container"></div>
+    <div class="qq-hover-c"><img class="img-qq" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/qq.png"></div>
+    <span> QQ在线咨询</span> </a>
+    <div class="im-tel">
+      <div>免费咨询热线</div>
+      <div class="tel-num">400-777-1218</div>
+    </div>
+    <div class="im-footer" style="position:relative">
+      <div class="weixing-container">
+        <div class="weixing-show">
+           <div class="weixing-txt">获得更多惊喜</div>
+          <img class="weixing-ma" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/weixin_pic.png">
+          <div class="weixing-sanjiao"></div>
+          <div class="weixing-sanjiao-big"></div>
+        </div>
+      </div>
+      <div class="go-top"><a href="javascript:;" title="返回顶部"></a> </div>
+	 <div style="clear:both"></div>
+    </div>
+  </div>
+</div>
+<script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/jquery-1.7.min.js"></script>
+<script>
+$(function(){
+	$('#close_im').bind('click',function(){
+		$('#main-im').css("height","0");
+		$('#im_main').hide();
+		$('#open_im').show();
+	});
+	$('#open_im').bind('click',function(e){
+		$('#main-im').css("height","272");
+		$('#im_main').show();
+		$(this).hide();
+	});
+	$('.go-top').bind('click',function(){
+		$(window).scrollTop(0);
+	});
+	$(".weixing-container").bind('mouseenter',function(){
+		$('.weixing-show').show();
+	})
+	$(".weixing-container").bind('mouseleave',function(){        
+		$('.weixing-show').hide();
+	});
+});
+</script>
+
+<!-- 百度统计开始 -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F555d9dcffdcb317595de82b0fc125cdf' type='text/javascript'%3E%3C/script%3E"));					
+</script><script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/h.js" type="text/javascript"></script>
+<!-- 百度统计结束 -->
+
+<div id="classinfo" style="display: none;">
+    <ul class="leftmenu">
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t1.html">
+            新手起步</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c4.html" target="_blank">常用工具使用</a> <a href="http://www.educity.cn/wenda/c3.html" target="_blank">互联网应用</a> <a href="http://www.educity.cn/wenda/c2.html" target="_blank">
+                        WPS Office办公软件</a> <a href="http://www.educity.cn/wenda/c1.html" target="_blank">MS
+                            Office办公软件</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t2.html">
+            专业课程</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c18.html" target="_blank">管理科学基础</a> <a href="http://www.educity.cn/wenda/c154.html" target="_blank">数据通信原理</a> <a href="http://www.educity.cn/wenda/c23.html" target="_blank">
+                        专业英语</a> <a href="http://www.educity.cn/wenda/c22.html" target="_blank">系统可靠性分析</a>
+                <a href="http://www.educity.cn/wenda/c21.html" target="_blank">多媒体基础</a> <a href="http://www.educity.cn/wenda/c20.html" target="_blank">标准化知识</a> <a href="http://www.educity.cn/wenda/c19.html" target="_blank">
+                        知识产权与法律法规</a> <a href="http://www.educity.cn/wenda/c17.html" target="_blank">信号与系统</a>
+                <a href="http://www.educity.cn/wenda/c16.html" target="_blank">微机与接口</a> <a href="http://www.educity.cn/wenda/c15.html" target="_blank">数字逻辑</a> <a href="http://www.educity.cn/wenda/c14.html" target="_blank">
+                        数据结构与算法</a> <a href="http://www.educity.cn/wenda/c13.html" target="_blank">人工智能</a>
+                <a href="http://www.educity.cn/wenda/c12.html" target="_blank">计算机组成原理</a> <a href="http://www.educity.cn/wenda/c11.html" target="_blank">计算机系统结构</a> <a href="http://www.educity.cn/wenda/c10.html" target="_blank">
+                        计算机图形学</a> <a href="http://www.educity.cn/wenda/c9.html" target="_blank">汇编语言</a>
+                <a href="http://www.educity.cn/wenda/c8.html" target="_blank">管理信息系统</a> <a href="http://www.educity.cn/wenda/c7.html" target="_blank">高级语言程序设计</a> <a href="http://www.educity.cn/wenda/c6.html" target="_blank">
+                        编译原理</a> <a href="http://www.educity.cn/wenda/c5.html" target="_blank">毕业论文</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t3.html">
+            程序开发</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c148.html" target="_blank">Web开发</a> <a href="http://www.educity.cn/wenda/c142.html" target="_blank">Ruby</a> <a href="http://www.educity.cn/wenda/c141.html" target="_blank">
+                        Perl</a> <a href="http://www.educity.cn/wenda/c140.html" target="_blank">Python</a>
+                <a href="http://www.educity.cn/wenda/c35.html" target="_blank">游戏开发</a> <a href="http://www.educity.cn/wenda/c34.html" target="_blank">移动开发</a> <a href="http://www.educity.cn/wenda/c33.html" target="_blank">
+                        嵌入式系统</a> <a href="http://www.educity.cn/wenda/c31.html" target="_blank">PowerBuilder</a>
+                <a href="http://www.educity.cn/wenda/c30.html" target="_blank">Delphi</a> <a href="http://www.educity.cn/wenda/c29.html" target="_blank">Visual FoxPro</a> <a href="http://www.educity.cn/wenda/c28.html" target="_blank">Visual Basic</a> <a href="http://www.educity.cn/wenda/c27.html" target="_blank">
+                            C/C++/VC</a> <a href="http://www.educity.cn/wenda/c26.html" target="_blank">PHP</a>
+                <a href="http://www.educity.cn/wenda/c25.html" target="_blank">Java</a> <a href="http://www.educity.cn/wenda/c24.html" target="_blank">.NET</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t4.html">
+            数据库</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c145.html" target="_blank">Informix</a> <a href="http://www.educity.cn/wenda/c42.html" target="_blank">SQL Server</a> <a href="http://www.educity.cn/wenda/c41.html" target="_blank">
+                        DB2</a> <a href="http://www.educity.cn/wenda/c40.html" target="_blank">Sybase</a>
+                <a href="http://www.educity.cn/wenda/c39.html" target="_blank">MySQL</a> <a href="http://www.educity.cn/wenda/c38.html" target="_blank">Oracle</a> <a href="http://www.educity.cn/wenda/c37.html" target="_blank">
+                        Access</a> <a href="http://www.educity.cn/wenda/c144.html" target="_blank">数据仓库</a>
+                <a href="http://www.educity.cn/wenda/c43.html" target="_blank">数据库开发</a> <a href="http://www.educity.cn/wenda/c36.html" target="_blank">数据库系统原理</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t12.html">
+            项目管理</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c108.html" target="_blank">项目管理基础</a> <a href="http://www.educity.cn/wenda/c109.html" target="_blank">大型项目管理</a> <a href="http://www.educity.cn/wenda/c110.html" target="_blank">
+                        组织级项目管理</a> <a href="http://www.educity.cn/wenda/c156.html" target="_blank">信息系统工程监理</a>
+                <a href="http://www.educity.cn/wenda/g44.html" target="_blank">PMP考试</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t7.html">
+            网络工程</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c67.html" target="_blank">计算机网络基础</a> <a href="http://www.educity.cn/wenda/c68.html" target="_blank">网络协议</a> <a href="http://www.educity.cn/wenda/c74.html" target="_blank">
+                        物联网与云计算</a> <a href="http://www.educity.cn/wenda/c75.html" target="_blank">数据安全</a>
+                <a href="http://www.educity.cn/wenda/c76.html" target="_blank">网络安全</a> <a href="http://www.educity.cn/wenda/c77.html" target="_blank">系统安全</a> <a href="http://www.educity.cn/wenda/c78.html" target="_blank">
+                        手机安全</a> <a href="http://www.educity.cn/wenda/c79.html" target="_blank">安全管理</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t11.html">
+            网站建设</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/c97.html" target="_blank">Dreamwaver</a> <a href="http://www.educity.cn/wenda/c98.html" target="_blank">HTML</a> <a href="http://www.educity.cn/wenda/c99.html" target="_blank">CSS</a> <a href="http://www.educity.cn/wenda/c100.html" target="_blank">
+                            Frontpage</a> <a href="http://www.educity.cn/wenda/c101.html" target="_blank">网站优化</a>
+                <a href="http://www.educity.cn/wenda/c102.html" target="_blank">Web设计</a> <a href="http://www.educity.cn/wenda/c103.html" target="_blank">CMS</a> <a href="http://www.educity.cn/wenda/c107.html" target="_blank">
+                        网站运营</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t17.html">
+            软考</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g1.html" target="_blank">网络规划设计师</a> <a href="http://www.educity.cn/wenda/g2.html" target="_blank">系统分析师</a> <a href="http://www.educity.cn/wenda/g3.html" target="_blank">
+                        系统架构设计师</a> <a href="http://www.educity.cn/wenda/g4.html" target="_blank">信息系统项目管理师</a>
+                <a href="http://www.educity.cn/wenda/g5.html" target="_blank">系统集成项目管理工程师</a> <a href="http://www.educity.cn/wenda/g6.html" target="_blank">软件评测师</a> <a href="http://www.educity.cn/wenda/g7.html" target="_blank">软件设计师</a> <a href="http://www.educity.cn/wenda/g8.html" target="_blank">
+                            数据库系统工程师</a> <a href="http://www.educity.cn/wenda/g9.html" target="_blank">网络工程师</a>
+                <a href="http://www.educity.cn/wenda/g10.html" target="_blank">信息系统管理工程师</a> <a href="http://www.educity.cn/wenda/g11.html" target="_blank">信息系统监理师</a> <a href="http://www.educity.cn/wenda/g12.html" target="_blank">
+                        网络管理员</a> <a href="http://www.educity.cn/wenda/g13.html" target="_blank">信息技术处理员</a>
+                <a href="http://www.educity.cn/wenda/g14.html" target="_blank">程序员</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t18.html">
+            通信考试</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g15.html" target="_blank">初级通信工程师</a> <a href="http://www.educity.cn/wenda/g16.html" target="_blank">中级通信工程师：传输与接入</a> <a href="http://www.educity.cn/wenda/g17.html" target="_blank">中级通信工程师：互联网技术</a> <a href="http://www.educity.cn/wenda/g18.html" target="_blank">中级通信工程师：交换技术</a> <a href="http://www.educity.cn/wenda/g19.html" target="_blank">
+                                中级通信工程师：设备环境</a> <a href="http://www.educity.cn/wenda/g20.html" target="_blank">中级通信工程师：终端与业务</a>
+                <a href="http://www.educity.cn/wenda/g21.html" target="_blank">高级通信工程师</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t19.html">
+            等级考试</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g22.html" target="_blank">一级MS Office</a> <a href="http://www.educity.cn/wenda/g23.html" target="_blank">一级WPS Office</a>
+                <a href="http://www.educity.cn/wenda/g24.html" target="_blank">一级Photoshop</a> <a href="http://www.educity.cn/wenda/g25.html" target="_blank">二级C语言</a> <a href="http://www.educity.cn/wenda/g26.html" target="_blank">二级C++语言</a> <a href="http://www.educity.cn/wenda/g27.html" target="_blank">
+                            二级Java语言</a> <a href="http://www.educity.cn/wenda/g28.html" target="_blank">二级Visual
+                                Basic语言务</a> <a href="http://www.educity.cn/wenda/g29.html" target="_blank">二级Visual
+                                    FoxPro语言</a> <a href="http://www.educity.cn/wenda/g30.html" target="_blank">二级Access数据库</a>
+                <a href="http://www.educity.cn/wenda/g31.html" target="_blank">二级MySQL数据库</a> <a href="http://www.educity.cn/wenda/g32.html" target="_blank">二级Web程序设计</a> <a href="http://www.educity.cn/wenda/g33.html" target="_blank">二级MS Office</a> <a href="http://www.educity.cn/wenda/g34.html" target="_blank">
+                            三级网络技术</a> <a href="http://www.educity.cn/wenda/g35.html" target="_blank">三级数据库技术</a>
+                <a href="http://www.educity.cn/wenda/g36.html" target="_blank">三级软件测试技术</a> <a href="http://www.educity.cn/wenda/g37.html" target="_blank">三级信息安全技术</a> <a href="http://www.educity.cn/wenda/g38.html" target="_blank">
+                        三级嵌入式系统开发技术</a> <a href="http://www.educity.cn/wenda/g39.html" target="_blank">四级计算机网络</a>
+                <a href="http://www.educity.cn/wenda/g40.html" target="_blank">四级计算机组成与接口</a> <a href="http://www.educity.cn/wenda/g41.html" target="_blank">四级操作系统原理</a> <a href="http://www.educity.cn/wenda/g42.html" target="_blank">四级数据库原理</a> <a href="http://www.educity.cn/wenda/g43.html" target="_blank">
+                            四级软件工程</a>
+            </ul>
+        </li>
+        <li class="side_menus"><span><a target="_blank" href="http://www.educity.cn/wenda/t22.html">
+            IT认证</a></span>
+            <ul class="menus_con">
+                <a href="http://www.educity.cn/wenda/g65.html" target="_blank">Adobe认证</a> <a href="http://www.educity.cn/wenda/g64.html" target="_blank">Java认证</a> <a href="http://www.educity.cn/wenda/g63.html" target="_blank">
+                        IBM认证</a> <a href="http://www.educity.cn/wenda/g62.html" target="_blank">Oracle认证</a>
+                <a href="http://www.educity.cn/wenda/g61.html" target="_blank">Microsoft认证</a> <a href="http://www.educity.cn/wenda/g60.html" target="_blank">Linux认证</a> <a href="http://www.educity.cn/wenda/g59.html" target="_blank">H3C认证</a> <a href="http://www.educity.cn/wenda/g58.html" target="_blank">
+                            华为认证</a> <a href="http://www.educity.cn/wenda/g57.html" target="_blank">Cisco认证</a>
+            </ul>
+        </li>
+    </ul>
+    <!--<div class="i_list_title">
+        <ul>
+            <a href="http://www.educity.cn/wenda/t1.html" target="_blank"><li class="class01" id="_rf1" onmouseover="switchTag('_rf','_rf_list',1,11,'class01','class02');">新手起步</li></a>
+            <a href="http://www.educity.cn/wenda/t2.html" target="_blank"><li class="class02" id="_rf2" onmouseover="switchTag('_rf','_rf_list',2,11,'class01','class02');">专业课程</li></a>
+            <a href="http://www.educity.cn/wenda/t3.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf3" onmouseover="switchTag('_rf','_rf_list',3,11,'class01','class02');">程序开发</li></a>
+            <a href="http://www.educity.cn/wenda/t4.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf4" onmouseover="switchTag('_rf','_rf_list',4,11,'class01','class02');">数据库</li></a>
+            <a href="http://www.educity.cn/wenda/t12.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf5" onmouseover="switchTag('_rf','_rf_list',5,11,'class01','class02');">项目管理</li></a>
+            <a href="http://www.educity.cn/wenda/t7.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf6" onmouseover="switchTag('_rf','_rf_list',6,11,'class01','class02');">网络工程</li></a>
+            <a href="http://www.educity.cn/wenda/t11.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf7" onmouseover="switchTag('_rf','_rf_list',7,11,'class01','class02');">网站建设</li></a>
+            <a href="http://www.educity.cn/wenda/t17.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf8" onmouseover="switchTag('_rf','_rf_list',8,11,'class01','class02');">软考</li></a>
+            <a href="http://www.educity.cn/wenda/t18.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf9" onmouseover="switchTag('_rf','_rf_list',9,11,'class01','class02');">通信考试</li></a>
+            <a href="http://www.educity.cn/wenda/t19.html" target="_blank" style="display: block;padding: 0px; float: left; height: 26px; width: 80px; margin-right: 5px; line-height: 22px;"><li class="class02" id="_rf10" onmouseover="switchTag('_rf','_rf_list',10,11,'class01','class02');">等级考试</li></a>
+            <a href="http://www.educity.cn/wenda/t22.html" target="_blank"><li class="class02" id="_rf11" onmouseover="switchTag('_rf','_rf_list',11,11,'class01','class02');">IT认证</li></a>
+        </ul>
+    </div>
+    <div class="i_list_content">
+        <div id="_rf_list1">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c4.html" target="_blank">常用工具使用</a></li>
+                <li><a href="http://www.educity.cn/wenda/c3.html" target="_blank">互联网应用</a></li>
+                <li><a href="http://www.educity.cn/wenda/c2.html" target="_blank">WPS Office办公软件</a></li>
+                <li><a href="http://www.educity.cn/wenda/c1.html" target="_blank">MS Office办公软件</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list2" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c18.html" target="_blank">管理科学基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c154.html" target="_blank">数据通信原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c23.html" target="_blank">专业英语</a></li>
+                <li><a href="http://www.educity.cn/wenda/c22.html" target="_blank">系统可靠性分析</a></li>
+                <li><a href="http://www.educity.cn/wenda/c21.html" target="_blank">多媒体基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c20.html" target="_blank">标准化知识</a></li>
+                <li><a href="http://www.educity.cn/wenda/c19.html" target="_blank">知识产权与法律法规</a></li>
+                <li><a href="http://www.educity.cn/wenda/c17.html" target="_blank">信号与系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c16.html" target="_blank">微机与接口</a></li>
+                <li><a href="http://www.educity.cn/wenda/c15.html" target="_blank">数字逻辑</a></li>
+                <li><a href="http://www.educity.cn/wenda/c14.html" target="_blank">数据结构与算法</a></li>
+                <li><a href="http://www.educity.cn/wenda/c13.html" target="_blank">人工智能</a></li>
+                <li><a href="http://www.educity.cn/wenda/c12.html" target="_blank">计算机组成原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c11.html" target="_blank">计算机系统结构</a></li>
+                <li><a href="http://www.educity.cn/wenda/c10.html" target="_blank">计算机图形学</a></li>
+                <li><a href="http://www.educity.cn/wenda/c9.html" target="_blank">汇编语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/c8.html" target="_blank">管理信息系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c7.html" target="_blank">高级语言程序设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/c6.html" target="_blank">编译原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c5.html" target="_blank">毕业论文</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list3" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c148.html" target="_blank">Web开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c142.html" target="_blank">Ruby</a></li>
+                <li><a href="http://www.educity.cn/wenda/c141.html" target="_blank">Perl</a></li>
+                <li><a href="http://www.educity.cn/wenda/c140.html" target="_blank">Python</a></li>
+                <li><a href="http://www.educity.cn/wenda/c35.html" target="_blank">游戏开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c34.html" target="_blank">移动开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c33.html" target="_blank">嵌入式系统</a></li>
+                <li><a href="http://www.educity.cn/wenda/c31.html" target="_blank">PowerBuilder</a></li>
+                <li><a href="http://www.educity.cn/wenda/c30.html" target="_blank">Delphi</a></li>
+                <li><a href="http://www.educity.cn/wenda/c29.html" target="_blank">Visual FoxPro</a></li>
+                <li><a href="http://www.educity.cn/wenda/c28.html" target="_blank">Visual Basic</a></li>
+                <li><a href="http://www.educity.cn/wenda/c27.html" target="_blank">C/C++/VC</a></li>
+                <li><a href="http://www.educity.cn/wenda/c26.html" target="_blank">PHP</a></li>
+                <li><a href="http://www.educity.cn/wenda/c25.html" target="_blank">Java</a></li>
+                <li><a href="http://www.educity.cn/wenda/c24.html" target="_blank">.NET</a></li>
+                </ul>
+        </div>
+        <div id="_rf_list4" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c145.html" target="_blank">Informix</a></li>
+                <li><a href="http://www.educity.cn/wenda/c42.html" target="_blank">SQL Server</a></li>
+                <li><a href="http://www.educity.cn/wenda/c41.html" target="_blank">DB2</a></li>
+                <li><a href="http://www.educity.cn/wenda/c40.html" target="_blank">Sybase</a></li>
+                <li><a href="http://www.educity.cn/wenda/c39.html" target="_blank">MySQL</a></li>
+                <li><a href="http://www.educity.cn/wenda/c38.html" target="_blank">Oracle</a></li>
+                <li><a href="http://www.educity.cn/wenda/c37.html" target="_blank">Access</a></li>
+                <li><a href="http://www.educity.cn/wenda/c144.html" target="_blank">数据仓库</a></li>
+                <li><a href="http://www.educity.cn/wenda/c43.html" target="_blank">数据库开发</a></li>
+                <li><a href="http://www.educity.cn/wenda/c36.html" target="_blank">数据库系统原理</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list5" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c108.html" target="_blank">项目管理基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c109.html" target="_blank">大型项目管理</a></li>
+                <li><a href="http://www.educity.cn/wenda/c110.html" target="_blank">组织级项目管理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g44.html" target="_blank">PMP考试</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list6" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c67.html" target="_blank">计算机网络基础</a></li>
+                <li><a href="http://www.educity.cn/wenda/c68.html" target="_blank">网络协议</a></li>
+                <li><a href="http://www.educity.cn/wenda/c74.html" target="_blank">物联网与云计算</a></li>
+                <li><a href="http://www.educity.cn/wenda/c75.html" target="_blank">数据安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c76.html" target="_blank">网络安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c77.html" target="_blank">系统安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c78.html" target="_blank">手机安全</a></li>
+                <li><a href="http://www.educity.cn/wenda/c79.html" target="_blank">安全管理</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list7" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/c97.html" target="_blank">Dreamwaver</a></li>
+                <li><a href="http://www.educity.cn/wenda/c98.html" target="_blank">HTML</a></li>
+                <li><a href="http://www.educity.cn/wenda/c99.html" target="_blank">CSS</a></li>
+                <li><a href="http://www.educity.cn/wenda/c100.html" target="_blank">Frontpage</a></li>
+                <li><a href="http://www.educity.cn/wenda/c101.html" target="_blank">网站优化</a></li>
+                <li><a href="http://www.educity.cn/wenda/c102.html" target="_blank">Web设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/c103.html" target="_blank">CMS</a></li>
+                <li><a href="http://www.educity.cn/wenda/c107.html" target="_blank">网站运营</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list8" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g1.html" target="_blank">网络规划设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g2.html" target="_blank">系统分析师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g3.html" target="_blank">系统架构设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g4.html" target="_blank">信息系统项目管理师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g5.html" target="_blank">系统集成项目管理工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g6.html" target="_blank">软件评测师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g7.html" target="_blank">软件设计师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g8.html" target="_blank">数据库系统工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g9.html" target="_blank">网络工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g10.html" target="_blank">信息系统管理工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g11.html" target="_blank">信息系统监理师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g12.html" target="_blank">网络管理员</a></li>
+                <li><a href="http://www.educity.cn/wenda/g13.html" target="_blank">信息技术处理员</a></li>
+                <li><a href="http://www.educity.cn/wenda/g14.html" target="_blank">程序员</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list9" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g15.html" target="_blank">初级通信工程师</a></li>
+                <li><a href="http://www.educity.cn/wenda/g16.html" target="_blank">中级通信工程师：传输与接入</a></li>
+                <li><a href="http://www.educity.cn/wenda/g17.html" target="_blank">中级通信工程师：互联网技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g18.html" target="_blank">中级通信工程师：交换技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g19.html" target="_blank">中级通信工程师：设备环境</a></li>
+                <li><a href="http://www.educity.cn/wenda/g20.html" target="_blank">中级通信工程师：终端与业务</a></li>
+                <li><a href="http://www.educity.cn/wenda/g21.html" target="_blank">高级通信工程师</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list10" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g22.html" target="_blank">一级MS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g23.html" target="_blank">一级WPS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g24.html" target="_blank">一级Photoshop</a></li>
+                <li><a href="http://www.educity.cn/wenda/g25.html" target="_blank">二级C语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g26.html" target="_blank">二级C++语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g27.html" target="_blank">二级Java语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g28.html" target="_blank">二级Visual Basic语言务</a></li>
+                <li><a href="http://www.educity.cn/wenda/g29.html" target="_blank">二级Visual FoxPro语言</a></li>
+                <li><a href="http://www.educity.cn/wenda/g30.html" target="_blank">二级Access数据库</a></li>
+                <li><a href="http://www.educity.cn/wenda/g31.html" target="_blank">二级MySQL数据库</a></li>
+                <li><a href="http://www.educity.cn/wenda/g32.html" target="_blank">二级Web程序设计</a></li>
+                <li><a href="http://www.educity.cn/wenda/g33.html" target="_blank">二级MS Office</a></li>
+                <li><a href="http://www.educity.cn/wenda/g34.html" target="_blank">三级网络技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g35.html" target="_blank">三级数据库技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g36.html" target="_blank">三级软件测试技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g37.html" target="_blank">三级信息安全技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g38.html" target="_blank">三级嵌入式系统开发技术</a></li>
+                <li><a href="http://www.educity.cn/wenda/g39.html" target="_blank">四级计算机网络</a></li>
+                <li><a href="http://www.educity.cn/wenda/g40.html" target="_blank">四级计算机组成与接口</a></li>
+                <li><a href="http://www.educity.cn/wenda/g41.html" target="_blank">四级操作系统原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g42.html" target="_blank">四级数据库原理</a></li>
+                <li><a href="http://www.educity.cn/wenda/g43.html" target="_blank">四级软件工程</a></li>
+            </ul>
+        </div>
+        <div id="_rf_list11" class="hidden">
+            <ul>
+                <li><a href="http://www.educity.cn/wenda/g65.html" target="_blank">Adobe认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g64.html" target="_blank">Java认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g63.html" target="_blank">IBM认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g62.html" target="_blank">Oracle认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g61.html" target="_blank">Microsoft认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g60.html" target="_blank">Linux认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g59.html" target="_blank">H3C认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g58.html" target="_blank">华为认证</a></li>
+                <li><a href="http://www.educity.cn/wenda/g57.html" target="_blank">Cisco认证</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="h25">
+    </div>-->
+</div>
+<script type="text/javascript" src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/jquery-1.6.4.min(1).js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".leftmenu li").hover(function () {
+            $(this).find("> span").addClass('hover');
+            $(this).find("> ul").show(); //鼠标滑过查找li下面的第一个ul然后显示；
+        }, function () {
+            $(this).find("> span").removeClass('hover');
+            $(this).find("> ul").hide(); //鼠标离开隐藏li下面d的ul；
+        });
+    });
+    if (document.getElementById("topclass") != null) {
+        document.getElementById("topclass").innerHTML = document.getElementById("classinfo").innerHTML;
+    }
+    function msh() {
+        document.getElementById('menuss').style.display = document.getElementById('menuss').style.display == "none" ? "inline" : "none"
+    }
+    $('.usermenu').mouseleave(function () {
+        $(this).find('.menulist').hide();
+    });
+</script>
+
+        </div>
+    </div><div class="backToTop" title="" style="display: block;"></div>
+    <!--foot end-->
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/tab.js" type="text/javascript"></script>
+    <script src="./基于Spring MVC的Web应用开发(三) - Resources_IT知识问答_希赛网_files/headsearch.js.js" type="text/javascript"></script>
+    
+
+
+
+<div style="display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background: rgb(255, 255, 255);"></div></body></html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166368.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/2166368"></script>
+<meta charset="utf-8">
+<title>JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/bundle-LessIsMoreRight.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/lovingprince/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/lovingprince/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/lovingprince/wlwmanifest.xml">
+<script src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'lovingprince', cb_enable_mathjax=false;</script>
+<script src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/lovingprince/">lovingprince</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/lovingprince/">首页</a></li>
+<li id="nav_q"><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li id="nav_ing"><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/lovingprince">联系</a></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/lovingprince/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/lovingprince/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-262&nbsp;
+文章-0&nbsp;
+评论-10&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园.html">JAVA正则表达式高级用法(分组与捕获)</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p class="highlighter dp-highlighter">&nbsp;</p>
+<p style="FONT-SIZE: 12pt">&nbsp;正则表达式在字符串处理中经常使用，关于正则简单的用法相信有一点程序基础的人都懂得一些，这里就不介绍简单基础了。这里主要讲解一下在JAVA中实现了的正则的高级用法-分组与捕获。</p>
+<p>&nbsp;&nbsp;&nbsp; 对于要重复单个字符，非常简单，直接在字符后卖弄加上限定符即可，例如 a+ 表示匹配1个或一个以上的a，a?表示匹配0个或1个a。这些限定符如下所示：</p>
+<p>&nbsp; 
+</p><table border="0" cellspacing="0" cellpadding="1" summary="Regular expression constructs, and what they match">
+<tbody>
+<tr>
+<td valign="top"><em>X</em>
+<tt>?</tt>
+</td>
+<td><em>X</em>
+，一次或一次也没有</td>
+</tr>
+<tr>
+<td valign="top"><em>X</em>
+<tt>*</tt>
+</td>
+<td><em>X</em>
+，零次或多次</td>
+</tr>
+<tr>
+<td valign="top"><em>X</em>
+<tt>+</tt>
+</td>
+<td><em>X</em>
+，一次或多次</td>
+</tr>
+<tr>
+<td valign="top"><em>X</em>
+<tt>{</tt>
+<em>n</em>
+<tt>}</tt>
+</td>
+<td><em>X</em>
+，恰好 <em>n</em>
+ 次</td>
+</tr>
+<tr>
+<td valign="top"><em>X</em>
+<tt>{</tt>
+<em>n</em>
+<tt>,}</tt>
+</td>
+<td><em>X</em>
+，至少 <em>n</em>
+ 次</td>
+</tr>
+<tr>
+<td valign="top"><em>X</em>
+<tt>{</tt>
+<em>n</em>
+<tt>,</tt>
+<em>m</em>
+<tt>}</tt>
+</td>
+<td>
+<p><em>X</em>
+，至少 <em>n</em>
+ 次，但是不超过 <em>m</em>
+ 次</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>但是我们如果要对多个字符进行重复怎么办呢？此时我们就要用到分组，我们可以使用小括号"()"来指定要重复的子表达式，然后对这个子表达式进行重复，例如：(abc)? 表示0个或1个abc 这里<span style="color: #000000;">一</span>
+<span style="color: #ff6600;">个括号的表达式就表示一个分组</span>
+。</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp; 分组可以分为两种形式，捕获组和非捕获组。</p>
+<p>&nbsp;</p>
+<p style="FONT-SIZE: 14pt"><strong>捕获组</strong>
+&nbsp;</p>
+<p>捕获组可以通过从左到右计算其开括号来<span style="color: #800000;">编号</span>
+。例如，在表达式 <tt>((A)(B(C)))</tt>
+ 中，存在四个这样的组： </p>
+<blockquote>
+<table border="0" cellspacing="0" cellpadding="1" summary="Capturing group numberings">
+<tbody>
+<tr>
+<th>1&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<td><tt>((A)(B(C)))</tt>
+</td>
+</tr>
+<tr>
+<th>2&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<td><tt>/A</tt>
+</td>
+</tr>
+<tr>
+<th>3&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<td><tt>(B(C))</tt>
+</td>
+</tr>
+<tr>
+<th>4&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<td><tt>(C)</tt>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>组零始终代表整个表达式</p>
+<p>之所以这样命名捕获组是因为在匹配中，保存了与这些组匹配的输入序列的每个子序列。捕获的子序列稍后可以通过 <span style="color: #800000;">Back 引用</span>
+在表达式中使用，也可以在匹配操作完成后从匹配器检索。 
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;Back 引用 是说在后面的表达式中我们可以使用组的编号来引用前面的表达式所<span style="color: #800000;">捕获到的文本序列(是文本不是正则)</span>
+。</p>
+<p>&nbsp;</p>
+<p>&nbsp;例如 ([" ']).* /1&nbsp;&nbsp; 其中使用了分组，/1就是对引号这个分组的引用，它匹配包含在两个引号或者两个单引号中的所有字符串，如，"abc" 或 " '&nbsp;" 或 '&nbsp;"&nbsp;'&nbsp; ，但是请注意，它并不会对" a'或者 'a"匹配。原因上面已经说明，Back引用只是引用文本而不是表达式。</p>
+<p>&nbsp;</p>
+<p style="FONT-SIZE: 14pt"><strong>非捕获组</strong>
+&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;以 <tt>(?)</tt>
+ 开头的组是纯的<em>非捕获</em>
+ 组，它<span style="color: #ff6600;">不捕获文本</span>
+，也不针对组合计进行计数。就是说，如果小括号中以?号开头，那么这个分组就不会捕获文本，当然也不会有组的编号，因此也不存在Back 引用。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在Java中，支持的非捕获组，有如下几种：</p>
+<p>
+</p><table border="0" cellspacing="0" cellpadding="1" summary="Regular expression constructs, and what they match">
+<tbody>
+<tr>
+<td valign="top">&nbsp;</td>
+<td><em></em>
+</td>
+</tr>
+<tr>
+<td valign="top"><tt>&nbsp;</tt>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td valign="top">&nbsp;</td>
+<td><em></em>
+</td>
+</tr>
+<tr>
+<td valign="top"><span style="color: #ff6600;"><tt>(?=</tt>
+<em>X</em>
+<tt>)</tt>
+</span>
+</td>
+<td><span style="color: #ff6600;"><em>&nbsp;&nbsp;&nbsp;&nbsp;X</em>
+，通过零宽度的正 lookahead</span>
+</td>
+</tr>
+<tr>
+<td valign="top"><span style="color: #ff6600;"><tt>(?!</tt>
+<em>X</em>
+<tt>)</tt>
+</span>
+</td>
+<td><span style="color: #ff6600;"><em>&nbsp;&nbsp;&nbsp;&nbsp;X</em>
+，通过零宽度的负 lookahead</span>
+</td>
+</tr>
+<tr>
+<td valign="top"><span style="color: #ff6600;"><tt>(?&lt;=</tt>
+<em>X</em>
+<tt>)</tt>
+</span>
+</td>
+<td><span style="color: #ff6600;"><em>&nbsp;&nbsp;&nbsp;&nbsp;X</em>
+，通过零宽度的正 lookbehind</span>
+</td>
+</tr>
+<tr>
+<td valign="top"><span style="color: #ff6600;"><tt>(?&lt;!</tt>
+<em>X</em>
+<tt>)</tt>
+</span>
+</td>
+<td><span style="color: #ff6600;"><em>&nbsp;&nbsp;&nbsp;&nbsp;X</em>
+，通过零宽度的负 lookbehind</span>
+</td>
+</tr>
+<tr>
+<td valign="top"><tt></tt>
+</td>
+<td>
+<p><em></em>
+&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<p>这四个非捕获组用于匹配表达式X，但是不包含表达式的文本。</p>
+<p>
+</p><table style="width: 100%;" border="1" cellspacing="1" cellpadding="1">
+<tbody>
+<tr>
+<td><span style="FONT-SIZE: 12pt"><span style="font-size: x-small;">(?=X )</span>
+</span>
+</td>
+<td><span style="FONT-SIZE: 12pt"><span style="font-size: x-small;">零宽度正先行断言。仅当子表达式 X 在 此位置的右侧匹配时才继续匹配。例如，<span>/w+(?=/d) 与后跟数字的单词匹配，而不与该数字匹配。此构造不会回溯。</span>
+</span>
+</span>
+</td>
+</tr>
+<tr>
+<td>(?!X)</td>
+<td><span style="FONT-SIZE: 12pt"><span style="font-size: x-small;">零宽度负先行断言。仅当子表达式 X 不在 此位置的右侧匹配时才继续匹配。例如，<span>例如，<span>/w+(?!/d) 与后不跟数字的单词匹配，而不与该数字匹配</span>
+。</span>
+</span>
+</span>
+</td>
+</tr>
+<tr>
+<td>(?&lt;=X)</td>
+<td><span style="FONT-SIZE: 12pt"><span style="font-size: x-small;">零宽度正后发断言。仅当子表达式 X 在 此位置的左侧匹配时才继续匹配。例如，<span>(?&lt;=19)99 与跟在 19 后面的 99 的实例匹配。此构造不会回溯。</span>
+</span>
+</span>
+</td>
+</tr>
+<tr>
+<td>(?&lt;!X)</td>
+<td><span style="FONT-SIZE: 12pt"><span style="font-size: x-small;">零宽度负后发断言。仅当子表达式 X 不在此位置的左侧匹配时才继续匹配。例如，<span>(?&lt;!19)99 与不跟在 19 后面的 99 的实例匹配</span>
+</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="FONT-SIZE: 14pt"><strong>举例：</strong>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;上面都是理论性的介绍，这里就使用一些例子来说明一下问题：</p>
+<p>&nbsp;&nbsp; 1、测试匹配性&nbsp;&nbsp; (?&lt;!4)56(?=9) 这里的含义就是匹配后面的文本56前面不能是4，后面必须是9组成。因此，可以匹配如下文本 5569&nbsp; ，与4569不匹配。</p>
+<p>&nbsp;</p>
+<p>&nbsp; 2 、提取字符串&nbsp;&nbsp; 提取&nbsp;da12bka3434bdca4343bdca234bm&nbsp;&nbsp;&nbsp;提取包含在字符a和b之间的数字，但是这个a之前的字符不能是c,b后面的字符必须是d才能提取。</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 例如这里就只有3434这个数字满足要求。那么我们怎么提取呢？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先我们写出提取这个字符串的表达式： (?&lt;!c)a(/d+)bd&nbsp; 这里就只有一个捕获组(/d+)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JAVA代码片段如下：</p>
+<div class="highlighter dp-highlighter">
+<ol class="highlighter-j">
+<li><span>&nbsp;Pattern&nbsp;p&nbsp;=&nbsp;Pattern.compile(</span>
+<span class="string">"(?&lt;!c)a(<a href="file://d+%29bd/">//d+)bd</a>
+"</span>
+<span>);</span>
+</li>
+<li class="alt"><span>&nbsp;Matcher&nbsp;m&nbsp;=&nbsp;p.matcher(</span>
+<span class="string">"da12bka3434bdca4343bdca234bm"</span>
+<span>);</span>
+</li>
+<li><span>&nbsp;</span>
+<span class="keyword">while</span>
+<span>(m.find()){</span>
+</li>
+<li class="alt"><span>&nbsp;&nbsp;&nbsp;System.out.println(m.group(</span>
+<span class="number">1</span>
+<span>)); //我们只要捕获组1的数字即可。结果 3434</span>
+</li>
+<li class="alt"><span>&nbsp;&nbsp; System.out.println(m.group(0)); // 0组是整个表达式，看这里，并没有提炼出(?&lt;!c)的字符 。结果 a3434bd</span>
+</li>
+<li><span>&nbsp;}</span>
+</li>
+</ol>
+</div>
+<p>&nbsp;&nbsp;&nbsp; 可以看到，非捕获组，最后是不会返回结果的，因为它本身并不捕获文本。</p>
+<p>&nbsp;</p>
+<p>&nbsp;正则表达式功能其实非常强大，这里只是对高级用法的简单探讨。有兴趣的朋友和本人共同讨论。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2166368,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/lovingprince" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/lovingprince/" target="_blank"><img src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/lovingprince/">lovingprince</a><br>
+<a href="http://home.cnblogs.com/u/lovingprince/followees">关注 - 0</a><br>
+<a href="http://home.cnblogs.com/u/lovingprince/followers">粉丝 - 15</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2166368,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(2166368,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/05/2166369.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/lovingprince/archive/2008/08/05/2166369.html" title="发布于2008-08-05 09:39">Ibatis的类型处理器TypeHandler解析</a><br><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166367.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166367.html" title="发布于2008-08-06 17:45">java 全角字符转半角字符</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2008-08-06 10:06</span> <a href="http://www.cnblogs.com/lovingprince/">lovingprince</a> 阅读(<span id="post_view_count">4044</span>) 评论(<span id="post_comment_count">1</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2166368" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166368.html#" onclick="AddToWz(2166368);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=96468,cb_entryId=2166368,cb_blogApp=currentBlogApp,cb_blogUserGuid='82c7f412-aad6-e011-8ee0-842b2b196315',cb_entryCreatedDate='2008/8/6 10:06:00';loadViewCount(cb_entryId);</script>
+<script src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/syntax_highlighter_csdn.js" type="text/javascript"></script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166368.html#2924199" class="layer">#1楼</a><a name="2924199" id="comment_anchor_2924199"></a><span id="comment-maxId" style="display:none;">2924199</span><span id="comment-maxDate" style="display:none;">2014/4/24 8:16:23</span>  <span class="comment_date">2014-04-24 08:16</span> <a id="a_comment_author_2924199" href="http://www.cnblogs.com/kelly1989/" target="_blank">姗姗来迟227</a> <a href="http://msg.cnblogs.com/send/%E5%A7%97%E5%A7%97%E6%9D%A5%E8%BF%9F227" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2924199" class="blog_comment_body">(?&lt;!c)a(/d+)bd 是不是应该这样写   (?&lt;!c)a(\d+)bd<br>然后java代码中也做相应的改变</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924199,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924199,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2924199_avatar" style="display:none;">http://pic.cnblogs.com/face/203585/20130719154852.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166368.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06/2166368.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jpush.cn/" target="_blank">【推荐】极光推送30多万开发者的选择，SDK接入量超过30亿了，你还没注册？</a><br><a href="http://click.aliyun.com/m/3037/" target="_blank">【精品】高性能阿里云服务器+SSD云盘，支撑I/O密集型核心业务、极高数据可靠性</a><br></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/order/specialoffers.htm?utm_source=cnblogs&utm_medium=blogpage&utm_term=bottom&utm_content=promotion&utm_campaign=community" target="_blank"><img width="300" height="250" src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/24442-20151216201412771-432811263.png" alt="葡萄城促销" title="葡萄城促销"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/536070/" target="_blank">丁香园的“熊猫血”公众平台是这个冬天最温暖的故事之一</a><br> ·  <a href="http://news.cnblogs.com/n/536069/" target="_blank">苹果iMessage的绿色气泡引发了一场阶级斗争</a><br> ·  <a href="http://news.cnblogs.com/n/536068/" target="_blank">考古学家发现800年前的手机  或证明外星人曾拜访地球</a><br> ·  <a href="http://news.cnblogs.com/n/536067/" target="_blank">用这15个创业者的15本书告别2015</a><br> ·  <a href="http://news.cnblogs.com/n/536066/" target="_blank">iPad Pro杀手Surface Book 开启全渠道预订</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://jiuye.jikexueyuan.com/train/android?hmsr=cnb_jiuye_android_1217" target="_blank"><img width="468" height="60" src="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/24442-20151221165216515-1388032690.jpg" alt="jiuye_android_1217" title="jiuye_android_1217"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/535581/" target="_blank">Git协作流程</a><br> ·  <a href="http://kb.cnblogs.com/page/535355/" target="_blank">企业计算的终结</a><br> ·  <a href="http://kb.cnblogs.com/page/535278/" target="_blank">软件开发的核心</a><br> ·  <a href="http://kb.cnblogs.com/page/534420/" target="_blank">Linux概念架构的理解</a><br> ·  <a href="http://kb.cnblogs.com/page/527814/" target="_blank">从涂鸦到发布——理解API的设计过程</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/lovingprince/">lovingprince</a><br>园龄：<a href="http://home.cnblogs.com/u/lovingprince/" title="入园时间：2011-09-04">4年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/lovingprince/followers/">15</a><br>关注：<a href="http://home.cnblogs.com/u/lovingprince/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;82c7f412-aad6-e011-8ee0-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/07/01&#39;);return false;">&lt;</a></td><td align="center">2008年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2008/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/05.html"><u>5</u></a></td><td align="center"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/06.html"><u>6</u></a></td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/19.html"><u>19</u></a></td><td align="center">20</td><td align="center"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/21.html"><u>21</u></a></td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center"><a href="http://www.cnblogs.com/lovingprince/archive/2008/08/25.html"><u>25</u></a></td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/lovingprince/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/lovingprince/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/lovingprince/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/lovingprince/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/lovingprince/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/lovingprince/category/320664.html">Android</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/lovingprince/category/320650.html">Architecture</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/lovingprince/category/320651.html">Database</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/lovingprince/category/320652.html">Design Pattern</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/lovingprince/category/320663.html">Groovy</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/lovingprince/category/320665.html">Hadoop</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/lovingprince/category/320661.html">Java</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/lovingprince/category/320653.html">Linux</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/lovingprince/category/320654.html">Others</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/lovingprince/category/320655.html">Project Management</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/lovingprince/category/320662.html">Python</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/lovingprince/category/320656.html">Structure&amp;amp;amp;Arithmetic</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/lovingprince/category/320666.html">Structure&amp;amp;Arithmetic</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/lovingprince/category/320657.html">Thinking</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/lovingprince/category/320658.html">Web</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/lovingprince/category/320659.html">Web Server</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/lovingprince/category/320660.html">职场风云</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/lovingprince/archive/2011/08.html">2011年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/lovingprince/archive/2011/07.html">2011年7月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/lovingprince/archive/2011/06.html">2011年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/lovingprince/archive/2011/05.html">2011年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/lovingprince/archive/2011/04.html">2011年4月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/lovingprince/archive/2011/02.html">2011年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/lovingprince/archive/2011/01.html">2011年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/lovingprince/archive/2010/12.html">2010年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/lovingprince/archive/2010/11.html">2010年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/lovingprince/archive/2010/09.html">2010年9月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/lovingprince/archive/2010/08.html">2010年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/lovingprince/archive/2010/06.html">2010年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/lovingprince/archive/2010/05.html">2010年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/lovingprince/archive/2010/04.html">2010年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/lovingprince/archive/2010/03.html">2010年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/lovingprince/archive/2010/01.html">2010年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/lovingprince/archive/2009/12.html">2009年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/lovingprince/archive/2009/11.html">2009年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/lovingprince/archive/2009/10.html">2009年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/lovingprince/archive/2009/09.html">2009年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/lovingprince/archive/2009/07.html">2009年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/lovingprince/archive/2009/06.html">2009年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/lovingprince/archive/2009/05.html">2009年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/lovingprince/archive/2009/04.html">2009年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/lovingprince/archive/2009/03.html">2009年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/lovingprince/archive/2009/02.html">2009年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/lovingprince/archive/2009/01.html">2009年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/lovingprince/archive/2008/12.html">2008年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/lovingprince/archive/2008/11.html">2008年11月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/lovingprince/archive/2008/10.html">2008年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/lovingprince/archive/2008/09.html">2008年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/lovingprince/archive/2008/08.html">2008年8月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/lovingprince/archive/2008/07.html">2008年7月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/lovingprince/archive/2008/06.html">2008年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/lovingprince/archive/2008/05.html">2008年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/lovingprince/archive/2008/04.html">2008年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/lovingprince/archive/2008/03.html">2008年3月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/lovingprince/archive/2008/02.html">2008年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/lovingprince/archive/2008/01.html">2008年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/lovingprince/archive/2007/12.html">2007年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/lovingprince/archive/2007/11.html">2007年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/lovingprince/archive/2007/10.html">2007年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/lovingprince/archive/2007/09.html">2007年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/lovingprince/archive/2007/08.html">2007年8月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/lovingprince/archive/2007/06.html">2007年6月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/lovingprince/archive/2007/05.html">2007年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/lovingprince/archive/2007/04.html">2007年4月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/lovingprince/archive/2007/03.html">2007年3月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/lovingprince/archive/2007/02.html">2007年2月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lovingprince/archive/2007/03/17/2166483.html#3138790">1. Re:js 函数调用顺序研究</a></li>
+    <li class="recent_comment_body">不错</li>
+    <li class="recent_comment_author">--小北先森</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lovingprince/archive/2009/07/02/2166310.html#3135198">2. Re:Ibatis缓存select字段名引起的问题</a></li>
+    <li class="recent_comment_body">你是在淘宝里工作？已工作人员如何进入淘宝？</li>
+    <li class="recent_comment_author">--杜珊</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/lovingprince/archive/2011/08/04/2166213.html">1. ssh免输入密码登录(10457)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2008/05/20/2166386.html">2. JAVA不定参数探秘(6006)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2008/11/13/2166350.html">3. WEB 集群与负载均衡(一)基本概念-上(4463)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/03/24/2166456.html">4. ORACLE数据库触发器(4153)</a></li><li><a href="./JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园_files/JAVA正则表达式高级用法(分组与捕获) - lovingprince - 博客园.html">5. JAVA正则表达式高级用法(分组与捕获)(4044)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/lovingprince/archive/2010/04/18/2166288.html">1. 日常工作常用工具集(2)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/03/17/2166483.html">2. js 函数调用顺序研究(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2008/03/24/2166395.html">3. 领域驱动设计，难(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/11/26/2166408.html">4. 数据库树结构 oracle的专用方法(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/06/26/2166422.html">5. struts多模块开发(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/04/03/2166448.html">1. 二叉树(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2007/04/02/2166450.html">2. commons-lang包中我们常用的类的作用(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2008/05/20/2166386.html">3. JAVA不定参数探秘(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2011/04/19/2166250.html">4. Linux Shell中的美元符号$(1)</a></li><li><a href="http://www.cnblogs.com/lovingprince/archive/2011/01/05/2166263.html">5. 硬盘分区、寻址和系统启动过程(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 lovingprince
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

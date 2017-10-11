@@ -1,0 +1,86 @@
+
+=====================================================================================================================================================================
+An internal error occurred during: "Building workspace".  
+
+
+	ExtJs
+	 
+
+	当在eclipse中的web工程中增加了extjs4，出现An internal error occurred during: "Building workspace".
+
+
+	Java heap space 错误。
+
+	解决办法1：把extjs4的工程安装包不要放到web工程中就ok了，或者建议直接用myeclipse直接导入的exjts4包，就没问题。
+
+	解决办法2：导入ExtJS包，这样会卡死eclipse的。去到工程根目录下，找到.project，用记事本打开，把两处删除掉：
+	 
+	第一处：
+	 
+	<buildCommand>
+			 <name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
+			 <arguments>
+			 </arguments>
+	</buildCommand>
+	第二处：
+	 
+	<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+	 
+	保存退出，refresh一下工程。再把ext包复制进工程
+
+=======================================================================================================================================================================
+tomcat报错org.springframework.web.context.ContextLoaderListener找不到 
+
+	tomcat报错org.springframework.web.context.ContextLoaderListener找不到。
+
+	最后解决办法：将jar包copy到web-inf下面的lib中。
+
+	你可以在web app libary是不是空，或者点不开。
+
+	引用网友的：
+
+	http://topic.csdn.net/u/20090216/19/3c955432-e708-4338-961f-8db9db7f5df1.html 
+	可能是jar包位置导致的。 
+
+	Java虚拟机是根据Java ClassLoader(类加载器)决定如何加载Class。 
+	系统默认提供了3个ClassLoader 
+	Root ClassLoader，ClassPath Loader，Ext ClassLoader 
+	我们也可以编写自己的ClassLoader，去加载特定环境下的Jar文件。 
+	能不能加载Jar，加载哪里的Jar，是由ClassLoader决定的。 
+
+	楼主的问题可能是 导入的仅仅是jar包的引用，例如在eclipse中通过build path加进user lib……（类似快捷方式） 
+	这种在Java Application中没问题，但在web Application中可能会出现找不到类的异常。 
+	在WEB Application中jar包最好放在webroot或webcontent下的lib文件夹内，特别是xml中用到的jar包。 
+
+=======================================================================================================================================================================
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

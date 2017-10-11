@@ -1,0 +1,735 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0040)http://hanqunfeng.iteye.com/blog/2114967 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站</title>
+    <meta name="description" content="  servlet3.0+规范后，允许servlet，filter，listener不必声明在web.xml中，而是以硬编码的方式存在，实现容器的零配置。  ServletContainerInitializer：启动容器时负责加载相关配置  package javax.servlet;  import java.util.Set;  public interface ServletContaine ...">
+    <meta name="keywords" content=" SpringMVC4零配置--web.xml">
+    <link rel="shortcut icon" href="http://hanqunfeng.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://hanqunfeng.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://hanqunfeng.iteye.com/rss" rel="alternate" title="Spring——Java程序员的春天" type="application/rss+xml">
+    <link href="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/ga.js"></script><script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/application.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+  <style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://hanqunfeng.iteye.com/blog/2114967#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">招聘</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="http://hanqunfeng.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://hanqunfeng.iteye.com/login">登录</a>
+    <a href="http://hanqunfeng.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://hanqunfeng.iteye.com/">Spring——Java程序员的春天</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://hanqunfeng.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://hanqunfeng.iteye.com/weibo">微博</a></li>
+            <li><a href="http://hanqunfeng.iteye.com/album">相册</a></li>
+            <li><a href="http://hanqunfeng.iteye.com/link">收藏</a></li>
+            <li><a href="http://hanqunfeng.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://hanqunfeng.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://hanqunfeng.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://hanqunfeng.iteye.com/" class="p-author" target="_blank">hanqunfeng</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站.html">SpringMVC4零配置--web.xml</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://hanqunfeng.iteye.com/category/96012">Spring</a></li> </ul>
+        <div class="news_tag">&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    <div class="iteye-blog-content-contain" style="font-size: 14px;">
+<p>servlet3.0+规范后，允许servlet，filter，listener不必声明在web.xml中，而是以硬编码的方式存在，实现容器的零配置。</p>
+<p><strong>ServletContainerInitializer：启动容器时负责加载相关配置</strong></p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=package%20javax.servlet%3B%0Aimport%20java.util.Set%3B%0Apublic%20interface%20ServletContainerInitializer%20%7B%0A%20public%20void%20onStartup(Set%3CClass%3C%3F%3E%3E%20c%2C%20ServletContext%20ctx)%0A%20%20%20%20%20%20%20%20throws%20ServletException%3B%20%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">package</span><span>&nbsp;javax.servlet;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Set;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">interface</span><span>&nbsp;ServletContainerInitializer&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onStartup(Set&lt;Class&lt;?&gt;&gt;&nbsp;c,&nbsp;ServletContext&nbsp;ctx)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throws</span><span>&nbsp;ServletException;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="0" title="SpringMVC4零配置--web.xml" style="display: none;">package javax.servlet;
+import java.util.Set;
+public interface ServletContainerInitializer {
+ public void onStartup(Set&lt;Class&lt;?&gt;&gt; c, ServletContext ctx)
+        throws ServletException; 
+}</pre>
+<p>&nbsp;容器启动时会自动扫描当前服务中ServletContainerInitializer的实现类，并调用其onStartup方法，其参数Set&lt;Class&lt;?&gt;&gt; c，可通过在实现类上声明注解javax.servlet.annotation.HandlesTypes(xxx.class)注解自动注入，@HandlesTypes会自动扫描项目中所有的xxx.class的实现类，并将其全部注入Set。</p>
+<p>&nbsp;</p>
+<p>Spring为其提供了一个实现类：</p>
+<p><strong>SpringServletContainerInitializer</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=package%20org.springframework.web%3B%0Aimport%20java.lang.reflect.Modifier%3B%0Aimport%20java.util.LinkedList%3B%0Aimport%20java.util.List%3B%0Aimport%20java.util.ServiceLoader%3B%0Aimport%20java.util.Set%3B%0Aimport%20javax.servlet.ServletContainerInitializer%3B%0Aimport%20javax.servlet.ServletContext%3B%0Aimport%20javax.servlet.ServletException%3B%0Aimport%20javax.servlet.annotation.HandlesTypes%3B%0Aimport%20org.springframework.core.annotation.AnnotationAwareOrderComparator%3B%0A%40HandlesTypes(WebApplicationInitializer.class)%0Apublic%20class%20SpringServletContainerInitializer%20implements%20ServletContainerInitializer%20%7B%0A%20%20%20%20%20%20%20%20%40Override%0A%09public%20void%20onStartup(Set%3CClass%3C%3F%3E%3E%20webAppInitializerClasses%2C%20ServletContext%20servletContext)%0A%09%09%09throws%20ServletException%20%7B%0A%0A%09%09List%3CWebApplicationInitializer%3E%20initializers%20%3D%20new%20LinkedList%3CWebApplicationInitializer%3E()%3B%0A%0A%09%09if%20(webAppInitializerClasses%20!%3D%20null)%20%7B%0A%09%09%09for%20(Class%3C%3F%3E%20waiClass%20%3A%20webAppInitializerClasses)%20%7B%0A%09%09%09%09%2F%2F%20Be%20defensive%3A%20Some%20servlet%20containers%20provide%20us%20with%20invalid%20classes%2C%0A%09%09%09%09%2F%2F%20no%20matter%20what%20%40HandlesTypes%20says...%0A%09%09%09%09if%20(!waiClass.isInterface()%20%26%26%20!Modifier.isAbstract(waiClass.getModifiers())%20%26%26%0A%09%09%09%09%09%09WebApplicationInitializer.class.isAssignableFrom(waiClass))%20%7B%0A%09%09%09%09%09try%20%7B%0A%09%09%09%09%09%09initializers.add((WebApplicationInitializer)%20waiClass.newInstance())%3B%0A%09%09%09%09%09%7D%0A%09%09%09%09%09catch%20(Throwable%20ex)%20%7B%0A%09%09%09%09%09%09throw%20new%20ServletException(%22Failed%20to%20instantiate%20WebApplicationInitializer%20class%22%2C%20ex)%3B%0A%09%09%09%09%09%7D%0A%09%09%09%09%7D%0A%09%09%09%7D%0A%09%09%7D%0A%0A%09%09if%20(initializers.isEmpty())%20%7B%0A%09%09%09servletContext.log(%22No%20Spring%20WebApplicationInitializer%20types%20detected%20on%20classpath%22)%3B%0A%09%09%09return%3B%0A%09%09%7D%0A%0A%09%09AnnotationAwareOrderComparator.sort(initializers)%3B%0A%09%09servletContext.log(%22Spring%20WebApplicationInitializers%20detected%20on%20classpath%3A%20%22%20%2B%20initializers)%3B%0A%0A%09%09for%20(WebApplicationInitializer%20initializer%20%3A%20initializers)%20%7B%0A%09%09%09initializer.onStartup(servletContext)%3B%0A%09%09%7D%0A%09%7D%0A%0A%7D%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">package</span><span>&nbsp;org.springframework.web;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.lang.reflect.Modifier;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.LinkedList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.ServiceLoader;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Set;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.ServletContainerInitializer;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.ServletContext;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.ServletException;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.annotation.HandlesTypes;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.springframework.core.annotation.AnnotationAwareOrderComparator;&nbsp;&nbsp;</span></span></li><li><span><span class="annotation">@HandlesTypes</span><span>(WebApplicationInitializer.</span><span class="keyword">class</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;SpringServletContainerInitializer&nbsp;</span><span class="keyword">implements</span><span>&nbsp;ServletContainerInitializer&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onStartup(Set&lt;Class&lt;?&gt;&gt;&nbsp;webAppInitializerClasses,&nbsp;ServletContext&nbsp;servletContext)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throws</span><span>&nbsp;ServletException&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;WebApplicationInitializer&gt;&nbsp;initializers&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;LinkedList&lt;WebApplicationInitializer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(webAppInitializerClasses&nbsp;!=&nbsp;</span><span class="keyword">null</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>&nbsp;(Class&lt;?&gt;&nbsp;waiClass&nbsp;:&nbsp;webAppInitializerClasses)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Be&nbsp;defensive:&nbsp;Some&nbsp;servlet&nbsp;containers&nbsp;provide&nbsp;us&nbsp;with&nbsp;invalid&nbsp;classes,</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;no&nbsp;matter&nbsp;what&nbsp;@HandlesTypes&nbsp;says...</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(!waiClass.isInterface()&nbsp;&amp;&amp;&nbsp;!Modifier.isAbstract(waiClass.getModifiers())&nbsp;&amp;&amp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebApplicationInitializer.<span class="keyword">class</span><span>.isAssignableFrom(waiClass))&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initializers.add((WebApplicationInitializer)&nbsp;waiClass.newInstance());&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">catch</span><span>&nbsp;(Throwable&nbsp;ex)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;ServletException(</span><span class="string">"Failed&nbsp;to&nbsp;instantiate&nbsp;WebApplicationInitializer&nbsp;class"</span><span>,&nbsp;ex);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(initializers.isEmpty())&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servletContext.log(<span class="string">"No&nbsp;Spring&nbsp;WebApplicationInitializer&nbsp;types&nbsp;detected&nbsp;on&nbsp;classpath"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AnnotationAwareOrderComparator.sort(initializers);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servletContext.log(<span class="string">"Spring&nbsp;WebApplicationInitializers&nbsp;detected&nbsp;on&nbsp;classpath:&nbsp;"</span><span>&nbsp;+&nbsp;initializers);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>&nbsp;(WebApplicationInitializer&nbsp;initializer&nbsp;:&nbsp;initializers)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initializer.onStartup(servletContext);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="1" title="SpringMVC4零配置--web.xml" style="display: none;">package org.springframework.web;
+import java.lang.reflect.Modifier;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ServiceLoader;
+import java.util.Set;
+import javax.servlet.ServletContainerInitializer;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.HandlesTypes;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
+@HandlesTypes(WebApplicationInitializer.class)
+public class SpringServletContainerInitializer implements ServletContainerInitializer {
+        @Override
+	public void onStartup(Set&lt;Class&lt;?&gt;&gt; webAppInitializerClasses, ServletContext servletContext)
+			throws ServletException {
+
+		List&lt;WebApplicationInitializer&gt; initializers = new LinkedList&lt;WebApplicationInitializer&gt;();
+
+		if (webAppInitializerClasses != null) {
+			for (Class&lt;?&gt; waiClass : webAppInitializerClasses) {
+				// Be defensive: Some servlet containers provide us with invalid classes,
+				// no matter what @HandlesTypes says...
+				if (!waiClass.isInterface() &amp;&amp; !Modifier.isAbstract(waiClass.getModifiers()) &amp;&amp;
+						WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
+					try {
+						initializers.add((WebApplicationInitializer) waiClass.newInstance());
+					}
+					catch (Throwable ex) {
+						throw new ServletException("Failed to instantiate WebApplicationInitializer class", ex);
+					}
+				}
+			}
+		}
+
+		if (initializers.isEmpty()) {
+			servletContext.log("No Spring WebApplicationInitializer types detected on classpath");
+			return;
+		}
+
+		AnnotationAwareOrderComparator.sort(initializers);
+		servletContext.log("Spring WebApplicationInitializers detected on classpath: " + initializers);
+
+		for (WebApplicationInitializer initializer : initializers) {
+			initializer.onStartup(servletContext);
+		}
+	}
+
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;从中可以看出，WebApplicationInitializer才是我们需要关心的接口，我们只需要将相应的servlet，filter，listener等硬编码到该接口的实现类中即可。比如：</p>
+<p>&nbsp;</p>
+<p>xml配置：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%20%20%20%20%20%20%20%20%3C!--%20Log4jConfigListener%20--%3E%0A%20%20%20%20%20%20%20%20%3Ccontext-param%3E%0A%09%09%3Cparam-name%3Elog4jConfigLocation%3C%2Fparam-name%3E%0A%09%09%3Cparam-value%3Eclasspath%3Aconfig%2Fproperties%2Flog4j.properties%3C%2Fparam-value%3E%0A%20%20%20%20%20%20%20%20%3C%2Fcontext-param%3E%0A%20%20%20%20%20%20%20%20%3Clistener%3E%0A%09%09%3Clistener-class%3Eorg.springframework.web.util.Log4jConfigListener%3C%2Flistener-class%3E%0A%20%20%20%20%20%20%20%20%3C%2Flistener%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20OpenSessionInViewFilter%20--%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%3E%0A%09%09%3Cfilter-name%3EhibernateFilter%3C%2Ffilter-name%3E%0A%09%09%3Cfilter-class%3E%0A%09%09%09org.springframework.orm.hibernate4.support.OpenSessionInViewFilter%0A%09%09%3C%2Ffilter-class%3E%09%09%0A%20%20%20%20%20%20%20%20%3C%2Ffilter%3E%0A%20%20%20%20%20%20%20%20%3Cfilter-mapping%3E%0A%09%09%3Cfilter-name%3EhibernateFilter%3C%2Ffilter-name%3E%0A%09%09%3Curl-pattern%3E%2F*%3C%2Furl-pattern%3E%0A%20%20%20%20%20%20%20%20%3C%2Ffilter-mapping%3E%0A%0A%20%20%20%20%20%20%20%20%3C!--%20DemoServlet%20--%3E%0A%20%20%20%20%20%20%20%20%3Cservlet%3E%0A%09%09%3Cservlet-name%3EdemoServlet%3C%2Fservlet-name%3E%0A%09%09%3Cservlet-class%3Eweb.function.servlet.DemoServlet%3C%2Fservlet-class%3E%0A%09%09%3Cload-on-startup%3E2%3C%2Fload-on-startup%3E%0A%20%20%20%20%20%20%20%20%3C%2Fservlet%3E%0A%09%3Cservlet-mapping%3E%0A%09%09%3Cservlet-name%3EdemoServlet%3C%2Fservlet-name%3E%0A%09%09%3Curl-pattern%3E%2Fdemo_servlet%3C%2Furl-pattern%3E%0A%09%3C%2Fservlet-mapping%3E%0A%09" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">&lt;!--&nbsp;Log4jConfigListener&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>log4jConfigLocation</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>classpath:config/properties/log4j.properties</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>org.springframework.web.util.Log4jConfigListener</span><span class="tag">&lt;/</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;OpenSessionInViewFilter&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>hibernateFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.springframework.orm.hibernate4.support.OpenSessionInViewFilter&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>hibernateFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;DemoServlet&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>demoServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>web.function.servlet.DemoServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>2</span><span class="tag">&lt;/</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>demoServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/demo_servlet</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="xml" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="2" title="SpringMVC4零配置--web.xml" style="display: none;">        &lt;!-- Log4jConfigListener --&gt;
+        &lt;context-param&gt;
+		&lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt;
+		&lt;param-value&gt;classpath:config/properties/log4j.properties&lt;/param-value&gt;
+        &lt;/context-param&gt;
+        &lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt;
+        &lt;/listener&gt;
+
+        &lt;!-- OpenSessionInViewFilter --&gt;
+        &lt;filter&gt;
+		&lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
+		&lt;filter-class&gt;
+			org.springframework.orm.hibernate4.support.OpenSessionInViewFilter
+		&lt;/filter-class&gt;		
+        &lt;/filter&gt;
+        &lt;filter-mapping&gt;
+		&lt;filter-name&gt;hibernateFilter&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+        &lt;/filter-mapping&gt;
+
+        &lt;!-- DemoServlet --&gt;
+        &lt;servlet&gt;
+		&lt;servlet-name&gt;demoServlet&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;web.function.servlet.DemoServlet&lt;/servlet-class&gt;
+		&lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+        &lt;/servlet&gt;
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;demoServlet&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/demo_servlet&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;
+	</pre>
+<p>&nbsp;编码配置：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%40Order(1)%0Apublic%20class%20CommonInitializer%20implements%20WebApplicationInitializer%7B%0A%0A%09%40Override%0A%09public%20void%20onStartup(ServletContext%20servletContext)%0A%09%09%09throws%20ServletException%20%7B%0A%09%09%0A%09%09%2F%2FLog4jConfigListener%0A%09%09servletContext.setInitParameter(%22log4jConfigLocation%22%2C%20%22classpath%3Aconfig%2Fproperties%2Flog4j.properties%22)%3B%0A%09%09servletContext.addListener(Log4jConfigListener.class)%3B%0A%09%09%0A%09%09%0A%09%09%2F%2FOpenSessionInViewFilter%0A%09%09OpenSessionInViewFilter%20hibernateSessionInViewFilter%20%3D%20new%20OpenSessionInViewFilter()%3B%0A%09%09FilterRegistration.Dynamic%20filterRegistration%20%3D%20servletContext.addFilter(%0A%09%09%09%09%22hibernateFilter%22%2C%20hibernateSessionInViewFilter)%3B%0A%09%09filterRegistration.addMappingForUrlPatterns(%0A%09%09%09%09EnumSet.of(DispatcherType.REQUEST%2C%20DispatcherType.FORWARD%2C%20DispatcherType.INCLUDE)%2C%20false%2C%20%22%2F%22)%3B%0A%09%09%0A%09%09%0A%09%09%2F%2FDemoServlet%0A%09%09DemoServlet%20demoServlet%20%3D%20new%20DemoServlet()%3B%0A%09%09ServletRegistration.Dynamic%20dynamic%20%3D%20servletContext.addServlet(%0A%09%09%09%09%22demoServlet%22%2C%20demoServlet)%3B%0A%09%09dynamic.setLoadOnStartup(2)%3B%0A%09%09dynamic.addMapping(%22%2Fdemo_servlet%22)%3B%0A%09%09%09%09%0A%09%09%0A%09%7D%0A%0A%09%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="annotation">@Order</span><span>(</span><span class="number">1</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;CommonInitializer&nbsp;</span><span class="keyword">implements</span><span>&nbsp;WebApplicationInitializer{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onStartup(ServletContext&nbsp;servletContext)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throws</span><span>&nbsp;ServletException&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Log4jConfigListener</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servletContext.setInitParameter(<span class="string">"log4jConfigLocation"</span><span>,&nbsp;</span><span class="string">"classpath:config/properties/log4j.properties"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servletContext.addListener(Log4jConfigListener.<span class="keyword">class</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//OpenSessionInViewFilter</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OpenSessionInViewFilter&nbsp;hibernateSessionInViewFilter&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;OpenSessionInViewFilter();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FilterRegistration.Dynamic&nbsp;filterRegistration&nbsp;=&nbsp;servletContext.addFilter(&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"hibernateFilter"</span><span>,&nbsp;hibernateSessionInViewFilter);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filterRegistration.addMappingForUrlPatterns(&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EnumSet.of(DispatcherType.REQUEST,&nbsp;DispatcherType.FORWARD,&nbsp;DispatcherType.INCLUDE),&nbsp;<span class="keyword">false</span><span>,&nbsp;</span><span class="string">"/"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//DemoServlet</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DemoServlet&nbsp;demoServlet&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;DemoServlet();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ServletRegistration.Dynamic&nbsp;dynamic&nbsp;=&nbsp;servletContext.addServlet(&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"demoServlet"</span><span>,&nbsp;demoServlet);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dynamic.setLoadOnStartup(<span class="number">2</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dynamic.addMapping(<span class="string">"/demo_servlet"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="3" title="SpringMVC4零配置--web.xml" style="display: none;">@Order(1)
+public class CommonInitializer implements WebApplicationInitializer{
+
+	@Override
+	public void onStartup(ServletContext servletContext)
+			throws ServletException {
+		
+		//Log4jConfigListener
+		servletContext.setInitParameter("log4jConfigLocation", "classpath:config/properties/log4j.properties");
+		servletContext.addListener(Log4jConfigListener.class);
+		
+		
+		//OpenSessionInViewFilter
+		OpenSessionInViewFilter hibernateSessionInViewFilter = new OpenSessionInViewFilter();
+		FilterRegistration.Dynamic filterRegistration = servletContext.addFilter(
+				"hibernateFilter", hibernateSessionInViewFilter);
+		filterRegistration.addMappingForUrlPatterns(
+				EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "/");
+		
+		
+		//DemoServlet
+		DemoServlet demoServlet = new DemoServlet();
+		ServletRegistration.Dynamic dynamic = servletContext.addServlet(
+				"demoServlet", demoServlet);
+		dynamic.setLoadOnStartup(2);
+		dynamic.addMapping("/demo_servlet");
+				
+		
+	}
+
+	
+}</pre>
+<p>&nbsp;</p>
+<p>Spring为我们提供了一些WebApplicationInitializer的抽象类，我们只需要继承并按需修改即可，比如：</p>
+<p><strong>1）</strong><strong style="font-size: 12px; line-height: 1.5;">org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer ： SpringSecurity相关配置</strong></p>
+<p>&nbsp;</p>
+<p>xml配置：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%20%20%20%20%20%20%20%20%3Clistener%3E%0A%09%09%3Clistener-class%3Eorg.springframework.security.web.session.HttpSessionEventPublisher%3C%2Flistener-class%3E%0A%09%3C%2Flistener%3E%0A%0A%20%20%20%20%20%20%20%20%3Cfilter%3E%0A%09%09%3Cfilter-name%3EspringSecurityFilterChain%3C%2Ffilter-name%3E%0A%09%09%3Cfilter-class%3Eorg.springframework.web.filter.DelegatingFilterProxy%3C%2Ffilter-class%3E%0A%09%3C%2Ffilter%3E%0A%0A%20%20%20%20%20%20%20%20%3Cfilter-mapping%3E%0A%09%09%3Cfilter-name%3EspringSecurityFilterChain%3C%2Ffilter-name%3E%0A%09%09%3Curl-pattern%3E%2F*%3C%2Furl-pattern%3E%0A%09%3C%2Ffilter-mapping%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>org.springframework.security.web.session.HttpSessionEventPublisher</span><span class="tag">&lt;/</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>springSecurityFilterChain</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>org.springframework.web.filter.DelegatingFilterProxy</span><span class="tag">&lt;/</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>springSecurityFilterChain</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="xml" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="4" title="SpringMVC4零配置--web.xml" style="display: none;">        &lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.security.web.session.HttpSessionEventPublisher&lt;/listener-class&gt;
+	&lt;/listener&gt;
+
+        &lt;filter&gt;
+		&lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+		&lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
+	&lt;/filter&gt;
+
+        &lt;filter-mapping&gt;
+		&lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/filter-mapping&gt;</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>编码配置：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%40Order(2)%0Apublic%20class%20WebAppSecurityInitializer%20%20extends%20AbstractSecurityWebApplicationInitializer%20%0A%7B%0A%09%2F%2FservletContext.addListener(%22org.springframework.security.web.session.HttpSessionEventPublisher%22)%3B%0A%09%2F%2Fsession%E7%9B%91%E5%90%AC%E5%99%A8%0A%09%40Override%0A%09protected%20boolean%20enableHttpSessionEventPublisher()%20%7B%0A%20%20%20%20%20%20%20%20return%20true%3B%0A%20%20%20%20%7D%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="annotation">@Order</span><span>(</span><span class="number">2</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;WebAppSecurityInitializer&nbsp;&nbsp;</span><span class="keyword">extends</span><span>&nbsp;AbstractSecurityWebApplicationInitializer&nbsp;&nbsp;&nbsp;</span></span></li><li><span>{&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//servletContext.addListener("org.springframework.security.web.session.HttpSessionEventPublisher");</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//session监听器</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;enableHttpSessionEventPublisher()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">true</span><span>;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="5" title="SpringMVC4零配置--web.xml" style="display: none;">@Order(2)
+public class WebAppSecurityInitializer  extends AbstractSecurityWebApplicationInitializer 
+{
+	//servletContext.addListener("org.springframework.security.web.session.HttpSessionEventPublisher");
+	//session监听器
+	@Override
+	protected boolean enableHttpSessionEventPublisher() {
+        return true;
+    }
+}</pre>
+<p>&nbsp;</p>
+<p><strong>2）org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer：MVC相关配置，比如加载spring配置文件，声明</strong><strong>DispatcherServlet等等，参看下面的对比：</strong></p>
+<p>xml配置：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%20%20%20%20%20%20%20%20%3Ccontext-param%3E%0A%09%09%3Cparam-name%3EcontextConfigLocation%3C%2Fparam-name%3E%0A%09%09%3Cparam-value%3E%0A%09%09classpath%3Aconfig%2Fcontext%2FapplicationContext-AppConfig.xml%2C%0A%09%09classpath%3Aconfig%2Fcontext%2FapplicationContext-SpringSecurityConfig.xml%0A%09%20%20%20%20%20%20%20%20%3C%2Fparam-value%3E%0A%09%3C%2Fcontext-param%3E%0A%0A%20%20%20%20%20%20%20%20%3Clistener%3E%0A%09%09%3Clistener-class%3Eorg.springframework.web.context.ContextLoaderListener%3C%2Flistener-class%3E%0A%09%3C%2Flistener%3E%0A%0A%20%20%20%20%20%20%20%20%3Cfilter%3E%0A%09%09%3Cfilter-name%3ESet%20Character%20Encoding%3C%2Ffilter-name%3E%0A%09%09%3Cfilter-class%3Eorg.springframework.web.filter.CharacterEncodingFilter%3C%2Ffilter-class%3E%0A%09%09%3Cinit-param%3E%0A%09%09%09%3Cparam-name%3Eencoding%3C%2Fparam-name%3E%0A%09%09%09%3Cparam-value%3EUTF-8%3C%2Fparam-value%3E%0A%09%09%3C%2Finit-param%3E%0A%09%09%3Cinit-param%3E%0A%09%09%09%3Cparam-name%3EforceEncoding%3C%2Fparam-name%3E%0A%09%09%09%3Cparam-value%3Etrue%3C%2Fparam-value%3E%0A%09%09%3C%2Finit-param%3E%0A%09%3C%2Ffilter%3E%0A%0A%20%20%20%20%20%20%20%20%3Cfilter-mapping%3E%0A%09%09%3Cfilter-name%3ESet%20Character%20Encoding%3C%2Ffilter-name%3E%0A%09%09%3Curl-pattern%3E%2F*%3C%2Furl-pattern%3E%0A%09%3C%2Ffilter-mapping%3E%0A%0A%20%20%20%20%20%20%20%20%3Cservlet%3E%0A%09%09%3Cservlet-name%3Ewebmvc%3C%2Fservlet-name%3E%0A%09%09%3Cservlet-class%3Eorg.springframework.web.servlet.DispatcherServlet%3C%2Fservlet-class%3E%0A%09%09%3Cinit-param%3E%0A%09%09%09%3Cparam-name%3EcontextConfigLocation%3C%2Fparam-name%3E%0A%09%09%09%3Cparam-value%3Eclasspath%3Aconfig%2Fcontext%2FapplicationContext-MvcConfig.xml%3C%2Fparam-value%3E%0A%09%09%3C%2Finit-param%3E%0A%09%09%3Cload-on-startup%3E1%3C%2Fload-on-startup%3E%0A%09%3C%2Fservlet%3E%0A%0A%09%3Cservlet-mapping%3E%0A%09%09%3Cservlet-name%3Ewebmvc%3C%2Fservlet-name%3E%0A%09%09%3Curl-pattern%3E%2F%3C%2Furl-pattern%3E%0A%09%3C%2Fservlet-mapping%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>contextConfigLocation</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;classpath:config/context/applicationContext-AppConfig.xml,&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;classpath:config/context/applicationContext-SpringSecurityConfig.xml&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>org.springframework.web.context.ContextLoaderListener</span><span class="tag">&lt;/</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>Set&nbsp;Character&nbsp;Encoding</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>org.springframework.web.filter.CharacterEncodingFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>encoding</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>UTF-8</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>forceEncoding</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>true</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>Set&nbsp;Character&nbsp;Encoding</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>webmvc</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>org.springframework.web.servlet.DispatcherServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>contextConfigLocation</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>classpath:config/context/applicationContext-MvcConfig.xml</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>1</span><span class="tag">&lt;/</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>webmvc</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="xml" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="6" title="SpringMVC4零配置--web.xml" style="display: none;">        &lt;context-param&gt;
+		&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+		&lt;param-value&gt;
+		classpath:config/context/applicationContext-AppConfig.xml,
+		classpath:config/context/applicationContext-SpringSecurityConfig.xml
+	        &lt;/param-value&gt;
+	&lt;/context-param&gt;
+
+        &lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+	&lt;/listener&gt;
+
+        &lt;filter&gt;
+		&lt;filter-name&gt;Set Character Encoding&lt;/filter-name&gt;
+		&lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+		&lt;init-param&gt;
+			&lt;param-name&gt;encoding&lt;/param-name&gt;
+			&lt;param-value&gt;UTF-8&lt;/param-value&gt;
+		&lt;/init-param&gt;
+		&lt;init-param&gt;
+			&lt;param-name&gt;forceEncoding&lt;/param-name&gt;
+			&lt;param-value&gt;true&lt;/param-value&gt;
+		&lt;/init-param&gt;
+	&lt;/filter&gt;
+
+        &lt;filter-mapping&gt;
+		&lt;filter-name&gt;Set Character Encoding&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/filter-mapping&gt;
+
+        &lt;servlet&gt;
+		&lt;servlet-name&gt;webmvc&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+		&lt;init-param&gt;
+			&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+			&lt;param-value&gt;classpath:config/context/applicationContext-MvcConfig.xml&lt;/param-value&gt;
+		&lt;/init-param&gt;
+		&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+	&lt;/servlet&gt;
+
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;webmvc&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;</pre>
+<p>编码方式：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%40Order(3)%0A%2F%2Fspring%20DispatcherServlet%E7%9A%84%E9%85%8D%E7%BD%AE%2C%E5%85%B6%E5%AE%83servlet%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8%E7%AD%89%E9%9C%80%E8%A6%81%E9%A2%9D%E5%A4%96%E5%A3%B0%E6%98%8E%EF%BC%8C%E7%94%A8%40Order%E6%B3%A8%E8%A7%A3%E8%AE%BE%E5%AE%9A%E5%90%AF%E5%8A%A8%E9%A1%BA%E5%BA%8F%0Apublic%20class%20WebInitializer%20extends%20AbstractAnnotationConfigDispatcherServletInitializer%20%7B%0A%20%20%20%20%2F*%0A%09%20%20*%20DispatcherServlet%E7%9A%84%E6%98%A0%E5%B0%84%E8%B7%AF%E5%BE%84%0A%09%20%20*%2F%0A%20%20%20%20%40Override%0A%20%20%20%20protected%20String%5B%5D%20getServletMappings()%20%7B%0A%20%20%20%20%20%20%20%20return%20new%20String%5B%5D%7B%22%2F%22%7D%3B%0A%20%20%20%20%7D%0A%20%0A%20%20%20%20%2F*%0A%09%20%20*%20%E5%BA%94%E7%94%A8%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%8C%E9%99%A4web%E9%83%A8%E5%88%86%0A%09%20%20*%2F%0A%20%20%20%20%40SuppressWarnings(%7B%20%22unchecked%22%2C%20%22rawtypes%22%20%7D)%0A%20%20%20%20%40Override%0A%20%20%20%20protected%20Class%5B%5D%20getRootConfigClasses()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B1%BB%EF%BC%8C%E8%BF%99%E9%87%8C%E4%B8%8E%E4%B8%8A%E9%9D%A2%E7%9A%84xml%E9%85%8D%E7%BD%AE%E6%98%AF%E5%AF%B9%E5%BA%94%E7%9A%84%EF%BC%8C%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%40Configuration%E6%B3%A8%E8%A7%A3%E8%BF%9B%E8%A1%8C%E6%A0%87%E6%B3%A8%EF%BC%8C%E7%A8%8D%E5%90%8E%E4%BB%8B%E7%BB%8D%0A%20%20%20%20%20%20%20%20return%20new%20Class%5B%5D%20%7BAppConfig.class%2C%20SpringSecurityConfig.class%7D%3B%0A%20%20%20%20%7D%0A%20%0A%20%20%20%20%2F*%0A%09%20%20*%20web%E4%B8%8A%E4%B8%8B%E6%96%87%0A%09%20%20*%2F%0A%20%20%20%20%40SuppressWarnings(%7B%20%22unchecked%22%2C%20%22rawtypes%22%20%7D)%0A%20%20%20%20%40Override%0A%20%20%20%20protected%20Class%5B%5D%20getServletConfigClasses()%20%7B%0A%20%20%20%20%20%20%20%20return%20new%20Class%5B%5D%20%7BMvcConfig.class%7D%3B%0A%20%20%20%20%7D%0A%20%0A%20%20%20%20%2F*%0A%09%20%20*%20%E6%B3%A8%E5%86%8C%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%8C%E6%98%A0%E5%B0%84%E8%B7%AF%E5%BE%84%E4%B8%8EDispatcherServlet%E4%B8%80%E8%87%B4%EF%BC%8C%E8%B7%AF%E5%BE%84%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E9%9C%80%E8%A6%81%E6%B3%A8%E5%86%8C%E5%88%B0%E5%8F%A6%E5%A4%96%E7%9A%84WebApplicationInitializer%E4%B8%AD%0A%09%20%20*%2F%0A%20%20%20%20%40Override%0A%20%20%20%20protected%20Filter%5B%5D%20getServletFilters()%20%7B%0A%20%20%20%20%20%20%20%20CharacterEncodingFilter%20characterEncodingFilter%20%3D%20new%20CharacterEncodingFilter()%3B%0A%20%20%20%20%20%20%20%20characterEncodingFilter.setEncoding(%22UTF-8%22)%3B%0A%20%20%20%20%20%20%20%20characterEncodingFilter.setForceEncoding(true)%3B%0A%20%20%20%20%20%20%20%20return%20new%20Filter%5B%5D%20%7BcharacterEncodingFilter%7D%3B%0A%20%20%20%20%7D%20%09%0A%0A%7D%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="annotation">@Order</span><span>(</span><span class="number">3</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="comment">//spring&nbsp;DispatcherServlet的配置,其它servlet和监听器等需要额外声明，用@Order注解设定启动顺序</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;WebInitializer&nbsp;</span><span class="keyword">extends</span><span>&nbsp;AbstractAnnotationConfigDispatcherServletInitializer&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;DispatcherServlet的映射路径</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;String[]&nbsp;getServletMappings()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;String[]{</span><span class="string">"/"</span><span>};&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;应用上下文，除web部分</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@SuppressWarnings</span><span>({&nbsp;</span><span class="string">"unchecked"</span><span>,&nbsp;</span><span class="string">"rawtypes"</span><span>&nbsp;})&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;Class[]&nbsp;getRootConfigClasses()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//加载配置文件类，这里与上面的xml配置是对应的，需要使用@Configuration注解进行标注，稍后介绍</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;Class[]&nbsp;{AppConfig.</span><span class="keyword">class</span><span>,&nbsp;SpringSecurityConfig.</span><span class="keyword">class</span><span>};&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;web上下文</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@SuppressWarnings</span><span>({&nbsp;</span><span class="string">"unchecked"</span><span>,&nbsp;</span><span class="string">"rawtypes"</span><span>&nbsp;})&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;Class[]&nbsp;getServletConfigClasses()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;Class[]&nbsp;{MvcConfig.</span><span class="keyword">class</span><span>};&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;注册过滤器，映射路径与DispatcherServlet一致，路径不一致的过滤器需要注册到另外的WebApplicationInitializer中</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;Filter[]&nbsp;getServletFilters()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CharacterEncodingFilter&nbsp;characterEncodingFilter&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;CharacterEncodingFilter();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characterEncodingFilter.setEncoding(<span class="string">"UTF-8"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characterEncodingFilter.setForceEncoding(<span class="keyword">true</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;Filter[]&nbsp;{characterEncodingFilter};&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="2114967" codeable_type="Blog" source_url="http://hanqunfeng.iteye.com/blog/2114967" pre_index="7" title="SpringMVC4零配置--web.xml" style="display: none;">@Order(3)
+//spring DispatcherServlet的配置,其它servlet和监听器等需要额外声明，用@Order注解设定启动顺序
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    /*
+	  * DispatcherServlet的映射路径
+	  */
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+ 
+    /*
+	  * 应用上下文，除web部分
+	  */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    protected Class[] getRootConfigClasses() {
+        //加载配置文件类，这里与上面的xml配置是对应的，需要使用@Configuration注解进行标注，稍后介绍
+        return new Class[] {AppConfig.class, SpringSecurityConfig.class};
+    }
+ 
+    /*
+	  * web上下文
+	  */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    protected Class[] getServletConfigClasses() {
+        return new Class[] {MvcConfig.class};
+    }
+ 
+    /*
+	  * 注册过滤器，映射路径与DispatcherServlet一致，路径不一致的过滤器需要注册到另外的WebApplicationInitializer中
+	  */
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[] {characterEncodingFilter};
+    } 	
+
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3 style="font-size: 16px; padding-top: 10px;">
+<a href="http://hanqunfeng.iteye.com/blog/2113820" style="color: #108ac6; text-decoration: underline;">SpringMVC4零配置</a>&nbsp;：代码下载</h3>
+<h3 style="font-size: 16px; padding-top: 10px;"><a href="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站.html" style="color: #108ac6; text-decoration: underline;">SpringMVC4零配置--web.xml</a></h3>
+<h3 style="font-size: 16px; padding-top: 10px;"><a href="http://hanqunfeng.iteye.com/blog/2114975" style="color: #108ac6; text-decoration: underline;">SpringMVC4零配置--应用上下文配置【AppConfig】</a></h3>
+<h3 style="font-size: 16px; padding-top: 10px;"><a href="http://hanqunfeng.iteye.com/blog/2114980" style="color: #108ac6; text-decoration: underline;">SpringMVC4零配置--SpringSecurity相关配置【SpringSecurityConfig】</a></h3>
+<h3 style="font-size: 16px; padding-top: 10px;"><a href="http://hanqunfeng.iteye.com/blog/2114987" style="color: #108ac6; text-decoration: underline;">SpringMVC4零配置--Web上下文配置【MvcConfig】</a></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+  </div>
+
+  
+
+  
+  
+  <iframe src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/187.html" scrolling="no" width="468" height="60" frameborder="0"></iframe>
+  
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://hanqunfeng.iteye.com/blog/2114975" class="next" title="SpringMVC4零配置--应用上下文配置【AppConfig】">SpringMVC4零配置--应用上下文配置【AppCon ...</a>
+      |
+      <a href="http://hanqunfeng.iteye.com/blog/2113820" class="pre" title="SpringMVC4零配置">SpringMVC4零配置</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2014-09-10 18:21</li>
+      <li>浏览 24441</li>
+      <li><a href="http://hanqunfeng.iteye.com/blog/2114967#comments">评论(1)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/language">编程语言</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/2114967" target="_blank" class="more">相关推荐</a></li>
+    </ul>
+  </div>
+
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2372785">
+  <div class="comment_title">
+    1 楼
+    <a href="http://ixin0877.iteye.com/" target="_blank" title="ixin0877">ixin0877</a>
+    2015-05-30&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_biggrin.gif">&nbsp; 感谢分享<img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_idea.gif"> ！！<img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_arrow.gif"> </div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://hanqunfeng.iteye.com/login" style="background-color:white;"> <img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://hanqunfeng.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 2114967;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'SpringMVC4零配置--web.xml');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'SpringMVC4零配置--web.xml');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://hanqunfeng.iteye.com/"><img alt="hanqunfeng的博客" class="logo" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/0223d4f8-e366-3724-b34f-a1b9c2954718.jpg" title="hanqunfeng的博客: Spring——Java程序员的春天" width=""></a></div>
+  <div id="blog_owner_name">hanqunfeng</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 621676 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 北京</li>
+              <li><img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://hanqunfeng.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://jekca.iteye.com/" target="_blank"><img alt="c04s31602的博客" class="logo" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/user-logo-thumb.gif" title="c04s31602的博客: 脚步" width="48px"></a></div>
+                <div class="left"><a href="http://jekca.iteye.com/" target="_blank" title="c04s31602">c04s31602</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://vampire1129.iteye.com/" target="_blank"><img alt="vampire1129的博客" class="logo" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/user-logo-thumb.gif" title="vampire1129的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://vampire1129.iteye.com/" target="_blank" title="vampire1129">vampire1129</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://poq2006.iteye.com/" target="_blank"><img alt="poq2006的博客" class="logo" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/user-logo-thumb.gif" title="poq2006的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://poq2006.iteye.com/" target="_blank" title="poq2006">poq2006</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://copyman.iteye.com/" target="_blank"><img alt="copyman的博客" class="logo" src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/user-logo-thumb.gif" title="copyman的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://copyman.iteye.com/" target="_blank" title="copyman">copyman</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://hanqunfeng.iteye.com/">全部博客 (205)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96011">JAVA (27)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96012">Spring (48)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96013">Linux (46)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96014">JavaScript (8)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96015">Scrum (23)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96016">IDE (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96017">JSON (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96018">Solr (0)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96019">Webharvest (0)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96020">Hibernate (7)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/96021">杂谈 (3)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/125361">Windows 7 (4)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/138233">持续集成 (23)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/138565">tomcat (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/153989">Android (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/173692">SpringSecurity (11)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/194760">Maven (6)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/226811">jotm (3)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/246318">C3P0 (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/271607">Active Directory (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/271608">cas (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/277897">JQuery (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/277898">ajax (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/280553">plsql (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/288084">nginx (4)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/288289">apache (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/291345">thrift (7)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/292880">python (3)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/294301">oracle (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/298828">php (2)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/299238">redis (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/299444">fedora (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/300138">windows7 (0)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/300909">SVN (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/303466">NFS (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/306755">SAMBA (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/323767">Atomikos (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/323938">apache-poi (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/333212">mysql (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/333293">vncserver (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/335841">mac (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/344955">firefox (1)</a></li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/category/346996">JIRA (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://hanqunfeng.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://hanqunfeng.iteye.com/blog/post">我的论坛</a> (57)
+                </li>
+                <li><a href="http://hanqunfeng.iteye.com/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/blog/monthblog/2015-09">2015-09</a> (1)</li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/blog/monthblog/2015-08">2015-08</a> (1)</li>
+                
+                  <li><a href="http://hanqunfeng.iteye.com/blog/monthblog/2015-03">2015-03</a> (1)</li>
+                
+                <li><a href="http://hanqunfeng.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+              <div id="comments_top">
+                <h5>评论排行榜</h5>
+                <ul>
+                  
+                    <li><a href="http://hanqunfeng.iteye.com/blog/2176172" title="Spring Cache注解+Redis">Spring Cache注解+Redis</a></li>
+                  
+                    <li><a href="http://hanqunfeng.iteye.com/blog/2245848" title="JIRA REST API ---- JAVA">JIRA REST API ---- JAVA</a></li>
+                  
+                    <li><a href="http://hanqunfeng.iteye.com/blog/2175075" title="Spring Cache注解+Memcached">Spring Cache注解+Memcached</a></li>
+                  
+                </ul>
+              </div>
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://xiebinghu.iteye.com/" target="_blank" title="xiebinghu">xiebinghu</a>： 
+                  我的邮箱是271971254@qq.com<br>
+                  <a href="http://hanqunfeng.iteye.com/blog/2176172#bc2380924">Spring Cache注解+Redis</a>
+                </li>
+                
+                <li>
+                  <a href="http://xiebinghu.iteye.com/" target="_blank" title="xiebinghu">xiebinghu</a>： 
+                  没看明白，代码上的不是很全，能不能传我个demo啊？<br>
+                  <a href="http://hanqunfeng.iteye.com/blog/2176172#bc2380922">Spring Cache注解+Redis</a>
+                </li>
+                
+                <li>
+                  <a href="http://ningquec.iteye.com/" target="_blank" title="ningquec">ningquec</a>： 
+                  能ping通的<br>
+                  <a href="http://hanqunfeng.iteye.com/blog/2245848#bc2380839">JIRA REST API ---- JAVA</a>
+                </li>
+                
+                <li>
+                  <a href="http://hanqunfeng.iteye.com/" target="_blank" title="hanqunfeng">hanqunfeng</a>： 
+                  ningquec 写道hanqunfeng 写道ningque ...<br>
+                  <a href="http://hanqunfeng.iteye.com/blog/2245848#bc2380832">JIRA REST API ---- JAVA</a>
+                </li>
+                
+                <li>
+                  <a href="http://ningquec.iteye.com/" target="_blank" title="ningquec">ningquec</a>： 
+                  hanqunfeng 写道ningquec 写道您好，看了您的 ...<br>
+                  <a href="http://hanqunfeng.iteye.com/blog/2245848#bc2380819">JIRA REST API ---- JAVA</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2015 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./SpringMVC4零配置--web.xml - Spring——Java程序员的春天 - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+    
+  
+
+</body></html>

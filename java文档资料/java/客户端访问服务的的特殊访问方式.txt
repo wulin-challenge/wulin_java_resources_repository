@@ -1,0 +1,73 @@
+
+<=====================================================================================================================================================================>
+客户端:
+
+function exportArchival(params){
+	var url = justep.Request.convertURL("/UI/EDT/archival/process/archivalExport/AccessDownLoad.j");
+	url = url 
+		+ "&process=" + justep.Context.getCurrentProcess() 
+		+ "&activity=" + justep.Context.getCurrentActivity()
+		+ "&executor=" + justep.Context.getExecutor() 
+		+ "&action=exportArchival" 
+		+ "&fileName=" + window.encodeURI($("#downloadFileName").val())
+		+ "&archivalFields=" + params;
+	window.open(url);
+}
+
+<=====================================================================================================================================================================>
+服务端:
+
+public class AccessDownLoad extends com.justep.ui.impl.JProcessorImpl  {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fileName = request.getParameter("fileName");
+		//fileName = "电子档案目录.accdb";
+		fileName = "电子档案信息.zip";
+		// 构造动作对象
+		
+		// 在返回的头部信息中，指定以附件方式下载，并指定文件名
+		response.addHeader("Content-disposition", "attachment;filename=\"" + java.net.URLEncoder.encode(fileName, "UTF8") + "\";");
+
+		// 调用动作
+		ActionEngine.invokeAction(action, 
+			ActionUtils.BINARY_CONTENT_TYPE, 	// 返回数据格式
+			bSessionID, 						// bsessionid是必须的
+			language, 							// 语言
+			new StreamCallback(response)		// 以流的方式返回
+		);
+	}
+}
+
+<=====================================================================================================================================================================>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+body,div,dl,dt,dd,ul,ol,li {
+	margin:0;
+	padding:0;
+	font-size:12px
+}
+img{border:0}
+ol,ul{list-style:none}
+a:link,a:visited,a:hover,a:active{text-decoration:none}
+.login_mian{padding:20px}
+.login_mian ul{margin:0;padding:0}
+.login_mian ul li{
+	float:left
+	padding:20px;
+	width:auto;
+	height:auto
+}
+.login_mian ul li a{
+	display:block;
+	width:100px;
+	height:140px; 
+	padding-top:10px;
+	border:#fff 1px solid;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-align:center
+}
+.login_mian ul li a img{
+	margin:0px auto;
+	width:85px;
+	height:85px
+}
+.login_mian ul li a p{
+	padding:0 5px 0 5px;
+	color:#1e3666;
+	text-align:center;
+	font-size:12px;
+	line-height:18px
+}
+.login_mian ul li a:hover{
+	-webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background-color:#90def8
+}
+#report{
+	height:600px; 
+	width:880px;
+}

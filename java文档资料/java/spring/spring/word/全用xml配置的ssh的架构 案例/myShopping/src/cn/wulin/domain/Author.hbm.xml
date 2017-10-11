@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.wulin.domain.Author" table="t_author">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>	
+		<property name="gender"></property>
+		<property name="age"></property>
+		<property name="birthday"></property>
+		<!-- nationality,本类与Address是多对一的关系 -->
+		<many-to-one name="nationality" column="nationalityId" class="cn.wulin.domain.Address"></many-to-one>
+		<!-- articleSet,本类与Article是一对多的关系 -->
+		<set name="articleSet">
+			<key column="articleId"></key>
+			<one-to-many class="cn.wulin.domain.Article" />
+		</set>
+	</class>
+</hibernate-mapping>

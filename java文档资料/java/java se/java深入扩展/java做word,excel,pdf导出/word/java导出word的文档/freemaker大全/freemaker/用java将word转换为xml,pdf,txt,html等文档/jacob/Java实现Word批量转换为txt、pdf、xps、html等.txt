@@ -1,0 +1,291 @@
+/**
+ *@author eyuan
+ */
+package per.eyuan.word2txt.core;
+
+import com.jacob.*;
+import com.jacob.com.*;
+import com.jacob.activeX.*;
+import java.io.*;
+import java.util.Scanner;
+
+public class Core {
+	/**
+	 * 实现转换的函数
+	 * @param sourceFilesPath
+	 * @param destinationFilesPath
+	 * @param destinationFilesType
+	 * @return void
+	 * @see import com.jacob.activeX.*;
+	 */
+	public static void change(String sourceFilesPath,String destinationFilesPath,int destinationFilesType){
+		//使用word文件所在的目录（源路径）建立目录文件
+		File sourcePathFile=new File(sourceFilesPath);
+		//取得word文件（源文件列表）
+		File sourceFilesList[]=sourcePathFile.listFiles();
+		System.out.println("共有"+sourceFilesList.length+"个文件（文件夹）");
+		//指定要转换的文件所在的目录下，如果有子目录，
+		//则进入子目录，继续查找word文档并将其转换，
+		//直到将指定目录下的所有word文档转换完。
+		//子目录名
+		String sourceChildPath=new String("");
+		//保持原来的层次关系，将子目录下的文件存放在新建的子目录中
+		String destiNationChildPath=new String("");
+		//检索文件，过滤掉非word文件，通过扩展名过滤
+		for(int i=0;i<sourceFilesList.length;i++){
+			//排除掉子文件夹
+			if(sourceFilesList[i].isFile()){
+				System.out.println("第"+(i+1)+"个文件：");
+				//取得文件全名（包含扩展名）
+				String fileName=sourceFilesList[i].getName();
+				String fileType=new String("");				
+				//取得文件扩展名
+				fileType=fileName.substring((fileName.length()-4), fileName.length());
+				//word2007-2010扩展名为docx
+				//判断是否为word2007-2010文档，及是否以docx为后缀名
+				if(fileType.equals("docx")){
+					System.out.println("正在转换。。。");
+					//输出word文档所在路劲
+					System.out.println("目录："+sourceFilesPath);
+					//输出word文档名
+					System.out.println("文件名："+fileName);
+					//System.out.println(fileName.substring(0, (fileName.length()-5)));
+					//核心函数
+					//启动word
+					ActiveXComponent app=new ActiveXComponent("Word.Application");
+					//要转换的文档的全路径（所在文件夹+文件全名）
+					String docPath=sourceFilesPath+"\\"+fileName;
+					//转换后的文档的全路径（所在文件夹+文件名）
+					String othersPath=destinationFilesPath+"\\"+fileName.substring(0,(fileName.length()-5));
+					//
+					String inFile=docPath;
+					String outFile=othersPath;
+					//
+					boolean flag=false;
+					//核心代码
+					try{
+						//设置word可见性
+						app.setProperty("Visible", new Variant(false));
+						//
+						Dispatch docs=app.getProperty("Documents").toDispatch();
+						//打开word文档			
+						Dispatch doc=Dispatch.invoke(docs, "Open", Dispatch.Method, new Object[]{inFile,new Variant(false),new Variant(true)}, new int[1]).toDispatch();
+						//0:Microsoft Word 97 - 2003 文档 (.doc)
+						//1:Microsoft Word 97 - 2003 模板 (.dot)
+						//2:文本文档 (.txt)
+						//3:文本文档 (.txt)
+						//4:文本文档 (.txt)
+						//5:文本文档 (.txt)
+						//6:RTF 格式 (.rtf)
+						//7:文本文档 (.txt)
+						//8:HTML 文档 (.htm)(带文件夹)
+						//9:MHTML 文档 (.mht)(单文件)
+						//10:MHTML 文档 (.mht)(单文件)
+						//11:XML 文档 (.xml)
+						//12:Microsoft Word 文档 (.docx)
+						//13:Microsoft Word 启用宏的文档 (.docm)
+						//14:Microsoft Word 模板 (.dotx)
+						//15:Microsoft Word 启用宏的模板 (.dotm)
+						//16:Microsoft Word 文档 (.docx)
+						//17:PDF 文件 (.pdf)
+						//18:XPS 文档 (.xps)
+						//19:XML 文档 (.xml)
+						//20:XML 文档 (.xml)
+						//21:XML 文档 (.xml)
+						//22:XML 文档 (.xml)
+						//23:OpenDocument 文本 (.odt)
+						//24:WTF 文件 (.wtf)
+						//另存为指定格式的文档
+						Dispatch.invoke(doc, "SaveAs", Dispatch.Method, new Object[]{outFile,new Variant(destinationFilesType)}, new int[1]);
+						//
+						Variant file=new Variant(false);
+						//关闭文档
+						Dispatch.call(doc, "Close",file);
+						//
+						flag=true;
+					}catch(Exception e){
+						e.printStackTrace();
+						System.out.println("文档转换失败");
+					}finally{
+						app.invoke("Quit",new Variant[]{});
+					}
+					System.out.println("转换完毕");							
+				}
+				//word97-2003扩展名为doc
+				//判断是否为word2003-2007文档，及是否以doc为后缀名
+				else if(fileType.equals(".doc")){
+					System.out.println("正在转换。。。");
+					//输出word文档所在路劲
+					System.out.println("目录："+sourceFilesPath);
+					//输出word文档名
+					System.out.println("文件名："+fileName);
+					//System.out.println(fileName.substring(0, (fileName.length()-4)));
+					//核心函数
+					//启动word
+					ActiveXComponent app=new ActiveXComponent("Word.Application");
+					//要转换的文档的全路径（所在文件夹+文件全名）
+					String docPath=sourceFilesPath+"\\"+fileName;
+					//转换后的文档的全路径（所在文件夹+文件名）
+					String othersPath=destinationFilesPath+"\\"+fileName.substring(0,(fileName.length()-4));
+					//
+					String inFile=docPath;
+					String outFile=othersPath;
+					//
+					boolean flag=false;
+					//核心代码
+					try{
+						//设置word可见性
+						app.setProperty("Visible", new Variant(false));
+						//
+						Dispatch docs=app.getProperty("Documents").toDispatch();
+						//打开word文档			
+						Dispatch doc=Dispatch.invoke(docs, "Open", Dispatch.Method, new Object[]{inFile,new Variant(false),new Variant(true)}, new int[1]).toDispatch();
+						//另存为指定格式的文档
+						Dispatch.invoke(doc, "SaveAs", Dispatch.Method, new Object[]{outFile,new Variant(destinationFilesType)}, new int[1]);
+						//
+						Variant file=new Variant(false);
+						//关闭文档
+						Dispatch.call(doc, "Close",file);
+						//
+						flag=true;
+					}catch(Exception e){
+						e.printStackTrace();
+						System.out.println("文档转换失败");
+					}finally{
+						app.invoke("Quit",new Variant[]{});
+					}
+					System.out.println("转换完毕");							
+				}
+				//文档的扩展名不是doc或docx
+				else{
+					System.out.println("非word文档");
+				}
+			}
+			//如果是子文件夹，则递归遍历，将所有的word文档转换
+			else{
+				//
+				sourceChildPath=sourceFilesPath;
+				//该文件是目录
+				sourceChildPath=sourceChildPath+"\\"+sourceFilesList[i].getName()+"\\";
+				System.out.println("源文件所在路径："+sourceChildPath);
+				//修改目标文件夹，保持原来的层级关系
+				destiNationChildPath=destinationFilesPath;
+				destiNationChildPath=destinationFilesPath+"\\"+sourceFilesList[i].getName()+"\\";
+				System.out.println("转换后文件所在路径"+destiNationChildPath);
+				//
+				mkdir(destiNationChildPath);
+				//递归遍历所有目录，查找word文档，并将其转换
+				change(sourceChildPath, destiNationChildPath,destinationFilesType);
+			}
+		}
+		System.out.println("所有文档转换完毕");
+	}
+	/** 
+	　* 用于创建文件夹的方法 
+	　* @param mkdirName 
+	　*/
+	public static void mkdir(String mkdirName){
+		try{
+			//使用指定的路径创建文件对象
+			File dirFile = new File(mkdirName); 
+			//
+			boolean bFile = dirFile.exists();
+			//已经存在文件夹，操作？？？提醒是否要替换
+			if( bFile == true ) { 
+				System.out.println("已经存在文件夹"+mkdirName); 
+			}
+			//不存在该文件夹，则新建该目录
+			else{
+				System.out.println("新建文件夹"+mkdirName); 
+				bFile = dirFile.mkdir(); 
+				if( bFile == true ){
+					System.out.println("文件夹创建成功"); 
+				}else{
+					System.out.println(" 文件夹创建失败，清确认磁盘没有写保护并且空件足够"); 
+					System.exit(1); 
+				}
+			}
+		}catch(Exception err){
+			System.err.println("ELS - Chart : 文件夹创建发生异常"); 
+			err.printStackTrace(); 
+		}finally{
+			
+		}
+	}
+	/**
+	 * 判断某个文件夹是否存在
+	 * @param path
+	 */
+	public static boolean isPathExist(String path){
+		boolean isPathExist=false;
+		try{
+			File pathFile = new File(path);
+			if(pathFile.exists())
+				isPathExist= true;
+			else
+				isPathExist= false;
+		}catch(Exception err){
+			err.printStackTrace(); 
+		}
+		return isPathExist;
+	}
+	/**
+	 * 主函数
+	 */
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		//源文档所在路径
+		String sourceFilesPath="";	
+//		String inputSourcePath="";
+//		boolean sourcePathFlag=true;
+//		System.out.println("请输入要转换文档所在的文件夹");
+//		while(sourcePathFlag){
+//			inputSourcePath=sc.next();
+//			if(!isPathExist(inputSourcePath))
+//				System.out.println("源路径不存在，请输入正确的路径");
+//			else
+//				sourcePathFlag=false;
+//		}
+//		sourceFilesPath=inputSourcePath;
+		sourceFilesPath="D:\\word";
+		//目标文档要存放的目录
+		String destinationFilesPath="";
+//		String inputdestinationPath="";
+//		boolean destinationPathFlag=true;
+//		System.out.println("请输入转换后文档要存放的文件夹");
+//		while(destinationPathFlag){
+//			inputdestinationPath=sc.next();
+//			//目标文件不存在时，是否要提示用户创建文件
+//			if(!isPathExist(inputdestinationPath))
+//				System.out.println("目标路径不存在，请输入正确的路径");
+//			else
+//				destinationPathFlag=false;
+//		}
+//		destinationFilesPath=inputdestinationPath;		
+		destinationFilesPath="D:\\txt";
+		//选择要转换的类型
+		int destinationFilesType=0;
+		int inputNumber=0;
+		boolean numFlag=true;
+		System.out.println("您要将word文档转换为哪种文档格式？");
+		System.out.println("0:doc \t 2:txt \t 8:html \t 9:htm \t 11:xml \t 12:docx \t 17:pdf \t 18:xps");
+		while(numFlag){
+			inputNumber=sc.nextInt();
+			if(inputNumber!=2&&inputNumber!=8&&inputNumber!=9&&inputNumber!=11&&inputNumber!=12&&inputNumber!=17){
+				System.out.println("您的输入有误，请输入要转换的文档类型前的数字");
+			}else
+				numFlag=false;
+		}		
+		destinationFilesType=inputNumber;
+		//实行转换
+		change(sourceFilesPath, destinationFilesPath,destinationFilesType);
+		//测试各种类型转换
+//		for(int i=0;i<25;i++){
+//			destinationFilesType=i;
+//			System.out.println("文件类型"+destinationFilesType);		
+//			System.out.println("存放目录："+destinationFilesPath+"\\"+i);
+//			mkdir(destinationFilesPath+"\\"+i);
+//			change(sourceFilesPath, destinationFilesPath+"\\"+i,destinationFilesType);
+//		}
+	}
+}

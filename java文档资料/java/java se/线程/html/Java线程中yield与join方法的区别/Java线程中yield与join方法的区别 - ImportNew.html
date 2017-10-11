@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://www.importnew.com/14958.html -->
+<html dir="ltr" lang="zh-CN" xmlns:wb="http://open.weibo.com/wb" class=" js rgba borderradius boxshadow textshadow opacity cssanimations cssgradients csstransitions fontface generatedcontent video audio js"><!--<![endif]--><!-- BEGIN head --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><div class="fit-vids-style">­<style>               .fluid-width-video-wrapper {                 width: 100%;                              position: relative;                       padding: 0;                            }                                                                                   .fluid-width-video-wrapper iframe,        .fluid-width-video-wrapper object,        .fluid-width-video-wrapper embed {           position: absolute;                       top: 0;                                   left: 0;                                  width: 100%;                              height: 100%;                          }                                       </style></div><script src="./Java线程中yield与join方法的区别 - ImportNew_files/id.php" charset="utf-8"></script><script src="./Java线程中yield与join方法的区别 - ImportNew_files/shares.php" charset="utf-8"></script>
+
+	<!-- Title -->
+	<title>Java线程中yield与join方法的区别 - ImportNew</title>
+	
+	<!-- Meta Tags -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon & Mobileicon -->
+	<link rel="shortcut icon" href="http://www.importnew.com/wp-content/uploads/2014/12/d02a42d9cb3dec9320e5f550278911c7.ico">
+	<link rel="apple-touch-icon" href="http://www.importnew.com/wp-content/themes/jobbolev4blog/mobileicon.png">
+	
+	<!-- RSS, Atom & Pingbacks -->
+		<link rel="alternate" title="ImportNew RSS Feed" href="http://www.importnew.com/feed">
+		<link rel="alternate" title="RSS .92" href="http://www.importnew.com/feed/rss">
+	<link rel="alternate" title="Atom 0.3" href="http://www.importnew.com/feed/atom">
+	<link rel="pingback" href="http://www.importnew.com/xmlrpc.php">
+	
+	<!-- Theme Hook -->
+	<link rel="stylesheet" id="lightboxStyle-css" href="./Java线程中yield与join方法的区别 - ImportNew_files/colorbox.css" type="text/css" media="screen">
+<link rel="stylesheet" id="core3.0-css" href="./Java线程中yield与join方法的区别 - ImportNew_files/shCore.css" type="text/css" media="all">
+<link rel="stylesheet" id="core-Default3.0-css" href="./Java线程中yield与join方法的区别 - ImportNew_files/shCoreDefault.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-Default3.0-css" href="./Java线程中yield与join方法的区别 - ImportNew_files/shThemeDefault.css" type="text/css" media="all">
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/jquery.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/q2w3-fixed-widget.min.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/modernizr.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.importnew.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.importnew.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="JVMTI的对象标记对GC的影响" href="http://www.importnew.com/15012.html">
+<link rel="next" title="如何使用Java、Servlet创建二维码" href="http://www.importnew.com/15028.html">
+<link rel="shortlink" href="http://www.importnew.com/?p=14958">
+
+<!-- All in One SEO Pack 1.6.15.2 by Michael Torbert of Semper Fi Web Design[465,514] -->
+<meta name="description" content="长期以来，多线程问题颇为受到面试官的青睐。虽然我个人认为我们当中很少有人能真正获得机会开发复杂的多线程应用，但是理解多线程对增加你的信心很有用。这一次，我将会讨论join()和yield()方法的区别">
+<meta name="keywords" content="java线程">
+<link rel="canonical" href="./Java线程中yield与join方法的区别 - ImportNew_files/Java线程中yield与join方法的区别 - ImportNew.html">
+<!-- /all in one seo pack -->
+
+<!-- Comment Rating plugin Version: 2.9.32 by Bob King, http://wealthynetizen.com/, dynamic comment voting & styling. --> 
+<style type="text/css" media="screen">
+   .ckrating_highly_rated {background-color:#FFFFCC !important;}
+   .ckrating_poorly_rated {opacity:0.6;filter:alpha(opacity=60) !important;}
+   .ckrating_hotly_debated {background-color:#FFF0F5 !important;}
+</style>
+
+
+<!-- WP SyntaxHighlighter Ver.1.7.3 CSS for code Begin -->
+<style type="text/css">
+.syntaxhighlighter,
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+font-size: 12px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter table caption {
+/* For Title(Caption) */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter.nogutter td.code .line {
+/* Set the left padding space when no-gutter in ver. 3.0 */  
+padding-left: 3px !important;
+}
+.syntaxhighlighter {
+/* For Chrome/Safari(WebKit) */  
+/* Hide the superfluous vertical scrollbar in ver. 3.0 */  
+overflow-y: hidden !important;
+padding: 1px !important;
+}
+.widget-area.syntaxhighlighter a,
+.widget-area.syntaxhighlighter div,
+.widget-area.syntaxhighlighter code,
+.widget-area.syntaxhighlighter table,
+.widget-area.syntaxhighlighter table td,
+.widget-area.syntaxhighlighter table tr,
+.widget-area.syntaxhighlighter table tbody,
+.widget-area.syntaxhighlighter table thead,
+.widget-area.syntaxhighlighter table caption,
+.widget-area.syntaxhighlighter textarea {
+/* For Widget */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.widget-area table caption {
+/* For Widget */  
+/* For Title(Caption) */  
+font-size: 10px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+</style>
+<!-- WP SyntaxHighlighter Ver.1.7.3 CSS for code End -->
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="http://www.importnew.com/wp-content/themes/jobbolev4blog/style.css" media="screen">
+	<!-- link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text:400,700italic,700,400italic" media="screen" / -->
+	<style>
+				*::selection { background: #0099cc; }
+		*::-moz-selection { background: #0099cc; }
+		body { background: #ffffff  }
+		a, .tabs ul.nav li a:hover, .tabs ul.nav li.active a, .dropcap, .toggle.hover .toggle-title, li.comment cite a:hover, h3.widget-title, .post-meta .meta-title:hover, .the-latest a:hover h4, .aw_socialcounter_widget li a:hover, .aw_tabbed_widget #tab-latest-comments a:hover { color: #0099cc; }
+		a:hover { color: #b30000; }
+		input:focus, textarea:focus { border-color: #0099cc; }
+		#searchsubmit, .highlight, .aw_tabbed_widget .tabs ul.nav li.active a, footer .aw_tabbed_widget .tabs ul.nav li.active a, #top .aw_tabbed_widget .tabs ul.nav li.active a, .aw_tabbed_widget .tabs ul.nav li a:hover, footer .aw_tabbed_widget .tabs ul.nav li a:hover, #top .aw_tabbed_widget .tabs ul.nav li a:hover, .aw_twitter_widget .twitter-icon, .testimonial-icon, #top-closed:hover, .flex-control-nav a:hover, .flex-control-nav a.flex-active { background-color: #0099cc; }
+		.submit { background-color: #0099cc; border-color: #007399; }
+		.submit:hover { background-color: #b30000; border-color: #860000; }
+		#searchsubmit:hover { background-color: #b30000; }
+		.toggle.hover .toggle-icon { border-top-color: #0099cc; }
+		.toggle.hover.active .toggle-icon { border-bottom-color: #0099cc; }
+		.flex-direction-nav li .flex-prev:hover { border-right-color: #0099cc; }
+		.flex-direction-nav li .flex-next:hover { border-left-color: #0099cc; }
+		@media only screen and (min-width: 768px) and (max-width: 959px) {
+			.aw_tabbed_widget .tabs ul.nav li a:hover, .tabs ul.nav li.active a { color: #0099cc; }
+		}
+		@media screen and (max-width: 767px) {
+			.tabs ul.nav li a:hover, .tabs ul.nav li.active a { color: #0099cc; }
+		}
+	</style>
+		
+	<!--[if IE 8]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+
+	<!-- Links: RSS + Atom Syndication + Pingback etc. -->
+	<link rel="alternate" type="application/rss+xml" title="ImportNew RSS Feed" href="http://www.importnew.com/feed">
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://www.importnew.com/feed/rss">
+	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://www.importnew.com/feed/atom">
+	<link rel="pingback" href="http://www.importnew.com/xmlrpc.php">
+    <script src="./Java线程中yield与join方法的区别 - ImportNew_files/wb.js" type="text/javascript" charset="utf-8"></script><script charset="UTF-8" src="./Java线程中yield与join方法的区别 - ImportNew_files/query"></script>
+
+<!-- END head -->
+<script charset="UTF-8" src="./Java线程中yield与join方法的区别 - ImportNew_files/bundle.js"></script><script charset="UTF-8" src="./Java线程中yield与join方法的区别 - ImportNew_files/iframeWidget.js"></script></head>
+
+<!-- BEGIN body -->
+<body class="single single-post postid-14958 single-format-standard chrome"><iframe id="sina_anywhere_iframe" style="display: none;"></iframe><link href="./Java线程中yield与join方法的区别 - ImportNew_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./Java线程中yield与join方法的区别 - ImportNew_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./Java线程中yield与join方法的区别 - ImportNew_files/jiathis_utility.html" style="display: none;"></iframe>
+
+		
+	
+	<!-- BEGIN #top-nav -->
+	<nav id="top-nav" class="menu-nav">
+		
+		<!-- BEGIN .container -->
+		<div class="container">
+
+			            <div class="grid-12">
+            </div>
+			<div class="clear"></div>
+		
+		</div>
+		<!-- END .container -->
+    
+	</nav>
+	<!-- END #top-nav -->
+	
+	  	
+	<!-- BEGIN #wrapper -->
+	<div id="wrapper" class="container">
+
+		<!-- BEGIN header -->
+		<header>
+		
+						
+			<div class="header-wrapper">
+								
+				<!-- BEGIN #logo -->
+				<div id="logo" class="leaderboard-true">
+				
+										<a href="http://www.importnew.com/"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/6c537425c9ad078efe656a346e5facec.png" width="137" height="85" alt="ImportNew"></a>
+									
+				</div>
+				<!-- END #logo -->
+				
+				<!-- BEGIN #leaderboard -->
+				<div id="leaderboard">
+				
+					<a href="http://blog.jobbole.com/84342/?utm_source=www.importnew.com&utm_medium=topBanner&utm_content=2015.9.16" target="_blank" class="external" rel="nofollow"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/b0085a0786dd01f1ca103360df302b6f.jpg"></a>				
+				</div>
+				<!-- END #leaderboard -->
+				
+				<div class="clear"></div>
+			
+			</div>
+			
+						
+			<div class="clear"></div>
+			
+			<!-- BEGIN #main-nav -->
+			<nav id="main-nav" class="grid-12 menu-nav">
+
+				<div class="menu-main-container"><ul id="main-nav-menu" class="menu sf-js-enabled"><li id="menu-item-14265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14265"><a href="http://www.importnew.com/">首页</a></li>
+<li id="menu-item-14278" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-14278"><a href="http://www.importnew.com/all-posts">所有文章</a></li>
+<li id="menu-item-858" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-858"><a href="http://www.importnew.com/cat/news">资讯</a></li>
+<li id="menu-item-1120" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1120"><a href="http://www.importnew.com/cat/web-development">Web</a></li>
+<li id="menu-item-1923" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1923"><a href="http://www.importnew.com/cat/architecture">架构</a></li>
+<li id="menu-item-832" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-832"><a href="http://www.importnew.com/cat/basic">基础技术</a></li>
+<li id="menu-item-836" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-836"><a href="http://www.importnew.com/cat/books">书籍</a></li>
+<li id="menu-item-2183" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2183"><a href="http://www.importnew.com/cat/tutorial">教程</a></li>
+<li id="menu-item-14282" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14282"><a href="http://top.jobbole.com/" class="external" rel="nofollow" target="_blank">我要投稿</a></li>
+<li id="menu-item-14283" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14283"><a href="http://www.importnew.com/14958.html#">更多频道 »</a>
+<ul class="sub-menu sf-js-enabled" style="display: none; visibility: hidden;">
+	<li id="menu-item-14284" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14284"><a href="http://ios.jobbole.com/" class="external" rel="nofollow" target="_blank">iOS</a></li>
+	<li id="menu-item-14286" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14286"><a href="http://python.jobbole.com/" class="external" rel="nofollow" target="_blank">Python</a></li>
+	<li id="menu-item-14285" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14285"><a href="http://android.jobbole.com/" class="external" rel="nofollow" target="_blank">Android</a></li>
+	<li id="menu-item-14287" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14287"><a href="http://web.jobbole.com/" class="external" rel="nofollow" target="_blank">Web前端</a></li>
+</ul>
+</li>
+</ul><select class="selectnav" id="selectnav1"><option value="">- 导航条 -</option><option value="http://www.importnew.com/">首页</option><option value="http://www.importnew.com/all-posts">所有文章</option><option value="http://www.importnew.com/cat/news">资讯</option><option value="http://www.importnew.com/cat/web-development">Web</option><option value="http://www.importnew.com/cat/architecture">架构</option><option value="http://www.importnew.com/cat/basic">基础技术</option><option value="http://www.importnew.com/cat/books">书籍</option><option value="http://www.importnew.com/cat/tutorial">教程</option><option value="http://top.jobbole.com/">我要投稿</option><option value="http://www.importnew.com/14958.html#">更多频道 »</option><option value="http://ios.jobbole.com/">- iOS</option><option value="http://python.jobbole.com/">- Python</option><option value="http://android.jobbole.com/">- Android</option><option value="http://web.jobbole.com/">- Web前端</option></select></div>				
+				<div class="clear"></div>
+            
+			</nav>
+			<!-- END #main-nav -->
+			
+			<div class="clear"></div>
+		
+		</header>
+		<!-- END header -->
+		
+		
+
+<!-- BEGIN .grid-8 -->
+<div class="grid-8">
+
+		
+	<!-- BEGIN .post -->
+<div class="post-14958 post type-post status-publish format-standard hentry category-basic tag-java odd" id="post-14958">
+	
+	<!-- BEGIN .entry-header -->
+	<div class="entry-header">
+	
+				
+		<h1>Java线程中yield与join方法的区别</h1>
+		
+							
+	</div>
+	<!-- BEGIN .entry-header -->
+	
+	<!-- BEGIN .entry-meta -->
+	<div class="entry-meta">
+	
+		<p class="entry-meta-hide-on-mobile">2015/02/10 | 分类： <a href="http://www.importnew.com/cat/basic" title="查看 基础技术 中的全部文章" rel="category tag">基础技术</a> | <a href="http://www.importnew.com/14958.html#comments" title="《Java线程中yield与join方法的区别》上的评论">3  条评论</a>
+
+		 | 标签： <a href="http://www.importnew.com/tag/java%e7%ba%bf%e7%a8%8b">Java线程</a></p>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style" style="display: block; margin: 0 0px; clear: both;"><span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+<a class="jiathis_button_fb" title="分享到Facebook"><span class="jiathis_txt jtico jtico_fb"></span></a>
+<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+<a class="jiathis_button_douban" title="分享到豆瓣"><span class="jiathis_txt jtico jtico_douban"></span></a>
+<a class="jiathis_button_readitlater"></a>
+<a class="jiathis_button_evernote" title="分享到EverNote"><span class="jiathis_txt jtico jtico_evernote"></span></a>
+<a class="jiathis_button_ydnote" title="分享到有道云笔记"><span class="jiathis_txt jtico jtico_ydnote"></span></a>
+<a href="http://www.jiathis.com/share?uid=1745061" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_30" title="累计分享23次">23</span></a>
+</div>
+<!-- JiaThis Button END -->
+
+
+	</div>
+	<!-- END .entry-meta -->
+
+	<!-- BEGIN .entry -->
+	<div class="entry">
+
+        
+		<div class="copyright-area">本文由 <a href="http://www.importnew.com/">ImportNew</a> - <a href="http://www.importnew.com/author/calarencce">Calarence</a> 翻译自 <a target="_blank" href="http://howtodoinjava.com/2014/06/03/difference-between-yield-and-join-in-threads-in-java/" class="external" rel="nofollow">How To Do In Java</a>。欢迎加入<a href="http://group.jobbole.com/category/feedback/trans-team/" class="external" rel="nofollow" target="_blank">翻译小组</a>。转载请见文末要求。</div>
+<p>长期以来，多线程问题颇为受到面试官的青睐。虽然我个人认为我们当中很少有人能真正获得机会开发复杂的多线程应用(在过去的七年中，我得到了一个机会)，但是理解多线程对增加你的信心很有用。之前，我讨论了一个wait()和sleep()方法区别的问题，这一次，我将会讨论join()和yield()方法的区别。坦白的说，实际上我并没有用过其中任何一个方法，所以，如果你感觉有不恰当的地方，请提出讨论。</p>
+<h3><strong>Java线程调度的一点背景</strong></h3>
+<p>在各种各样的线程中，Java虚拟机必须实现一个有优先权的、基于优先级的调度程序。这意味着Java程序中的每一个线程被分配到一定的优先权，使用定义好的范围内的一个正整数表示。优先级可以被开发者改变。即使线程已经运行了一定时间，Java虚拟机也不会改变其优先级</p>
+<p>优先级的值很重要，因为Java虚拟机和下层的操作系统之间的约定是操作系统必须选择有最高优先权的Java线程运行。所以我们说Java实现了一个<a href="http://en.wikipedia.org/wiki/Fixed-priority_pre-emptive_scheduling" class="external" rel="nofollow" target="_blank">基于优先权的调度程序</a>。该调度程序使用一种有优先权的方式实现，这意味着当一个有更高优先权的线程到来时，无论低优先级的线程是否在运行，都会中断(抢占)它。这个约定对于操作系统来说并不总是这样，这意味着操作系统有时可能会选择运行一个更低优先级的线程。(我憎恨多线程的这一点，因为这不能保证任何事情)</p>
+<blockquote><p><span style="color: #888888;">注意Java并不限定线程是以时间片运行，但是大多数操作系统却有这样的要求。在术语中经常引起混淆：抢占经常与时间片混淆。事实上，抢占意味着只有拥有高优先级的线程可以优先于低优先级的线程执行，但是当线程拥有相同优先级的时候，他们不能相互抢占。它们通常受时间片管制，但这并不是Java的要求。</span></p></blockquote>
+<h3><strong>理解线程的优先权</strong></h3>
+<p>接下来，理解线程优先级是多线程学习很重要的一步，尤其是了解yield()函数的工作过程。</p>
+<ol>
+<li>记住当线程的优先级没有指定时，所有线程都携带普通优先级。</li>
+<li>优先级可以用从1到10的范围指定。10表示最高优先级，1表示最低优先级，5是普通优先级。</li>
+<li>记住优先级最高的线程在执行时被给予优先。但是不能保证线程在启动时就进入运行状态。</li>
+<li>与在线程池中等待运行机会的线程相比，当前正在运行的线程可能总是拥有更高的优先级。</li>
+<li>由调度程序决定哪一个线程被执行。</li>
+<li>t.setPriority()用来设定线程的优先级。</li>
+<li>记住在线程开始方法被调用之前，线程的优先级应该被设定。</li>
+<li>你可以使用常量，如MIN_PRIORITY,MAX_PRIORITY，NORM_PRIORITY来设定优先级</li>
+</ol>
+<p>现在，当我们对线程调度和线程优先级有一定理解后，让我们进入主题。</p>
+<h3><strong>yield()方法</strong></h3>
+<p>理论上，yield意味着放手，放弃，投降。一个调用yield()方法的线程告诉虚拟机它乐意让其他线程占用自己的位置。这表明该线程没有在做一些紧急的事情。注意，这仅是一个暗示，并不能保证不会产生任何影响。</p>
+<p>在Thread.java中yield()定义如下：</p>
+<div><div id="highlighter_638171" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java preprocessor">/**</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java preprocessor">* A hint to the scheduler that the current thread is willing to yield its current use of a processor. The scheduler is free to ignore</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java preprocessor">* this hint. Yield is a heuristic attempt to improve relative progression between threads that would otherwise over-utilize a CPU.</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java preprocessor">* Its use should be combined with detailed profiling and benchmarking to ensure that it actually has the desired effect.</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java preprocessor">*/</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">native</code> <code class="java keyword">void</code> <code class="java plain">yield();</code></div></div></td></tr></tbody></table></div></div>
+<p>让我们列举一下关于以上定义重要的几点：</p>
+<ul>
+<li>Yield是一个静态的原生(native)方法</li>
+<li>Yield告诉当前正在执行的线程把运行机会交给线程池中拥有相同优先级的线程。</li>
+<li>Yield不能保证使得当前正在运行的线程迅速转换到可运行的状态</li>
+<li>它仅能使一个线程从运行状态转到可运行状态，而不是等待或阻塞状态</li>
+</ul>
+<h3><strong>yield()方法使用示例</strong></h3>
+<p>在下面的示例程序中，我随意的创建了名为生产者和消费者的两个线程。生产者设定为最小优先级，消费者设定为最高优先级。在Thread.yield()注释和非注释的情况下我将分别运行该程序。没有调用yield()方法时，虽然输出有时改变，但是通常消费者行先打印出来，然后事生产者。</p>
+<p>调用yield()方法时，两个线程依次打印，然后将执行机会交给对方，一直这样进行下去。</p>
+<div><div id="highlighter_231111" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">test.core.threads;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">YieldExample</code></div><div class="line number4 index3 alt1"><code class="java plain">{</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args)</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread producer = </code><code class="java keyword">new</code> <code class="java plain">Producer();</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread consumer = </code><code class="java keyword">new</code> <code class="java plain">Consumer();</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">producer.setPriority(Thread.MIN_PRIORITY); </code><code class="java comments">//Min Priority</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">consumer.setPriority(Thread.MAX_PRIORITY); </code><code class="java comments">//Max Priority</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">producer.start();</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">consumer.start();</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number16 index15 alt1"><code class="java plain">}</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="java keyword">class</code> <code class="java plain">Producer </code><code class="java keyword">extends</code> <code class="java plain">Thread</code></div><div class="line number19 index18 alt2"><code class="java plain">{</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">run()</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code> <code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">i = </code><code class="java value">0</code><code class="java plain">; i &lt; </code><code class="java value">5</code><code class="java plain">; i++)</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"I am Producer : Produced Item "</code> <code class="java plain">+ i);</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread.yield();</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number28 index27 alt1"><code class="java plain">}</code></div><div class="line number29 index28 alt2">&nbsp;</div><div class="line number30 index29 alt1"><code class="java keyword">class</code> <code class="java plain">Consumer </code><code class="java keyword">extends</code> <code class="java plain">Thread</code></div><div class="line number31 index30 alt2"><code class="java plain">{</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">run()</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code> <code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">i = </code><code class="java value">0</code><code class="java plain">; i &lt; </code><code class="java value">5</code><code class="java plain">; i++)</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"I am Consumer : Consumed Item "</code> <code class="java plain">+ i);</code></div><div class="line number37 index36 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread.yield();</code></div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number40 index39 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<h4><strong>上述程序在没有调用yield()方法情况下的输出：</strong></h4>
+<div><div id="highlighter_82004" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">0</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">1</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">2</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">3</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">4</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">0</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">1</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">2</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">3</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">4</code></div></div></td></tr></tbody></table></div></div>
+<h4><strong>上述程序在调用yield()方法情况下的输出：</strong></h4>
+<div><div id="highlighter_536790" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">I am Producer : Produced Item </code><code class="java value">0</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">0</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">1</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">1</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">2</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">2</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">3</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">3</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;</code><code class="java plain">I am Producer : Produced Item </code><code class="java value">4</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;</code><code class="java plain">I am Consumer : Consumed Item </code><code class="java value">4</code></div></div></td></tr></tbody></table></div></div>
+<h3><strong>join()方法</strong></h3>
+<p>线程实例的方法join()方法可以使得一个线程在另一个线程结束后再执行。如果join()方法在一个线程实例上调用，当前运行着的线程将阻塞直到这个线程实例完成了执行。</p>
+<div><div id="highlighter_327149" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java comments">//Waits for this thread to die.</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">public</code> <code class="java keyword">final</code> <code class="java keyword">void</code> <code class="java plain">join() </code><code class="java keyword">throws</code> <code class="java plain">InterruptedException</code></div></div></td></tr></tbody></table></div></div>
+<p>在join()方法内设定超时，使得join()方法的影响在特定超时后无效。当超时时，主方法和任务线程申请运行的时候是平等的。然而，当涉及sleep时，join()方法依靠操作系统计时，所以你不应该假定join()方法将会等待你指定的时间。</p>
+<p>像sleep,join通过抛出InterruptedException对中断做出回应。</p>
+<h3><strong>join()方法使用示例</strong></h3>
+<div><div id="highlighter_634012" class="syntaxhighlighter notranslate java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">test.core.threads;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">JoinExample</code></div><div class="line number4 index3 alt1"><code class="java plain">{</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) </code><code class="java keyword">throws</code> <code class="java plain">InterruptedException</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread t = </code><code class="java keyword">new</code> <code class="java plain">Thread(</code><code class="java keyword">new</code> <code class="java plain">Runnable()</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">run()</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"First task started"</code><code class="java plain">);</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Sleeping for 2 seconds"</code><code class="java plain">);</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">try</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread.sleep(</code><code class="java value">2000</code><code class="java plain">);</code></div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">} </code><code class="java keyword">catch</code> <code class="java plain">(InterruptedException e)</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">e.printStackTrace();</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"First task completed"</code><code class="java plain">);</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">});</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread t1 = </code><code class="java keyword">new</code> <code class="java plain">Thread(</code><code class="java keyword">new</code> <code class="java plain">Runnable()</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">run()</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Second task completed"</code><code class="java plain">);</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">});</code></div><div class="line number30 index29 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">t.start(); </code><code class="java comments">// Line 15</code></div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">t.join(); </code><code class="java comments">// Line 16</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">t1.start();</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number34 index33 alt1"><code class="java plain">}</code></div><div class="line number35 index34 alt2">&nbsp;</div><div class="line number36 index35 alt1"><code class="java plain">Output:</code></div><div class="line number37 index36 alt2">&nbsp;</div><div class="line number38 index37 alt1"><code class="java plain">First task started</code></div><div class="line number39 index38 alt2"><code class="java plain">Sleeping </code><code class="java keyword">for</code> <code class="java value">2</code> <code class="java plain">seconds</code></div><div class="line number40 index39 alt1"><code class="java plain">First task completed</code></div><div class="line number41 index40 alt2"><code class="java plain">Second task completed</code></div></div></td></tr></tbody></table></div></div>
+<p>这是一些很小却很重要的概念。在评论部分让我知道你的想法。</p>
+
+        
+        原文链接： <a target="_blank" href="http://howtodoinjava.com/2014/06/03/difference-between-yield-and-join-in-threads-in-java/" class="external" rel="nofollow">How To Do In Java</a>    翻译： <a href="http://www.importnew.com/"> ImportNew.com </a> - <a href="http://www.importnew.com/author/calarencce">Calarence</a><br>译文链接： <a href="./Java线程中yield与join方法的区别 - ImportNew_files/Java线程中yield与join方法的区别 - ImportNew.html">http://www.importnew.com/14958.html</a><br>[ <span style="color:#ff0000"><b>转载请保留原文出处、译者和译文链接。</b></span>]<br><br>
+        <!-- BEGIN #author-bio -->
+
+<div id="author-bio">
+	
+	<h3 class="widget-title">
+	关于作者： <a href="http://www.importnew.com/author/calarencce">Calarence</a>
+	</h3>
+	<div class="alignleft">
+		<a href="http://www.importnew.com/author/calarencce">
+					</a>
+	</div>
+	<p>软件工程系大三生，喜欢看书，文学+技术，感兴趣的方向：web、模式识别，编程语言Java
+新浪微博<a href="http://weibo.com/u/3195875005/home?leftnav=1" class="external" rel="nofollow" target="_blank">@哆啦Aa有梦</a>
+个人博客<a href="http://www.appleieye.com/" class="external" rel="nofollow" target="_blank">Calarencce's blog</a>
+如需兼职或实习生，请Email我：749826557@qq.com</p>
+	<p>
+		<a style="text-decoration: none;" href="http://www.importnew.com/author/calarencce">查看Calarence的更多文章 &gt;&gt; </a>
+	</p>
+	<div class="clear"></div>
+	
+</div>
+
+<!-- END #author-bio -->
+	</div>
+	<!-- END .entry -->
+
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+<a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+<a class="jiathis_button_fb" title="分享到Facebook"><span class="jiathis_txt jtico jtico_fb"></span></a>
+<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+<a class="jiathis_button_douban" title="分享到豆瓣"><span class="jiathis_txt jtico jtico_douban"></span></a>
+<a class="jiathis_button_googleplus" title="分享到Google+"><span class="jiathis_txt jtico jtico_googleplus"></span></a>
+<a class="jiathis_button_readitlater"></a>
+<a class="jiathis_button_evernote" title="分享到EverNote"><span class="jiathis_txt jtico jtico_evernote"></span></a>
+<a class="jiathis_button_ydnote" title="分享到有道云笔记"><span class="jiathis_txt jtico jtico_ydnote"></span></a>
+<a href="http://www.jiathis.com/share?uid=1745061" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis external" target="_blank" rel="nofollow"></a>
+<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_56" title="累计分享23次">23</span></a>
+</div>
+
+
+<script type="text/javascript">
+var jiathis_config={
+	data_track_clickback:false,
+	title:"《Java线程中yield与join方法的区别》",
+	summary:"长期以来，多线程问题颇为受到面试官的青睐。虽然我个人认为我们当中很少有人能真正获得机会开发复杂的多线程应用，但是理解多线程对增加你的信心很有用。这一次，我将会讨论join()和yield()方法的区别",
+	pic:"http://incdn1.b0.upaiyun.com/2013/10/Java-logo.jpg",
+	appkey:{
+                "tsina":2284713194 //for importnew
+        },
+	ralateuid:{
+		"tsina":2991905905 //for importnew
+	},
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/jia.js" charset="utf-8"></script><script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/plugin.client.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br><br>
+<div id="text-13">			<div class="textwidget"><p><span><br>
+<a href="http://100offer.com/join/imp?utm_source=importnew&utm_medium=dis&utm_campaign=imp" target="_blank" class="external" rel="nofollow"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/bfdcef89gw1ewfkw0qsc5j208c06ywf8.jpg" border="0"></a><br>
+</span></p>
+</div>
+		</div>
+</div>
+<!-- END .post -->	
+	
+<script type="text/javascript">
+window._wp_rp_static_base_url = "http://dtmvdvtzf8rz0.cloudfront.net/static/";
+
+</script>
+<h3 class="related_post_title">可能感兴趣的文章</h3><ul class="related_post wp_rp" style="visibility:visible;"><li position="0"><a href="http://www.importnew.com/3912.html">HBase数据迁移（3）-自己编写MapReduce Job导入数据</a></li><li position="1"><a href="http://www.importnew.com/4593.html">使用Specs进行单元测试</a></li><li position="2"><a href="http://www.importnew.com/6151.html">如何提高hadoop中Short-Circuit Local Reads时的性能及安全性</a></li><li position="3"><a href="http://www.importnew.com/6997.html">Java5在自动装箱时使用“==”会遇到什么问题？</a></li><li position="4"><a href="http://www.importnew.com/7699.html">Netty教程—Part6—Upstream、Downstream</a></li><li position="5"><a href="http://www.importnew.com/8979.html">在航空电子设备和无人机应用中使用Java</a></li><li position="6"><a href="http://www.importnew.com/13530.html">Java EE7和Maven工程入门（4）</a></li><li position="7"><a href="http://www.importnew.com/14027.html">为什么对象应该是不可变的</a></li><li position="8"><a href="http://www.importnew.com/16331.html">Java日志终极指南</a></li><li position="9"><a href="http://www.importnew.com/16735.html">Java 动态代理机制分析及扩展，第 1 部分</a></li></ul>
+
+			
+	
+<!-- BEGIN #respond -->
+<div id="respond">
+
+	<h3 class="widget-title">发表评论</h3>
+	
+	<!-- BEGIN .cancel-comment-reply -->
+	<p class="cancel-comment-reply">
+		
+		<a rel="nofollow" id="cancel-comment-reply-link" href="http://www.importnew.com/14958.html#respond" style="display:none;">点击这里取消回复。</a>		
+	</p>
+	<!-- END .cancel-comment-reply -->
+
+		
+	<!-- BEGIN #comment-form -->
+	<form action="http://www.importnew.com/wp-comments-post.php" method="post" id="comment-form">
+		
+		<fieldset>
+		
+			<legend class="none">Comment form</legend>
+			
+			<!-- BEGIN .container -->
+			<div class="container">
+			
+							
+				<div class="grid-4 margin-20">
+					<label for="author">Name<span class="red">*</span></label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="text" name="author" id="author" value="" tabindex="1" size="30" class="required" placeholder="姓名"></div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid-4 margin-20">
+					<label for="email">邮箱<span class="red">*</span></label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="email" name="email" id="email" value="" tabindex="2" size="30" class="required email" placeholder="请填写邮箱"></div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid-4 margin-20">
+					<label for="url">网站 (请以 http://开头)</label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="url" name="url" id="url" value="" tabindex="3" size="30" placeholder="请填写网站地址"></div>
+				</div>
+				<div class="clear"></div>
+				
+								
+				<div class="grid-8 margin-20">
+					<label for="comment" class="none margin-20">评论内容<span class="red">*</span></label>
+					<div class="input-wrapper"><textarea name="comment" id="comment" rows="20" cols="30" class="required" tabindex="4" onkeydown="if(event.ctrlKey &amp;&amp; event.keyCode==13){document.getElementById(&#39;comment-form-submit&#39;).click(); return false;}" placeholder="请填写评论内容"></textarea></div>
+				</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END .container -->
+			
+			<p>(<span class="red">*</span>) 表示必填项</p>
+			<p></p><div class="submit-wrapper"><a id="comment-form-submit" class="submit">提交评论</a></div><p></p>
+			<input type="hidden" name="comment_post_ID" value="14958" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+			<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a91c54ff25"></p>			
+		</fieldset>
+		
+	</form>
+	<!-- END #comment-form -->
+	
+	
+</div>
+<!-- END #respond -->
+
+	<h3 id="comments" class="widget-title">3 条评论</h3>
+	
+	<!-- BEGIN .commentlist -->
+	<ol class="commentlist">
+	
+				<li class="comment even thread-even depth-1" id="comment-328209">
+				<div id="div-comment-328209" class="comment-body">
+				<div class="comment-author vcard">
+				<cite class="fn">damon-lin</cite> <span class="says">说道：</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.importnew.com/14958.html#comment-328209">
+			2015/02/13 上午 10:45</a>		</div>
+
+		<p>yield不能保证线程交替执行，不要被误导了。</p>
+<p> <img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="up-328209" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_up.png" alt="Thumb up" onclick="javascript:ckratingKarma(&#39;328209&#39;, &#39;add&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;);" title="赞同"> <span id="karma-328209-up" style="font-size:12px; color:#009933;">3</span>&nbsp;<img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="down-328209" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_down.png" alt="Thumb down" onclick="javascript:ckratingKarma(&#39;328209&#39;, &#39;subtract&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;)" title="反对"> <span id="karma-328209-down" style="font-size:12px; color:#990033;">0</span></p>
+		<div class="reply">
+		<a class="comment-reply-link" href="http://www.importnew.com/14958.html?replytocom=328209#respond" onclick="return addComment.moveForm(" div-comment-328209",="" "328209",="" "respond",="" "14958")"="">回复</a>		</div>
+				</div>
+		</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-330972">
+				<div id="div-comment-330972" class="comment-body">
+				<div class="comment-author vcard">
+				<cite class="fn">阿信</cite> <span class="says">说道：</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.importnew.com/14958.html#comment-330972">
+			2015/02/14 下午 6:05</a>		</div>
+
+		<p>对比本文举的例子、英文原文以及官方API文档，join方法肯定是说错了的。应该是“等自己结束后在执行其他的”</p>
+<p> <img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="up-330972" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_up.png" alt="Thumb up" onclick="javascript:ckratingKarma(&#39;330972&#39;, &#39;add&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;);" title="赞同"> <span id="karma-330972-up" style="font-size:12px; color:#009933;">0</span>&nbsp;<img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="down-330972" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_down.png" alt="Thumb down" onclick="javascript:ckratingKarma(&#39;330972&#39;, &#39;subtract&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;)" title="反对"> <span id="karma-330972-down" style="font-size:12px; color:#990033;">0</span></p>
+		<div class="reply">
+		<a class="comment-reply-link" href="http://www.importnew.com/14958.html?replytocom=330972#respond" onclick="return addComment.moveForm(" div-comment-330972",="" "330972",="" "respond",="" "14958")"="">回复</a>		</div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-tangxiaojuan even depth-2" id="comment-335650">
+				<div id="div-comment-335650" class="comment-body">
+				<div class="comment-author vcard">
+				<cite class="fn">唐小娟</cite> <span class="says">说道：</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.importnew.com/14958.html#comment-335650">
+			2015/02/17 下午 4:29</a>		</div>
+
+		<p>的确比较容易混淆谁先执行谁后执行。更准确的说法是，main是主线程，在main中创建了thread线程，在main中调用了thread.join()，那么等thread结束后再执行main代码。</p>
+<p> <img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="up-335650" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_up.png" alt="Thumb up" onclick="javascript:ckratingKarma(&#39;335650&#39;, &#39;add&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;);" title="赞同"> <span id="karma-335650-up" style="font-size:12px; color:#009933;">2</span>&nbsp;<img style="padding: 0px; border: none; cursor: pointer;" onmouseover="this.width=this.width*1.3" onmouseout="this.width=this.width/1.2" id="down-335650" src="./Java线程中yield与join方法的区别 - ImportNew_files/1_14_down.png" alt="Thumb down" onclick="javascript:ckratingKarma(&#39;335650&#39;, &#39;subtract&#39;, &#39;www.importnew.com/wp-content/plugins/comment-rating/&#39;, &#39;1_14_&#39;)" title="反对"> <span id="karma-335650-down" style="font-size:12px; color:#990033;">0</span></p>
+		<div class="reply">
+		<a class="comment-reply-link" href="http://www.importnew.com/14958.html?replytocom=335650#respond" onclick="return addComment.moveForm(" div-comment-335650",="" "335650",="" "respond",="" "14958")"="">回复</a>		</div>
+				</div>
+		</li>
+</ul>
+</li>
+	
+	</ol>
+
+	<!-- END .commentlist -->
+
+		
+ 
+<h3 id="comments-from-weibo" class="widget-title">来自微博的评论</h3>
+<wb:comments url="http://www.importnew.com/14958.html" border="y" width="auto" color="e8e8e8,ffffff,4c4c4c,5093d5,cccccc,f0f0f0" appkey="2284713194" ralateuid="2991905905"><iframe id="WBCommentFrame" src="./Java线程中yield与join方法的区别 - ImportNew_files/comments.html" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" style="height: 1181px;"></iframe></wb:comments>
+
+
+
+		
+				
+	<!-- BEGIN .navigation -->
+	<div class="navigation margin-20">
+	
+		<div class="alignleft"><a href="http://www.importnew.com/15012.html" rel="prev">« JVMTI的对象标记对GC的影响</a></div>
+		<div class="alignright"><a href="http://www.importnew.com/15028.html" rel="next">如何使用Java、Servlet创建二维码 »</a></div>
+		<div class="clear"></div>
+
+	</div>
+	<!-- END .navigation -->
+	
+		
+</div>
+<!-- END .grid-8 -->
+
+<!-- BEGIN #sidebar -->
+<div id="sidebar" class="grid-4">
+
+	<div id="search-3" class="widget widget_search"><!-- BEGIN #searchform -->
+<form method="get" id="searchform" action="http://www.importnew.com/">
+
+	<label class="none" for="s">Search for:</label>
+	<div class="input-wrapper"><input type="text" value="" name="s" id="s" placeholder="Search"></div>
+	<input type="submit" id="searchsubmit" value="Search">
+	
+</form>
+<!-- END #searchform --></div><div id="text-14" class="widget widget_text">			<div class="textwidget"><p><a href="http://blog.jobbole.com/84342/?utm_source=www.importnew.com&utm_medium=rightBanner-1&utm_content=2015.9.16" target="_blank" class="external" rel="nofollow"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/e5298966gw1evyjrd4iqcj208c03c0t0.jpg"></a></p>
+</div>
+		</div><div id="aw_tabbed_widget-2" class="widget aw_tabbed_widget"><div class="tabs"><ul class="nav clearfix"><li class="active"><a id="link-most-discussed" href="http://www.importnew.com/14958.html#tab-most-discussed" title="本月热门文章">本月热门文章</a></li><li><a id="link-latest-comments" href="http://www.importnew.com/14958.html#tab-latest-comments" title="年度热门文章">年度热门文章</a></li><li><a id="link-tags" href="http://www.importnew.com/14958.html#tab-tags" title="热门标签">热门标签</a></li></ul><div id="tab-most-discussed" class="tab" style="display: block;"><div class="floated-thumb">							
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">0</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17051.html" title="Java Main如何被执行？">Java Main如何被执行？</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">1</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17056.html" title="java中i=i++问题分析">java中i=i++问题分析</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">2</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17068.html" title="源码分析：Java堆的创建">源码分析：Java堆的创建</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">3</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17072.html" title="HotSpot模板解释器目标代码生成过程源码分析">HotSpot模板解释器目标代码生成过程源码分析</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">4</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17086.html" title="实例探索Class文件">实例探索Class文件</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">5</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17093.html" title="实例分析JVM安全体系：双亲委派、命名空间、保护域、策略">实例分析JVM安全体系：双亲委派、命名空间、保护域、策略</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">6</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17105.html" title="Java类的连接与初始化 (及2013阿里初始化笔试题解析)">Java类的连接与初始化 (及2013阿里初始化笔试题解析)</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">7</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17110.html" title="Java常量池解析与字符串intern简介">Java常量池解析与字符串intern简介</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">8</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17115.html" title="深入探索 Java 热部署">深入探索 Java 热部署</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">9</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/17124.html" title="Tomcat server.xml配置示例">Tomcat server.xml配置示例</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+						</div></div><div id="tab-latest-comments" class="tab" style="display: none;"><div class="floated-thumb">							
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">0</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/14111.html" title="Java I/O底层是如何工作的？">Java I/O底层是如何工作的？</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">1</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15446.html" title="正确使用Java事件通知">正确使用Java事件通知</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">2</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15778.html" title="IntelliJ IDEA的光芒会盖过Eclipse吗">IntelliJ IDEA的光芒会盖过Eclipse吗</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">3</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15028.html" title="如何使用Java、Servlet创建二维码">如何使用Java、Servlet创建二维码</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">4</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15020.html" title="Web服务器的工作原理">Web服务器的工作原理</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">5</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/16700.html" title="Java中的常量：如何避免反模式">Java中的常量：如何避免反模式</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">6</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/14512.html" title="Java高效读取大文件">Java高效读取大文件</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">7</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15141.html" title="Spring MVC 入门示例讲解">Spring MVC 入门示例讲解</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">8</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15605.html" title="Java习惯用法总结">Java习惯用法总结</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">9</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/15934.html" title="为什么JVM指定-Xmx参数后占用内存会变少？">为什么JVM指定-Xmx参数后占用内存会变少？</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+						</div></div><div id="tab-tags" class="tab" style="display: none;"><p><a href="http://www.importnew.com/tag/android23days" class="tag-link-240" title="8 个话题" style="font-size: 11.426573426573px;">android23days</a>
+<a href="http://www.importnew.com/tag/android" class="tag-link-36" title="64 个话题" style="font-size: 19.846153846154px;">Android开发</a>
+<a href="http://www.importnew.com/tag/api" class="tag-link-308" title="4 个话题" style="font-size: 8.979020979021px;">API</a>
+<a href="http://www.importnew.com/tag/clojure" class="tag-link-90" title="3 个话题" style="font-size: 8px;">Clojure</a>
+<a href="http://www.importnew.com/tag/collection" class="tag-link-52" title="4 个话题" style="font-size: 8.979020979021px;">Collection</a>
+<a href="http://www.importnew.com/tag/concurrenthashmap" class="tag-link-355" title="4 个话题" style="font-size: 8.979020979021px;">ConcurrentHashMap</a>
+<a href="http://www.importnew.com/tag/eclipse" class="tag-link-81" title="25 个话题" style="font-size: 15.93006993007px;">Eclipse</a>
+<a href="http://www.importnew.com/tag/facebook" class="tag-link-145" title="3 个话题" style="font-size: 8px;">Facebook</a>
+<a href="http://www.importnew.com/tag/featuredpost" class="tag-link-503" title="5 个话题" style="font-size: 9.7622377622378px;">featuredpost</a>
+<a href="http://www.importnew.com/tag/gc" class="tag-link-87" title="27 个话题" style="font-size: 16.321678321678px;">GC</a>
+<a href="http://www.importnew.com/tag/google" class="tag-link-183" title="5 个话题" style="font-size: 9.7622377622378px;">Google</a>
+<a href="http://www.importnew.com/tag/google-io-2013" class="tag-link-173" title="4 个话题" style="font-size: 8.979020979021px;">Google I/O 2013</a>
+<a href="http://www.importnew.com/tag/gradle" class="tag-link-201" title="4 个话题" style="font-size: 8.979020979021px;">Gradle</a>
+<a href="http://www.importnew.com/tag/guava" class="tag-link-554" title="8 个话题" style="font-size: 11.426573426573px;">Guava</a>
+<a href="http://www.importnew.com/tag/hadoop" class="tag-link-140" title="12 个话题" style="font-size: 12.993006993007px;">Hadoop</a>
+<a href="http://www.importnew.com/tag/hashmap" class="tag-link-284" title="14 个话题" style="font-size: 13.678321678322px;">HashMap</a>
+<a href="http://www.importnew.com/tag/hashset" class="tag-link-60" title="5 个话题" style="font-size: 9.7622377622378px;">HashSet</a>
+<a href="http://www.importnew.com/tag/hbase" class="tag-link-128" title="13 个话题" style="font-size: 13.384615384615px;">HBase</a>
+<a href="http://www.importnew.com/tag/hibernate" class="tag-link-109" title="10 个话题" style="font-size: 12.307692307692px;">Hibernate</a>
+<a href="http://www.importnew.com/tag/hotspot" class="tag-link-666" title="4 个话题" style="font-size: 8.979020979021px;">Hotspot</a>
+<a href="http://www.importnew.com/tag/ide" class="tag-link-168" title="4 个话题" style="font-size: 8.979020979021px;">IDE</a>
+<a href="http://www.importnew.com/tag/intellij" class="tag-link-213" title="6 个话题" style="font-size: 10.447552447552px;">IntelliJ</a>
+<a href="http://www.importnew.com/tag/io" class="tag-link-70" title="4 个话题" style="font-size: 8.979020979021px;">io</a>
+<a href="http://www.importnew.com/tag/java" class="tag-link-35" title="105 个话题" style="font-size: 22px;">Java</a>
+<a href="http://www.importnew.com/tag/java-7" class="tag-link-57" title="3 个话题" style="font-size: 8px;">java 7</a>
+<a href="http://www.importnew.com/tag/java8" class="tag-link-354" title="20 个话题" style="font-size: 15.048951048951px;">java8</a>
+<a href="http://www.importnew.com/tag/java-8" class="tag-link-50" title="27 个话题" style="font-size: 16.321678321678px;">java 8</a>
+<a href="http://www.importnew.com/tag/java9" class="tag-link-436" title="6 个话题" style="font-size: 10.447552447552px;">Java9</a>
+<a href="http://www.importnew.com/tag/java10%e5%a4%a7%e4%bc%98%e7%82%b9" class="tag-link-263" title="5 个话题" style="font-size: 9.7622377622378px;">Java10大优点</a>
+<a href="http://www.importnew.com/tag/javaee" class="tag-link-379" title="5 个话题" style="font-size: 9.7622377622378px;">javaee</a>
+<a href="http://www.importnew.com/tag/javaee7" class="tag-link-456" title="5 个话题" style="font-size: 9.7622377622378px;">Javaee7</a>
+<a href="http://www.importnew.com/tag/javaee%e4%b8%8emaven%e6%95%99%e7%a8%8b" class="tag-link-462" title="7 个话题" style="font-size: 10.937062937063px;">JavaEE与Maven教程</a>
+<a href="http://www.importnew.com/tag/java-gc" class="tag-link-115" title="6 个话题" style="font-size: 10.447552447552px;">Java GC</a>
+<a href="http://www.importnew.com/tag/javagc%e4%b8%93%e5%ae%b6" class="tag-link-491" title="5 个话题" style="font-size: 9.7622377622378px;">JavaGC专家</a>
+<a href="http://www.importnew.com/tag/java%e7%bc%96%e7%a8%8b%e5%85%a5%e9%97%a8" class="tag-link-639" title="17 个话题" style="font-size: 14.461538461538px;">Java编程入门</a>
+<a href="http://www.importnew.com/tag/jdbc" class="tag-link-122" title="8 个话题" style="font-size: 11.426573426573px;">JDBC</a>
+<a href="http://www.importnew.com/tag/jdk" class="tag-link-44" title="5 个话题" style="font-size: 9.7622377622378px;">JDK</a>
+<a href="http://www.importnew.com/tag/junit" class="tag-link-337" title="6 个话题" style="font-size: 10.447552447552px;">JUnit</a>
+<a href="http://www.importnew.com/tag/jvm" class="tag-link-80" title="50 个话题" style="font-size: 18.867132867133px;">JVM</a>
+<a href="http://www.importnew.com/tag/lambda" class="tag-link-92" title="6 个话题" style="font-size: 10.447552447552px;">Lambda</a>
+<a href="http://www.importnew.com/tag/lambda%e8%a1%a8%e8%be%be%e5%bc%8f" class="tag-link-356" title="4 个话题" style="font-size: 8.979020979021px;">lambda表达式</a>
+<a href="http://www.importnew.com/tag/log4j" class="tag-link-117" title="3 个话题" style="font-size: 8px;">log4j</a>
+<a href="http://www.importnew.com/tag/mapreduce" class="tag-link-106" title="7 个话题" style="font-size: 10.937062937063px;">MapReduce</a>
+<a href="http://www.importnew.com/tag/maven" class="tag-link-385" title="8 个话题" style="font-size: 11.426573426573px;">maven</a>
+<a href="http://www.importnew.com/tag/ndk" class="tag-link-97" title="3 个话题" style="font-size: 8px;">NDK</a>
+<a href="http://www.importnew.com/tag/netty" class="tag-link-130" title="10 个话题" style="font-size: 12.307692307692px;">Netty</a>
+<a href="http://www.importnew.com/tag/nio" class="tag-link-69" title="7 个话题" style="font-size: 10.937062937063px;">nio</a>
+<a href="http://www.importnew.com/tag/nio2-0" class="tag-link-116" title="6 个话题" style="font-size: 10.447552447552px;">NIO2.0</a>
+<a href="http://www.importnew.com/tag/oauth-2-0" class="tag-link-49" title="4 个话题" style="font-size: 8.979020979021px;">OAuth 2.0</a>
+<a href="http://www.importnew.com/tag/oracle" class="tag-link-153" title="9 个话题" style="font-size: 11.916083916084px;">oracle</a>
+<a href="http://www.importnew.com/tag/restful" class="tag-link-196" title="6 个话题" style="font-size: 10.447552447552px;">RESTful</a>
+<a href="http://www.importnew.com/tag/scala" class="tag-link-89" title="17 个话题" style="font-size: 14.461538461538px;">Scala</a>
+<a href="http://www.importnew.com/tag/scala-tutorial" class="tag-link-155" title="6 个话题" style="font-size: 10.447552447552px;">Scala tutorial</a>
+<a href="http://www.importnew.com/tag/servlet" class="tag-link-320" title="4 个话题" style="font-size: 8.979020979021px;">Servlet</a>
+<a href="http://www.importnew.com/tag/solr" class="tag-link-429" title="7 个话题" style="font-size: 10.937062937063px;">solr</a>
+<a href="http://www.importnew.com/tag/spring" class="tag-link-53" title="40 个话题" style="font-size: 17.888111888112px;">Spring</a>
+<a href="http://www.importnew.com/tag/spring-security" class="tag-link-216" title="5 个话题" style="font-size: 9.7622377622378px;">Spring Security</a>
+<a href="http://www.importnew.com/tag/string" class="tag-link-252" title="16 个话题" style="font-size: 14.167832167832px;">String</a>
+<a href="http://www.importnew.com/tag/tomcat" class="tag-link-225" title="9 个话题" style="font-size: 11.916083916084px;">Tomcat</a>
+<a href="http://www.importnew.com/tag/unsafe" class="tag-link-302" title="5 个话题" style="font-size: 9.7622377622378px;">Unsafe</a>
+<a href="http://www.importnew.com/tag/volatile" class="tag-link-433" title="4 个话题" style="font-size: 8.979020979021px;">volatile</a>
+<a href="http://www.importnew.com/tag/web-service" class="tag-link-103" title="4 个话题" style="font-size: 8.979020979021px;">Web Service</a>
+<a href="http://www.importnew.com/tag/%e4%b9%a6%e7%b1%8d" class="tag-link-40" title="4 个话题" style="font-size: 8.979020979021px;">书籍</a>
+<a href="http://www.importnew.com/tag/%e5%86%85%e5%ad%98%e6%b3%84%e9%9c%b2" class="tag-link-124" title="6 个话题" style="font-size: 10.447552447552px;">内存泄露</a>
+<a href="http://www.importnew.com/tag/%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" class="tag-link-273" title="12 个话题" style="font-size: 12.993006993007px;">内存管理</a>
+<a href="http://www.importnew.com/tag/%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95" class="tag-link-96" title="3 个话题" style="font-size: 8px;">单元测试</a>
+<a href="http://www.importnew.com/tag/%e5%8f%82%e6%95%b0%e5%a4%aa%e5%a4%9a%e6%80%8e%e4%b9%88%e5%8a%9e" class="tag-link-470" title="8 个话题" style="font-size: 11.426573426573px;">参数太多怎么办</a>
+<a href="http://www.importnew.com/tag/%e5%91%a8%e5%88%8a" class="tag-link-259" title="5 个话题" style="font-size: 9.7622377622378px;">周刊</a>
+<a href="http://www.importnew.com/tag/%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%95%99%e7%a8%8b" class="tag-link-473" title="4 个话题" style="font-size: 8.979020979021px;">垃圾回收教程</a>
+<a href="http://www.importnew.com/tag/%e5%9f%ba%e7%a1%80%e6%8a%80%e6%9c%af" class="tag-link-58" title="53 个话题" style="font-size: 19.062937062937px;">基础技术</a>
+<a href="http://www.importnew.com/tag/%e5%a4%9a%e7%ba%bf%e7%a8%8b" class="tag-link-46" title="13 个话题" style="font-size: 13.384615384615px;">多线程</a>
+<a href="http://www.importnew.com/tag/%e5%ae%89%e5%85%a8" class="tag-link-235" title="4 个话题" style="font-size: 8.979020979021px;">安全</a>
+<a href="http://www.importnew.com/tag/%e5%ae%89%e5%8d%93%e7%83%ad%e7%82%b9" class="tag-link-286" title="5 个话题" style="font-size: 9.7622377622378px;">安卓热点</a>
+<a href="http://www.importnew.com/tag/%e5%b7%a5%e5%85%b7" class="tag-link-126" title="4 个话题" style="font-size: 8.979020979021px;">工具</a>
+<a href="http://www.importnew.com/tag/%e5%b9%b6%e5%8f%91" class="tag-link-401" title="7 个话题" style="font-size: 10.937062937063px;">并发</a>
+<a href="http://www.importnew.com/tag/%e5%b9%b6%e5%8f%91%e7%bc%96%e7%a8%8b" class="tag-link-64" title="3 个话题" style="font-size: 8px;">并发编程</a>
+<a href="http://www.importnew.com/tag/%e5%ba%8f%e5%88%97%e5%8c%96" class="tag-link-298" title="5 个话题" style="font-size: 9.7622377622378px;">序列化</a>
+<a href="http://www.importnew.com/tag/%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" class="tag-link-214" title="14 个话题" style="font-size: 13.678321678322px;">异常处理</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd" class="tag-link-47" title="12 个话题" style="font-size: 12.993006993007px;">性能</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="tag-link-88" title="9 个话题" style="font-size: 11.916083916084px;">性能优化</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98" class="tag-link-282" title="9 个话题" style="font-size: 11.916083916084px;">性能调优</a>
+<a href="http://www.importnew.com/tag/%e6%8a%80%e6%9c%af%e5%8d%9a%e5%ae%a2" class="tag-link-167" title="3 个话题" style="font-size: 8px;">技术博客</a>
+<a href="http://www.importnew.com/tag/%e6%95%99%e7%a8%8b" class="tag-link-156" title="16 个话题" style="font-size: 14.167832167832px;">教程</a>
+<a href="http://www.importnew.com/tag/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84" class="tag-link-283" title="4 个话题" style="font-size: 8.979020979021px;">数据结构</a>
+<a href="http://www.importnew.com/tag/%e6%97%a5%e5%bf%97" class="tag-link-29" title="4 个话题" style="font-size: 8.979020979021px;">日志</a>
+<a href="http://www.importnew.com/tag/%e6%ad%bb%e9%94%81" class="tag-link-343" title="5 个话题" style="font-size: 9.7622377622378px;">死锁</a>
+<a href="http://www.importnew.com/tag/%e6%b3%9b%e5%9e%8b" class="tag-link-246" title="11 个话题" style="font-size: 12.699300699301px;">泛型</a>
+<a href="http://www.importnew.com/tag/%e6%b5%8b%e8%af%95" class="tag-link-237" title="5 个话题" style="font-size: 9.7622377622378px;">测试</a>
+<a href="http://www.importnew.com/tag/%e6%b8%b8%e6%88%8f" class="tag-link-184" title="9 个话题" style="font-size: 11.916083916084px;">游戏</a>
+<a href="http://www.importnew.com/tag/%e7%ad%96%e7%95%a5%e6%a8%a1%e5%bc%8f" class="tag-link-435" title="4 个话题" style="font-size: 8.979020979021px;">策略模式</a>
+<a href="http://www.importnew.com/tag/%e7%ae%97%e6%b3%95" class="tag-link-270" title="5 个话题" style="font-size: 9.7622377622378px;">算法</a>
+<a href="http://www.importnew.com/tag/%e7%ba%bf%e7%a8%8b%e6%b1%a0" class="tag-link-297" title="4 个话题" style="font-size: 8.979020979021px;">线程池</a>
+<a href="http://www.importnew.com/tag/%e7%bb%88%e6%9e%81%e7%88%b6%e7%b1%bb%e9%97%ae%e7%ad%94" class="tag-link-461" title="5 个话题" style="font-size: 9.7622377622378px;">终极父类问答</a>
+<a href="http://www.importnew.com/tag/%e8%a1%8c%e4%b8%9a%e8%b5%84%e8%ae%af" class="tag-link-129" title="4 个话题" style="font-size: 8.979020979021px;">行业资讯</a>
+<a href="http://www.importnew.com/tag/videos" class="tag-link-72" title="3 个话题" style="font-size: 8px;">视频</a>
+<a href="http://www.importnew.com/tag/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="tag-link-30" title="32 个话题" style="font-size: 17.006993006993px;">设计模式</a>
+<a href="http://www.importnew.com/tag/%e9%87%8d%e6%9e%84" class="tag-link-182" title="4 个话题" style="font-size: 8.979020979021px;">重构</a>
+<a href="http://www.importnew.com/tag/%e9%97%ae%e7%ad%94" class="tag-link-402" title="4 个话题" style="font-size: 8.979020979021px;">问答</a>
+<a href="http://www.importnew.com/tag/%e9%9d%a2%e8%af%95" class="tag-link-31" title="16 个话题" style="font-size: 14.167832167832px;">面试</a>
+<a href="http://www.importnew.com/tag/%e9%9d%a2%e8%af%95%e9%a2%98" class="tag-link-27" title="8 个话题" style="font-size: 11.426573426573px;">面试题</a></p></div></div></div><div id="text-18" class="widget widget_text">			<div class="textwidget"><p><a href="http://date.jobbole.com/?utm_source=www.importnew.com&utm_medium=rightBanner-2&utm_content=2015.9.16" target="_blank" class="external" rel="nofollow"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/bfdcef89gw1esk2g5dvq1j208c03cglu.jpg"></a></p>
+</div>
+		</div><div id="recent_comments_widget-2" class="widget recent_comments_widget">		<h3 class="widget-title">最新评论</h3>
+		<ul>
+		
+					
+			<li id="rc-comment-478925" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/16843.html#comment-478925" rel="nofollow">快速高效学习Java编程在线资源Top 20</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				这是印度阿三写的，除了少数几个网站还可以，大部分都是垃圾。									<a class="rc-reviewer external" target="_blank" href="http://www.programcreek.com/" rel="nofollow external"> ryan</a>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-478153" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/14111.html#comment-478153" rel="nofollow">Java I/O底层是如何工作的？</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				mark								<span class="rc-reviewer"> oniong</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-477036" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/7679.html#comment-477036" rel="nofollow">Netty教程—Part3—ChannelEvent—真的吗？</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				咨询一个问题。ctx.getChannel().write(response).addListene...								<span class="rc-reviewer"> 张果胜</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-477031" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/16881.html#comment-477031" rel="nofollow">浅谈 Java 字符串</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				String 字符串常量    StringBuffer 字符串变量（线程安全）    String...								<span class="rc-reviewer"> oniong</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-477030" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/16995.html#comment-477030" rel="nofollow">Java实现单例的难点</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				看不懂那个绕过枚举单例保护的反射代码...Constructor con = FooEnumSing...								<span class="rc-reviewer"> oniong</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-476992" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/17006.html#comment-476992" rel="nofollow">泛型中? super T和? extends T的区别</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				public  T $(int id) {        return (T) super.find...								<span class="rc-reviewer"> kenny</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-476933" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/17044.html#comment-476933" rel="nofollow">Java编程入门（2.4）：文本输入和输出</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				有没有2.6节的链接呢								<span class="rc-reviewer"> Rocky</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-476892" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Java线程中yield与join方法的区别 - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/14034.html#comment-476892" rel="nofollow">Java 9特性</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				人工智能应当最后检验，如果不对就回退到普通方法。大多数情况正确就行。								<span class="rc-reviewer"> 我们</span>
+								</div>
+			</li>
+			
+					
+		</ul>
+        </div><div id="text-19" class="widget widget_text">			<div class="textwidget"><p><a href="http://fanyi.jobbole.com/" target="_blank" class="external" rel="nofollow"><img src="./Java线程中yield与join方法的区别 - ImportNew_files/bfdcef89gw1esnyzyrczej208c03cgm3.jpg"></a></p>
+</div>
+		</div>	
+	<!-- BEGIN .container -->
+	<div class="container">
+	
+		<!-- BEGIN .grid-2 -->
+		<div class="grid-2">
+			
+						
+		</div>
+		<!-- END .grid-2 -->
+		
+		<!-- BEGIN .grid-2 -->
+		<div class="grid-2">
+			
+						
+		</div>
+		<!-- END .grid-2 -->
+		
+		<div class="clear"></div>
+			
+	</div>
+	<!-- END .container -->
+
+</div>
+<!-- END #sidebar -->
+<div class="clear"></div>	
+
+
+</div>
+<!-- END #wrapper -->
+
+<!-- BEGIN footer -->
+<footer>
+
+	<!-- BEGIN .container -->
+	<div class="container">
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-15" class="widget widget_text"><h3 class="widget-title">关于ImportNew</h3>			<div class="textwidget"><p>ImportNew 专注于 Java 技术分享。于2012年11月11日 11:11正式上线。是的，这是一个很特别的时刻 :) </p>
+<p>ImportNew 由两个 Java 关键字 import 和 new 组成，意指：Java 开发者学习新知识的网站。 import 可认为是学习和吸收， new 则可认为是新知识、新技术圈子和新朋友……</p>
+<div id="aw_socialcounter_widget-2" class="widget aw_socialcounter_widget">
+<ul>
+<li>
+<a target="_blank" href="http://weibo.com/importnew" class="external" rel="nofollow"><img class="alignleft" src="./Java线程中yield与join方法的区别 - ImportNew_files/sina_32.png" alt="关注我们的新浪微博" title="关注我们的新浪微博"></a><p></p>
+<div class="view-rss"><a target="_blank" href="http://www.importnew.com/feed/" class="rss-link"><img class="alignleft" src="./Java线程中yield与join方法的区别 - ImportNew_files/rss_32.png" alt="RSS订阅" title="RSS订阅"></a></div>
+</li>
+</ul>
+</div>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-16" class="widget widget_text"><h3 class="widget-title">推荐关注</h3>			<div class="textwidget"><p><a href="http://group.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">小组</a> – 好的话题、有启发的回复、值得信赖的圈子<br>
+<a href="http://top.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">头条</a> – 写了文章？看干货？去头条！<br>
+<a href="http://date.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">相亲</a> – 为IT单身男女服务的征婚传播平台<br>
+<a href="http://hao.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">资源</a> – 优秀的工具资源导航<br>
+<a href="http://fanyi.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">翻译</a> – 活跃 &amp; 专业的翻译小组<br>
+<a href="http://blog.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">博客</a> – 国内外的精选博客文章<br>
+<a href="http://web.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">前端</a> – JavaScript, HTML5, CSS<br>
+<a href="http://android.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">安卓</a> – 专注Android技术分享<br>
+<a href="http://ios.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">iOS</a> – 专注iOS技术分享<br>
+<a href="http://www.importnew.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank">Java</a> – 专注Java技术分享<br>
+<a href="http://python.jobbole.com/?utm_source=www.importnew.com&utm_medium=bottomText" target="_blank" class="external" rel="nofollow">Python</a> – 专注Python技术分享</p>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-17" class="widget widget_text"><h3 class="widget-title">联系我们</h3>			<div class="textwidget"><p>Email：<a href="mailto:ImportNew.com@gmail.com">ImportNew.com@gmail.com</a><br>
+新浪微博：<a href="http://weibo.com/importnew" target="_blank" class="external" rel="nofollow">@ImportNew</a><br>
+微信号：importnew </p>
+<p>反馈建议：ImportNew.com@gmail.com<br>
+广告与商务合作QQ：2302462408 </p>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<div class="clear"></div>
+	
+	</div>
+	<!-- END .container -->
+
+	<!-- BEGIN #bottom -->
+	<div id="bottom">
+	
+		<!-- BEGIN .container -->
+		<div class="container">
+		
+			<!-- BEGIN .grid-12 -->
+			<div class="grid-12">
+	
+				<p>© 2015 ImportNew</p>
+			
+			</div>
+			<!-- END .grid-12 -->
+			
+			<div class="clear"></div>
+						
+		</div>
+		<!-- END .container -->
+		
+	</div>
+	<!-- END #bottom -->
+	
+</footer>
+<!-- END footer -->
+
+
+	
+<!-- Lightbox Plus v2.3 - 2011.08.11 - Message: 0-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $("a[rel*=lightbox]").colorbox({opacity:0.8});
+});
+</script>
+
+<!-- WP SyntaxHighlighter Ver.1.7.3 Begin -->
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shCore.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shLegacy.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shAutoloader.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushAppleScript.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushSass.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/shBrushXml.js"></script>
+<script type="text/javascript">//<![CDATA[
+	SyntaxHighlighter.autoloader(
+	"applescript	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushAppleScript.js?ver=3.0"
+	,"as3 actionscript3	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushAS3.js?ver=3.0"
+	,"bash shell	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js?ver=3.0"
+	,"cf coldfusion	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushColdFusion.js?ver=3.0"
+	,"cpp c	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCpp.js?ver=3.0"
+	,"c# c-sharp csharp	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCSharp.js?ver=3.0"
+	,"css	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCss.js?ver=3.0"
+	,"delphi pas pascal	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDelphi.js?ver=3.0"
+	,"diff patch	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDiff.js?ver=3.0"
+	,"erl erlang	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushErlang.js?ver=3.0"
+	,"groovy	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushGroovy.js?ver=3.0"
+	,"java	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJava.js?ver=3.0"
+	,"jfx javafx	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJavaFX.js?ver=3.0"
+	,"js jscript javascript	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js?ver=3.0"
+	,"perl pl	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPerl.js?ver=3.0"
+	,"php	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPhp.js?ver=3.0"
+	,"plain text	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js?ver=3.0"
+	,"ps powershell	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPowerShell.js?ver=3.0"
+	,"py python	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js?ver=3.0"
+	,"rails ror ruby rb	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushRuby.js?ver=3.0"
+	,"sass scss	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushSass.js?ver=3.0"
+	,"scala	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushScala.js?ver=3.0"
+	,"sql	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushSql.js?ver=3.0"
+	,"vb vbnet	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushVb.js?ver=3.0"
+	,"xml xhtml xslt html	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js?ver=3.0"
+	);
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['quick-code'] = true;
+	SyntaxHighlighter.defaults['title'] = '';
+	SyntaxHighlighter.defaults['class-name'] = 'notranslate';
+	SyntaxHighlighter.defaults['collapse'] = false;
+	SyntaxHighlighter.defaults['first-line'] = 1;
+	SyntaxHighlighter.defaults['gutter'] = true;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['smart-tabs'] = true;
+	SyntaxHighlighter.defaults['tab-size'] = 4;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+ SyntaxHighlighter.config.stripBrs = true;
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = "Can't find brush for: ";
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = "Brush wasn't configured for html-script option: ";
+	SyntaxHighlighter.all();
+	dp.SyntaxHighlighter.HighlightAll('code')
+//]]></script>
+<!-- WP SyntaxHighlighter Ver.1.7.3 End -->
+<link rel="stylesheet" id="wp_rp_scrollup-css" href="http://dtmvdvtzf8rz0.cloudfront.net/static/css-img/scrollup.css?ver=3.4.2" type="text/css" media="all">
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/ck-karma.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/jquery.colorbox-min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/www.importnew.com\/wp-admin\/admin-ajax.php","post_id":"14958"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/postviews-cache.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/ready.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/easing.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/superfish.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/validate.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/touchwipe.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/caroufredsel.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/flexslider.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/jplayer.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/fitvids.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/selectnav.js"></script>
+<script type="text/javascript" src="./Java线程中yield与join方法的区别 - ImportNew_files/effects.js"></script>
+<script type="text/javascript" src="http://dtmvdvtzf8rz0.cloudfront.net/static/js/scrollup.js?ver=3.4.2"></script>
+
+
+<div id="full-btm" style="position:fixed; left:50%; top:550px;  z-index:100; text-align:center; cursor:pointer;">
+<a><img src="./Java线程中yield与join方法的区别 - ImportNew_files/back-btm.png" width="20" border="0" alt="跳到底部" title="跳到底部"></a>
+</div>
+
+<script type="text/javascript">
+jQuery('#full-btm').click(function(){
+    jQuery('html, body').animate({scrollTop:jQuery(document).height()}, 'slow');
+    return false;
+});
+</script>
+
+<div id="full-top" style="position:fixed; left:50%; top:520px; margin-left:495px; z-index:100; text-align:center; cursor:pointer;">
+<a><img src="./Java线程中yield与join方法的区别 - ImportNew_files/back-top.png" width="20" border="0" alt="返回顶部" title="返回顶部"></a>
+</div>
+
+<script type="text/javascript">
+jQuery('#full-top').click(function(){
+    jQuery('html, body').animate({scrollTop:0}, 'slow');
+    return false;
+});
+</script>
+
+<!-- script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','/_assets/js/analytics.js','ga');
+
+    ga('create', 'UA-15621043-1', 'jobbole.com');
+    ga('send', 'pageview');
+
+</script -->
+
+
+<!-- END body -->
+
+
+<!-- END html -->
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+ Served from: importnew.com @ 2015-12-11 09:15:52 by W3 Total Cache --><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 50px; padding-right: 50px; display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden; float: left;"></div><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><div id="cboxNext" style="float: left;"></div><div id="cboxPrevious" style="float: left;"></div><div id="cboxSlideshow" style="float: left;"></div><div id="cboxClose" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div></body></html>

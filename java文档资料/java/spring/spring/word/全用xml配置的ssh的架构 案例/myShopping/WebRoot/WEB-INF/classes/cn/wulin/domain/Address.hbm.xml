@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.wulin.domain.Address" table="t_address">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>	
+		<!-- parent,本类与Address是多对一的关系 -->
+		<many-to-one name="parent" column="parentId" class="cn.wulin.domain.Address"></many-to-one>
+		<!-- children,本类与Address是一对多的关系 -->
+		<set name="children">
+			<key column="parentId"></key>
+			<one-to-many class="cn.wulin.domain.Address" />
+		</set>
+	</class>
+</hibernate-mapping>

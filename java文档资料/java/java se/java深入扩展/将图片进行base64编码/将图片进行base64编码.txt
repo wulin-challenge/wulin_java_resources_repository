@@ -1,0 +1,108 @@
+import java.io.*;
+import java.net.*;
+
+
+import sun.misc.BASE64Encoder;
+public class ServletCom {
+static String sessionId = "";
+
+public static String getPicBASE64() {
+String picPath="g:/zhuge.jpg";
+String content = "";
+try {
+FileInputStream fileForInput = new FileInputStream(picPath);
+byte[] bytes = new byte[fileForInput.available()];
+fileForInput.read(bytes);
+content = new sun.misc.BASE64Encoder().encode(bytes); // 具体的编码方法
+fileForInput.close();
+//System.out.println(content.length());
+} catch (Exception e) {
+e.printStackTrace();
+}
+return content;
+}
+  
+public static void main(String[] args) throws Exception {
+ 
+  // TODO Auto-generated method stub
+URL url = new URL("http://localhost:8080/PicDownload/valide.action");
+HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+connection.setDoOutput(true);
+// Read from the connection. Default is true.
+connection.setDoInput(true);
+// Set the post method. Default is GET
+connection.setRequestMethod("POST");
+// Post cannot use caches
+// Post 请求不能使用缓存
+connection.setUseCaches(false);
+// This method takes effects to
+// every instances of this class.
+// URLConnection.setFollowRedirects是static函数，作用于所有的URLConnection对象。
+// connection.setFollowRedirects(true);
+// This methods only
+// takes effacts to this
+// instance.
+// URLConnection.setInstanceFollowRedirects是成员函数，仅作用于当前函数
+connection.setInstanceFollowRedirects(false);
+// Set the content type to urlencoded,
+// because we will write
+// some URL-encoded content to the
+// connection. Settings above must be set before connect!
+// 配置本次连接的Content-type，配置为application/x-www-form-urlencoded的
+// 意思是正文是urlencoded编码过的form参数，下面我们可以看到我们对正文内容使用URLEncoder.encode
+// 进行编码
+connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+// 连接，从postUrl.openConnection()至此的配置必须要在connect之前完成，
+// 要注意的是connection.getOutputStream会隐含的进行connect。
+connection.connect();
+Long sendTime = System.currentTimeMillis();
+DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+// 要传的参数
+String content = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode("XXX", "UTF-8");
+content += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode("XXXX", "UTF-8");
+content += "&" + URLEncoder.encode("sendTime", "UTF-8") + "=" + URLEncoder.encode(sendTime.toString(), "UTF-8");
+ //得到图片的base64编码
+content = content + "&" + URLEncoder.encode("file", "UTF-8") + "=" + URLEncoder.encode(getPicBASE64(), "UTF-8");
+out.writeBytes(content);
+out.flush();
+out.close(); // flush and close
+//Get Session ID
+String key = "";
+if (connection != null)
+{
+for (int i = 1; (key = connection.getHeaderFieldKey(i)) != null; i++) 
+{
+if (key.equalsIgnoreCase("set-cookie"))
+{
+sessionId = connection.getHeaderField(key);
+sessionId = sessionId.substring(0, sessionId.indexOf(";"));
+}
+}
+}
+
+ 
+
+
+
+
+// ------------------ read the SERVER RESPONSE
+try {
+DataInputStream inStream = new DataInputStream(connection.getInputStream());
+String str;
+if((str = inStream.readLine()) != null)
+{
+System.out.println("Server response is: " + str);
+System.out.println("");
+}
+inStream.close();
+} 
+catch (IOException ioex) 
+{
+System.out.println("From (ServerResponse): " + ioex);
+}
+connection.disconnect();
+}
+
+
+
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.wulin.domain.Article" table="t_article">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="title"></property>	
+		<property name="clickNumber"></property>
+		<property name="publishTime"></property>
+		<property name="auditing"></property>
+		<!-- author,本类与Author是多对一的关系 -->
+		<many-to-one name="author" column="articleId" class="cn.wulin.domain.Author"></many-to-one>
+		<!-- publishPlace,本类与Address是多对一的关系 -->
+		<many-to-one name="publishPlace" column="publishPlaceId" class="cn.wulin.domain.Address"></many-to-one>
+	</class>
+</hibernate-mapping>

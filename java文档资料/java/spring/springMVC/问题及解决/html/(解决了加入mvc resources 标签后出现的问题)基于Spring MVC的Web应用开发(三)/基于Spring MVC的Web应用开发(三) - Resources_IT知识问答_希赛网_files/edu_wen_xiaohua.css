@@ -1,0 +1,6 @@
+﻿@charset "utf-8";
+.csai_xiaohua_tbcss{height:250px;width:306px; padding:10px 0px;}
+.csai_xiaohua_tbcss li{ width:50%;  float:left; text-align:center; margin-bottom:10px;}
+.csai_xiaohua_tbcss li img{ width:140px; height:97px;}
+.csai_xiaohua_tbcss li a{display: block;color: #000;font-family: "微软雅黑";font-size: 14px;font-weight: normal; text-align:center;}
+.csai_xiaohua_tbcss li a:hover {text-decoration: none;color:#F40000;}

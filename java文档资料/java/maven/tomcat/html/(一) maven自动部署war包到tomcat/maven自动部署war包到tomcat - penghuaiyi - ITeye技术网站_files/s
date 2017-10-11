@@ -1,0 +1,18 @@
+ADFHOST1545="http://csdnim.qtmojo.com";
+ADFCID1545=191;
+ADFBID1545=1545;
+ADFLOC='CNSCCD00';
+ADFUSER1545="http://csdnim.qtmojo.com/c?d=csdnim&i=z191,10438333,1545,7665&rf=&a=d1CNWfQvn2ZIQ0BTeuy7iLDaMscD&u=";
+ALLYESID4="CRRm10Pt32A5yGA4fVk";
+ADFPGC="3,22,191,0,1978,1545,7665,10438333";
+
+document.write("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></Scr"+"ipt>\n");
+document.write("<!-- Iteye博客内页下方banner475*60 -->\n");
+document.write("<ins class=\"adsbygoogle\"\n");
+document.write("     style=\"display:inline-block;width:468px;height:60px\"\n");
+document.write("     data-ad-client=\"ca-pub-1076724771190722\"\n");
+document.write("     data-ad-slot=\"2282742641\"></ins>\n");
+document.write("<script>\n");
+document.write("(adsbygoogle = window.adsbygoogle || []).push({});\n");
+document.write("</Scr"+"ipt>");
+

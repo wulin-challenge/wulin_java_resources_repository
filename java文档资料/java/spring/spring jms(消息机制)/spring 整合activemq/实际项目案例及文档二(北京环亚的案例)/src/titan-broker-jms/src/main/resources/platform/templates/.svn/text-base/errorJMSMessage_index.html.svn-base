@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>错误消息管理管理</title>
+<link href="${request.contextPath}/css/common_biz.css"
+	rel="stylesheet" type="text/css" />
+${static_context}${appJs}${jquery}${jqueryUI}${jqGrid}${toast}${easyUI}
+<script type="text/javascript"
+	src="${request.contextPath}/js/errorJMSMessage_index.js"></script>
+</head>
+<body>
+	<div class="pd">
+		<div class="toolkit">
+			<ul>
+				<li>业务类型： <input type="text" id="commonSearchInput">
+				</li>
+				<li><input type="button" class="btn_blue" id="commonSearchBtn"
+					value="查询" /></li>
+				<li><input type="button" class="btn_blue" id="commonRetrieveBtn"
+					value="检索" /></li>
+				<li><input type="button" class="btn_blue" id="commonDisposeBtn"
+					value="处理" /></li>
+				<li><input type="button" class="btn_blue" id="commonRefreshBtn"
+					value="刷新" /></li>
+			</ul>
+		</div>
+		<div class="data_grid clear">
+			<table id="commonList"></table>
+			<div id="commonPager"></div>
+		</div>
+	
+		<!-- 详细表单 -->
+		<div id="commonDetail" class="form"
+			style="width: 600px; display: none;">
+			<form id="commonDetailForm" action="" method="post">
+				<input type="hidden" name="id" id="id" />
+				<table class="t4">
+					<tr>
+						<th>描述</th>
+						<td><input class="easyui-validatebox" data-options="required:true" type="text" id="describe" name="describe" /></td>
+						<th>业务类型</th>
+						<td><input class="easyui-validatebox" data-options="" type="text" id="type" name="type" /></td>
+						<th>消息内容</th>
+						<td><input class="easyui-validatebox" data-options="" type="text" id="message" name="message" /></td>
+					</tr>
+
+				</table>
+				<div class="btn_center" id="commonDetailBtnKit">
+					<input type="button" class="btn_blue" id="commonSaveBtn" value="保存" />
+					<input type="button" class="btn_blue  pd_l10" id="commonResetBtn"
+						value="重置" />
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

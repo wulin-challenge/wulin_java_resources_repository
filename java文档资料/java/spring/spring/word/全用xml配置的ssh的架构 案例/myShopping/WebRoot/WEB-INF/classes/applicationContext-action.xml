@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	
+	<bean name="userAction" class="cn.wulin.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean name="departmentAction" class="cn.wulin.action.DepartmentAction" scope="prototype">
+		<property name="departmentService" ref="departmentService" />
+		<property name="typeService" ref="typeService" />
+	</bean>
+	<bean name="typeAction" class="cn.wulin.action.TypeAction" scope="prototype">
+		<property name="typeService" ref="typeService" />
+	</bean>
+	<bean name="testAction" class="cn.wulin.action.TestAction" scope="prototype">
+		<property name="testService" ref="testService" />
+	</bean>
+	<bean name="addressAction" class="cn.wulin.action.AddressAction" scope="prototype">
+		<property name="addressService" ref="addressService" />
+	</bean>
+	<bean name="articleAction" class="cn.wulin.action.ArticleAction" scope="prototype">
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="authorAction" class="cn.wulin.action.AuthorAction" scope="prototype">
+		<property name="authorService" ref="authorService" />
+	</bean>
+	<bean name="treeAction" class="cn.wulin.action.TreeAction" scope="prototype">
+		<property name="treeService" ref="treeService" />
+	</bean>
+	<bean name="appleAction" class="cn.wulin.action.AppleAction" scope="prototype">
+		<property name="appleService" ref="appleService" />
+		<property name="treeService" ref="treeService" />
+	</bean>
+	
+	
+</beans>

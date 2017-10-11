@@ -1,0 +1,15 @@
+Myeclipse8.5 反编译插件 jad 安装 
+
+
+准备工作
+1.下载jad.exe文件：http://www.varaneckas.com/sites/default/files/jad/jad158g.win.zip
+2.下载jadeclipse插件：http://prdownloads.sourceforge.net/jadclipse/net.sf.jadclipse_3.3.0.jar?download 
+3.JadClipse 官网：http://jadclipse.sourceforge.net/wiki/index.php/Main_Page
+
+安装
+1.将jad.exe解压到指定目录。如:c:\java\jad
+2.将jadeclipse插件net.sf.jadclipse_3.3.0.jar 拷贝到myeclipse安装目录\Genuitec\Common\plugins\目录下。
+3.在myeclipse安装目录下dropins/创建eclipse文件夹，然后在eclipse文件夹中分别创建features、plugins文件夹，将net.sf.jadclipse_3.3.0.jar 分别拷贝到features和plugins文件夹中。
+4.重新启动myeclipse后，配置jadeclipse插件
+5.在eclipse窗口下，点击Window > Preferences > Java > JadClipse > Path to Decompiler。（设置jad的绝对路径，如 C:\java\Jad\jad.exe)。Use Eclipse code formatter(overrides Jad formatting instructions)选项打勾，与格式化出来的代码样式一致。 
+6.在eclipse窗口下，点击Window > Preferences > Java > JadClipse > Misc，将Convert Unicode strings into ANSI strings选项打勾，避免反编译后可能出现的中文乱码。

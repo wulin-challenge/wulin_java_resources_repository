@@ -1,0 +1,49 @@
+@charset "utf-8";
+.dialogMultiShow{position:absolute; left:0; top:0; width:100%; height:100%; font-family:"Microsoft Yahei";}
+.dialogMultiShow .close,
+.dialogMultiShow .close:link,
+.dialogMultiShow .btn_preview,
+.dialogMultiShow .btn_preview:link,
+.dialogMultiShow .btn_next,
+.dialogMultiShow .btn_next:link,
+.dialogMultiShow .ico_unlike,
+.dialogMultiShow .ico_unlike:link,
+.dialogMultiShow .ico_liked,
+.dialogMultiShow .ico_liked:link,
+.dialogMultiShow .bd .pic .con .opic{background:url(../../images/common/multishow_bg.png) no-repeat; _background:url(../../images/common/multishow_bg.gif) no-repeat; display:inline-block;}
+.dialogMultiShow .close,.dialogMultiShow .close:link{width:19px; height:19px; position:absolute; top:15px; right:21px;  background-position:0 -845px; text-indent:-9999px;}
+.dialogMultiShow .close:hover{background-position:-68px -845px;}
+.dialogMultiShow .btn_preview,.dialogMultiShow .btn_preview:link,.dialogMultiShow .btn_next,.dialogMultiShow .btn_next:link{width:85px; height:183px; position:absolute; top:30%; left:0; z-index:1024; overflow:hidden; background-position:0 0; outline:none;}
+.dialogMultiShow .btn_preview:hover{background-position:0 -193px;}
+.dialogMultiShow .ico_unlike,.dialogMultiShow .ico_unlike:link,.dialogMultiShow .ico_unlike:visited,.dialogMultiShow .ico_liked,.dialogMultiShow .ico_liked:link,.dialogMultiShow .ico_liked:visited{position:absolute; top:15px; right:90px; height:14px; line-height:12px; *line-height:16px; background-position:-68px -772px; padding-left:23px; font-size:14px; color:#fff; text-decoration:none;}
+.dialogMultiShow .ico_unlike:hover{background-position:-68px -796px;}
+.dialogMultiShow .ico_liked,.dialogMultiShow .ico_liked:link,.dialogMultiShow .ico_liked:hover{background-position:-68px -820px!important;}
+.dialogMultiShow .btn_next,.dialogMultiShow .btn_next:link{left:auto; right:0; background-position:0 -386px;}
+.dialogMultiShow .btn_next:hover{background-position:0 -579px;}
+.dialogMultiShow .bd{height:inherit; overflow:hidden; margin:0 auto; text-align:center;}
+.dialogMultiShow .bd .count{height:49px; line-height:49px; text-align:center; font-family:arial; font-size:28px; color:#9d9d9d;}
+.dialogMultiShow .bd .count em{font-style:normal; color:#fff; padding-right:8px;}
+.dialogMultiShow .bd .count span{font-size:18px; padding-left:8px;}
+.dialogMultiShow .bd .title{height:33px; line-height:33px; text-align:center; color:#fff; font-size:14px;}
+.dialogMultiShow .bd .title a,.dialogMultiShow .bd .title a:link{color:#fff; text-decoration:none;}
+.dialogMultiShow .bd .title a:hover{text-decoration:underline;}
+.dialogMultiShow .bd .pic{position:relative; width:100%; height:auto; text-align:center; overflow:hidden;}
+.dialogMultiShow .bd .pic .con{position:absolute; display:inline-block;}
+.dialogMultiShow .bd .pic .con .opic,.dialogMultiShow .bd .pic .con a.opic:link,.dialogMultiShow .bd .pic .con a.opic:visited{width:64px; height:21px; line-height:21px; background-position:-21px -873px; color:#fff; text-decoration:none; font-size:13px;}
+.dialogMultiShow .bd .loadding{position:absolute; width:101px; height:101px; padding-top:101px; color:#fff; font-size:14px; background:url(../../images/common/multishow_loading.gif) no-repeat;}
+.dialogMultiShow .bd .showEnd{width:499px; height:417px; padding:40px 55px; background:#000; margin:0 auto;}
+.dialogMultiShow .bd .showEnd .tit{text-align:left; padding-bottom:22px; margin-bottom:24px; height:36px; line-height:36px; border-bottom:1px #252525 dashed; overflow:hidden;}
+.dialogMultiShow .bd .showEnd .tit strong{float:left; height:36px; line-height:36px; font-size:36px; color:#fff; font-weight:normal;}
+.dialogMultiShow .bd .showEnd .tit .replay{width:128px; height:35px; margin-left:30px; margin-top:2px; display:inline-block; background:url(../../images/common/multishow_replay.png) no-repeat; _background:url(../../images/common/multishow_replay.gif) no-repeat;}
+.dialogMultiShow .bd .showEnd .pages{font-size:18px; color:#fff;}
+.dialogMultiShow .bd .showEnd .pages a,.dialogMultiShow .bd .showEnd .pages a:link{width:216px; height:36px; line-height:36px; display:inline-block; color:#fff; text-decoration:none; float:left;}
+.dialogMultiShow .bd .showEnd .pages a:hover{background:url(../../images/common/multishow_pages.png) no-repeat; _background:url(../../images/common/multishow_pages.gif) no-repeat;}
+.dialogMultiShow .bd .showEnd .pages a.next{float:right;}
+.dialogMultiShow .bd .showEnd .content{width:499px; height:292px; background:#ff0000; background:url(../../images/common/multishow_or.png) 235px 100px no-repeat;  _background:url(../../images/common/multishow_or.gif) 235px 100px no-repeat; clear:both; overflow:hidden;}
+.dialogMultiShow .bd .showEnd .content ul{overflow:hidden; *zoom:1; padding:0; margin:8px 0 0;}
+.dialogMultiShow .bd .showEnd .content ul li{width:216px; list-style:none; margin-right:67px; float:left; _display:inline;}
+.dialogMultiShow .bd .showEnd .content ul li.nomgr{margin:0;}
+.dialogMultiShow .bd .showEnd .content img{width:200px; height:200px; border:8px #fff solid;}
+.dialogMultiShow .bd .showEnd .content span{display:block; *padding-top:3px; text-align:left; line-height:24px;}
+.dialogMultiShow .bd .showEnd .content ul li a,.dialogMultiShow .bd .showEnd .content ul li a:link{display:block; color:#fff; text-decoration:none; font-size:14px; text-align:left;}
+.dialogMultiShow .bd .showEnd .content ul li a:hover{text-decoration:underline;}

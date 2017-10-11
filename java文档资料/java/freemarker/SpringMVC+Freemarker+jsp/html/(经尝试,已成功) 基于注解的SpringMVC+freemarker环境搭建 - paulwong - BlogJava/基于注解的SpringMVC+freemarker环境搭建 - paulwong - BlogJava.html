@@ -1,0 +1,1287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0063)http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html -->
+<html><head id="Head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava
+</title><meta id="metaKeywords" name="keywords" content="基于注解的SpringMVC+freemarker环境搭建"><link type="text/css" rel="stylesheet" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/common.css"><link id="MainCss" type="text/css" rel="stylesheet" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/style.css"><link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://www.blogjava.net/paulwong/rss.aspx"><script src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/pubads_impl_75.js" async=""></script><script type="text/javascript" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/osd.js"></script></head>
+<body>
+    <form name="Form1" method="post" action="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava.html" onsubmit="javascript:return WebForm_OnSubmit();" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="
+__VIEWSTATE" value="">
+</div>
+
+<script type="text/javascript" async="" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ga.js"></script><script async="" type="text/javascript" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/gpt.js"></script><script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/WebResource.axd" type="text/javascript"></script>
+
+<script language="JavaScript">
+									function ctlent(evt,id)
+											{
+												if(evt.ctrlKey && evt.keyCode == 13)
+												{	
+													try
+													{
+														TempSave(id);
+													}
+													catch(ex)
+													{
+													}
+													finally
+													{
+													    __doPostBack('AjaxHolder$PostComment$btnSubmit','')
+													}
+												}
+		
+												}</script>
+												<script language="JavaScript">function SetReplyAuhor(author){document.getElementById('AjaxHolder_PostComment_tbComment').value+="@"+author+"\n";document.getElementById('AjaxHolder_PostComment_tbComment').focus();return false}</script>
+<script src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ScriptResource.axd" type="text/javascript"></script>
+<script src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ScriptResource(1).axd" type="text/javascript"></script>
+<script src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ScriptResource(2).axd" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+        
+
+<div id="top">
+
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.blogjava.net/paulwong/">paulwong</a></h1>
+<p id="tagline"></p>
+</div>
+
+<div id="rightmenu" style="display: inline;">
+
+	
+<h3>My Links</h3>
+<ul>
+			<li></li>
+			<li><a id="MyLinks1_MyHomeLink" href="http://www.blogjava.net/paulwong/">首页</a></li>
+			<li><a id="MyLinks1_ContactLink" accesskey="9" href="http://www.blogjava.net/paulwong/contact.aspx?id=1">联系</a></li>
+			<li><a id="MyLinks1_Syndication" href="http://www.blogjava.net/paulwong/rss">聚合</a> <a id="MyLinks1_XMLLink" href="http://www.blogjava.net/paulwong/rss"><img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/xml.gif" style="border-width:0px;"></a>
+			</li><li><a id="MyLinks1_Admin" href="http://www.blogjava.net/paulwong/admin/EditPosts.aspx">管理</a></li>
+</ul>
+	
+<h3>Blog Stats</h3>
+	<ul>
+		<li>Posts - 830
+		</li><li>Stories - 10
+		</li><li>Comments - 98
+		</li><li>Trackbacks - 0
+	</li>
+</ul>
+	
+	
+<h3>常用链接</h3>
+<ul>
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl01_lnkLinkItem" href="http://www.blogjava.net/paulwong/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl02_lnkLinkItem" href="http://www.blogjava.net/paulwong/MyComments.html">我的评论</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl03_lnkLinkItem" href="http://www.blogjava.net/paulwong/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl04_lnkLinkItem" href="http://www.blogjava.net/paulwong/RecentComments.html">最新评论</a></li>
+	</ul>
+<h3>留言簿<span style="font-size:11px;font-weight:normal;">(26)</span></h3>
+<ul>
+	<li>
+		<a id="SingleColumn1_ctl01_lnkMessages" href="http://www.blogjava.net/paulwong/Contact.aspx?id=1">给我留言</a>
+	</li><li>
+		<a id="SingleColumn1_ctl01_lnkPublicMsgView" href="http://www.blogjava.net/paulwong/default.aspx?opt=msg">查看公开留言</a>
+	</li><li>
+		<a id="SingleColumn1_ctl01_lnkPrivateMsgView" href="http://www.blogjava.net/paulwong/admin/MyMessages.aspx">查看私人留言</a>
+	</li>
+</ul>
+
+		<h3>随笔分类<span style="font-size:11px;font-weight:normal">(934)</span></h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/category/11298.html">AJAX(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_RssLink" title="Subscribe to AJAX(3)" href="http://www.blogjava.net/paulwong/category/11298.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_Link" href="http://www.blogjava.net/paulwong/category/51708.html">ANDROID(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_RssLink" title="Subscribe to ANDROID(6)" href="http://www.blogjava.net/paulwong/category/51708.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_Link" href="http://www.blogjava.net/paulwong/category/54396.html">ANGULARJS(7)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_RssLink" title="Subscribe to ANGULARJS(7)" href="http://www.blogjava.net/paulwong/category/54396.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_Link" href="http://www.blogjava.net/paulwong/category/50682.html">Apache Shiro(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_RssLink" title="Subscribe to Apache Shiro(4)" href="http://www.blogjava.net/paulwong/category/50682.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_Link" href="http://www.blogjava.net/paulwong/category/50172.html">APPFUSE(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_RssLink" title="Subscribe to APPFUSE(1)" href="http://www.blogjava.net/paulwong/category/50172.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_Link" href="http://www.blogjava.net/paulwong/category/50897.html">APPLE(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_RssLink" title="Subscribe to APPLE(2)" href="http://www.blogjava.net/paulwong/category/50897.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_Link" href="http://www.blogjava.net/paulwong/category/53879.html">AWS(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_RssLink" title="Subscribe to AWS(1)" href="http://www.blogjava.net/paulwong/category/53879.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_Link" href="http://www.blogjava.net/paulwong/category/53832.html">BIG DATA(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_RssLink" title="Subscribe to BIG DATA(6)" href="http://www.blogjava.net/paulwong/category/53832.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_Link" href="http://www.blogjava.net/paulwong/category/51457.html">BONITA(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_RssLink" title="Subscribe to BONITA(2)" href="http://www.blogjava.net/paulwong/category/51457.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_Link" href="http://www.blogjava.net/paulwong/category/54104.html">BOOTSTRAP(10)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_RssLink" title="Subscribe to BOOTSTRAP(10)" href="http://www.blogjava.net/paulwong/category/54104.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_Link" href="http://www.blogjava.net/paulwong/category/54395.html">CAMEL(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_RssLink" title="Subscribe to CAMEL(1)" href="http://www.blogjava.net/paulwong/category/54395.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_Link" href="http://www.blogjava.net/paulwong/category/53807.html">CHUKWA(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_RssLink" title="Subscribe to CHUKWA(1)" href="http://www.blogjava.net/paulwong/category/53807.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_Link" href="http://www.blogjava.net/paulwong/category/38309.html">Configuration Management(8)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_RssLink" title="Subscribe to Configuration Management(8)" href="http://www.blogjava.net/paulwong/category/38309.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_Link" href="http://www.blogjava.net/paulwong/category/53087.html">CONTROL-M(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_RssLink" title="Subscribe to CONTROL-M(1)" href="http://www.blogjava.net/paulwong/category/53087.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl15_Link" href="http://www.blogjava.net/paulwong/category/12268.html">Design Pattern(7)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl15_RssLink" title="Subscribe to Design Pattern(7)" href="http://www.blogjava.net/paulwong/category/12268.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl16_Link" href="http://www.blogjava.net/paulwong/category/14164.html">DHTML(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl16_RssLink" title="Subscribe to DHTML(5)" href="http://www.blogjava.net/paulwong/category/14164.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl17_Link" href="http://www.blogjava.net/paulwong/category/54941.html">DOCKER(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl17_RssLink" title="Subscribe to DOCKER(1)" href="http://www.blogjava.net/paulwong/category/54941.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl18_Link" href="http://www.blogjava.net/paulwong/category/54394.html">ECLIPSE(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl18_RssLink" title="Subscribe to ECLIPSE(1)" href="http://www.blogjava.net/paulwong/category/54394.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl19_Link" href="http://www.blogjava.net/paulwong/category/50186.html">EJB3(9)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl19_RssLink" title="Subscribe to EJB3(9)" href="http://www.blogjava.net/paulwong/category/50186.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl20_Link" href="http://www.blogjava.net/paulwong/category/53889.html">ELASTICSEARCH(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl20_RssLink" title="Subscribe to ELASTICSEARCH(4)" href="http://www.blogjava.net/paulwong/category/53889.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl21_Link" href="http://www.blogjava.net/paulwong/category/37333.html">EXTJS(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl21_RssLink" title="Subscribe to EXTJS(3)" href="http://www.blogjava.net/paulwong/category/37333.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl22_Link" href="http://www.blogjava.net/paulwong/category/54549.html">FASTDFS(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl22_RssLink" title="Subscribe to FASTDFS(5)" href="http://www.blogjava.net/paulwong/category/54549.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl23_Link" href="http://www.blogjava.net/paulwong/category/53988.html">FLUME(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl23_RssLink" title="Subscribe to FLUME(1)" href="http://www.blogjava.net/paulwong/category/53988.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl24_Link" href="http://www.blogjava.net/paulwong/category/52508.html">FUTURES(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl24_RssLink" title="Subscribe to FUTURES(1)" href="http://www.blogjava.net/paulwong/category/52508.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl25_Link" href="http://www.blogjava.net/paulwong/category/50835.html">HADOOP(50)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl25_RssLink" title="Subscribe to HADOOP(50)" href="http://www.blogjava.net/paulwong/category/50835.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl26_Link" href="http://www.blogjava.net/paulwong/category/52574.html">HBASE(26)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl26_RssLink" title="Subscribe to HBASE(26)" href="http://www.blogjava.net/paulwong/category/52574.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl27_Link" href="http://www.blogjava.net/paulwong/category/11301.html">HIBERNATE(11)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl27_RssLink" title="Subscribe to HIBERNATE(11)" href="http://www.blogjava.net/paulwong/category/11301.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl28_Link" href="http://www.blogjava.net/paulwong/category/53870.html">HIVE(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl28_RssLink" title="Subscribe to HIVE(1)" href="http://www.blogjava.net/paulwong/category/53870.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl29_Link" href="http://www.blogjava.net/paulwong/category/53697.html">HTML5(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl29_RssLink" title="Subscribe to HTML5(4)" href="http://www.blogjava.net/paulwong/category/53697.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl30_Link" href="http://www.blogjava.net/paulwong/category/53443.html">HTTPCLIENT(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl30_RssLink" title="Subscribe to HTTPCLIENT(4)" href="http://www.blogjava.net/paulwong/category/53443.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl31_Link" href="http://www.blogjava.net/paulwong/category/53621.html">IOS(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl31_RssLink" title="Subscribe to IOS(1)" href="http://www.blogjava.net/paulwong/category/53621.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl32_Link" href="http://www.blogjava.net/paulwong/category/45411.html">IPHONE(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl32_RssLink" title="Subscribe to IPHONE(3)" href="http://www.blogjava.net/paulwong/category/45411.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl33_Link" href="http://www.blogjava.net/paulwong/category/11299.html">J2EE(106)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl33_RssLink" title="Subscribe to J2EE(106)" href="http://www.blogjava.net/paulwong/category/11299.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl34_Link" href="http://www.blogjava.net/paulwong/category/11300.html">J2SE(45)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl34_RssLink" title="Subscribe to J2SE(45)" href="http://www.blogjava.net/paulwong/category/11300.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl35_Link" href="http://www.blogjava.net/paulwong/category/49742.html">JAAS(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl35_RssLink" title="Subscribe to JAAS(1)" href="http://www.blogjava.net/paulwong/category/49742.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl36_Link" href="http://www.blogjava.net/paulwong/category/54629.html">JAVA框架(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl36_RssLink" title="Subscribe to JAVA框架(1)" href="http://www.blogjava.net/paulwong/category/54629.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl37_Link" href="http://www.blogjava.net/paulwong/category/54024.html">JAX-RS(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl37_RssLink" title="Subscribe to JAX-RS(3)" href="http://www.blogjava.net/paulwong/category/54024.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl38_Link" href="http://www.blogjava.net/paulwong/category/52931.html">JAZZ(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl38_RssLink" title="Subscribe to JAZZ(1)" href="http://www.blogjava.net/paulwong/category/52931.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl39_Link" href="http://www.blogjava.net/paulwong/category/50517.html">JBOSS(24)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl39_RssLink" title="Subscribe to JBOSS(24)" href="http://www.blogjava.net/paulwong/category/50517.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl40_Link" href="http://www.blogjava.net/paulwong/category/37052.html">JBPM(33)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl40_RssLink" title="Subscribe to JBPM(33)" href="http://www.blogjava.net/paulwong/category/37052.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl41_Link" href="http://www.blogjava.net/paulwong/category/50704.html">JENKINS(7)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl41_RssLink" title="Subscribe to JENKINS(7)" href="http://www.blogjava.net/paulwong/category/50704.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl42_Link" href="http://www.blogjava.net/paulwong/category/52326.html">JJ斗争(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl42_RssLink" title="Subscribe to JJ斗争(2)" href="http://www.blogjava.net/paulwong/category/52326.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl43_Link" href="http://www.blogjava.net/paulwong/category/51879.html">JMS(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl43_RssLink" title="Subscribe to JMS(1)" href="http://www.blogjava.net/paulwong/category/51879.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl44_Link" href="http://www.blogjava.net/paulwong/category/41057.html">JQuery(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl44_RssLink" title="Subscribe to JQuery(6)" href="http://www.blogjava.net/paulwong/category/41057.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl45_Link" href="http://www.blogjava.net/paulwong/category/53433.html">JSOUP(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl45_RssLink" title="Subscribe to JSOUP(1)" href="http://www.blogjava.net/paulwong/category/53433.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl46_Link" href="http://www.blogjava.net/paulwong/category/53886.html">KAFKA(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl46_RssLink" title="Subscribe to KAFKA(2)" href="http://www.blogjava.net/paulwong/category/53886.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl47_Link" href="http://www.blogjava.net/paulwong/category/50768.html">LINUX(24)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl47_RssLink" title="Subscribe to LINUX(24)" href="http://www.blogjava.net/paulwong/category/50768.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl48_Link" href="http://www.blogjava.net/paulwong/category/54874.html">LMAX(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl48_RssLink" title="Subscribe to LMAX(1)" href="http://www.blogjava.net/paulwong/category/54874.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl49_Link" href="http://www.blogjava.net/paulwong/category/53880.html">LOG ANALYST BIG DATA SYSTEM(14)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl49_RssLink" title="Subscribe to LOG ANALYST BIG DATA SYSTEM(14)" href="http://www.blogjava.net/paulwong/category/53880.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl50_Link" href="http://www.blogjava.net/paulwong/category/54282.html">LOGBACK(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl50_RssLink" title="Subscribe to LOGBACK(2)" href="http://www.blogjava.net/paulwong/category/54282.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl51_Link" href="http://www.blogjava.net/paulwong/category/52742.html">MAC(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl51_RssLink" title="Subscribe to MAC(4)" href="http://www.blogjava.net/paulwong/category/52742.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl52_Link" href="http://www.blogjava.net/paulwong/category/49942.html">MAVEN(12)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl52_RssLink" title="Subscribe to MAVEN(12)" href="http://www.blogjava.net/paulwong/category/49942.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl53_Link" href="http://www.blogjava.net/paulwong/category/53575.html">MINA(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl53_RssLink" title="Subscribe to MINA(3)" href="http://www.blogjava.net/paulwong/category/53575.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl54_Link" href="http://www.blogjava.net/paulwong/category/53872.html">MONGODB(23)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl54_RssLink" title="Subscribe to MONGODB(23)" href="http://www.blogjava.net/paulwong/category/53872.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl55_Link" href="http://www.blogjava.net/paulwong/category/51744.html">MULE(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl55_RssLink" title="Subscribe to MULE(2)" href="http://www.blogjava.net/paulwong/category/51744.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl56_Link" href="http://www.blogjava.net/paulwong/category/53563.html">MYSQL(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl56_RssLink" title="Subscribe to MYSQL(5)" href="http://www.blogjava.net/paulwong/category/53563.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl57_Link" href="http://www.blogjava.net/paulwong/category/54729.html">NETTY(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl57_RssLink" title="Subscribe to NETTY(6)" href="http://www.blogjava.net/paulwong/category/54729.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl58_Link" href="http://www.blogjava.net/paulwong/category/54021.html">NGINX(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl58_RssLink" title="Subscribe to NGINX(2)" href="http://www.blogjava.net/paulwong/category/54021.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl59_Link" href="http://www.blogjava.net/paulwong/category/54901.html">OAUTH(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl59_RssLink" title="Subscribe to OAUTH(1)" href="http://www.blogjava.net/paulwong/category/54901.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl60_Link" href="http://www.blogjava.net/paulwong/category/53683.html">OPENSTACK(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl60_RssLink" title="Subscribe to OPENSTACK(2)" href="http://www.blogjava.net/paulwong/category/53683.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl61_Link" href="http://www.blogjava.net/paulwong/category/53479.html">PIG(7)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl61_RssLink" title="Subscribe to PIG(7)" href="http://www.blogjava.net/paulwong/category/53479.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl62_Link" href="http://www.blogjava.net/paulwong/category/54882.html">PLAY STATION(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl62_RssLink" title="Subscribe to PLAY STATION(1)" href="http://www.blogjava.net/paulwong/category/54882.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl63_Link" href="http://www.blogjava.net/paulwong/category/40402.html">Process Management(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl63_RssLink" title="Subscribe to Process Management(5)" href="http://www.blogjava.net/paulwong/category/40402.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl64_Link" href="http://www.blogjava.net/paulwong/category/38539.html">Project Management(34)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl64_RssLink" title="Subscribe to Project Management(34)" href="http://www.blogjava.net/paulwong/category/38539.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl65_Link" href="http://www.blogjava.net/paulwong/category/53871.html">REDIS(13)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl65_RssLink" title="Subscribe to REDIS(13)" href="http://www.blogjava.net/paulwong/category/53871.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl66_Link" href="http://www.blogjava.net/paulwong/category/50629.html">Requirement Analyst(10)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl66_RssLink" title="Subscribe to Requirement Analyst(10)" href="http://www.blogjava.net/paulwong/category/50629.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl67_Link" href="http://www.blogjava.net/paulwong/category/54497.html">RESTFUL-API(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl67_RssLink" title="Subscribe to RESTFUL-API(1)" href="http://www.blogjava.net/paulwong/category/54497.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl68_Link" href="http://www.blogjava.net/paulwong/category/54746.html">RPC(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl68_RssLink" title="Subscribe to RPC(1)" href="http://www.blogjava.net/paulwong/category/54746.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl69_Link" href="http://www.blogjava.net/paulwong/category/44411.html">RUP(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl69_RssLink" title="Subscribe to RUP(3)" href="http://www.blogjava.net/paulwong/category/44411.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl70_Link" href="http://www.blogjava.net/paulwong/category/53654.html">R语言(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl70_RssLink" title="Subscribe to R语言(4)" href="http://www.blogjava.net/paulwong/category/53654.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl71_Link" href="http://www.blogjava.net/paulwong/category/54631.html">SAMZA(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl71_RssLink" title="Subscribe to SAMZA(1)" href="http://www.blogjava.net/paulwong/category/54631.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl72_Link" href="http://www.blogjava.net/paulwong/category/54652.html">SOA(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl72_RssLink" title="Subscribe to SOA(2)" href="http://www.blogjava.net/paulwong/category/54652.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl73_Link" href="http://www.blogjava.net/paulwong/category/50946.html">SOFTWARE ARCHITECTURE(19)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl73_RssLink" title="Subscribe to SOFTWARE ARCHITECTURE(19)" href="http://www.blogjava.net/paulwong/category/50946.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl74_Link" href="http://www.blogjava.net/paulwong/category/54077.html">SOLR/LUCENCE(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl74_RssLink" title="Subscribe to SOLR/LUCENCE(2)" href="http://www.blogjava.net/paulwong/category/54077.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl75_Link" href="http://www.blogjava.net/paulwong/category/54858.html">SPARK(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl75_RssLink" title="Subscribe to SPARK(2)" href="http://www.blogjava.net/paulwong/category/54858.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl76_Link" href="http://www.blogjava.net/paulwong/category/38240.html">SPRING(27)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl76_RssLink" title="Subscribe to SPRING(27)" href="http://www.blogjava.net/paulwong/category/38240.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl77_Link" href="http://www.blogjava.net/paulwong/category/51928.html">SPRING INTERGRATION(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl77_RssLink" title="Subscribe to SPRING INTERGRATION(6)" href="http://www.blogjava.net/paulwong/category/51928.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl78_Link" href="http://www.blogjava.net/paulwong/category/50899.html">SPRING MVC(13)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl78_RssLink" title="Subscribe to SPRING MVC(13)" href="http://www.blogjava.net/paulwong/category/50899.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl79_Link" href="http://www.blogjava.net/paulwong/category/52669.html">SRPING BATCH(12)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl79_RssLink" title="Subscribe to SRPING BATCH(12)" href="http://www.blogjava.net/paulwong/category/52669.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl80_Link" href="http://www.blogjava.net/paulwong/category/53883.html">STORM(9)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl80_RssLink" title="Subscribe to STORM(9)" href="http://www.blogjava.net/paulwong/category/53883.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl81_Link" href="http://www.blogjava.net/paulwong/category/54327.html">SVN(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl81_RssLink" title="Subscribe to SVN(3)" href="http://www.blogjava.net/paulwong/category/54327.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl82_Link" href="http://www.blogjava.net/paulwong/category/20169.html">System Analyst(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl82_RssLink" title="Subscribe to System Analyst(5)" href="http://www.blogjava.net/paulwong/category/20169.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl83_Link" href="http://www.blogjava.net/paulwong/category/50525.html">TESTIGN(9)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl83_RssLink" title="Subscribe to TESTIGN(9)" href="http://www.blogjava.net/paulwong/category/50525.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl84_Link" href="http://www.blogjava.net/paulwong/category/54018.html">TOMCAT(10)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl84_RssLink" title="Subscribe to TOMCAT(10)" href="http://www.blogjava.net/paulwong/category/54018.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl85_Link" href="http://www.blogjava.net/paulwong/category/54108.html">UI(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl85_RssLink" title="Subscribe to UI(3)" href="http://www.blogjava.net/paulwong/category/54108.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl86_Link" href="http://www.blogjava.net/paulwong/category/50267.html">UML(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl86_RssLink" title="Subscribe to UML(2)" href="http://www.blogjava.net/paulwong/category/50267.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl87_Link" href="http://www.blogjava.net/paulwong/category/51272.html">WEBSERVICE(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl87_RssLink" title="Subscribe to WEBSERVICE(5)" href="http://www.blogjava.net/paulwong/category/51272.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl88_Link" href="http://www.blogjava.net/paulwong/category/13395.html">Websphere(6)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl88_RssLink" title="Subscribe to Websphere(6)" href="http://www.blogjava.net/paulwong/category/13395.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl89_Link" href="http://www.blogjava.net/paulwong/category/53765.html">WIRESHARK(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl89_RssLink" title="Subscribe to WIRESHARK(1)" href="http://www.blogjava.net/paulwong/category/53765.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl90_Link" href="http://www.blogjava.net/paulwong/category/52733.html">ZOOKEEPER(5)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl90_RssLink" title="Subscribe to ZOOKEEPER(5)" href="http://www.blogjava.net/paulwong/category/52733.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl91_Link" href="http://www.blogjava.net/paulwong/category/47742.html">中药(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl91_RssLink" title="Subscribe to 中药(4)" href="http://www.blogjava.net/paulwong/category/47742.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl92_Link" href="http://www.blogjava.net/paulwong/category/50970.html">云计算(46)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl92_RssLink" title="Subscribe to 云计算(46)" href="http://www.blogjava.net/paulwong/category/50970.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl93_Link" href="http://www.blogjava.net/paulwong/category/48261.html">内容管理CMS(4)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl93_RssLink" title="Subscribe to 内容管理CMS(4)" href="http://www.blogjava.net/paulwong/category/48261.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl94_Link" href="http://www.blogjava.net/paulwong/category/47498.html">分布式(40)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl94_RssLink" title="Subscribe to 分布式(40)" href="http://www.blogjava.net/paulwong/category/47498.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl95_Link" href="http://www.blogjava.net/paulwong/category/53869.html">分布式搜索(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl95_RssLink" title="Subscribe to 分布式搜索(2)" href="http://www.blogjava.net/paulwong/category/53869.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl96_Link" href="http://www.blogjava.net/paulwong/category/53313.html">外包私活(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl96_RssLink" title="Subscribe to 外包私活(1)" href="http://www.blogjava.net/paulwong/category/53313.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl97_Link" href="http://www.blogjava.net/paulwong/category/41454.html">学习视频(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl97_RssLink" title="Subscribe to 学习视频(1)" href="http://www.blogjava.net/paulwong/category/41454.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl98_Link" href="http://www.blogjava.net/paulwong/category/54287.html">微信(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl98_RssLink" title="Subscribe to 微信(3)" href="http://www.blogjava.net/paulwong/category/54287.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl99_Link" href="http://www.blogjava.net/paulwong/category/49903.html">性能优化(61)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl99_RssLink" title="Subscribe to 性能优化(61)" href="http://www.blogjava.net/paulwong/category/49903.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl100_Link" href="http://www.blogjava.net/paulwong/category/54688.html">性能测试(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl100_RssLink" title="Subscribe to 性能测试(1)" href="http://www.blogjava.net/paulwong/category/54688.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl101_Link" href="http://www.blogjava.net/paulwong/category/54446.html">推荐系统(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl101_RssLink" title="Subscribe to 推荐系统(2)" href="http://www.blogjava.net/paulwong/category/54446.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl102_Link" href="http://www.blogjava.net/paulwong/category/54437.html">教程(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl102_RssLink" title="Subscribe to 教程(1)" href="http://www.blogjava.net/paulwong/category/54437.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl103_Link" href="http://www.blogjava.net/paulwong/category/53284.html">权限管理(1)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl103_RssLink" title="Subscribe to 权限管理(1)" href="http://www.blogjava.net/paulwong/category/53284.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl104_Link" href="http://www.blogjava.net/paulwong/category/54632.html">每年预言(2)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl104_RssLink" title="Subscribe to 每年预言(2)" href="http://www.blogjava.net/paulwong/category/54632.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl105_Link" href="http://www.blogjava.net/paulwong/category/50646.html">火车站售票系统(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl105_RssLink" title="Subscribe to 火车站售票系统(3)" href="http://www.blogjava.net/paulwong/category/50646.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl106_Link" href="http://www.blogjava.net/paulwong/category/50662.html">缓存(14)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl106_RssLink" title="Subscribe to 缓存(14)" href="http://www.blogjava.net/paulwong/category/50662.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl107_Link" href="http://www.blogjava.net/paulwong/category/53679.html">网页设计(3)</a> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl107_RssLink" title="Subscribe to 网页设计(3)" href="http://www.blogjava.net/paulwong/category/53679.html/rss">(rss)</a></li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案<span style="font-size:11px;font-weight:normal">(784)</span></h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/archive/2015/11.html">2015年11月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl02_Link" href="http://www.blogjava.net/paulwong/archive/2015/10.html">2015年10月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl03_Link" href="http://www.blogjava.net/paulwong/archive/2015/09.html">2015年9月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl04_Link" href="http://www.blogjava.net/paulwong/archive/2015/08.html">2015年8月 (9)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl05_Link" href="http://www.blogjava.net/paulwong/archive/2015/07.html">2015年7月 (6)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl06_Link" href="http://www.blogjava.net/paulwong/archive/2015/06.html">2015年6月 (5)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl07_Link" href="http://www.blogjava.net/paulwong/archive/2015/05.html">2015年5月 (8)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl08_Link" href="http://www.blogjava.net/paulwong/archive/2015/04.html">2015年4月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl09_Link" href="http://www.blogjava.net/paulwong/archive/2015/03.html">2015年3月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl10_Link" href="http://www.blogjava.net/paulwong/archive/2015/02.html">2015年2月 (15)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl11_Link" href="http://www.blogjava.net/paulwong/archive/2015/01.html">2015年1月 (12)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl12_Link" href="http://www.blogjava.net/paulwong/archive/2014/12.html">2014年12月 (19)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl13_Link" href="http://www.blogjava.net/paulwong/archive/2014/11.html">2014年11月 (10)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl14_Link" href="http://www.blogjava.net/paulwong/archive/2014/10.html">2014年10月 (14)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl15_Link" href="http://www.blogjava.net/paulwong/archive/2014/09.html">2014年9月 (12)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl16_Link" href="http://www.blogjava.net/paulwong/archive/2014/08.html">2014年8月 (12)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl17_Link" href="http://www.blogjava.net/paulwong/archive/2014/07.html">2014年7月 (37)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl18_Link" href="http://www.blogjava.net/paulwong/archive/2014/06.html">2014年6月 (14)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl19_Link" href="http://www.blogjava.net/paulwong/archive/2014/05.html">2014年5月 (23)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl20_Link" href="http://www.blogjava.net/paulwong/archive/2014/04.html">2014年4月 (10)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl21_Link" href="http://www.blogjava.net/paulwong/archive/2014/03.html">2014年3月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl22_Link" href="http://www.blogjava.net/paulwong/archive/2014/02.html">2014年2月 (6)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl23_Link" href="http://www.blogjava.net/paulwong/archive/2014/01.html">2014年1月 (8)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl24_Link" href="http://www.blogjava.net/paulwong/archive/2013/12.html">2013年12月 (6)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl25_Link" href="http://www.blogjava.net/paulwong/archive/2013/11.html">2013年11月 (12)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl26_Link" href="http://www.blogjava.net/paulwong/archive/2013/10.html">2013年10月 (11)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl27_Link" href="http://www.blogjava.net/paulwong/archive/2013/09.html">2013年9月 (13)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl28_Link" href="http://www.blogjava.net/paulwong/archive/2013/08.html">2013年8月 (14)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl29_Link" href="http://www.blogjava.net/paulwong/archive/2013/07.html">2013年7月 (8)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl30_Link" href="http://www.blogjava.net/paulwong/archive/2013/06.html">2013年6月 (13)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl31_Link" href="http://www.blogjava.net/paulwong/archive/2013/05.html">2013年5月 (15)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl32_Link" href="http://www.blogjava.net/paulwong/archive/2013/04.html">2013年4月 (10)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl33_Link" href="http://www.blogjava.net/paulwong/archive/2013/03.html">2013年3月 (19)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl34_Link" href="http://www.blogjava.net/paulwong/archive/2013/02.html">2013年2月 (15)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl35_Link" href="http://www.blogjava.net/paulwong/archive/2013/01.html">2013年1月 (13)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl36_Link" href="http://www.blogjava.net/paulwong/archive/2012/12.html">2012年12月 (10)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl37_Link" href="http://www.blogjava.net/paulwong/archive/2012/11.html">2012年11月 (8)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl38_Link" href="http://www.blogjava.net/paulwong/archive/2012/10.html">2012年10月 (22)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl39_Link" href="http://www.blogjava.net/paulwong/archive/2012/09.html">2012年9月 (15)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl40_Link" href="http://www.blogjava.net/paulwong/archive/2012/08.html">2012年8月 (6)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl41_Link" href="http://www.blogjava.net/paulwong/archive/2012/07.html">2012年7月 (11)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl42_Link" href="http://www.blogjava.net/paulwong/archive/2012/06.html">2012年6月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl43_Link" href="http://www.blogjava.net/paulwong/archive/2012/05.html">2012年5月 (20)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl44_Link" href="http://www.blogjava.net/paulwong/archive/2012/04.html">2012年4月 (23)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl45_Link" href="http://www.blogjava.net/paulwong/archive/2012/03.html">2012年3月 (19)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl46_Link" href="http://www.blogjava.net/paulwong/archive/2012/02.html">2012年2月 (26)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl47_Link" href="http://www.blogjava.net/paulwong/archive/2012/01.html">2012年1月 (30)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl48_Link" href="http://www.blogjava.net/paulwong/archive/2011/12.html">2011年12月 (11)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl49_Link" href="http://www.blogjava.net/paulwong/archive/2011/11.html">2011年11月 (14)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl50_Link" href="http://www.blogjava.net/paulwong/archive/2011/10.html">2011年10月 (13)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl51_Link" href="http://www.blogjava.net/paulwong/archive/2011/09.html">2011年9月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl52_Link" href="http://www.blogjava.net/paulwong/archive/2011/08.html">2011年8月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl53_Link" href="http://www.blogjava.net/paulwong/archive/2011/05.html">2011年5月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl54_Link" href="http://www.blogjava.net/paulwong/archive/2011/04.html">2011年4月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl55_Link" href="http://www.blogjava.net/paulwong/archive/2011/03.html">2011年3月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl56_Link" href="http://www.blogjava.net/paulwong/archive/2011/02.html">2011年2月 (9)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl57_Link" href="http://www.blogjava.net/paulwong/archive/2011/01.html">2011年1月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl58_Link" href="http://www.blogjava.net/paulwong/archive/2010/12.html">2010年12月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl59_Link" href="http://www.blogjava.net/paulwong/archive/2010/11.html">2010年11月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl60_Link" href="http://www.blogjava.net/paulwong/archive/2010/09.html">2010年9月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl61_Link" href="http://www.blogjava.net/paulwong/archive/2010/06.html">2010年6月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl62_Link" href="http://www.blogjava.net/paulwong/archive/2010/04.html">2010年4月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl63_Link" href="http://www.blogjava.net/paulwong/archive/2010/03.html">2010年3月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl64_Link" href="http://www.blogjava.net/paulwong/archive/2010/02.html">2010年2月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl65_Link" href="http://www.blogjava.net/paulwong/archive/2010/01.html">2010年1月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl66_Link" href="http://www.blogjava.net/paulwong/archive/2009/12.html">2009年12月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl67_Link" href="http://www.blogjava.net/paulwong/archive/2009/11.html">2009年11月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl68_Link" href="http://www.blogjava.net/paulwong/archive/2009/10.html">2009年10月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl69_Link" href="http://www.blogjava.net/paulwong/archive/2009/09.html">2009年9月 (7)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl70_Link" href="http://www.blogjava.net/paulwong/archive/2009/08.html">2009年8月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl71_Link" href="http://www.blogjava.net/paulwong/archive/2009/07.html">2009年7月 (10)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl72_Link" href="http://www.blogjava.net/paulwong/archive/2009/06.html">2009年6月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl73_Link" href="http://www.blogjava.net/paulwong/archive/2009/05.html">2009年5月 (5)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl74_Link" href="http://www.blogjava.net/paulwong/archive/2009/03.html">2009年3月 (11)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl75_Link" href="http://www.blogjava.net/paulwong/archive/2009/02.html">2009年2月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl76_Link" href="http://www.blogjava.net/paulwong/archive/2009/01.html">2009年1月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl77_Link" href="http://www.blogjava.net/paulwong/archive/2008/12.html">2008年12月 (11)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl78_Link" href="http://www.blogjava.net/paulwong/archive/2008/02.html">2008年2月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl79_Link" href="http://www.blogjava.net/paulwong/archive/2008/01.html">2008年1月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl80_Link" href="http://www.blogjava.net/paulwong/archive/2007/07.html">2007年7月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl81_Link" href="http://www.blogjava.net/paulwong/archive/2007/04.html">2007年4月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl82_Link" href="http://www.blogjava.net/paulwong/archive/2006/12.html">2006年12月 (2)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl83_Link" href="http://www.blogjava.net/paulwong/archive/2006/11.html">2006年11月 (3)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl84_Link" href="http://www.blogjava.net/paulwong/archive/2006/10.html">2006年10月 (5)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl85_Link" href="http://www.blogjava.net/paulwong/archive/2006/08.html">2006年8月 (4)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl86_Link" href="http://www.blogjava.net/paulwong/archive/2006/07.html">2006年7月 (8)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl87_Link" href="http://www.blogjava.net/paulwong/archive/2006/06.html">2006年6月 (5)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl88_Link" href="http://www.blogjava.net/paulwong/archive/2006/05.html">2006年5月 (10)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>文章分类<span style="font-size:11px;font-weight:normal">(7)</span></h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/category/10812.html">AJAX(1)</a> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl01_RssLink" title="Subscribe to AJAX(1)" href="http://www.blogjava.net/paulwong/category/10812.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl02_Link" href="http://www.blogjava.net/paulwong/category/10810.html">J2EE(3)</a> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl02_RssLink" title="Subscribe to J2EE(3)" href="http://www.blogjava.net/paulwong/category/10810.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl03_Link" href="http://www.blogjava.net/paulwong/category/10814.html">J2SE(2)</a> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl03_RssLink" title="Subscribe to J2SE(2)" href="http://www.blogjava.net/paulwong/category/10814.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl04_Link" href="http://www.blogjava.net/paulwong/category/11304.html">历史人文(1)</a> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl04_RssLink" title="Subscribe to 历史人文(1)" href="http://www.blogjava.net/paulwong/category/11304.html/rss">(rss)</a></li>
+			
+				</ul>
+			
+	
+		<h3>文章档案<span style="font-size:11px;font-weight:normal">(10)</span></h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/archives/2014/12.html">2014年12月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl02_Link" href="http://www.blogjava.net/paulwong/archives/2014/11.html">2014年11月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl03_Link" href="http://www.blogjava.net/paulwong/archives/2013/12.html">2013年12月 (1)</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl04_Link" href="http://www.blogjava.net/paulwong/archives/2006/05.html">2006年5月 (7)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>相册</h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/gallery/10815.html">Test</a> </li>
+			
+				</ul>
+			
+	
+		<h3>收藏夹<span style="font-size:11px;font-weight:normal">(2)</span></h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl05_LinkList_ctl01_Link" href="http://www.blogjava.net/paulwong/favorite/36452.html">Test</a> <a id="SingleColumn1_Categories_CatList_ctl05_LinkList_ctl01_RssLink" title="Subscribe to Test" href="http://www.blogjava.net/paulwong/favorite/36452.html/rss">(rss)</a></li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl05_LinkList_ctl02_Link" href="http://www.blogjava.net/paulwong/favorite/44521.html">把妹术(2)</a> <a id="SingleColumn1_Categories_CatList_ctl05_LinkList_ctl02_RssLink" title="Subscribe to 把妹术(2)" href="http://www.blogjava.net/paulwong/favorite/44521.html/rss">(rss)</a></li>
+			
+				</ul>
+			
+	
+		<h3>Develop</h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl01_Link" href="http://en.wikipedia.org/wiki/4%2B1">4+1 Architectural View Model</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl02_Link" href="http://man.chinaunix.net/newsoft/jboss.htm">Apache安装及jboss部署说明文档</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl03_Link" href="https://appthwack.com/project/mt-ringtone-creator/run/15850?view_mode=highlights&highlights_view_mode=highlights_by_type" target="_blank">APK自动化测试网站</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl04_Link" href="http://www.sparxsystems.cn/resources/business_process_model.html">Enterprise Architect中文网</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl05_Link" href="http://jstang.cn/ajaxjs/index/" target="_blank">EXT 中文站 ver2.0 since 2006-11-20 </a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl06_Link" href="http://173.194.1.150/" target="_blank">GOOGLE</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl07_Link" href="http://74.125.3.231/" target="_blank">GOOGLE</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl08_Link" href="http://laod.cn/hosts/2015-google-hosts.html" target="_blank">GOOGLE</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl09_Link" href="http://www.goread.io/">GOREAD RSS阅读器</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl10_Link" href="https://inoreader.com/#subscription/1565321" target="_blank">INOREADER RSS阅读器</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl11_Link" href="http://www.huihoo.org/jboss/jboss3_ejb.htm">JBoss3.0 下配置和部署EJB简介</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl12_Link" href="http://www.texotela.co.uk/code/jquery/select/">Jquery Option Plug-in</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl13_Link" href="http://www.blogjava.net/fastzch/">Robin's Java World</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl14_Link" href="http://www.pw88.com/e/DownSys/DownSoft/?classid=38&id=59667&pathid=0">SQL2005客户端下载</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl15_Link" href="http://www.dojochina.com/">一个extjs的好网站</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl16_Link" href="http://www.ideotechnologies.com/documentation/sweetdev-en/help-doc.htm#getting_started/addressbook/displaycontacts.htm">一个非常不错的J2EE框架。</a> </li>
+			<li style="margin-top:2px;">一个非常不错的J2EE框架，从前端的JSP，到菜单，用户和权限，都有了，还集成了STRUTS。</li>
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl17_Link" href="http://www.yuanfengflexo.com/cn/index.html">东莞源丰印刷</a> </li>
+			<li style="margin-top:2px;">本人设计</li>
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl18_Link" href="http://js.itivy.com/jiaoben1765/index.html" target="_blank">中国象棋</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl19_Link" href="http://www.chinaarchitect.org/">中国软件架构师网</a> </li>
+			<li style="margin-top:2px;">不错的培训网，有相关文档下载。</li>
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl20_Link" href="http://img.vim-cn.com/" target="_blank">保存截图的网站</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl21_Link" href="http://blog.fens.me/" target="_blank">各种大数据</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl22_Link" href="http://fex-team.baidu.com/kityminder/dist/#">在线思维导图工具</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl23_Link" href="http://www.cnblogs.com/xguo/">大数据相关应用</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl24_Link" href="http://wenku.baidu.com/view/7f79bce919e8b8f67d1cb904.html">建模工具EA的使用</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl25_Link" href="http://meet.faqee.com/" target="_blank">开源会议系统</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl26_Link" href="http://support.apple.com/kb/TS3297?viewlocale=zh_CN">无法连接ITUNES STORE的原因</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl27_Link" href="http://bbs.szhome.com/11385.html">深圳房网</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl28_Link" href="http://api.oupag.com/dev/api/shenzhentong.php?cardno=323852635" target="_blank">深圳通余额查询</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl29_Link" href="http://ocw.nctu.edu.tw/riki_detail.php?pgid=179&cgid=5">管理學 </a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl06_LinkList_ctl30_Link" href="http://www.tocwc.org.tw/ocw.php?page=1&kind=&key=">開放式課程</a> </li>
+			
+				</ul>
+			
+	
+		<h3>Other</h3>
+		
+				<ul>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl07_LinkList_ctl01_Link" href="http://user.qzone.qq.com/229916378/blog/1237813244">不错的网摘</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl07_LinkList_ctl02_Link" href="http://www.dygod.com/">天堂电影</a> </li>
+			
+				<li><a id="SingleColumn1_Categories_CatList_ctl07_LinkList_ctl03_Link" href="http://g.ho.st/?language=zh">网络操作系统</a> </li>
+			
+				</ul>
+			
+	
+
+
+
+<script language="JavaScript">
+function SearchGoogle(key,evt,site)
+		{
+			if(evt.keyCode==13 || evt.keyCode==0 || evt.type =='click')
+			{
+				key.focus();
+				var keystr = encodeURIComponent(key.value);
+				url = "http://www.google.com/search?q=";
+				url = url+keystr;
+				url += "&ie=UTF-8&oe=GB2312&hl=zh-CN&domains="+site+"&sitesearch="+site;
+				window.location=url;
+				return false;
+			}
+		}
+</script>
+<h3>搜索</h3>
+<ul>
+	<li>
+		</li><li><input style="WIDTH: 130px" type="text" name="q" id="q" onkeydown="return SearchGoogle(document.getElementById(&#39;q&#39;),event,&#39;www.blogjava.net/paulwong&#39;)">&nbsp;<input onclick="SearchGoogle(document.getElementById(&#39;q&#39;),event,&#39;www.blogjava.net/paulwong&#39;)" type="button" value="搜索" name="sa">
+	</li>
+</ul>
+
+<h3>最新评论
+	<a id="SingleColumn1__1bd7e0c_RSSHyperlink1" href="http://www.blogjava.net/paulwong/CommentsRSS.aspx"><img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/xml.gif" style="border-width:0px;"></a></h3>
+<div class="RecentComment">
+	
+			<ul>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__1bd7e0c_CommentList_ctl01_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/10/21/393023.html#427842">1.&nbsp;re: WINDOWS下的SFTP服务器安装搭建</a>
+			</li>
+			<li style="word-break:break-all">
+				thanks!!
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--rr</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__1bd7e0c_CommentList_ctl02_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/08/14/368917.html#426779">2.&nbsp;re: 让Apache Shiro保护你的应用[未登录]</a>
+			</li>
+			<li style="word-break:break-all">
+				要不要写的这么透彻. 强~
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--redcoatjk</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__1bd7e0c_CommentList_ctl03_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/08/03/369948.html#426560">3.&nbsp;re: Ehcache分布式缓存</a>
+			</li>
+			<li style="word-break:break-all">
+				1111
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--11</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__1bd7e0c_CommentList_ctl04_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/07/02/399046.html#426003">4.&nbsp;re: 让spring-data-jpa解放你的DAO</a>
+			</li>
+			<li style="word-break:break-all">
+				评论内容较长,点击标题查看
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--zuidaima</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__1bd7e0c_CommentList_ctl05_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/07/02/415635.html#426004">5.&nbsp;re: Spring Data REST，Spring MVC的REST扩展</a>
+			</li>
+			<li style="word-break:break-all">
+				评论内容较长,点击标题查看
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--zuidaima</li>
+		
+			</ul>
+		
+</div>
+
+<h3>阅读排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="word-break:break-all">
+		
+			<li>
+				<a id="SingleColumn1__116f976_TopList_ctl01_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/03/23/372564.html">1.&nbsp;Spring MVC 的请求参数获取的几种方法(39835)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__116f976_TopList_ctl02_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2013/10/31/405860.html">2.&nbsp;Flume日志收集(27931)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__116f976_TopList_ctl03_Hyperlink1" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava.html">3.&nbsp;基于注解的SpringMVC+freemarker环境搭建(21014)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__116f976_TopList_ctl04_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2013/05/26/399770.html">4.&nbsp;(转)个人总结：京东技术体系员工级别划分及薪资区间(19631)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__116f976_TopList_ctl05_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2009/09/30/297024.html">5.&nbsp;中国电信无线宽带猫开启路由功能的方法！(15885)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+
+<h3>评论排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="word-break:break-all">
+		
+			<li>
+				<a id="SingleColumn1__2da11df_TopList_ctl01_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/10/16/389625.html">1.&nbsp;SPRING INTEGRATION + SPRING BATCH(7)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__2da11df_TopList_ctl02_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2009/09/07/294114.html">2.&nbsp;jbpm4整合struts2+spring2.5+hibernate3.3(7)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__2da11df_TopList_ctl03_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2009/10/20/299115.html">3.&nbsp;cas单点登录配置速成 (6)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__2da11df_TopList_ctl04_Hyperlink1" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava.html">4.&nbsp;基于注解的SpringMVC+freemarker环境搭建(3)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__2da11df_TopList_ctl05_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372161.html">5.&nbsp;activiti5.6安装实战(3)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+
+<h3>60天内阅读排行</h3>
+<div class="RecentComment">
+	
+			<ul>
+		
+			<li>
+				<a id="SingleColumn1__294ef96_TopList_ctl01_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/10/19/427811.html">1.&nbsp;REDIS监控(57)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__294ef96_TopList_ctl02_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/10/27/427931.html">2.&nbsp;糖果CMS，一个像糖果一样的CMS 糖果CMS(51)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__294ef96_TopList_ctl03_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/10/30/427986.html">3.&nbsp;SPRING IO(41)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__294ef96_TopList_ctl04_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/10/30/427980.html">4.&nbsp;一篇不错的Docker入门介绍(33)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__294ef96_TopList_ctl05_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2015/11/06/428066.html">5.&nbsp;Tengine(24)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+
+</div>
+<div id="main">
+	
+					
+	<div class="post">
+		<h2>
+			<a id="viewpost1_TitleUrl" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava.html">基于注解的SpringMVC+freemarker环境搭建</a>
+		</h2>
+		<ol><li>首先用IDE建一个web工程。(这个就不详细介绍了) <br></li><li>引入响应的jar包 <br></li><li>web.xml
+<div style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; padding-bottom: 4px; background-color: #eeeeee; padding-left: 4px; width: 98%; padding-right: 5px; font-size: 13px; word-break: break-all; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid; padding-top: 4px"><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml&nbsp;version="1.0"&nbsp;</span><span style="color: #0000ff">?&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">web-app&nbsp;</span><span style="color: #ff0000">xmlns</span><span style="color: #0000ff">="http://java.sun.com/xml/ns/javaee"</span><span style="color: #ff0000">&nbsp;xmlns:xsi</span><span style="color: #0000ff">="http://www.w3.org/2001/XMLSchema-instance"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;xsi:schemaLocation</span><span style="color: #0000ff">="http://java.sun.com/xml/ns/javaee&nbsp;http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;version</span><span style="color: #0000ff">="3.0"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;&nbsp;Spring&nbsp;服务层的配置文件&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">context-param</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">param-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">contextConfigLocation</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">param-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">param-value</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">classpath:applicationContext.xml</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">param-value</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">context-param</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;&nbsp;Spring&nbsp;容器启动监听器&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">listener</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">listener-class</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">org.springframework.web.context.ContextLoaderListener<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">listener-class</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">listener</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">servlet</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">servlet-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">springmvc</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">servlet-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">servlet-class</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">org.springframework.web.servlet.DispatcherServlet<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">servlet-class</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">load-on-startup</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">1</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">load-on-startup</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">servlet</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">为DispatcherServlet建立映射&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">servlet-mapping</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">servlet-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">springmvc</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">servlet-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">url-pattern</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">/</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">url-pattern</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">servlet-mapping</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">web-app</span><span style="color: #0000ff">&gt;</span></div><br></li><li>SpringMVC另外一个重要的配置文件。 <br>DispatcherServlet会根绝web.xml中配置的&lt;servlet-name&gt;去找&lt;servlet-name&gt;-servlet.xml的文件来加载spring的一些配置信息。我这里就应该取名叫springmvc-servlet.xml 
+<div style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; padding-bottom: 4px; background-color: #eeeeee; padding-left: 4px; width: 98%; padding-right: 5px; font-size: 13px; word-break: break-all; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid; padding-top: 4px"><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"</span><span style="color: #0000ff">?&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">beans&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #ff0000">xmlns</span><span style="color: #0000ff">="http://www.springframework.org/schema/beans"</span><span style="color: #ff0000">&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi</span><span style="color: #0000ff">="http://www.w3.org/2001/XMLSchema-instance"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;xmlns:p</span><span style="color: #0000ff">="http://www.springframework.org/schema/p"</span><span style="color: #ff0000">&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;xmlns:context</span><span style="color: #0000ff">="http://www.springframework.org/schema/context"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;xsi:schemaLocation</span><span style="color: #0000ff">="http://www.springframework.org/schema/beans&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/beans/spring-beans-2.5.xsd<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/context&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/context/spring-context-2.5.xsd"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">context:component-scan&nbsp;</span><span style="color: #ff0000">base-package</span><span style="color: #0000ff">="com.liba.spring.mvc"</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;启动Spring&nbsp;MVC的注解功能，完成请求和注解POJO的映射&nbsp;&nbsp;&nbsp;请求映射</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">bean&nbsp;</span><span style="color: #ff0000">class</span><span style="color: #0000ff">="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">以下三种视图配置根据需要任选一种即可&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;&nbsp;一般的视图配置&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&lt;bean&nbsp;class="org.springframework.web.servlet.view.InternalResourceViewResolver"&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p:prefix="/WEB-INF/view/"&nbsp;p:suffix=".jsp"/&gt;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;针对freemarker的视图配置&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">bean&nbsp;</span><span style="color: #ff0000">id</span><span style="color: #0000ff">="viewResolver"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class</span><span style="color: #0000ff">="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="cache"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="prefix"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">=""</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="suffix"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">=".ftl"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="contentType"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="text/html;charset=UTF-8"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">property</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="requestContextAttribute"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="request"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="exposeSpringMacroHelpers"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="exposeRequestAttributes"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="exposeSessionAttributes"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">bean</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;View&nbsp;resolvers&nbsp;can&nbsp;also&nbsp;be&nbsp;configured&nbsp;with&nbsp;ResourceBundles&nbsp;or&nbsp;XML&nbsp;files.&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;need&nbsp;different&nbsp;view&nbsp;resolving&nbsp;based&nbsp;on&nbsp;Locale,&nbsp;you&nbsp;have&nbsp;to&nbsp;use&nbsp;the&nbsp;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resource&nbsp;bundle&nbsp;resolver.&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&nbsp;这个是针对返回视图还是json值的视图配置&nbsp;&nbsp;&nbsp;来分别处理同步和异步请求&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">&lt;!--</span><span style="color: #008000">&lt;bean<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="mediaTypes"&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;map&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entry&nbsp;key="html"&nbsp;value="text/html"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entry&nbsp;key="json"&nbsp;value="application/json"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/map&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/property&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="favorParameter"&nbsp;value="true"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="viewResolvers"&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;list&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bean&nbsp;class="org.springframework.web.servlet.view.BeanNameViewResolver"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bean&nbsp;id="viewResolver"<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="cache"&nbsp;value="true"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="prefix"&nbsp;value=""&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="suffix"&nbsp;value=".ftl"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="contentType"&nbsp;value="text/html;charset=UTF-8"&gt;&lt;/property&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="requestContextAttribute"&nbsp;value="request"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="exposeSpringMacroHelpers"&nbsp;value="true"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="exposeRequestAttributes"&nbsp;value="true"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="exposeSessionAttributes"&nbsp;value="true"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bean&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/list&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/property&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="defaultContentType"&nbsp;value="text/html"&nbsp;/&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bean&gt;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">--&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">beans</span><span style="color: #0000ff">&gt;</span></div><br></li><li>如果是使用freemarker最为视图模板需要再spring的配置文件applicationContext.xml中加入以下配置 
+<div style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; padding-bottom: 4px; background-color: #eeeeee; padding-left: 4px; width: 98%; padding-right: 5px; font-size: 13px; word-break: break-all; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid; padding-top: 4px"><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><span style="color: #0000ff">&lt;</span><span style="color: #800000">bean&nbsp;</span><span style="color: #ff0000">id</span><span style="color: #0000ff">="freemarkerConfig"</span><span style="color: #ff0000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class</span><span style="color: #0000ff">="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="templateLoaderPath"</span><span style="color: #ff0000">&nbsp;value</span><span style="color: #0000ff">="/WEB-INF/view/"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">property&nbsp;</span><span style="color: #ff0000">name</span><span style="color: #0000ff">="freemarkerSettings"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">props</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="template_update_delay"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">0</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="default_encoding"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">UTF-8</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="number_format"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">0.##########</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="datetime_format"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">yyyy-MM-dd&nbsp;HH:mm:ss</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="classic_compatible"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">true</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">prop&nbsp;</span><span style="color: #ff0000">key</span><span style="color: #0000ff">="template_exception_handler"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">ignore</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">prop</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">props</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">property</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">bean</span><span style="color: #0000ff">&gt;</span></div><br></li><li>Controller建立 
+<div style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; padding-bottom: 4px; background-color: #eeeeee; padding-left: 4px; width: 98%; padding-right: 5px; font-size: 13px; word-break: break-all; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid; padding-top: 4px"><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><span style="color: #0000ff">import</span><span style="color: #000000">&nbsp;javax.servlet.http.HttpServletRequest;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">import</span><span style="color: #000000">&nbsp;org.springframework.stereotype.Controller;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">import</span><span style="color: #000000">&nbsp;org.springframework.web.bind.annotation.RequestMapping;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">import</span><span style="color: #000000">&nbsp;org.springframework.web.bind.annotation.RequestMethod;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">import</span><span style="color: #000000">&nbsp;org.springframework.web.servlet.ModelAndView;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">@Controller<br><img id="Codehighlighter1_321_606_Open_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_321_606_Open_Text.style.display=&#39;none&#39;; Codehighlighter1_321_606_Closed_Image.style.display=&#39;inline&#39;; Codehighlighter1_321_606_Closed_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ExpandedBlockStart.gif"><img style="display: none" id="Codehighlighter1_321_606_Closed_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_321_606_Closed_Text.style.display=&#39;none&#39;; Codehighlighter1_321_606_Open_Image.style.display=&#39;inline&#39;; Codehighlighter1_321_606_Open_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ContractedBlock.gif"></span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">class</span><span style="color: #000000">&nbsp;SpringMvcController&nbsp;</span><span style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid" id="Codehighlighter1_321_606_Closed_Text"><img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/dot.gif" alt=""></span><span id="Codehighlighter1_321_606_Open_Text"><span style="color: #000000">{<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/InBlock.gif" alt=""><br><img id="Codehighlighter1_365_383_Open_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_365_383_Open_Text.style.display=&#39;none&#39;; Codehighlighter1_365_383_Closed_Image.style.display=&#39;inline&#39;; Codehighlighter1_365_383_Closed_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ExpandedSubBlockStart.gif"><img style="display: none" id="Codehighlighter1_365_383_Closed_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_365_383_Closed_Text.style.display=&#39;none&#39;; Codehighlighter1_365_383_Open_Image.style.display=&#39;inline&#39;; Codehighlighter1_365_383_Open_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ContractedSubBlock.gif">&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping(value</span><span style="color: #000000">=</span><span style="color: #000000">"</span><span style="color: #000000">/welcome</span><span style="color: #000000">"</span><span style="color: #000000">,method</span><span style="color: #000000">=</span><span style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid" id="Codehighlighter1_365_383_Closed_Text"><img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/dot.gif" alt=""></span><span id="Codehighlighter1_365_383_Open_Text"><span style="color: #000000">{RequestMethod.GET}</span></span><span style="color: #000000">)&nbsp;<br><img id="Codehighlighter1_449_604_Open_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_449_604_Open_Text.style.display=&#39;none&#39;; Codehighlighter1_449_604_Closed_Image.style.display=&#39;inline&#39;; Codehighlighter1_449_604_Closed_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ExpandedSubBlockStart.gif"><img style="display: none" id="Codehighlighter1_449_604_Closed_Image" onclick="this.style.display=&#39;none&#39;; Codehighlighter1_449_604_Closed_Text.style.display=&#39;none&#39;; Codehighlighter1_449_604_Open_Image.style.display=&#39;inline&#39;; Codehighlighter1_449_604_Open_Text.style.display=&#39;inline&#39;;" align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ContractedSubBlock.gif">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;ModelAndView&nbsp;getFirstPage(HttpServletRequest&nbsp;request)&nbsp;</span><span style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid" id="Codehighlighter1_449_604_Closed_Text"><img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/dot.gif" alt=""></span><span id="Codehighlighter1_449_604_Open_Text"><span style="color: #000000">{<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/InBlock.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">//</span><span style="color: #008000">welcom就是视图的名称（welcom.ftl）</span><span style="color: #008000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/InBlock.gif" alt=""></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModelAndView&nbsp;mv&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;ModelAndView(</span><span style="color: #000000">"</span><span style="color: #000000">welcom</span><span style="color: #000000">"</span><span style="color: #000000">);<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/InBlock.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mv.addObject(</span><span style="color: #000000">"</span><span style="color: #000000">name</span><span style="color: #000000">"</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">My&nbsp;First&nbsp;Spring&nbsp;Mvc</span><span style="color: #000000">"</span><span style="color: #000000">);<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/InBlock.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">return</span><span style="color: #000000">&nbsp;mv;<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ExpandedSubBlockEnd.gif" alt="">&nbsp;&nbsp;&nbsp;&nbsp;}</span></span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ExpandedBlockEnd.gif" alt="">}</span></span></div>在url上敲http://localhost:8080/welcome就会到WEB-INF/view/welcom.ftl页面渲染数据<br></li><li>welcom.ftl页面
+<div style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; padding-bottom: 4px; background-color: #eeeeee; padding-left: 4px; width: 98%; padding-right: 5px; font-size: 13px; word-break: break-all; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid; padding-top: 4px"><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""><span style="color: #0000ff">&lt;!</span><span style="color: #ff00ff">DOCTYPE&nbsp;html&nbsp;PUBLIC&nbsp;"-//W3C//DTD&nbsp;HTML&nbsp;4.01&nbsp;Transitional//EN"&nbsp;"http://www.w3.org/TR/html4/loose.dtd"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">meta&nbsp;</span><span style="color: #ff0000">http-equiv</span><span style="color: #0000ff">="Content-Type"</span><span style="color: #ff0000">&nbsp;content</span><span style="color: #0000ff">="text/html;&nbsp;charset=ISO-8859-1"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">Insert&nbsp;title&nbsp;here</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">title</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">head</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt="">Hello&nbsp;${name}<br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">body</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br><img align="top" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/None.gif" alt=""></span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">html</span><span style="color: #0000ff">&gt;</span></div><br>页面出来的效果： <br><br>Hello My First Spring Mvc <br><br><br><br><br><br><br><br><br></li></ol>
+		<p class="postfoot">
+			posted on 2012-03-19 21:32 <a href="http://www.blogjava.net/paulwong/">paulwong</a> 阅读(21014) <a href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#Post">评论(3)</a> &nbsp;<a href="http://www.blogjava.net/paulwong/admin/EditPosts.aspx?postid=372220">编辑</a> &nbsp;<a href="http://www.blogjava.net/paulwong/AddToFavorite.aspx?id=372220">收藏</a>  所属分类: <a href="http://www.blogjava.net/paulwong/category/50899.html">SPRING MVC</a> 
+		</p>
+	</div>
+	<img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/372220.html" width="1" height="1">
+	
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description
+rdf:about="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html"
+dc:identifier="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html"
+dc:title="基于注解的SpringMVC+freemarker环境搭建"
+trackback:ping="http://www.blogjava.net/paulwong/services/trackbacks/372220.aspx" />
+</rdf:RDF>
+-->
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('AjaxHolder$scriptmanager1', document.getElementById('Form1'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tAjaxHolder$UpdatePanel1'], [], [], 90);
+//]]>
+</script>
+
+<div id="AjaxHolder_UpdatePanel1">
+	    
+    <a name="pagedcomment"></a>
+
+<div id="comments">
+<h3>Feedback</h3>
+	<font color="#993300" size="2"></font>
+	
+			<h4>
+				<a title="permalink: re: 基于注解的SpringMVC+freemarker环境搭建" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#400558">#</a>&nbsp;<a name="400558"></a>re: 基于注解的SpringMVC+freemarker环境搭建
+					<span>
+						2013-06-14 16:43
+					</span>
+				<a id="AjaxHolder_Comments_CommentList_ctl00_NameLink" target="_blank">zhanghd</a>
+			</h4>
+			<p>
+				 &lt;!--  Spring 容器启动监听器 --&gt;<br>    &lt;listener&gt;<br>        &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener<br>        &lt;/listener-class&gt;<br>    &lt;/listener&gt;<br><br><br> &lt;servlet&gt;<br>        &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;<br>        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet<br>        &lt;/servlet-class&gt;<br>        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;<br>    &lt;/servlet&gt;<br><br><br>这会导致spring容器启动两次, 建议只配置DispatcherServlet&nbsp;&nbsp;<a onclick="return SetReplyAuhor(&quot;zhanghd&quot;)" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=zhanghd" target="_blank">更多评论</a>
+				<a id="AjaxHolder_Comments_CommentList_ctl00_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl00$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl00_EditLink"></a>
+				
+			</p>
+		
+			<h4>
+				<a title="permalink: re: 基于注解的SpringMVC+freemarker环境搭建" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#413474">#</a>&nbsp;<a name="413474"></a>re: 基于注解的SpringMVC+freemarker环境搭建
+					<span>
+						2014-05-09 22:47
+					</span>
+				<a id="AjaxHolder_Comments_CommentList_ctl01_NameLink" href="http://www.zuidaima.com/" target="_blank">zuidaima</a>
+			</h4>
+			<p>
+				springmvc+freemarker的简单demo  <a href="http://www.zuidaima.com/share/1550463645682688.htm" target="_new" rel="nofollow">http://www.zuidaima.com/share/1550463645682688.htm</a>&nbsp;&nbsp;<a onclick="return SetReplyAuhor(&quot;zuidaima&quot;)" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=zuidaima" target="_blank">更多评论</a>
+				<a id="AjaxHolder_Comments_CommentList_ctl01_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl01$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl01_EditLink"></a>
+				
+			</p>
+		
+			<h4>
+				<a title="permalink: re: 基于注解的SpringMVC+freemarker环境搭建[未登录]" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#415899">#</a>&nbsp;<a name="415899"></a>re: 基于注解的SpringMVC+freemarker环境搭建[未登录]<a name="Post"></a>
+					<span>
+						2014-07-16 15:52
+					</span>
+				<a id="AjaxHolder_Comments_CommentList_ctl02_NameLink" target="_blank">xx</a>
+			</h4>
+			<p>
+				很棒&nbsp;&nbsp;<a onclick="return SetReplyAuhor(&quot;xx&quot;)" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=xx" target="_blank">更多评论</a>
+				<a id="AjaxHolder_Comments_CommentList_ctl02_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl02$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl02_EditLink"></a>
+				
+			</p>
+		
+<br>
+</div>
+<style>
+td { font-size: 12px }
+.commentTextBox 
+{ 
+    font-family : Verdana; 
+    font-size: 13px;
+ }
+</style>
+<!--Beging Temp Save-->
+<style>.userData { BEHAVIOR: url(#default#userdata) }
+	</style>
+<div class="userData" id="CommentsPersistDiv"></div>
+
+<script type="text/javascript">
+function pageLoad()
+{
+    Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(handleInitializeRequest);
+    //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(handleEndRequest);
+}
+
+function handleInitializeRequest(sender, args)
+{
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    var eid = args.get_postBackElement().id;
+    if (eid.indexOf("DeleteLink")>0) 
+    {
+       args.get_postBackElement().innerHTML = "<font color='red'>正在删除...</font>";         
+    }    
+    else if (eid.indexOf("btnSubmit")>0) 
+    {
+       document.getElementById("AjaxHolder_PostComment_ltSubmitMsg").innerHTML="正在提交...";
+       document.getElementById("AjaxHolder_PostComment_btnSubmit").disabled = true;       
+    }   
+    else if(eid.indexOf("refreshList")>0)
+    {
+        document.getElementById("AjaxHolder_PostComment_refreshList").innerHTML="<font color='red'>正在刷新...</font>";
+    }
+   
+}	
+
+function TempSave(ElementID)
+{
+	try
+	{
+	CommentsPersistDiv.setAttribute("CommentContent",document.getElementById(ElementID).value);
+	CommentsPersistDiv.save("CommentXMLStore");
+	}
+	catch(ex)
+	{
+	}
+	
+}
+function Restore(ElementID)
+{
+	CommentsPersistDiv.load("CommentXMLStore");
+	document.getElementById(ElementID).value=CommentsPersistDiv.getAttribute("CommentContent");
+}	
+			
+			
+</script>
+<!--Ene TempSave-->
+<div id="divRefreshComments" style="text-align:right;margin-right:10px;margin-bottom:5px;font-size:12px"><a href="http://www.blogjava.net/RequireRegister.aspx">新用户注册</a>&nbsp;&nbsp;<a id="AjaxHolder_PostComment_refreshList" href="javascript:__doPostBack('AjaxHolder$PostComment$refreshList','')">刷新评论列表</a>&nbsp;&nbsp;</div>
+<div class="commentform">
+<span id="AjaxHolder_PostComment_ltSubmitMsg" style="color:Red;"></span>
+<br>
+<a name="Feedback"></a>
+	<div id="AjaxHolder_PostComment_divCommnentArea">
+		</div><table cellspacing="1" cellpadding="1" border="0">	
+		<tbody><tr>
+		<td id="AjaxHolder_PostComment_tdOnCommentForm" colspan="3" style="line-height:1.5">		
+		</td>
+	
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td width="75"></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+			<a href="http://job.cnblogs.com/" target="_blank">找优秀程序员，就在博客园</a>
+			<!--<a href="http://www.cnblogs.com" target="_blank">博客园</a>&nbsp;  <a href="http://q.cnblogs.com/" target="_blank">博问</a>&nbsp; <a href="http://news.cnblogs.com" target="_blank">IT新闻</a>&nbsp; <a href="http://job.cnblogs.com/cate-java_programmer/" target="_blank">Java程序员招聘</a>-->
+			</td>
+		</tr>
+		<tr>
+			<td width="55">标题</td>
+			<td><input name="AjaxHolder$PostComment$tbTitle" type="text" value="re: 基于注解的SpringMVC+freemarker环境搭建" id="AjaxHolder_PostComment_tbTitle" class="commenttb" style="width:320"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator1" style="color:Red;visibility:hidden;">请输入标题</span></td>
+		</tr>
+		<tr>
+			<td>姓名</td>
+			<td><input name="AjaxHolder$PostComment$tbName" type="text" id="AjaxHolder_PostComment_tbName" class="commenttb" style="width:320"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入你的姓名</span></td>
+		</tr>
+		<tr>
+			<td>主页</td>
+			<td><input name="AjaxHolder$PostComment$tbUrl" type="text" id="AjaxHolder_PostComment_tbUrl" class="commenttb" style="width:320"></td>
+			<td><font face="宋体"></font></td>
+		</tr>
+		<tr>
+			<td align="left" colspan="3">
+				<table id="AjaxHolder_PostComment_tbCaptchaImage" class="CommentForm" cellspacing="0" cellpadding="0" border="0">
+		<tbody><tr>
+			<td colspan="3">
+							<span id="AjaxHolder_PostComment_Requiredfieldvalidator4" style="color:Red;display:none;">请输入验证码</span>
+							<span id="AjaxHolder_PostComment_lblImage" style="color:Red;font-weight:bold;"></span>
+						</td>
+		</tr>
+		<tr>
+			<td width="78">验证码</td>
+			<td><input name="AjaxHolder$PostComment$CodeNumberTextBox" type="text" id="AjaxHolder_PostComment_CodeNumberTextBox">*&nbsp;&nbsp;<img src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/JpegImage.aspx"></td>
+			<td align="left"></td>
+		</tr>
+	</tbody></table>
+	
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">内容(请不要发表任何与政治相关的内容)
+				<span id="AjaxHolder_PostComment_RequiredFieldValidator3" style="color:Red;visibility:hidden;">请输入评论内容</span><br>
+				<textarea name="AjaxHolder$PostComment$tbComment" rows="10" cols="50" id="AjaxHolder_PostComment_tbComment" class="commentTextBox" onkeydown="ctlent(event,&#39;AjaxHolder_PostComment_tbComment&#39;)" style="Width:480;Height:220"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+		<span id="AjaxHolder_PostComment_Message" style="color:Red;"></span>
+		</td>
+		</tr><tr>
+			<td colspan="3"><input id="AjaxHolder_PostComment_chkRemember" type="checkbox" name="AjaxHolder$PostComment$chkRemember" checked="checked" tabindex="-1"><label for="AjaxHolder_PostComment_chkRemember">Remember Me?</label></td>
+		</tr>
+		<tr>
+			<td height="23"><input type="submit" name="AjaxHolder$PostComment$btnSubmit" value="提交" onclick="TempSave(&#39;AjaxHolder_PostComment_tbComment&#39;);WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;AjaxHolder$PostComment$btnSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="AjaxHolder_PostComment_btnSubmit" class="commentButton">
+				</td>
+			<td colspan="2" height="23">&nbsp;
+				<a id="AjaxHolder_PostComment_lnkLogin" href="http://www.blogjava.net/login.aspx?ReturnURL=http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html&SourceURL=/paulwong/archive/2012/03/19/372220.html">登录</a>&nbsp;&nbsp;<!--<a id="AjaxHolder_PostComment_linkLoginComment" OnClick="if(document.getElementById('AjaxHolder_PostComment_tbComment').value != '') return confirm('未提交的评论内容将会丢失, 你真的要进入高级评论吗?');" href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html?login=1#Post">使用高级评论</a>&nbsp;&nbsp;<a href="http://www.blogjava.net/RequireRegister.aspx">新用户注册</a>&nbsp;&nbsp;<A href="#Top">返回页首</A>&nbsp;&nbsp;<a id="AjaxHolder_PostComment_lbRestore" OnClick="Restore('AjaxHolder_PostComment_tbComment'); return false;" href="/paulwong/archive/2012/03/19/372220.html#Post">恢复上次提交</a>&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+		</tr>
+		<tr>
+			<td colspan="3"><label class="CtrlEnter">[使用Ctrl+Enter键可以直接提交]</label></td>
+		</tr>
+		
+		
+		<tr>
+			<td colspan="3"><!----></td>
+		</tr>
+		<!--
+		<TR>
+			<TD colSpan="3" height="5"></TD>
+		</TR>	
+		-->	
+		<tr>
+		<td colspan="3">
+		
+<script type="text/javascript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1090369/blogjava_blogpost_bottom', [300, 250], 'div-gpt-ad-1364133350381-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<!-- blogjava_blogpost_bottom -->
+<div id="div-gpt-ad-1364133350381-0" style="width:300px; height:250px;">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1364133350381-0'); });
+</script>
+<div id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0" name="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom;"></iframe></div><iframe id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__hidden__" name="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="javascript:"<html><body style='background:transparent'></body></html>"" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;"></iframe></div>
+<br>
+
+		</td>
+		</tr>
+		<tr>			
+		<td colspan="3">
+		
+		</td>
+		</tr>
+		<tr>
+		<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td colspan="3" height="1">网站导航:<div id="blogsite">
+			<a href="http://www.cnblogs.com/" title="开发者的网上家园">博客园</a>&nbsp;&nbsp;
+			<a href="http://news.cnblogs.com/">IT新闻</a>&nbsp;&nbsp;
+			<a href="http://kb.cnblogs.com/">知识库</a>&nbsp;&nbsp;
+			<a href="http://www.cppblog.com/">C++博客</a>&nbsp;&nbsp;
+			<a href="http://job.cnblogs.com/">程序员招聘</a>&nbsp;&nbsp;
+			<a href="http://www.blogjava.net/paulwong/archive/2012/03/19/372220.html?opt=admin">管理</a>
+			</div>
+		</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5">
+<div id="divRelativePosts">
+相关文章:
+	
+			<ul style="margin-top:0px;padding-left:0px;">
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl01_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2014/10/29/419177.html">springMVC 文件下载</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl02_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2014/08/19/417090.html">Spring对HttpSession的重新封闭</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl03_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2014/07/09/415635.html">Spring Data REST，Spring MVC的REST扩展</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl04_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2013/11/24/406757.html">基于springMVC+springSecurity3.x+Mybaits3.x的权限系统</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl05_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2013/11/11/406213.html">SPRING各种例子</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl06_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2013/11/11/406209.html">SPRINGMVC增加LOGBACK</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl07_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/05/18/378452.html">spring3MVC+JSON</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl08_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/03/29/373004.html">开始Spring MVC</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl09_Hyperlink1" href="http://www.blogjava.net/paulwong/archive/2012/03/23/372564.html">Spring MVC 的请求参数获取的几种方法</a>
+			</li>
+		
+			<li style="list-style:none;display:none">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl10_Hyperlink1" href="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava.html">基于注解的SpringMVC+freemarker环境搭建</a>
+			</li>
+		
+			</ul>
+		
+</div>
+</td>
+		</tr>	
+		<tr>
+			<td colspan="3">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5"></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				</td>
+		</tr>		
+	</tbody></table>	
+</div>
+<div id="AjaxHolder_PostComment_ValidationSummary1" style="color:Red;display:none;">
+
+	</div>
+
+</div>
+
+				
+</div>
+
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.blogjava.net/" style="font-family:Verdana;font-size:12px;">BlogJava</a>
+	<br>
+	Copyright © paulwong
+</p>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("AjaxHolder_PostComment_ValidationSummary1"));
+var Page_Validators =  new Array(document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2"), document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var AjaxHolder_PostComment_RequiredFieldValidator1 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator1"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1");
+AjaxHolder_PostComment_RequiredFieldValidator1.controltovalidate = "AjaxHolder_PostComment_tbTitle";
+AjaxHolder_PostComment_RequiredFieldValidator1.errormessage = "请输入标题";
+AjaxHolder_PostComment_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator1.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator2 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator2"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2");
+AjaxHolder_PostComment_RequiredFieldValidator2.controltovalidate = "AjaxHolder_PostComment_tbName";
+AjaxHolder_PostComment_RequiredFieldValidator2.errormessage = "请输入你的姓名";
+AjaxHolder_PostComment_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator2.initialvalue = "";
+var AjaxHolder_PostComment_Requiredfieldvalidator4 = document.all ? document.all["AjaxHolder_PostComment_Requiredfieldvalidator4"] : document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4");
+AjaxHolder_PostComment_Requiredfieldvalidator4.controltovalidate = "AjaxHolder_PostComment_CodeNumberTextBox";
+AjaxHolder_PostComment_Requiredfieldvalidator4.errormessage = "请输入验证码";
+AjaxHolder_PostComment_Requiredfieldvalidator4.display = "Dynamic";
+AjaxHolder_PostComment_Requiredfieldvalidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_Requiredfieldvalidator4.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator3 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator3"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3");
+AjaxHolder_PostComment_RequiredFieldValidator3.controltovalidate = "AjaxHolder_PostComment_tbComment";
+AjaxHolder_PostComment_RequiredFieldValidator3.errormessage = "请输入评论内容";
+AjaxHolder_PostComment_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator3.initialvalue = "";
+var AjaxHolder_PostComment_ValidationSummary1 = document.all ? document.all["AjaxHolder_PostComment_ValidationSummary1"] : document.getElementById("AjaxHolder_PostComment_ValidationSummary1");
+AjaxHolder_PostComment_ValidationSummary1.showmessagebox = "True";
+AjaxHolder_PostComment_ValidationSummary1.showsummary = "False";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('AjaxHolder_PostComment_ValidationSummary1').dispose = function() {
+    Array.remove(Page_ValidationSummaries, document.getElementById('AjaxHolder_PostComment_ValidationSummary1'));
+}
+Sys.Application.initialize();
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2'));
+}
+
+document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3'));
+}
+//]]>
+</script>
+</form>
+    <script type="text/javascript" src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/ShowHidden.js"></script>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-476124-3']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script><iframe src="./基于注解的SpringMVC+freemarker环境搭建 - paulwong - BlogJava_files/container.html" style="visibility: hidden; display: none;"></iframe>
+
+
+<iframe id="google_osd_static_frame_9746379982680" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>

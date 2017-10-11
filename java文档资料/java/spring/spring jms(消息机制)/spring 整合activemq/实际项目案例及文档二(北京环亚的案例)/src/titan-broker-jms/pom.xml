@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bjhy</groupId>
+		<artifactId>titan-parent</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>titan-broker-jms</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-broker</artifactId>
+			<version>5.13.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.msgpack</groupId>
+			<artifactId>msgpack</artifactId>
+			<version>0.6.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-container-boot</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+  			<groupId>org.apache.ant</groupId>
+  			<artifactId>ant</artifactId>
+  			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-ui</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-persist</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-biz-commons</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-util</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+          <groupId>com.dyuproject.protostuff</groupId>
+          <artifactId>protostuff-runtime</artifactId>
+         <version>1.0.8</version>
+        </dependency>
+        <dependency>
+			<groupId>com.bjhy</groupId>
+			<artifactId>platform-security</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+        <dependency>
+    		<groupId>com.dyuproject.protostuff</groupId>
+    		<artifactId>protostuff-core</artifactId>
+    		<version>1.0.8</version>
+		</dependency>
+		
+	</dependencies>
+
+</project>

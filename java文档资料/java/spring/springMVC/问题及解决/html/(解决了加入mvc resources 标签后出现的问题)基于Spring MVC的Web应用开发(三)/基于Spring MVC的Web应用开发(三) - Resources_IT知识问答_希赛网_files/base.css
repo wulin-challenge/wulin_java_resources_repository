@@ -1,0 +1,118 @@
+@charset "utf-8";
+/**  全局样式  **/
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form,p,input, select, button, textarea, iframe, table, th, td { margin: 0; padding: 0; }
+img { border: 0 none; vertical-align: top; }
+ul, li { list-style-type: none; }
+h1, h2, h3, h4, h5, h6 { font-size: 14px; }
+body, input, select, button, textarea { font-size: 12px; font-family:"微软雅黑"; }
+button { cursor: pointer; }
+i, em, cite { font-style: normal; }
+body {background:#fff; color: #222; line-height: 1.2; }
+a, a:link { color: #222; text-decoration: none; }
+a:visited {}
+a:active, a:hover {text-decoration: underline;color:#333;}
+a:focus { outline: none; }
+.fixed:after { content: "."; display: block; clear: both; height: 0; visibility: hidden; }
+.fixed { display: block; min-height: 1%; }
+*html .fixed { height: 1%; }
+.more { float: right; }
+.more a { font-weight: normal; font-size: 12px; }
+.fl, .fr { display: inline; float: left; }
+.fr { float: right; }
+.clear{clear:both}
+.hidden{display:none;}
+.h10{overflow:hidden;clear:both;width:100%;height:10px; line-height:10px; font-size:0px;}
+.h20{overflow:hidden;clear:both;width:100%;height:20px;}
+.h25{overflow:hidden;clear:both;width:100%;height:25px;}
+.width980{width:980px;margin:0 auto;clear:both;}
+
+/** 功能条 **/
+.ty_nav{height:30px;font-family:微软雅黑;font-size:12px;background:url(../images//rk_tpbac.png) repeat-x}
+.ty_navleft{padding-top:0px;line-height:30px;color:#878787;width:380px}
+.ty_navleft a{color:#878787}
+.ty_navleft a:hover{color:#878787}
+.ty_navmid{padding-top:6px;width: auto}
+.ty_navright{padding-top: 0px; line-height: 30px; color:#878787; width:auto}
+.ty_navright a{color:#878787}
+.ty_navright a:hover{color:#878787}
+.z_logo{width:320px;height:69px;padding:0px 2px 0px 2px}
+.header_icon{width:210px;}
+.header_icon dl{float:left;width:55px;padding-left:14px}
+.header_icon dt{padding-top:20px;text-align:center;}
+.header_icon dd{width:55px;text-align:center;padding-top:6px;font-family:微软雅黑;}
+.header_icon dd a{color:#333;}
+.menu_bg{width:100%;height:36px;background:url(../images/menu_bg.png) repeat-x;}
+.menu{width:980px;margin:0 auto;position:relative;}
+.menu ul{}
+.menu li{float:left;height:36px;line-height:36px;padding:0 15px;font-size:15px;font-family:"微软雅黑";}
+.menu li a{color:#FFF}
+.menu li a:hover{color:#FFF}
+.downer{background:url(../images/menu_san.gif) no-repeat right center;padding-right:10px;}
+
+/**搜索**/
+.search{width:367px;padding:22px 0 0 30px;}
+.search_list{position:relative;z-index:100;width:55px;height:30px;line-height:30px;background:#fcfcfc;border-bottom:1px solid #dcdcdc;border-top:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-right:1px solid #dcdcdc;}
+.classlistt{z-index:101;width:57px;height:30px;line-height:30px;background:#fcfcfc;}
+.classlistt .lis{ cursor:pointer;border:1px solid #dcdcdc;background:#fff;border-bottom:none; border-top:none;text-align:center; line-height:26px; height:26px;}
+.classlistt .lis:hover{ background:#f1f1f1;}
+.classlistt ul{border-bottom:1px solid #d2d2d2;}
+.dimg{padding-left:13px;background:url(http://www.educity.cn/images/search_more.gif) no-repeat 42px center;cursor:pointer;}
+.ser_input{float:left;width:240px;height:30px;line-height:30px;padding:0 3px;border:1px solid #dcdcdc;border-right:none; outline:none; padding-left:5px;color:#333;}
+.inputnone{width:61px;height:32px;background:url(http://www.educity.cn/images/search_sprite.png) no-repeat;border:0; outline:none;margin-left:-1px}
+.inputnone:hover{background:url(http://www.educity.cn/images/search_sprite.png) no-repeat 0 -52px;}
+
+/** 下拉分类 **/
+.sidelist{height:36px;width:120px;z-index:0;background:#0e95cd;}
+.sidelist h3{position:relative;z-index:3;width:120px;font-family:"微软雅黑";text-align:center;}
+.i-list{left:0px;top:36px;display:none;}/*position:absolute;z-index:9999;width:980px;*/
+.i-list_bg{background:#ffffff;border:2px solid #0aaff3;border-top:0px}/*width:978px;*/
+
+.hover{background:#0e95cd;height:36px;}
+.scrollcontent_c{padding:0 12px;}
+.i_list_title{width:952px;}
+.i_list_title ul{width:952px;float:left}
+.i_list_title li{width:80px;height:26px;text-align:center;font-weight:bold;cursor:pointer;line-height:22px;font-size:13px;padding:0px;display:block}
+.i_list_title ul a{display:block;padding:0px;float:left;height:26px;width:80px;line-height:22px;text-align:center;overflow:hidden;text-decoration:none;}
+.i_list_title ul a:hover{text-decoration:none;}
+.class01{background:url(../images/k_wsdn2.png) no-repeat;color:#fff;}
+.class02{color:#333;}
+.i_list_content{}
+.i_list_content ul{clear:both;width:964px;}
+.i_list_content li{float:left;width:auto;height:15px;line-height:15px;margin-top:10px;padding:0px;color:#00a000;font-weight:normal;border-right:1px solid #CCC;font-size:12px;white-space: nowrap;}
+.i_list_content li a{color:#333;padding:0 10px;height:15px;}
+.i_list_content li a:hover{color:#ff6600;text-decoration:underline;background:none}
+
+/******** 主体 START*******/
+.bd{ width:980px; margin:0 auto; overflow:hidden; clear:both; margin-top:5px}
+.fg{ margin-top:15px}
+
+.lm{ border:1px solid #CCC}
+.lm ul{ padding:0 8px 8px 8px}
+.lm strong{ background-color:#EEE; padding:8px 8px; display: block;}
+.lm .head{ height: 20px; font-size:100; font-weight: bold ;}
+.lm .head span{ text-align:center}
+.lm li{ margin:5px auto}
+
+.zxwt{ }
+.zxwt span{ display:inline-block; width:80px; text-align:center}
+.zxwt .title{ width:180px;}
+
+.zjtj{ width:270px}
+.zjtj span{ display:inline-block; width:80px; text-align:center}
+.zjtj .btn-tw{ display:inline-block; padding:3px 7px; border:1px solid #aaa}
+
+.syph{ width:180px;}
+.syph  span{ display:inline-block; width:80px; text-align:center}
+
+/******** 主体 END*******/
+
+.leftmenu{ position:absolute; left:0px; width:117px;background:#fcfcfc; z-index:9999; border:2px solid #00baff; border-top:none;}/*top:42px;*/
+.leftmenu a{font-size:14px; color:#0b88d4;}
+.leftmenu .side_menus span{ z-index:9999; clear:both; width:104px;border-bottom:1px dotted #e4e4e4;}
+.leftmenu .side_menus span a{ color:#696969; padding-left:5px; padding-right:5px; width:100px; text-align:center; line-height:30px; height:30px; overflow:hidden;border-bottom:1px solid #FFF;display:block;}
+.leftmenu .side_menus span a:hover{background:none;}
+.leftmenu .side_menus span.hover{  z-index:9999;position:relative; width:108px;border:1px solid #0b88d4;border-right:0;display:inline-block;background:#FFF;height:32px;}
+.leftmenu .menus_con{ display:none; padding:20px 5px 15px; z-index:999;position:absolute; left:108px; top:0px; width:858px;border:1px solid #0b88d4; background:#FFF;}
+.leftmenu .side_menus{ position:relative;line-height:32px;height:32px;padding:0px;}
+.leftmenu .side_menus .menus_con a{ color:#696969;line-height:16px; height:16px; overflow:hidden; margin-bottom:6px; border-right:1px solid #f2f2f2;display:block;float:left;padding:0 15px;}
+.leftmenu .side_menus .menus_con a:hover{background:none;}

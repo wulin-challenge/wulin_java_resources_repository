@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- SQL dialect -->
+	<property name="dialect">
+		org.hibernate.dialect.Oracle10gDialect
+	</property>
+	<property name="current_session_context_class">thread</property>
+	<property name="cache.provider_class">
+		org.hibernate.cache.NoCacheProvider
+	</property>
+
+	<property name="show_sql">true</property>
+	<property name="hbm2ddl.auto">update</property>
+	<!-- 这个语句主要是用在oracle数据库上 -->
+	<property name="default_schema">Ext4Book</property>
+	
+
+	<mapping resource="cn/wulin/domain/User.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Department.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Type.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Test.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Address.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Article.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Author.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Tree.hbm.xml" />
+	<mapping resource="cn/wulin/domain/Apple.hbm.xml" />
+
+</session-factory>
+
+</hibernate-configuration>

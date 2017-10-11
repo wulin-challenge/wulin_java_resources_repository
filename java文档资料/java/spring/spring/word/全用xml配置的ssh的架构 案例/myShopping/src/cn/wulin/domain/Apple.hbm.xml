@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.wulin.domain.Apple" table="t_apple">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="text"></property>	
+		<property name="leaf"></property>
+		<!-- parent,本类与Department是多对一的关系 -->
+		<many-to-one name="parent" column="parentId" class="cn.wulin.domain.Apple"></many-to-one>
+		<!-- deptSet,本类与Department是一对多的关系 -->
+		<set name="children">
+			<key column="parentId"></key>
+			<one-to-many class="cn.wulin.domain.Apple" />
+		</set>
+		<!-- tree,本类与Tree是一对一的关系 -->
+		<many-to-one name="tree" unique="true" class="cn.wulin.domain.Tree" column="treeId">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

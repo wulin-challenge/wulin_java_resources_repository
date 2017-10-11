@@ -1,0 +1,1 @@
+document.write("<a href='http://www.educity.cn/usercenter/login.aspx?page=http%3a%2f%2fwww.educity.cn%2fwenda%2f117654.html' target='_parent'>µÇÂ¼</a>&nbsp;&nbsp;<a href='http://www.educity.cn/usercenter/' target='_parent'>ÎÒµÄÏ£Èü</a>&nbsp;&nbsp;<a href='http://www.educity.cn/usercenter/user_reg.aspx' target='_blank'>×¢²á</a>");

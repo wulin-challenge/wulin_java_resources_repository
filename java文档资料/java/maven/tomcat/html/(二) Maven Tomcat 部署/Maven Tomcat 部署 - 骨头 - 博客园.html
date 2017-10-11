@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0062)http://www.cnblogs.com/warrior/archive/2012/07/24/2607197.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" type="text/javascript" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/ca-pub-4210569241504288.js"></script><script async="" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/analytics.js"></script>
+
+<title>Maven Tomcat 部署 - 骨头 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Maven Tomcat 部署 - 骨头 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Maven Tomcat 部署 - 骨头 - 博客园_files/bundle-coffee.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/warrior/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/warrior/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/warrior/wlwmanifest.xml">
+<script type="text/javascript" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/encoder.js"></script><script src="./Maven Tomcat 部署 - 骨头 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'warrior', cb_enable_mathjax=false;</script>
+<script src="./Maven Tomcat 部署 - 骨头 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/warrior/"><img id="blogLogo" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/warrior/">骨头</a></h1>
+<h2>为写出优雅的代码而不断努力</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<!--done-->
+			<ul id="navList">
+				<li></li>
+				<li><a id="MyLinks1_IngLink" class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+				<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/warrior/">首页</a></li>
+				<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E9%AA%A8%E5%A4%B4">联系</a></li>
+				<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+				<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/warrior/rss">订阅</a>
+				<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/warrior/rss"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/xml.gif" alt="订阅"></a></li>
+			</ul>
+
+
+			<div class="blogStats">
+				
+				
+<!--done-->
+随笔- 58&nbsp;
+文章- 3&nbsp;
+评论- 12&nbsp;
+
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./Maven Tomcat 部署 - 骨头 - 博客园_files/Maven Tomcat 部署 - 骨头 - 博客园.html">Maven Tomcat 部署</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>Tomcat conf 下的tomcat-users.xml 增加</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">role </span><span style="color: #ff0000;">rolename</span><span style="color: #0000ff;">="manager"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">role </span><span style="color: #ff0000;">rolename</span><span style="color: #0000ff;">="admin"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">role </span><span style="color: #ff0000;">rolename</span><span style="color: #0000ff;">="manager-gui"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">user </span><span style="color: #ff0000;">username </span><span style="color: #0000ff;">= "admin"</span><span style="color: #ff0000;"> password </span><span style="color: #0000ff;">= "password"</span><span style="color: #ff0000;"> roles </span><span style="color: #0000ff;">= "admin,manager,manager-gui,manager-script,manager-jmx,manager-status"</span> <span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<p><span>启动tomcat7，然后访问&nbsp;</span><a href="http://localhost:8080/manager/html" target="_blank">http://localhost:8080/manager/html</a><span>，输入admin/password，如果出现以下界面，表示tomcat一切OK</span></p>
+<p><span>如果是Tomcat6&nbsp;<a href="http://localhost:8080/manager/html" target="_blank">http://localhost:8080/manager</a></span></p>
+<p><span>在Maven的conf目录中的setting.xml&nbsp;servers节点增加</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">server</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">id</span><span style="color: #0000ff;">&gt;</span>healthpad<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">id</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">username</span><span style="color: #0000ff;">&gt;</span>admin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">username</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">password</span><span style="color: #0000ff;">&gt;</span>password<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">password</span><span style="color: #0000ff;">&gt;</span>  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">server</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>修改pom.xml</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">plugin</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">artifactId</span><span style="color: #0000ff;">&gt;</span>maven-war-plugin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">artifactId</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">version</span><span style="color: #0000ff;">&gt;</span>2.1.1<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">version</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">packagingExcludes</span><span style="color: #0000ff;">&gt;</span>WEB-INF/web.xml<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">packagingExcludes</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">plugin</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">plugin</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">groupId</span><span style="color: #0000ff;">&gt;</span>org.codehaus.mojo<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">groupId</span><span style="color: #0000ff;">&gt;</span> 
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">artifactId</span><span style="color: #0000ff;">&gt;</span>tomcat-maven-plugin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">artifactId</span><span style="color: #0000ff;">&gt;</span> 
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">version</span><span style="color: #0000ff;">&gt;</span>1.1<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">version</span><span style="color: #0000ff;">&gt;</span> 
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">url</span><span style="color: #0000ff;">&gt;</span>http://localhost:8080/manager/html<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">url</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">server</span><span style="color: #0000ff;">&gt;</span>healthpad<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">server</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">username</span><span style="color: #0000ff;">&gt;</span>admin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">username</span><span style="color: #0000ff;">&gt;</span>  
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">password</span><span style="color: #0000ff;">&gt;</span>password<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">password</span><span style="color: #0000ff;">&gt;</span>  
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>    
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">plugin</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>Tomcat6 在Url中输入&nbsp;http://localhost:8080/manager</p>
+<p>右击Java项目，运行 输入&nbsp;<span>在Goals中添加：package tomcat:redeploy</span></p>
+<p>异常解决</p>
+<pre class="default prettyprint"><code><span class="typ">Failed</span><span class="pln"> to execute goal org</span><span class="pun">.</span><span class="pln">codehaus</span><span class="pun">.</span><span class="pln">mojo</span><span class="pun">:</span><span class="pln">tomcat</span><span class="pun">-</span><span class="pln">maven</span><span class="pun">-</span><span class="pln">plugin</span><span class="pun">:</span><span class="lit">1.1</span><span class="pun">:</span><span class="pln">deploy </span><span class="pun">(</span><span class="kwd">default</span><span class="pun">-</span><span class="pln">cli</span><span class="pun">)</span><span class="pln"> on project healthpad</span><span class="pun">:</span><span class="typ">Cannot</span><span class="pln"> invoke </span><span class="typ">Tomcat</span><span class="pln"> manager</span><span class="pun">:</span><span class="typ">Server</span><span class="pln"> returned HTTP response code</span><span class="pun">:</span><span class="lit">401</span><span class="kwd">for</span><span class="pln"> URL</span><span class="pun">:</span><span class="pln"> http</span><span class="pun">:</span><span class="com">//localhost:8080/manager/html/deploy?path=%2FmkyWebApp&amp;war= -&gt; [Help 1]<br>这种问题在 pom.xml中增加 username password<br></span></code></pre>
+<p>&lt;configuration&gt;<br>	　　&lt;url&gt;http://localhost:8080/manager/html&lt;/url&gt;<br>	　　&lt;server&gt;healthpad&lt;/server&gt;<br>	　　&lt;username&gt;admin&lt;/username&gt;  <br>	　　&lt;password&gt;password&lt;/password&gt;  <br>&lt;/configuration&gt;</p>
+<p>&nbsp;</p>
+<pre class="default prettyprint"><code><span class="com">如果是403，请手工在浏览器中访问</span></code></pre>
+<pre class="default prettyprint"><code><span class="pln">http</span><span class="pun">:</span><span class="com">//localhost:8080/manager/html/deploy  调整 tomcat下的tomcat-users.xml 角色权限</span></code></pre>
+<p><span>&nbsp;</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/warrior/category/328812.html">Java</a>, <a href="http://www.cnblogs.com/warrior/category/378661.html">Maven</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/warrior/tag/Java/">Java</a>, <a href="http://www.cnblogs.com/warrior/tag/Maven/">Maven</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2607197,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E9%AA%A8%E5%A4%B4" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/warrior/" target="_blank"><img src="./Maven Tomcat 部署 - 骨头 - 博客园_files/u40308.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/warrior/">骨头</a><br>
+<a href="http://home.cnblogs.com/u/warrior/followees">关注 - 7</a><br>
+<a href="http://home.cnblogs.com/u/warrior/followers">粉丝 - 7</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2607197,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(2607197,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/warrior/archive/2012/07/06/2580122.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/warrior/archive/2012/07/06/2580122.html" title="发布于2012-07-06 23:06">求指导，android 前后台通讯时VO的疑惑</a><br><a href="http://www.cnblogs.com/warrior/archive/2012/08/16/2642418.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/warrior/archive/2012/08/16/2642418.html" title="发布于2012-08-16 15:22">Mvc4 web-Api Json 序列化，日期Java解析失败的解决方法</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-07-24 20:58</span> <a href="http://www.cnblogs.com/warrior/">骨头</a> 阅读(<span id="post_view_count">6387</span>) 评论(<span id="post_comment_count">0</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2607197" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/warrior/archive/2012/07/24/2607197.html#" onclick="AddToWz(2607197);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=43886,cb_entryId=2607197,cb_blogApp=currentBlogApp,cb_blogUserGuid='48f2460b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2012/7/24 20:58:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/warrior/archive/2012/07/24/2607197.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/warrior/archive/2012/07/24/2607197.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－专注为 App 开发者提供IM云服务</a><br><a href="https://www.jpush.cn/" target="_blank">【福利】极光推送-富媒体+大数据驱动精准推送，完全免费开放啦</a><br></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&utm_medium=blogpage&utm_term=bottom&utm_content=AR&utm_campaign=community" target="_blank"><img width="300" height="250" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/24442-20151030141346279-2034275742.gif" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/532605/" target="_blank">微软Windows 10迎来首次重大更新</a><br> ·  <a href="http://news.cnblogs.com/n/532603/" target="_blank">华为终端自省度过焦虑期 下一步着手智慧手机</a><br> ·  <a href="http://news.cnblogs.com/n/532602/" target="_blank">YouTube开辟副业：发行包月付费音乐独立APP</a><br> ·  <a href="http://news.cnblogs.com/n/532601/" target="_blank">39光年外发现超级金星：表面温度可把水烧开</a><br> ·  <a href="http://news.cnblogs.com/n/532600/" target="_blank">谷歌手机被曝存在缺陷：一掰就弯</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://e.jikexueyuan.com/python.html?hmsr=cnb_banner_python_09.14" target="_blank"><img width="468" height="60" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/24442-20150914101340023-1721833902.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/532236/" target="_blank">被误解的MVC和被神化的MVVM</a><br> ·  <a href="http://kb.cnblogs.com/page/530046/" target="_blank">再谈设计和编码</a><br> ·  <a href="http://kb.cnblogs.com/page/531270/" target="_blank">什么时候应该避免写代码注释？</a><br> ·  <a href="http://kb.cnblogs.com/page/529677/" target="_blank">持续集成是什么？</a><br> ·  <a href="http://kb.cnblogs.com/page/530389/" target="_blank">人，技术与流程</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="google_ad_c3" class="c_ad_block">
+    <script async="" src="./Maven Tomcat 部署 - 骨头 - 博客园_files/adsbygoogle.js"></script>
+<!-- C3_BlogPost -->
+<ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-4210569241504288" data-ad-slot="3239908880" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/06/01&#39;);return false;">&lt;</a></td><td align="center">2012年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center"><a href="http://www.cnblogs.com/warrior/archive/2012/07/05.html"><u>5</u></a></td><td align="center"><a href="http://www.cnblogs.com/warrior/archive/2012/07/06.html"><u>6</u></a></td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center"><a href="http://www.cnblogs.com/warrior/archive/2012/07/24.html"><u>24</u></a></td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/warrior/tag/Flex/">Flex</a>(10)</li><li><a href="http://www.cnblogs.com/warrior/tag/Java/">Java</a>(8)</li><li><a href="http://www.cnblogs.com/warrior/tag/Android/">Android</a>(5)</li><li><a href="http://www.cnblogs.com/warrior/tag/IOS/">IOS</a>(5)</li><li><a href="http://www.cnblogs.com/warrior/tag/Maven/">Maven</a>(4)</li><li><a href="http://www.cnblogs.com/warrior/tag/Asp.net/">Asp.net</a>(2)</li><li><a href="http://www.cnblogs.com/warrior/tag/Linux/">Linux</a>(2)</li><li><a href="http://www.cnblogs.com/warrior/tag/SQL/">SQL</a>(2)</li><li><a href="http://www.cnblogs.com/warrior/tag/%E7%AE%97%E6%B3%95/">算法</a>(1)</li><li><a href="http://www.cnblogs.com/warrior/tag/PostgreSQl/">PostgreSQl</a>(1)</li><li><a href="http://www.cnblogs.com/warrior/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(72)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/warrior/category/368512.html">Android(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/warrior/category/328813.html">ASP.NET(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/warrior/category/195232.html">C#(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/warrior/category/249615.html">Flex(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/warrior/category/542717.html">Golang(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/warrior/category/514752.html">Ios(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/warrior/category/328812.html">Java(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/warrior/category/227024.html">Javascript(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/warrior/category/467848.html">Linux(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/warrior/category/378661.html">Maven(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/warrior/category/485085.html">nginx(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/warrior/category/473687.html">Other(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/warrior/category/195231.html">Python(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/warrior/category/378897.html">Spring(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/warrior/category/195839.html">SQL(4)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(58)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/warrior/archive/2014/12.html">2014年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/warrior/archive/2014/07.html">2014年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/warrior/archive/2014/05.html">2014年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/warrior/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/warrior/archive/2014/03.html">2014年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/warrior/archive/2013/12.html">2013年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/warrior/archive/2013/09.html">2013年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/warrior/archive/2013/06.html">2013年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/warrior/archive/2013/05.html">2013年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/warrior/archive/2013/04.html">2013年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/warrior/archive/2013/03.html">2013年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/warrior/archive/2013/01.html">2013年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/warrior/archive/2012/09.html">2012年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/warrior/archive/2012/08.html">2012年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/warrior/archive/2012/07.html">2012年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/warrior/archive/2012/05.html">2012年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/warrior/archive/2012/04.html">2012年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/warrior/archive/2012/03.html">2012年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/warrior/archive/2011/11.html">2011年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/warrior/archive/2011/10.html">2011年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/warrior/archive/2011/09.html">2011年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/warrior/archive/2011/04.html">2011年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/warrior/archive/2011/03.html">2011年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/warrior/archive/2010/12.html">2010年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/warrior/archive/2010/07.html">2010年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/warrior/archive/2010/06.html">2010年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/warrior/archive/2010/01.html">2010年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/warrior/archive/2009/10.html">2009年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/warrior/archive/2009/06.html">2009年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/warrior/archive/2008/12.html">2008年12月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/warrior/p/3630372.html">1. IOS自动布局(10690)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2012/05/09/2491354.html">2. Maven Spring MVC 实践(7431)</a></li><li><a href="./Maven Tomcat 部署 - 骨头 - 博客园_files/Maven Tomcat 部署 - 骨头 - 博客园.html">3. Maven Tomcat 部署(6387)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2010/07/06/1772311.html">4. flex TabNavigator 切换触发事件(4563)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2012/05/08/2489769.html">5. Maven 环境搭建(3542)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/warrior/p/3583922.html">1. android读取data下得数据(2)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2009/06/16/1504374.html">2. 多条记录合并成一条记录(2)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2012/07/06/2580122.html">3. 求指导，android 前后台通讯时VO的疑惑(2)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2011/10/21/2220185.html">4. ORACLE导出导入库(1)</a></li><li><a href="http://www.cnblogs.com/warrior/archive/2010/12/14/1905289.html">5. 自定义AdvancedDataGrid的groupItemRenderer(1)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 骨头
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

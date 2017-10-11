@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.wulin.domain.Type" table="t_type">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>	
+		<property name="viewAlias"></property>
+		<!-- parent,本类与Department是多对一的关系 -->
+		<many-to-one name="parent" column="parentId" class="cn.wulin.domain.Type"></many-to-one>
+		<!-- typeSet,本类与Department是一对多的关系 -->
+		<set name="typeSet">
+			<key column="parentId"></key>
+			<one-to-many class="cn.wulin.domain.Type" />
+		</set>
+	</class>
+</hibernate-mapping>

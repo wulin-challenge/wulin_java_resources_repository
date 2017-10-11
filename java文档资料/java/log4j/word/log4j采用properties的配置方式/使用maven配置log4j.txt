@@ -1,0 +1,99 @@
+使用maven配置log4j
+
+时间 2014-07-28 14:58:35  IT部落格
+原文  http://www.itbuluoge.com/?p=786
+主题 Log4J Maven
+1 、 maven 的 log4j 坐标
+
+  <dependency>
+ 
+<groupId>log4j</groupId>
+ 
+<artifactId>log4j</artifactId>
+ 
+<version>1.2.9</version>
+ 
+</dependency>
+2 、配置文件内容及位置
+
+# 所有Log信息输出到标准输出(System.out)和在下面指定的一个文件
+ 
+# WARN是默认的logging级别
+ 
+log4j.rootCategory = DEBUG, STDOUT, FILE
+ 
+# 应用程序的logging级别是DEBUG
+ 
+log4j.logger.com.discursive = DEBUG
+ 
+ 
+ 
+# 配置标准输出Appender
+ 
+log4j.appender.STDOUT = org.apache.log4j.ConsoleAppender
+ 
+log4j.appender.STDOUT.layout = org.apache.log4j.PatternLayout
+ 
+log4j.appender.STDOUT.layout.ConversionPattern = %5p (%F:%L) %m%n
+ 
+ 
+ 
+# 配置输出文件Appender
+ 
+log4j.appender.FILE = org.apache.log4j.RollingFileAppender
+ 
+log4j.appender.FILE.File = output.log
+ 
+log4j.appender.FILE.MaxFileSize = 2000KB
+ 
+log4j.appender.FILE.MaxBackupIndex = 5
+ 
+log4j.appender.FILE.layout = org.apache.log4j.PatternLayout
+ 
+log4j.appender.FILE.layout.ConversionPattern = %d %-5p %c - %m%n
+3 、位置及使用
+
+package com.test.pro.MyPro;
+ 
+ 
+ 
+import org.apache.log4j.Logger;
+ 
+import org.apache.log4j.PropertyConfigurator;
+ 
+ 
+ 
+/**
+ 
+ * Hello world!
+ 
+ *
+ 
+ */
+ 
+public class App
+ 
+{
+ 
+public static  Logger m_log = null;
+ 
+    public static void main( String[] args )
+ 
+    {
+ 
+             PropertyConfigurator.configure("E://work//workspace//MyPro//log4j.properties"); 
+ 
+             m_log = Logger.getLogger(App.class); 
+ 
+             m_log.debug("debug test..........."); 
+ 
+        System.out.println( "OK" );
+ 
+    }
+ 
+}
+默认可以放在 class 路径下，我这里是直接加载位置
+
+4 、输出结果
+
+1 关键词：maven log4j

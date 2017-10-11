@@ -1,0 +1,12 @@
+An error has occurred,See error log for more details (2007-07-29 17:53:48)转载▼
+ 
+解决Eclipse3.2配合MyEclipse5.0M2使用时打开JSP发生“An error has occurred,See error log for more details”错误的解决方法
+这个问题是我这几天遇到的，现在暂时还不知道错误的原因，在网上四处问人，好像知道这个错误的人不多
+ 
+现把找到的解决方法整理提供给大家，如下：
+方法1. 在"开始"-->"运行"---->打入"cmd"进入命令提示行后,再进入eclipse的安装目录,
+         然后输入eclipse -clean即可（我用的这个方法 成功了）
+方法2. 删除configuration文件夹里除config.ini以外的所有文件，重启Eclipse
+ 
+如果方法1不能解决，那就试试第2种方法吧
+ 

@@ -1,0 +1,72 @@
+Ext.define("cn.department.view.AddTreeNodeView",{
+	extend:"Ext.window.Window",
+	alias:"widget.addTreeNodeView",
+	title:"",
+	width:300,
+	height:180,
+	modal:true,
+	closable:true,
+	closeAction:"destroy",
+	items:[{
+		ref:"addTreeNodeInfo",
+		xtype:"displayfield",
+		value:"",
+		height:0,
+		margin:"10 0 0 0"
+	},{
+		layout:"column",
+		bodyStyle:"background:transparent",
+		border:0,
+		items:[{
+			columnWidth:.99,//注意 7前面有一个小点,表示0.7,因为参数columnWidth只能为百分比, 其值必须为0到1之间的小数(例如 .25).
+			xtype:"form",
+			ref:"addTreeNodeForm",
+			border:1,
+			defaults:{
+				labelSeparator:":",
+				labelWidth:60,
+				width:200,
+				labelAlign:"right",
+				msTarget:"side"
+			},
+			defaultType:"textfield",
+			bodyStyle:"background:transparent",//设置为透明,不不妨碍更换主题了
+			border:0,
+			//layout:"column",
+			items:[{
+				fieldLabel:"节点名称",
+				id:"nodeNameId",
+				emptyText:"请输入节点名称",
+				name:"nodeName",
+				margin:"5 10 0 0"
+			},{
+				fieldLabel:"父节点Id",
+				id:"parentNameId",
+				emptyText:"请输入节点名称",
+				name:"parentName",
+				margin:"10 10 0 0"
+			},{
+				fieldLabel:"类型Id",
+				id:"typeId",
+				emptyText:"请输入节点名称",
+				name:"typeName",
+				margin:"10 10 0 0"
+			}]	
+		}]
+	}],
+	buttons:[{
+		xtype:"button",
+		text:"保存",
+		ref:"saveTreeNodeWindow",
+		width:50
+	},{
+		xtype:"button",
+		text:"关闭",
+		ref:"closeTreeNodeWindow",
+		width:50,
+		handler:function(button){
+			button.up("addTreeNodeView").close();
+		}
+	}]
+	
+});

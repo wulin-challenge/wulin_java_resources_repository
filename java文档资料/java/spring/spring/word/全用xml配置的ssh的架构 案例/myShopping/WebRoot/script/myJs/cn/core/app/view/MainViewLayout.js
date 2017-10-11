@@ -1,0 +1,31 @@
+//系统主界面的布局类
+Ext.define("cn.app.view.MainViewLayout",{
+	extend:"Ext.panel.Panel",
+	border:0,
+	layout:"border",
+	alias:"widget.mainViewLayout",
+	id:"mainViewLayout",
+	width:10,
+	//hidden:true,
+	height:10,
+	items:[{
+		region:"north",
+		xtype:"topView",
+	},{
+		region:"west",
+		xtype:"westView",
+	},{
+		region:"center",
+		xtype:"panel",
+		layout:"fit",
+		margins:"2 0 0 0",
+		border:0,
+		items:[{
+			xtype:"centerView",
+			border:0
+		}]	
+	}],
+	initComponent:function(){
+		this.callParent(arguments);
+	}
+});

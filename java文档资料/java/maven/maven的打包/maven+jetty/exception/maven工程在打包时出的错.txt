@@ -1,0 +1,32 @@
+
+===ERROR===============================================================================================================================================================
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.3.2:compile (default-compile) on project
+ com.bjhy.platform.kpi: Compilation failure: Compilation failure:
+[ERROR] \soft\job\java\javaIDE\eclipse_jee\bjhy_jlyz_workspace\com.bjhy.platform.jilinjichushuju\com.bjhy.platform.kpi\s
+rc\main\java\com\bjhy\platform\kpi\controller\point\ReportController.java:[9,29] 错误: 程序包org.eclipse.jetty.util不存
+在
+[ERROR] \soft\job\java\javaIDE\eclipse_jee\bjhy_jlyz_workspace\com.bjhy.platform.jilinjichushuju\com.bjhy.platform.kpi\s
+rc\main\java\com\bjhy\platform\kpi\controller\point\ReportController.java:[50,5] 错误: 找不到符号
+[ERROR] \soft\job\java\javaIDE\eclipse_jee\bjhy_jlyz_workspace\com.bjhy.platform.jilinjichushuju\com.bjhy.platform.kpi\s
+rc\main\java\com\bjhy\platform\kpi\controller\point\ReportController.java:[70,5] 错误: 找不到符号
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR]
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <goals> -rf :com.bjhy.platform.kpi
+D:\soft\job\java\javaIDE\eclipse_jee\bjhy_jlyz_workspace\com.bjhy.platform.jilinjichushuju
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+解放办法:
+
+	1,首先找到这个工程 "com\bjhy\platform\kpi"
+	2.找到所在的类:com\bjhy\platform\kpi\controller\point\ReportController.java
+	3,将org.eclipse.jetty.util.StringUtil 更改为 org.apache.commons.lang.StringUtils;(即阿帕奇的包) 
+	4,将工程重新编译即可
+
+===ERROR===============================================================================================================================================================

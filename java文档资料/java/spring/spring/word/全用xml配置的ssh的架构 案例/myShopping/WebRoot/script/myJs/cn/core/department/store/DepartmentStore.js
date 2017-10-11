@@ -1,0 +1,24 @@
+Ext.define("cn.department.store.DepartmentStore",{
+	extend:"Ext.data.Store",
+	model:"cn.department.model.DepartmentModel",
+	pageSize:10,//每页显示5条
+	//autoSync:true,//与服务器同步
+	//remoteSort:true,
+	proxy:{
+		type:"ajax",
+		url:"",
+		reader:{
+			type:"json",
+			root:"rows",
+			totalProperty:"totalCount"
+		},
+		writer:{
+			type:"json"
+		}
+	},
+	sorters:[{
+		property:"id",
+		direction:"DESC"
+	}],
+	autoLoad:true
+});

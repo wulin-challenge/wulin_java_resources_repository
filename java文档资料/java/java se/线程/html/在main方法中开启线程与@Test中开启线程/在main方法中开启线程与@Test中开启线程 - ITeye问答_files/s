@@ -1,0 +1,37 @@
+ADFHOST2437="http://csdnim.qtmojo.com";
+ADFCID2437=70;
+ADFBID2437=2437;
+ADFLOC='CNSCCD00';
+ADFUSER2437="http://csdnim.qtmojo.com/c?d=csdnim&i=z70,10463552,2437,12302&rf=&a=dOCEglp6f36bO0BTeuy36MCdsMs4&u=";
+ALLYESID4="CX4Vf3i742A5yG871kl";
+ADFPGC="3,21,70,0,3202,2437,12302,10463552";
+
+document.write("<script type='text/javascript'>\n");
+document.write("var googletag = googletag || {};\n");
+document.write("googletag.cmd = googletag.cmd || [];\n");
+document.write("(function() {\n");
+document.write("var gads = document.createElement('script');\n");
+document.write("gads.async = true;\n");
+document.write("gads.type = 'text/javascript';\n");
+document.write("var useSSL = 'https:' == document.location.protocol;\n");
+document.write("gads.src = (useSSL ? 'https:' : 'http:') + \n");
+document.write("'//www.googletagservices.com/tag/js/gpt.js';\n");
+document.write("var node = document.getElementsByTagName('script')[0];\n");
+document.write("node.parentNode.insertBefore(gads, node);\n");
+document.write("})();\n");
+document.write("</Scr"+"ipt>\n");
+document.write("\n");
+document.write("<div id='div-gpt-ad-1432093478531-0'>\n");
+document.write("<script type='text/javascript'>\n");
+document.write("googletag.cmd.push(function() {\n");
+document.write("googletag.defineSlot('/8456/IDG.CN_B2B_iteye.com',  [728, 90], 'div-gpt-ad-1432093478531-0').addService(googletag.pubads()).setTargeting(\"category\",\"ask\");\n");
+document.write("googletag.pubads().enableSingleRequest();\n");
+document.write("if (self != top) {\n");
+document.write("         googletag.pubads().set(\"page_url\", document.referrer);\n");
+document.write("         }\n");
+document.write("googletag.enableServices();\n");
+document.write("googletag.display('div-gpt-ad-1432093478531-0');\n");
+document.write("});\n");
+document.write("</Scr"+"ipt>\n");
+document.write("</div>");
+

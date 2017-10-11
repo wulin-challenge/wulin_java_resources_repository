@@ -1,0 +1,1 @@
+document.write("<div><a target=\"_blank\" href=\"http://www.educity.cn/self_text/text_go.aspx?id=92\" title=\"码农谷，专业的在线编程网站\"/><img src=\"http://www.educity.cn/self_text/text_images/980_60_manonggu.jpg\" alt=\"码农谷，专业的在线编程网站\" border=\"0\" height=\"60\" width=\"980\"/></a></div>");

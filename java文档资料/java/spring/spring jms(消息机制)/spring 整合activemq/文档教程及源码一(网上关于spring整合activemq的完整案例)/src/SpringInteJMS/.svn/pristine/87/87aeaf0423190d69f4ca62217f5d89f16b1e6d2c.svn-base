@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsdhttp://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsdhttp://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsdhttp://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsdhttp://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsdhttp://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.7.0.xsd"
+	default-lazy-init="false"><!-- http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd -->
+	<description>Spring公共配置 </description><!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入. 
+		com.kf580.portal.entity,com.kf580.admin.entity,com.kf580.portal.dao,com.kf580.admin.dao -->
+	<context:component-scan base-package="com.kf580"
+		use-default-filters="true">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" /><!-- context:exclude-filter 
+			type="annotation" expression="org.springframework.stereotype.Service"/ -->
+	</context:component-scan><!--用于嵌入式activemq服务 <bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean"> 
+		<property name="config" value="classpath:/config/activemq.xml" /> <property 
+		name="start" value="true" /> </bean> -->
+	<bean id="msgConnectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory">
+			<bean id="jmsFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL">
+					<value>tcp://192.168.3.114:61616</value>
+				</property>
+			</bean>
+		</property>
+		<property name="sessionCacheSize" value="20" />
+		<property name="cacheProducers" value="false" />
+	</bean>   <!-- <bean name="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate"> 
+		<property name="connectionFactory" ref="jmsFactory" /> </bean> -->          <!-- 配置消息发送目的地 -->   <!-- <amq:queue name="Email.QUEUE" physicalName="Email-QUEUE" /> <amq:queue 
+		name="SMS.QUEUE" physicalName="SMS-QUEUE" /> <amq:topic name="NewsPaper.TOPIC" 
+		physicalName="NewsPaper-TOPIC" /> -->
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="NewsPaper.TOPIC" />
+	</bean>
+	<bean id="emailQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="Email.QUEUE" />
+	</bean>
+	<bean id="smsQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="SMS.QUEUE" />
+	</bean>
+	<bean id="destinationConfig" class="com.kf580.notify.message.DestinationConfig">
+		<property name="destinationMap">
+			<map>
+				<entry key="emailQueueDestination" value-ref="emailQueueDestination" />
+				<entry key="smsQueueDestination" value-ref="smsQueueDestination" />
+				<entry key="topicDestination" value-ref="topicDestination" />
+			</map>
+		</property>
+	</bean>        <!-- 配置生产者 -->
+	<bean id="msgProducer" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="msgConnectionFactory" />      <!-- <property name="defaultDestination" ref="emailQueueDestination" /> -->
+		<property name="messageConverter" ref="kfMessageConverter" />
+		<property name="receiveTimeout" value="60000" />
+	</bean>     <!--配置消费者 -->
+	<bean id="emailQueueConsumer" class="com.kf580.notify.message.EmailConsumerImpl">
+		<property name="mailService" ref="mailService" />
+	</bean>
+	<bean id="smsQueueConsumer" class="com.kf580.notify.message.SMSConsumerImpl">
+		<property name="smsService" ref="smsService" />
+	</bean>  <!-- <bean id="topicConsumer" class="com.kf580.notify.message.SMSConsumerImpl"> 
+		<property name="smsService" ref="smsService" /> </bean> -->    <!-- 配置消息侦听器message listener 来接收消息,每个消费者对应有一个listener -->
+	<bean id="emailQueueListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="emailQueueConsumer"></constructor-arg>
+		<property name="defaultListenerMethod" value="handleMessage" />
+		<property name="messageConverter" ref="kfMessageConverter" />
+	</bean>
+	<bean id="smsQueueListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="smsQueueConsumer"></constructor-arg>
+		<property name="defaultListenerMethod" value="handleMessage" />
+		<property name="messageConverter" ref="kfMessageConverter" />
+	</bean>  <!-- 配置消息侦听容器，并指定消息侦听器。每个listener对应有一个listenerContainer -->
+	<bean id="emailQueuelistenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="concurrentConsumers" value="5" />
+		<property name="connectionFactory" ref="msgConnectionFactory" />
+		<property name="destination" ref="emailQueueDestination" />
+		<property name="messageListener" ref="emailQueueListener" />
+		<property name="sessionTransacted" value="true"></property>
+		<property name="transactionManager" ref="jmsTransactionManager" />
+	</bean>
+	<bean id="smsQueuelistenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="concurrentConsumers" value="5" />
+		<property name="connectionFactory" ref="msgConnectionFactory" />
+		<property name="destination" ref="smsQueueDestination" />
+		<property name="messageListener" ref="smsQueueListener" />
+		<property name="sessionTransacted" value="true"></property>
+		<property name="transactionManager" ref="jmsTransactionManager" />
+	</bean>    <!-- 消息事务管理 -->
+	<bean id="jmsTransactionManager"
+		class="org.springframework.jms.connection.JmsTransactionManager">
+		<property name="connectionFactory" ref="msgConnectionFactory" />
+	</bean>
+	<bean id="kfMessageConverter" class="com.kf580.notify.message.KFMessageConverter" />
+	<bean id="mailService" class="com.kf580.notify.service.impl.EmailServiceImpl" />
+	<bean id="smsService" class="com.kf580.notify.service.impl.SMSServiceImpl">
+		<property name="mobileSmsClient" ref="mobileSmsClient_zq" />
+	</bean>
+</beans>

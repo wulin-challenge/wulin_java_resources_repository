@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://m.blog.csdn.net/blog/chaijunkun/6874383 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta content="width=device-width,user-scalable=no" name="viewport">
+<meta name="apple-itunes-app" content="app-id=425349261">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客</title>
+<link rel="Stylesheet" type="text/css" href="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/wapall.css">
+<script type="text/javascript" async="" src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/ga.js"></script><script src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/ajax.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrap">
+<div id="header">
+<a class="home" href="http://www.csdn.net/"><img src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/home.png"></a> 
+<a class="logo" href="http://m.blog.csdn.net/">
+<img src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/logo.jpg"></a>
+<a id="loginname" href="http://m.blog.csdn.net/account/login">登录</a>
+</div>
+<div id="nav">
+<a href="http://m.blog.csdn.net/" id="shouye1">首页</a>
+<a href="http://m.blog.csdn.net/column/index" id="zhuanlan1">专栏</a>
+<a href="http://m.blog.csdn.net/People/index" id="zhuanjia1">专家</a>
+<a href="http://m.blog.csdn.net/home/hot" id="rewen1">热文</a>
+</div>
+<div id="main">
+        <div id="top">
+        <div class="avatar">
+        <a href="http://m.blog.csdn.net/blog/chaijunkun" class="name">IT-er chaijunkun's blog</a>
+        </div>
+        <div class="content">
+        <h1><a href="http://m.blog.csdn.net/blog/chaijunkun/6874383#">[原]JPA中实现两个表的非索引列（非主键列）关联</a></h1>
+        <p class="time"><span>2011-10-14</span><span>阅读4347</span> <a href="http://m.blog.csdn.net/blog/chaijunkun/6874383#comment">评论<span id="sp_cmt">7</span></a></p>
+        <div id="articlecontent">
+        
+<p>在做项目的时候遇到这样一个问题：</p>
+<p>一个学生表stuInfo，一个专业表majorInfo。使用MySQL数据库，表定义如下：</p>
+<p>
+</p><table border="1" cellpadding="1" cellspacing="1" height="181" width="397">
+<caption>表stuInfo定义</caption>
+<tbody>
+<tr>
+<th scope="col">列名</th>
+<th scope="col">数据类型</th>
+<th scope="col">功能</th>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>学生信息的绝对索引，自增列，主键</td>
+</tr>
+<tr>
+<td>stuId</td>
+<td>varchar(10)</td>
+<td>学号列</td>
+</tr>
+<tr>
+<td>stuName</td>
+<td>varchar(10)</td>
+<td>学生姓名列</td>
+</tr>
+<tr>
+<td>majorId</td>
+<td>varchar(5)</td>
+<td>学生专业ID列，由于专业ID中可能出现英文字母来区分专科专业和本科专业，因此不能使用数值类型</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>
+</p><table border="1" cellpadding="1" cellspacing="1" height="141" width="396">
+<caption>表majorInfo定义</caption>
+<tbody>
+<tr>
+<th scope="col">列名</th>
+<th scope="col">数据类型</th>
+<th scope="col">功能</th>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>专业信息的绝对索引，自增列，主键</td>
+</tr>
+<tr>
+<td>majorId</td>
+<td>varchar(5)</td>
+<td>学生专业ID列，由于专业ID中可能出现英文字母来区分专科专业和本科专业，因此不能使用数值类型</td>
+</tr>
+<tr>
+<td>majorName</td>
+<td>varchar(15)</td>
+<td>专业名称列</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p></p>
+<p>有项目经验的人一看就知道这样建立数据库是非常不专业的，外键关联没问题，问题在于关联列的数据类型是varchar，这将非常消耗计算资源。</p>
+<p>但是本人也没有办法，为了和原有系统兼容，尽快实现功能，也只好牺牲性能了。在这里也提醒读者，凡是涉及表关联操作的，关联列的数据类型尽量采用数值。当数据库内记录很多的时候，执行连接select语句时，使用数值类型进行关联较之使用字符类型进行关联将会产生很大的性能差异。</p>
+<p>要求是这样的，将stuInfo表中的majorId与majorInfo表中的majorId进行关联，以实现按照学号查询学生时能显示所在专业。</p>
+<p><br>
+</p>
+<p>开始的时候我的POJO是这样来写的</p>
+<p>stuInfo表的POJO：</p>
+<pre name="code" class="java">package pojo;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class StuInfo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6371005564069606650L;
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	private String stuId;
+
+	private String stuName;
+
+	@ManyToOne
+	@JoinColumn(name="majorId")
+	private MajorInfo majorInfo;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStuId() {
+		return stuId;
+	}
+
+	public void setStuId(String stuId) {
+		this.stuId = stuId;
+	}
+
+	public String getStuName() {
+		return stuName;
+	}
+
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+
+	public MajorInfo getMajorInfo() {
+		return majorInfo;
+	}
+
+	public void setMajorInfo(MajorInfo majorInfo) {
+		this.majorInfo = majorInfo;
+	}
+}
+</pre>
+<p></p>
+<p>majorInfo表的POJO：</p>
+<pre name="code" class="java">package pojo;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class MajorInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6367248158160032489L;
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@NotEmpty
+	@Length(min=5, max=5)
+	private String majorId;
+	
+	@Length(max=15)
+	private String majorName;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getMajorId() {
+		return majorId;
+	}
+
+	public void setMajorId(String majorId) {
+		this.majorId = majorId;
+	}
+
+	public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
+}</pre><br>
+当我查询的学生信息的时候，控制台输出了错误，内容如下：
+<p></p>
+<p>Unable to find pojo.MajorInfo with id 301</p>
+<p><br>
+</p>
+<p>是这样的，我要显示的是数据库中第一条记录，然而stuInfo表中第一条记录majorID字段存储的是0301，根据提示信息，JPA自动对应的是majorInfo表中的id字段。而且把字符串varchar类型的数据”0301“自动转换成了”301“，然而majorInfo表中的数据没有id为301的记录，因此当然在关联majorInfo表记录时产生了空指向异常从而报错。问题的症结在于在StuInfo类中，指明了majorInfo属性绑定到"majorId"列，但JPA自动建立的关联目标是从表majorInfo的索引列id，这样一来难怪会出问题。</p>
+<p><br>
+</p>
+<p>后来查阅资料，发现在StuInfo类中的majorInfo属性注解配置有问题。@JoinColumn注解的name参数只是绑定该POJO映射到表的某一列的列名，并不影响从表绑定列名，如果没有其他特别指示，JPA会自动与从表的主键进行关联。解决问题的代码就是修改这个注解为@JoinColumn(name="majorId", referencedColumnName="majorId")</p>
+<p>这样主表的映射列与从表的映射列都特别指定了，这时候再查询，故障消失。</p>
+<p>说了这么多，其实有含金量的就一句话：<span style="color:#FF0000">@JoinColumn(name="majorId", referencedColumnName="majorId")</span><br>
+</p>
+<p>最后多说一句，如果不是被逼无奈，数据库表可不能像文章开头所表述的那样建立。组织数据的方式多种多样，不要仅限于一种思路。作为一个合格的DBA也不能光想着自己工作简单，不考虑性能和后台同事在实现功能时的困难度。<br>
+</p>
+
+        </div>
+        </div>
+        <div class="next_page">
+            <a href="http://m.blog.csdn.net/blog/chaijunkun/6821370" class="next_btn">上一篇</a>
+            <a href="http://m.blog.csdn.net/blog/chaijunkun/6891171" class="next_btn">下一篇</a>
+        </div>
+        <div class="view">
+        <a href="http://m.blog.csdn.net/account/login" class="button">请先登录后，再发表评论！</a>
+        </div>
+        <div class="comment_sub">
+        <span class="lf10">查看评论</span>
+        <ul id="cmt_ul">        <li> 
+        <p class="time"><span>7楼</span><a href="http://m.blog.csdn.net/blog/zcy0521" class="name">zcy0521</a><span>2015-07-16 17:09</span></p>
+        <p>这个必须要感谢一下，一直在找这问题的解决办法。太谢谢啦
+name是当前表字段，referencedColumnName是指向表字段</p>
+        </li>
+        <li> 
+        <p class="time"><span>6楼</span><a href="http://m.blog.csdn.net/blog/chaijunkun" class="name">chaijunkun</a><span>2015-01-08 13:28</span></p>
+        <p>[reply]u014725798[/reply]
+写出来就是把经验分享给大家的，能起到帮助就达到了目的:)</p>
+        </li>
+        <li> 
+        <p class="time"><span>5楼</span><a href="http://m.blog.csdn.net/blog/u014725798" class="name">u014725798</a><span>2015-01-05 15:43</span></p>
+        <p>真的非常感谢！！在公司做一个老项目的升级，老项目没用任何框架，现在要更新采用springMVC来做，我就遇到了您所说的问题，老项目的数据库已经用了接近10年了，设计相当不规范！！！但是又不能改，客户一直用着呢，很多表都是非索引列相关联，出现很多问题，找了半天，纠结了半天，后来看到了您的帖子，说出的问题与我一样，让后按照您的方法加了@JoinColumn(name="majorId", referencedColumnName="majorId")。居然解决了，真的万分感谢！ps:我是才毕业出来的，很多还需要学习，谢谢！</p>
+        </li>
+        <li> 
+        <p class="time"><span>4楼</span><a href="http://m.blog.csdn.net/blog/chaijunkun" class="name">chaijunkun</a><span>2014-12-23 13:24</span></p>
+        <p>[reply]xuhuan1108[/reply]
+好像不可以。因为JPA要求的是对象关系模型，你只指定了字段名，无法体现表之间的关联关系</p>
+        </li>
+        <li> 
+        <p class="time"><span>3楼</span><a href="http://m.blog.csdn.net/blog/xuhuan1108" class="name">xuhuan1108</a><span>2014-12-22 04:05</span></p>
+        <p>可不可以直接在 StuInfo 中定义 private String majorName; 然后通过某种注解关联到majorInfo表，然后自动获取属性值呢？</p>
+        </li>
+        </ul>
+        <a href="http://m.blog.csdn.net/comment/6874383" class="lf10">更多评论（7）</a>
+        </div>
+        </div>
+        <script type="text/javascript" src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/ajax(1).js"></script>
+        <script type="text/javascript">
+            function subform() {
+                if (!el('con').value) {
+                    el('con').focus();
+                    return;
+                }
+                Ajax.post('/comment/6874383?save=1', 'con=' + encodeURIComponent(el('con').value));
+                alert('评论成功！');
+
+                var li = document.createElement('li');
+                var s = '<p class="time"><span>' + (parseInt(el('sp_cmt').innerHTML, 10) + 1) + '楼</span><a class="name">我</a><span>刚刚</span></p>';
+                s += '<p>' + el('con').value + '</p>';
+                li.innerHTML = s;
+                el('cmt_ul').insertBefore(li, el('cmt_ul').firstChild);
+            }
+        </script>
+
+</div>
+
+<div class="back-top" id="ding1">
+<a href="http://m.blog.csdn.net/blog/chaijunkun/6874383#" onclick="document.body.scrollTop=0;return false;">
+<img src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/back-top.jpg">回顶部</a>
+</div>
+<div id="footer">
+<p><a class="now" href="http://m.blog.csdn.net/">移动版</a>|<a href="http://blog.csdn.net/" onclick="document.cookie=&#39;wap-pc=1; domain=blog.csdn.net; path=/;&#39;;">桌面版</a></p>
+<p>©1999-2012, CSDN.NET, All Rights Reserved</p>
+</div>
+
+</div>
+<script src="./JPA中实现两个表的非索引列（非主键列）关联 - CSDN博客_files/wapall.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var username = getUN();
+    if (username == '') {
+        el('loginname').innerHTML = "登录";
+        el('loginname').href = "/account/login";
+    }
+    else {
+        el('loginname').innerHTML = username;
+        el('loginname').href = "/blog/"+username;
+    
+    } 
+</script>
+
+</body></html>
