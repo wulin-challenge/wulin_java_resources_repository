@@ -1,0 +1,907 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://programmer.blog.51cto.com/2859493/1423553 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<style type="text/css"></style><style type="text/css"></style><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://programmer.blog.51cto.com/#">
+
+
+<title>JS与FLEX|AS实现互相调用 - 我的技术博客 - 51CTO技术博客</title>
+<meta name="description" content="1.AS代码<?xml&nbsp;version=1.0&nbsp;encoding=utf-8?><mx:Application&nbsp;xmlns:mx=http://www.adobe.com/2006/mxml&nbsp;layout=absolutewidth=200&nbsp;height=200&nbsp;creationComp..">
+<meta name="keywords" content="AS,FLEX,互相调用">
+<meta http-equiv="Cache-Control" content="private">
+<base href=".">
+
+
+
+
+
+<link href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/30.css" rel="stylesheet" type="text/css">
+<link rel="alternate" href="http://programmer.blog.51cto.com/rss.php?uid=2859493" type="application/rss+xml" title="RSS 2.0">
+<link rel="edituri" type="application/rsd+xml" title="rsd" href="http://programmer.blog.51cto.com/xmlrpc.php?rsd=1">
+<link href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/header_master_top.css" rel="stylesheet" type="text/css">
+<link href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/base.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.mainNav li a{display:inline-block}
+</style>
+
+<style type="text/css">
+/*
+.artContent img {max-width:450px !important;}
+.showContent img{max-width:650px!important;}
+*/
+
+.artContent img{max-width: 450px; width:expression(this.width > 450 ? "450px" : this.width)}
+/*
+.showContent img{max-width: 450px; width:expression(this.width > 650 ? "650px" : this.width)}
+*/
+
+
+</style>
+<style id="table">
+.showContent table.noBorderTable td,.showContent table.noBorderTable th,.showContent table.noBorderTable caption{border:1px dashed #ddd !important}.showContent table{margin-bottom:10px;border-collapse:collapse;display:table;}.showContent td,.showContent th{ background:white; padding: 5px 10px;border: 1px solid #DDD;}.showContent caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.showContent th{border-top:2px solid #BBB;background:#F7F7F7;}.showContent td p{margin:0;padding:0;}
+.showContent table.noBorderTable td,.showContent table.noBorderTable th,.showContent table.noBorderTable caption{border:1px dashed #ddd !important}.showContent table{margin-bottom:10px;border-collapse:collapse;display:table;}.showContent td,.showContent th{ background:white; padding: 5px 10px;border: 1px solid #DDD;}.showContent caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.showContent th{border-top:2px solid #BBB;background:#F7F7F7;}.showContent td p{margin:0;padding:0;}</style><link rel="stylesheet" href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/share_style1_32.css"><link rel="stylesheet" href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/share_popup.css"></head>
+
+<body>
+
+<div id="home_top">
+<div class="top_nav" style="width:990px;">
+<div class="left" style="margin-top:10px; width:440px;"><a href="http://blog.51cto.com/" target="_blank"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/head_blog_sibebar_logo.gif" align="absmiddle" style="margin-top:-4px;"></a><a target="_blank" href="http://www.51cto.com/">51CTO首页</a><img height="25" align="absmiddle" width="16" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://blog.51cto.com/" target="_blank">51CTO博客</a><img height="25" align="absmiddle" width="16" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://home.51cto.com/?reback=http%253A%252F%252Fprogrammer.blog.51cto.com%252F2859493%252F1423553">我的博客</a><img height="25" align="absmiddle" width="16" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;">
+
+<a target="_blank" href="http://blog.51cto.com/search.php">搜索</a>
+<a href="javascript:void(0);" style="color: rgb(255, 0, 0); text-decoration: underline;" id="showMessagerDim">每日博报</a>
+</div>
+
+<div class="right" style="width:550px;">
+<div class="more"><img height="16" align="absmiddle" width="27" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/top_shequ.gif"><a target="_blank" style="color:#C00" href="http://gaozhao.51cto.com/">招聘</a><a target="_blank" href="http://edu.51cto.com/" style="color: rgb(204, 0, 0);">学院</a><a target="_blank" href="http://bbs.51cto.com/">论坛</a><a target="_blank" href="http://blog.51cto.com/">博客</a><a target="_blank" href="http://down.51cto.com/">下载</a><a href="javascript:viod(0);" onmouseout="popupClose()" onmouseover="show(3,this)">更多<img align="absmiddle" style="padding-left: 4px;" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/nav_ico1.gif"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index?reback=http://programmer.blog.51cto.com/2859493/1423553" target="_self">登录</a><a href="http://ucenter.51cto.com/2015/register.php?reback=http://programmer.blog.51cto.com/2859493/1423553" target="_self">注册</a></div></span>                </div>    </div></div>
+
+
+
+<div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://edu.51cto.com/" target="_blank">学院</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+
+<li><a href="http://selftest.51cto.com/" target="_blank">自测</a></li>
+<li><a href="http://doctor.51cto.com/" target="_blank">门诊</a></li>
+<li><a href="http://blog.51cto.com/newsletter/" target="_blank">周刊</a></li>
+<li><a href="http://book.51cto.com/" target="_blank">读书</a></li>
+<li><a href="http://t.51cto.com/" style="color:red;" target="_blank">题库</a></li>
+<li><a href="http://gaozhao.51cto.com/" target="_blank">招聘</a></li>
+</ul>
+</div>
+<!--简导航end-->
+
+
+
+<div class="headerBox">
+<div class="header">
+<div class="header_l">
+<div class="logo_blogname">
+
+
+
+<div class="blogName">
+<a href="http://programmer.blog.51cto.com/"><h1>我的技术博客</h1></a>
+</div>
+</div><!--logo_blogname end-->
+<div class="blogLink">
+
+<a href="http://programmer.blog.51cto.com/">http://programmer.blog.51cto.com</a> <input id="txtUser" type="hidden" size="32" value="http://programmer.blog.51cto.com">   <a href="javascript:void(0);" onclick="copy();">【复制】</a> <a href="http://programmer.blog.51cto.com/rss.php?uid=2859493" target="_blank"></a><a href="http://programmer.blog.51cto.com/rss.php?uid=2859493" target="_blank">【订阅】</a>
+
+</div>
+
+
+
+</div><!--header_l end-->
+<div class="header_r">
+<div class="blogInfo"><span><a href="http://programmer.blog.51cto.com/2859493/o" title="察看程序员No1所有原创文章">原创</a>:52</span><span><a href="http://programmer.blog.51cto.com/2859493/t" title="察看程序员No1所有翻译文章">翻译</a>:1</span><span><a href="http://programmer.blog.51cto.com/2859493/c" title="察看程序员No1所有转载文章">转载</a>:9</span></div>
+<div class="blogNav"><a href="http://programmer.blog.51cto.com/">博 客</a>|<a href="http://blog.51cto.com/user_index.php?action=addblog_new">写博文</a>|<a href="http://51ctoblog.blog.51cto.com/all/26414/4" target="_blank">帮 助</a></div>
+</div>
+</div>
+<!--header end-->
+</div><!--headerBox end-->
+<div class="mainNav">
+<span class="mainNavT"></span>
+<ul>
+<li><a href="http://programmer.blog.51cto.com/">首页</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-9">Linux</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-2">Flex</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-3">Java</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-5">Oracle</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-4">C#</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-6">Struts2</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-7">Spring</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-8">Mybatis</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-1">IT生活</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-10">Kettle</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-11">其他</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-12">MySql</a></li>|<li><a href="http://programmer.blog.51cto.com/2859493/d-13">Eclipse</a></li>
+</ul>
+<span class="mainNavB"></span>
+</div>
+<!--mainNav end-->
+
+
+<style>
+.wrap_box{width:750px;float:left;}
+.box1{width:368px;background: #fff; border: 0px solid #626262;float:left;height: 162px;}
+.mr10{margin-right:10px;}
+</style>
+
+<!--[if IE 6]>
+  <script type="text/javascript" src="http://images.watchstor.com/newhomes/png.js"></script>
+  <script>
+    DD_belatedPNG.fix('img,input,ul,li, .get-box, div, .add, .sub, .ui-slider-handle, .footer-chopper');
+  </script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/fck_editorarea.css">
+
+<link rel="stylesheet" type="text/css" href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/shCoreDefault.css">
+
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+.m_sharelinks{ 
+	line-height:30px; 
+	text-align:left; 
+	padding-left:20px; 
+	//background:url(http://img1.51cto.com/images/share/ico_lb.gif) no-repeat left center;
+	float:left; 
+	width:600px; 
+	height:30px;
+}
+.m_sharelinks a{ margin-left:10px;}
+.m_sharebtn{ height:50px; width:726px; margin:0 auto;}
+.m_sharebtn01{width:520px; float:left;}
+.weibo_51cto{ background:url(http://img1.51cto.com/images/share/ico_mweibo.gif) no-repeat center center; display:block; width:33px; height:33px; float:left; margin:3px 3px 0 0;cursor:pointer;}
+.shareMored {
+    line-height: 30px;
+	float:right; 
+	text-align:right; 
+	width:100px; 
+	height:30px;
+}
+
+.showContent {
+	margin:20px 15px 8px;
+}
+.userImage img {
+    text-align: center;
+	border:0;
+	padding:0;
+}
+.photo_links{ line-height:30px; padding-top:5px; font-size:13px;width:170px; margin:0 auto;}
+.photo_links_blue{ text-align:center;}
+.photo_links_blue a:link,.photo_links_blue a:visited,.photo_links_blue a:hover,.photo_links_blue a:active{ color:#015F91; text-decoration: underline;}
+.photo_links_red{ text-align:left;}
+.photo_links_red a:link,.photo_links_red a:visited,.photo_links_red a:hover,.photo_links_red a:active{ color:#fc4343; text-decoration:underline;}
+.photo_links_red02{ text-align:center;}
+
+.vlist{ margin:10px 10px; height:65px;}
+.vlist img{ float:left; margin-right:10px;}
+.vlist dl{ text-align:left;}
+.vlist dl dt{ height:40px;line-height: 20px; overflow:hidden; padding-top:5px;}
+.vlist dl dt,.vlist dl dt a{ color:#262626;}
+.vlist dl dd,.vlist dl dd a{ color:#777;}
+
+.video-icon{
+    position: relative;
+}
+.video-icon a.i_video {
+    background: url("http://www.51cto.com/images/homepage/Images/eduplay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    left:31px;
+    position: absolute;
+    top:22px;
+    width: 25px;
+    z-index: 10;
+}
+
+.ipadFload{ position:fixed; width:136px; height:194px; background:url("http://bbs.51cto.com/images/IPad-bg.png") left top no-repeat #fff; font-family:"微软雅黑"; padding-left:18px;}
+.ipadClose{ text-align:right; font-size:14px; line-height:20px;}
+.ipadImg{ padding-top:38px;}
+.ipadImg img{ width:105px; height:105px;}
+.iPadair2{ font-size:12px;}
+.iPadair2 a{ color:#659b01; text-decoration:none; background:url("http://bbs.51cto.com/images/51CTO-IPAD-BOTTOM.png") right center no-repeat; display:block; line-height:30px;}
+
+</style>
+<div id="add_sys_type_div" style="width:600px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+<div id="add_sys_type_dvs" style="width:550px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+	
+
+
+
+<div class="blogMain">
+<div class="blogLeft">
+
+
+<div class="box moduleUser">
+<div class="title">
+<h2><strong>程序员No1</strong> 的BLOG  </h2>
+</div>
+<div class="modCon">
+
+<div class="userImage" style="margin: 10px auto 5px;text-align: center;width: 130px;border: 1px solid #D4D4D4;">
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td valign="middle" align="center" height="130"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar.php" id="userface"></td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="photo_links">
+</div>
+
+
+
+
+
+
+
+
+
+<div class="crumbs">
+<a href="http://home.51cto.com/index.php?s=/space/2859493#message" class="writeMessage" target="_blank">写留言</a><a href="http://edu.51cto.com/" class="inCircle" target="_blank">去学院学习</a><a href="http://home.51cto.com/index.php?s=/Notify/write/uid/2859493" class="message" target="_blank">发消息</a>
+ <a href="http://programmer.blog.51cto.com/" onclick="add_flink(2859493);return false" class="joinLinks">加友情链接</a><a href="http://home.51cto.com/index.php?s=/space/2859493" class="joinFriends" target="_blank">进家园 加好友</a>
+</div>
+
+<div style="width:239px;height:64px;display:none;">
+
+
+<div style="float:left;"><p style="padding:15px 0 0 28px; line-height:20px;">2012年度IT博客大赛<br><a target="_blank" href="http://blog.51cto.com/contest2012/#top10000" style="color:#F00; text-decoration:underline;">十大杰出IT博客诞生</a></p></div>
+<div style="float:right;"><a target="_blank" href="http://blog.51cto.com/contest2012/"><img width="57" height="27" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/blog_match_endlook.jpg" style="margin:23px 20px 0 0;"></a></div>
+<!-- <div style="float:left;"><p style="padding:15px 0 0 28px; line-height:20px;">星光评委正在评选<br><a target="_blank" href="http://blog.51cto.com/contest2012/index.php?mod=userlist_sec" style="color:#F00; text-decoration:underline;">2012年度IT博客大赛50强</a></p></div>
+<div style="float:right;"><img class="blog_match_yq" width="57" height="27" src="http://img1.51cto.com/images/blog_match_invite.jpg" style="margin:23px 20px 0 0;"></div> -->
+
+
+
+<div class="clear"></div>
+</div>
+
+
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="infoList box">
+<div class="title">
+<h2>博客统计信息</h2>
+</div>
+<div class="modCon">
+<p>
+<span class="infoListHead"></span>
+用户名：程序员No1<br>
+文章数：65<br>
+评论数：6<br>
+访问量：43507<br>
+<a href="http://home.51cto.com/index.php?s=/Account/credit" target="_blank">无忧币</a>：1539<br>
+<a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank">博客积分</a>：584<br>
+<a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank">博客等级</a>：3<br>
+注册日期：2011-03-17<br>
+</p>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="infoList box">
+	<div class="title">
+		<h2 class="fl">热门专题</h2>
+		<a target="_blank" class="fr" href="http://blog.51cto.com/zt">更多&gt;&gt;</a>
+	</div>
+	<div class="modCon" style="height: 348px;">
+
+	
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/692" target="_blank"><img width="63" height="63" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKioL1c5llLwKSo3AAAbx5aBW1Q413.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/692" target="_blank" title="每天5分钟玩转 OpenStack">每天5分钟玩转 OpenStack</a></dt>
+		<dd>阅读量：5863</dd>
+		</dl>
+		</div>
+	
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/693" target="_blank"><img width="63" height="63" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKiom1dVDr7javamAABB79u01lo798.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/693" target="_blank" title="【51CTO三周年】我在学院不得不说的收获">【51CTO三周年】我在学院不得不说的收获</a></dt>
+		<dd>阅读量：12276</dd>
+		</dl>
+		</div>
+	
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/14" target="_blank"><img width="63" height="63" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/1304672337_index.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/14" target="_blank" title="从菜鸟到老鸟-教你玩转Mac操作系统">从菜鸟到老鸟-教你玩转Mac操作系统</a></dt>
+		<dd>阅读量：332361</dd>
+		</dl>
+		</div>
+	
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/20" target="_blank"><img width="63" height="63" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/1306310178_index.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/20" target="_blank" title="QT学习之路：从入门到精通">QT学习之路：从入门到精通</a></dt>
+		<dd>阅读量：1038365</dd>
+		</dl>
+		</div>
+		
+		
+	</div>
+	<span class="modBot"></span>
+</div>
+
+
+<div class="hotArt box">
+<div class="title">
+<h2>热门文章</h2>
+</div>
+<div class="modCon">
+<ul>
+<li><a href="http://programmer.blog.51cto.com/2859493/1129875">Mybatis 批量插入的方法</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1266937">使用POI解析Excel文件（..</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1170408">Java调用Matlab_Jar时报..</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1095529">把VS的智能提示快捷键改..</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1164002">Kettle调用Java类</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1310645">如何使用Apache HTTP Ser..</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1278599">kettle连接access问题总结</a></li>
+<li><a href="http://programmer.blog.51cto.com/2859493/1179043">Flex verticalScrollPosi..</a></li>
+
+</ul>
+</div>
+<span class="modBot"></span>
+</div>
+<div class="search box">
+<div class="title"><h2>搜索BLOG文章</h2></div>
+<div class="modCon">
+<form method="post" action="http://programmer.blog.51cto.com/search.php?" tabindex="99">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="authorid" value="2859493">
+<input type="hidden" name="sch_area" value="S">
+<input type="text" value="" name="keyword" class="searchInput">
+<input type="submit" value="搜 索" class="searchBtn">
+</form>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="box recentGuests">
+<div class="title">
+<h2>最近访客</h2>
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://6186117.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(1).php"></a>
+<p><a href="http://6186117.blog.51cto.com/">nnpig</a></p>
+
+</li><li><a href="http://7157600.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(2).php"></a>
+<p><a href="http://7157600.blog.51cto.com/">任__..</a></p>
+
+</li><li><a href="http://967730.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(3).php"></a>
+<p><a href="http://967730.blog.51cto.com/">maste..</a></p>
+
+</li><li><a href="http://8395678.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(4).php"></a>
+<p><a href="http://8395678.blog.51cto.com/">wang7..</a></p>
+
+</li><li><a href="http://6915203.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(5).php"></a>
+<p><a href="http://6915203.blog.51cto.com/">shuan..</a></p>
+
+</li><li><a href="http://wwl55l.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(6).php"></a>
+<p><a href="http://wwl55l.blog.51cto.com/">wwl55l</a></p>
+
+</li><li><a href="http://1025bit.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(7).php"></a>
+<p><a href="http://1025bit.blog.51cto.com/">1025bit</a></p>
+
+</li><li><a href="http://2689762.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(8).php"></a>
+<p><a href="http://2689762.blog.51cto.com/">sztha..</a></p>
+
+</li><li><a href="http://7492110.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(9).php"></a>
+<p><a href="http://7492110.blog.51cto.com/">chenl..</a></p>
+
+</li><li><a href="http://10222944.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(10).php"></a>
+<p><a href="http://10222944.blog.51cto.com/">linge..</a></p>
+
+</li><li><a href="http://3655017.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(11).php"></a>
+<p><a href="http://3655017.blog.51cto.com/">chanc..</a></p>
+
+</li><li><a href="http://8269255.blog.51cto.com/"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/avatar(12).php"></a>
+<p><a href="http://8269255.blog.51cto.com/">zhuce..</a></p>
+
+</li></ul>
+<span class="clear"></span>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="newComments box">
+<div class="title">
+<h2>最新评论 
+
+</h2>
+
+
+
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://liuyj.blog.51cto.com/" class="operlink" target="_blank"><b>l363130002</b></a>：<a href="http://programmer.blog.51cto.com/2859493/1129875" target="_blank">mybatis3 视频教程 http://edu.51ct..</a></li>
+
+<li><a href="http://3530258.blog.51cto.com/" class="operlink" target="_blank"><b>yyyj8j8</b></a>：<a href="http://programmer.blog.51cto.com/2859493/1095529" target="_blank">专门注册了帐号来感谢楼主的 </a></li>
+
+<li><a href="http://765126.blog.51cto.com/" class="operlink" target="_blank"><b>svygh123</b></a>：<a href="http://programmer.blog.51cto.com/2859493/1255843" target="_blank">很有用.非常感谢啊.</a></li>
+
+<li><a href="http://7455321.blog.51cto.com/" class="operlink" target="_blank"><b>注册取东西</b></a>：<a href="http://programmer.blog.51cto.com/2859493/1266937" target="_blank">sdfsdgdsfgdsfhfdhfdhfd</a></li>
+
+<li>[匿名]51cto游客：<a href="http://programmer.blog.51cto.com/2859493/1163992" target="_blank"> 先下来看看</a></li>
+
+
+</ul>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="hotBlogArt box">
+<div class="title">
+  <h2 class="fl">51CTO推荐博文</h2>
+  <a href="http://blog.51cto.com/artcommend" class="fr">更多&gt;&gt;</a></div>
+<div class="modCon">
+<ul>
+<li><a href="http://ucode.blog.51cto.com/10837891/1853422" title="Percona XtraBackup热备份实践" target="_blank">Percona XtraBackup热备份实践</a></li>
+<li><a href="http://suifu.blog.51cto.com/9167728/1853478" title="MongoDB复制集环境搭建" target="_blank">MongoDB复制集环境搭建</a></li>
+<li><a href="http://983836259.blog.51cto.com/7311475/1853887" title="Spring Security系列1:一个最基础的入门实例" target="_blank">Spring Security系列1:一个最基础..</a></li>
+<li><a href="http://shevastar.blog.51cto.com/309735/1851079" title="记一次order by desc limit导致的查询慢" target="_blank">记一次order by desc limit导致的..</a></li>
+<li><a href="http://ultrasql.blog.51cto.com/9591438/1851117" title="解决Excel打开UTF-8编码的CSV文件乱码的问题" target="_blank">解决Excel打开UTF-8编码的CSV文件..</a></li>
+<li><a href="http://suifu.blog.51cto.com/9167728/1851898" title="MySQL利用Navicat导出数据字典" target="_blank">MySQL利用Navicat导出数据字典</a></li>
+<li><a href="http://huaxin.blog.51cto.com/903026/1846224" title="数据库备份mysqldump应用总结" target="_blank">数据库备份mysqldump应用总结</a></li>
+<li><a href="http://hsbxxl.blog.51cto.com/181620/1846477" title="List Bakcup在catalog的不同显示问题" target="_blank">List Bakcup在catalog的不同显示问题</a></li>
+<li><a href="http://leelei.blog.51cto.com/856755/1847040" title="Node.js 切近实战(十二) 之Linux部署" target="_blank">Node.js 切近实战(十二) 之Linux部署</a></li>
+<li><a href="http://xjsunjie.blog.51cto.com/999372/1847337" title="oracle中delete drop truncate的用法和区别" target="_blank">oracle中delete drop truncate的..</a></li>
+<li><a href="http://suifu.blog.51cto.com/9167728/1850560" title="MySQL5.6多实例部署" target="_blank">MySQL5.6多实例部署</a></li>
+
+</ul>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="friendLink box">
+<div class="title">
+  <h2>友情链接</h2>
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://lavasoft.blog.51cto.com/" title="熔  岩" target="_blank">熔  岩</a></li>
+
+<li><a href="http://edu.51cto.com/" title="IT精品课程" target="_blank">IT精品课程</a></li>
+
+<li><a href="http://2844337.blog.51cto.com/" title="老刘的博客" target="_blank">老刘的博客</a></li>
+
+<li><a href="http://sunweiqin.blog.51cto.com/" title="孙卫琴" target="_blank">孙卫琴</a></li>
+
+<li><a href="http://zwaitt.blog.51cto.com/" title="技术成就梦想" target="_blank">技术成就梦想</a></li>
+
+<li><a href="http://51ctoblog.blog.51cto.com/" title="51CTO博客开发" target="_blank">51CTO博客开发</a></li>
+
+<li><a href="http://gaozhao.51cto.com/" title="技术人才招聘" target="_blank">技术人才招聘 </a></li>
+
+</ul>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+
+</div>
+<!--left end-->
+
+
+
+
+
+<div class="blogRight" rel="2859493######AS FLEX 互相调用" id="article_edu_void">
+<input type="hidden" value="12" id="edu_jia">
+			
+	<p style="clear:both;" class="edu_insert"><div class="box edu-col-a" style="display:none;"><div class="title">的视频课程</div><div class="vbox" style=""><div class="clear hr10"></div></div></div><div class="box edu-col-b" style=""><div class="title"><a target="_blank" href="http://edu.51cto.com/index.php?do=search&amp;m=course&amp;q=AS">相关视频课程</a><a href="http://edu.51cto.com/index.php?do=search&amp;m=course&amp;q=AS" target="_blank" style="float:right;">更多</a></div><div class="vbox" style=""><div class="vlist video-icon" style="margin: 2px 8px;"><a href="http://edu.51cto.com/course/course_id-4982.html?edu_recommend_adid=91" target="_blank"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/54d2c0c09ff587383fc384f85f2bdb52fcccf0.jpg" height="63" width="86"></a><dl><dt> <a href="http://edu.51cto.com/course/course_id-4982.html?edu_recommend_adid=91" target="_blank" title="七日成蝶-Flash CS6 AS3语言入门经典视频课程（第二部）">七日成蝶-Flash CS6 AS3语言入门经典视频课程（第二部）(共10课时)</a></dt><dd>1666人学习</dd></dl><a class="i_video" href="http://edu.51cto.com/course/course_id-4982.html?edu_recommend_adid=91" target="_blank"></a></div><div class="vlist video-icon" style="margin: 2px 8px;"><a href="http://edu.51cto.com/course/course_id-3151.html?edu_recommend_adid=91" target="_blank"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKiom1TqtBrQMAzlAAIK5xq96as258.jpg" height="63" width="86"></a><dl><dt> <a href="http://edu.51cto.com/course/course_id-3151.html?edu_recommend_adid=91" target="_blank" title="华为HCNA独家视频课程">华为HCNA独家视频课程(共72课时)</a></dt><dd>472926人学习</dd></dl><a class="i_video" href="http://edu.51cto.com/course/course_id-3151.html?edu_recommend_adid=91" target="_blank"></a></div><div class="vlist video-icon" style="margin: 2px 8px;"><a href="http://edu.51cto.com/course/course_id-1293.html?edu_recommend_adid=91" target="_blank"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKioL1OP5PbAvtj3AAEron3IJho384.jpg" height="63" width="86"></a><dl><dt> <a href="http://edu.51cto.com/course/course_id-1293.html?edu_recommend_adid=91" target="_blank" title="RSCCIE Version5.0系列Section 4定制视频课程-BGP">RSCCIE Version5.0系列Section 4定制视频课程-BGP(共23课时)</a></dt><dd>2427人学习</dd></dl><a class="i_video" href="http://edu.51cto.com/course/course_id-1293.html?edu_recommend_adid=91" target="_blank"></a></div><div class="clear hr10"></div></div></div></p>
+	<style type="text/css">
+.vlist {
+    float: left;
+    padding: 2px 0 0 10px;
+    width: 218px;
+	
+}
+.vlist img {
+    float: left;
+    margin-right: 10px;
+}
+.vlist dl {
+    float: left;
+    text-align: left;
+    width: 122px;
+}
+.vlist dl dt {
+    height: 44px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+.vlist dl dt, .vlist dl dt a {
+    color: #262626;
+}
+.vlist dl dd, .vlist dl dd a {
+    color: #777777;
+}
+.vbox_tit {
+    border-bottom: 1px solid #B3D0E6;
+    color: #666666;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: left;
+}
+.video-icon {
+    position: relative;
+}
+.video-icon a.i_video {
+    background: url("http://www.51cto.com/images/homepage/Images/eduplay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    left: 41px;
+    position: absolute;
+    top: 22px;
+    width: 25px;
+    z-index: 10;
+}
+.vbox2 .vlist1{margin:0;}
+.edu-col-a{ float:left;margin-right:6px;}
+.edu-col-b{ float:left;}
+	</style><!--modCon end-->
+	<div class="artShow box" style="margin-top:5px;">
+   	  <div class="share" id="share">
+
+    <div class="shareItem">
+		<div class="m_sharelinks"><a target="_blank" href="http://programmer.blog.51cto.com/" style="color:red;"></a><a target="_blank" href="http://programmer.blog.51cto.com/" style="color:blue;"></a><a target="_blank" href="http://programmer.blog.51cto.com/" style="color:blue;"></a></div>
+		<p class="shareMored"><a href="http://programmer.blog.51cto.com/all/2859493">博主的更多文章&gt;&gt;</a></p>
+	</div>
+      </div>
+       <div class="modCon">
+   	  <div class="showBox" style="margin:0 0 10px;">
+      <div class="line_hd_r"></div>
+      <div class="art_tj">
+
+      </div>
+
+ 
+    		<div class="showHead">
+    		  <div class="showTitleBOx" style="text-align:center">
+              <div class="showTitle">
+
+             <img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/artType01.jpg">
+
+
+    		    JS与FLEX|AS实现互相调用
+                </div>
+  		    </div>
+   		    <span class="artTime">2014-06-07 22:01:40</span></div><!--showHead end-->
+    <div class="showTags">标签：<a href="http://blog.51cto.com/tag-AS.html" target="_blank" class="operlink">AS</a> <a href="http://blog.51cto.com/tag-FLEX.html" target="_blank" class="operlink">FLEX</a> <a href="http://blog.51cto.com/tag-%E4%BA%92%E7%9B%B8%E8%B0%83%E7%94%A8.html" target="_blank" class="operlink">互相调用</a>
+
+	</div>
+
+			<div class="CopyrightStatement lh22">
+            原创作品，允许转载，转载时请务必以超链接形式标明文章 <a href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客.html" target="_blank" style="text-decoration:underline">原始出处</a> 、作者信息和本声明。否则将追究法律责任。<a href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客.html">http://programmer.blog.51cto.com/2859493/1423553</a>
+            </div>
+
+
+            <!--正文 begin-->
+    		<div class="showContent">
+    		  <p><img onload="if(this.width>650) this.width=650;" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKiom1OTH1PAvEJBAAK2Wf3y_us342.gif" title="最终效果.gif" alt="wKiom1OTH1PAvEJBAAK2Wf3y_us342.gif" onabort="" onblur="" onchange="" onclick="" ondblclick="" onerror="" onfocus="" onkeydown="" onkeypress="" onkeyup="" onmousedown="" onmousemove="" onmouseout="" onmouseover="" onmouseup="" onreset="" onresize="" onselect="" onsubmit="" onunload=""></p><p>1.AS代码</p><div><div id="highlighter_106847" class="syntaxhighlighter  as3"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="as3 plain">&lt;?xml&nbsp;version=</code><code class="as3 string">"1.0"</code>&nbsp;<code class="as3 plain">encoding=</code><code class="as3 string">"utf-8"</code><code class="as3 plain">?&gt;</code></div><div class="line number2 index1 alt1"><code class="as3 plain">&lt;mx:Application&nbsp;xmlns:mx=</code><code class="as3 string">"http://www.adobe.com/2006/mxml"</code>&nbsp;<code class="as3 plain">layout=</code><code class="as3 string">"absolute"</code></div><div class="line number3 index2 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">width=</code><code class="as3 string">"200"</code>&nbsp;<code class="as3 plain">height=</code><code class="as3 string">"200"</code>&nbsp;<code class="as3 plain">creationComplete=</code><code class="as3 string">"initApp()"</code><code class="as3 plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">&lt;mx:Script&gt;</code></div><div class="line number5 index4 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">&lt;![CDATA[</code></div><div class="line number6 index5 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 keyword">import</code>&nbsp;<code class="as3 plain">mx.controls.Alert;</code></div><div class="line number7 index6 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="as3 keyword">import</code>&nbsp;<code class="as3 plain">flash.external.ExternalInterface;</code></div><div class="line number8 index7 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number9 index8 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">Security.allowDomain(</code><code class="as3 string">"*"</code><code class="as3 plain">);&nbsp;</code></div><div class="line number10 index9 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">Security.allowInsecureDomain(</code><code class="as3 string">"*"</code><code class="as3 plain">);&nbsp;</code></div><div class="line number11 index10 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number12 index11 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 keyword">public</code>&nbsp;<code class="as3 color3">function</code>&nbsp;<code class="as3 plain">initApp():</code><code class="as3 keyword">void</code>&nbsp;<code class="as3 plain">{</code></div><div class="line number13 index12 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="as3 comments">//js要调用flex方法，首先在flex中必须注册，将as方法注册为js可调用的方法</code></div><div class="line number14 index13 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="as3 comments">//第一个是js中调用时用的名称，第二个是as中定义的方法</code></div><div class="line number15 index14 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">ExternalInterface.addCallback(</code><code class="as3 string">"flexFunctionAlias"</code><code class="as3 plain">,asFunc);</code></div><div class="line number16 index15 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">}</code></div><div class="line number17 index16 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number18 index17 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 keyword">public</code>&nbsp;<code class="as3 color3">function</code>&nbsp;<code class="as3 plain">asFunc():</code><code class="as3 keyword">void</code>&nbsp;<code class="as3 plain">{</code></div><div class="line number19 index18 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">Alert.show(</code><code class="as3 string">"js&nbsp;调用flex&nbsp;成功!"</code><code class="as3 plain">);</code></div><div class="line number20 index19 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">}</code></div><div class="line number21 index20 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number22 index21 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 keyword">public</code>&nbsp;<code class="as3 color3">function</code>&nbsp;<code class="as3 plain">getJsFunction():</code><code class="as3 keyword">void</code><code class="as3 plain">{</code></div><div class="line number23 index22 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="as3 plain">ExternalInterface.call(</code><code class="as3 string">"getJsName"</code><code class="as3 plain">,</code><code class="as3 string">"姓名"</code><code class="as3 plain">);&nbsp;</code><code class="as3 comments">//调用js函数&nbsp;getJsName</code></div><div class="line number24 index23 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">}</code></div><div class="line number25 index24 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number26 index25 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">]]&gt;</code></div><div class="line number27 index26 alt2"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">&lt;/mx:Script&gt;</code></div><div class="line number28 index27 alt1"><code class="as3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="as3 plain">&lt;mx:Button&nbsp;click=</code><code class="as3 string">"getJsFunction()"</code>&nbsp;<code class="as3 keyword">label</code><code class="as3 plain">=</code><code class="as3 string">"调用js"</code><code class="as3 plain">/&gt;</code></div><div class="line number29 index28 alt2"><code class="as3 plain">&lt;/mx:Application&gt;</code></div></div></td></tr></tbody></table></div></div><p>2.html代码(index.template.html)</p><div><div id="highlighter_502771" class="syntaxhighlighter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code>&nbsp;<code class="js plain">getJsName(name){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"flex调用js成功:"</code><code class="js plain">+name);</code></div><div class="line number3 index2 alt2"><code class="js plain">}</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="js keyword">function</code>&nbsp;<code class="js plain">getFlexMsg()</code></div><div class="line number6 index5 alt1"><code class="js plain">{</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">Test4.flexFunctionAlias();</code></div><div class="line number8 index7 alt1"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div><div><div id="highlighter_825381" class="syntaxhighlighter  html"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">button</code>&nbsp;<code class="html color1">onclick</code><code class="html plain">=</code><code class="html string">"getFlexMsg()"</code><code class="html plain">&gt;点击调用flex方法&lt;/</code><code class="html keyword">button</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div><p><br></p><p>以下为所有的index.template.html代码</p><div><div id="highlighter_711189" class="syntaxhighlighter  html  "><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div><div class="line number82 index81 alt1">82</div><div class="line number83 index82 alt2">83</div><div class="line number84 index83 alt1">84</div><div class="line number85 index84 alt2">85</div><div class="line number86 index85 alt1">86</div><div class="line number87 index86 alt2">87</div><div class="line number88 index87 alt1">88</div><div class="line number89 index88 alt2">89</div><div class="line number90 index89 alt1">90</div><div class="line number91 index90 alt2">91</div><div class="line number92 index91 alt1">92</div><div class="line number93 index92 alt2">93</div><div class="line number94 index93 alt1">94</div><div class="line number95 index94 alt2">95</div><div class="line number96 index95 alt1">96</div><div class="line number97 index96 alt2">97</div><div class="line number98 index97 alt1">98</div><div class="line number99 index98 alt2">99</div><div class="line number100 index99 alt1">100</div><div class="line number101 index100 alt2">101</div><div class="line number102 index101 alt1">102</div><div class="line number103 index102 alt2">103</div><div class="line number104 index103 alt1">104</div><div class="line number105 index104 alt2">105</div><div class="line number106 index105 alt1">106</div><div class="line number107 index106 alt2">107</div><div class="line number108 index107 alt1">108</div><div class="line number109 index108 alt2">109</div><div class="line number110 index109 alt1">110</div><div class="line number111 index110 alt2">111</div><div class="line number112 index111 alt1">112</div><div class="line number113 index112 alt2">113</div><div class="line number114 index113 alt1">114</div><div class="line number115 index114 alt2">115</div><div class="line number116 index115 alt1">116</div><div class="line number117 index116 alt2">117</div><div class="line number118 index117 alt1">118</div><div class="line number119 index118 alt2">119</div><div class="line number120 index119 alt1">120</div><div class="line number121 index120 alt2">121</div><div class="line number122 index121 alt1">122</div><div class="line number123 index122 alt2">123</div><div class="line number124 index123 alt1">124</div><div class="line number125 index124 alt2">125</div><div class="line number126 index125 alt1">126</div><div class="line number127 index126 alt2">127</div><div class="line number128 index127 alt1">128</div><div class="line number129 index128 alt2">129</div><div class="line number130 index129 alt1">130</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html comments">&lt;!--&nbsp;saved&nbsp;from&nbsp;url=(0014)about:internet&nbsp;--&gt;</code></div><div class="line number2 index1 alt1"><code class="html plain">&lt;</code><code class="html keyword">html</code>&nbsp;<code class="html color1">lang</code><code class="html plain">=</code><code class="html string">"en"</code><code class="html plain">&gt;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="html comments">&lt;!--&nbsp;</code></div><div class="line number5 index4 alt2"><code class="html comments">Smart&nbsp;developers&nbsp;always&nbsp;View&nbsp;Source.&nbsp;</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="html comments">This&nbsp;application&nbsp;was&nbsp;built&nbsp;using&nbsp;Adobe&nbsp;Flex,&nbsp;an&nbsp;open&nbsp;source&nbsp;framework</code></div><div class="line number8 index7 alt1"><code class="html comments">for&nbsp;building&nbsp;rich&nbsp;Internet&nbsp;applications&nbsp;that&nbsp;get&nbsp;delivered&nbsp;via&nbsp;the</code></div><div class="line number9 index8 alt2"><code class="html comments">Flash&nbsp;Player&nbsp;or&nbsp;to&nbsp;desktops&nbsp;via&nbsp;Adobe&nbsp;AIR.&nbsp;</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="html comments">Learn&nbsp;more&nbsp;about&nbsp;Flex&nbsp;at&nbsp;http://flex.org&nbsp;</code></div><div class="line number12 index11 alt1"><code class="html comments">//&nbsp;--&gt;</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="html plain">&lt;</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="html plain">&lt;</code><code class="html keyword">meta</code>&nbsp;<code class="html color1">http-equiv</code><code class="html plain">=</code><code class="html string">"Content-Type"</code>&nbsp;<code class="html color1">content</code><code class="html plain">=</code><code class="html string">"text/html;&nbsp;charset=utf-8"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="html comments">&lt;!--&nbsp;&nbsp;BEGIN&nbsp;Browser&nbsp;History&nbsp;required&nbsp;section&nbsp;--&gt;</code></div><div class="line number18 index17 alt1"><code class="html plain">&lt;</code><code class="html keyword">link</code>&nbsp;<code class="html color1">rel</code><code class="html plain">=</code><code class="html string">"stylesheet"</code>&nbsp;<code class="html color1">type</code><code class="html plain">=</code><code class="html string">"text/css"</code>&nbsp;<code class="html color1">href</code><code class="html plain">=</code><code class="html string">"history/history.css"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number19 index18 alt2"><code class="html comments">&lt;!--&nbsp;&nbsp;END&nbsp;Browser&nbsp;History&nbsp;required&nbsp;section&nbsp;--&gt;</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="html plain">&lt;</code><code class="html keyword">title</code><code class="html plain">&gt;${title}&lt;/</code><code class="html keyword">title</code><code class="html plain">&gt;</code></div><div class="line number22 index21 alt1"><code class="html plain">&lt;</code><code class="html keyword">script</code>&nbsp;<code class="html color1">src</code><code class="html plain">=</code><code class="html string">"AC_OETags.js"</code>&nbsp;<code class="html color1">language</code><code class="html plain">=</code><code class="html string">"javascript"</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div><div class="line number23 index22 alt2"><code class="html comments">&lt;!--&nbsp;&nbsp;BEGIN&nbsp;Browser&nbsp;History&nbsp;required&nbsp;section&nbsp;--&gt;</code></div><div class="line number24 index23 alt1"><code class="html plain">&lt;</code><code class="html keyword">script</code>&nbsp;<code class="html color1">src</code><code class="html plain">=</code><code class="html string">"history/history.js"</code>&nbsp;<code class="html color1">language</code><code class="html plain">=</code><code class="html string">"javascript"</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div><div class="line number25 index24 alt2"><code class="html comments">&lt;!--&nbsp;&nbsp;END&nbsp;Browser&nbsp;History&nbsp;required&nbsp;section&nbsp;--&gt;</code></div><div class="line number26 index25 alt1">&nbsp;</div><div class="line number27 index26 alt2"><code class="html plain">&lt;</code><code class="html keyword">style</code><code class="html plain">&gt;</code></div><div class="line number28 index27 alt1"><code class="html plain">body&nbsp;{&nbsp;margin:&nbsp;0px;&nbsp;overflow:hidden&nbsp;}</code></div><div class="line number29 index28 alt2"><code class="html plain">&lt;/</code><code class="html keyword">style</code><code class="html plain">&gt;</code></div><div class="line number30 index29 alt1"><code class="html plain">&lt;</code><code class="html keyword">script</code>&nbsp;<code class="html color1">language</code><code class="html plain">=</code><code class="html string">"JavaScript"</code>&nbsp;<code class="html color1">type</code><code class="html plain">=</code><code class="html string">"text/javascript"</code><code class="html plain">&gt;</code></div><div class="line number31 index30 alt2"><code class="html comments">&lt;!--</code></div><div class="line number32 index31 alt1"><code class="html comments">//&nbsp;-----------------------------------------------------------------------------</code></div><div class="line number33 index32 alt2"><code class="html comments">//&nbsp;Globals</code></div><div class="line number34 index33 alt1"><code class="html comments">//&nbsp;Major&nbsp;version&nbsp;of&nbsp;Flash&nbsp;required</code></div><div class="line number35 index34 alt2"><code class="html comments">var&nbsp;requiredMajorVersion&nbsp;=&nbsp;${version_major};</code></div><div class="line number36 index35 alt1"><code class="html comments">//&nbsp;Minor&nbsp;version&nbsp;of&nbsp;Flash&nbsp;required</code></div><div class="line number37 index36 alt2"><code class="html comments">var&nbsp;requiredMinorVersion&nbsp;=&nbsp;${version_minor};</code></div><div class="line number38 index37 alt1"><code class="html comments">//&nbsp;Minor&nbsp;version&nbsp;of&nbsp;Flash&nbsp;required</code></div><div class="line number39 index38 alt2"><code class="html comments">var&nbsp;requiredRevision&nbsp;=&nbsp;${version_revision};</code></div><div class="line number40 index39 alt1"><code class="html comments">//&nbsp;-----------------------------------------------------------------------------</code></div><div class="line number41 index40 alt2"><code class="html comments">//&nbsp;--&gt;</code></div><div class="line number42 index41 alt1"><code class="html plain">&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div><div class="line number43 index42 alt2"><code class="html plain">&lt;/</code><code class="html keyword">head</code><code class="html plain">&gt;</code></div><div class="line number44 index43 alt1">&nbsp;</div><div class="line number45 index44 alt2"><code class="html plain">&lt;</code><code class="html keyword">body</code>&nbsp;<code class="html color1">scroll</code><code class="html plain">=</code><code class="html string">"no"</code><code class="html plain">&gt;</code></div><div class="line number46 index45 alt1"><code class="html plain">&lt;</code><code class="html keyword">script</code>&nbsp;<code class="html color1">language</code><code class="html plain">=</code><code class="html string">"JavaScript"</code>&nbsp;<code class="html color1">type</code><code class="html plain">=</code><code class="html string">"text/javascript"</code><code class="html plain">&gt;</code></div><div class="line number47 index46 alt2"><code class="html comments">&lt;!--</code></div><div class="line number48 index47 alt1"><code class="html comments">//&nbsp;Version&nbsp;check&nbsp;for&nbsp;the&nbsp;Flash&nbsp;Player&nbsp;that&nbsp;has&nbsp;the&nbsp;ability&nbsp;to&nbsp;start&nbsp;Player&nbsp;Product&nbsp;Install&nbsp;(6.0r65)</code></div><div class="line number49 index48 alt2"><code class="html comments">var&nbsp;hasProductInstall&nbsp;=&nbsp;DetectFlashVer(6,&nbsp;0,&nbsp;65);</code></div><div class="line number50 index49 alt1">&nbsp;</div><div class="line number51 index50 alt2"><code class="html comments">//&nbsp;Version&nbsp;check&nbsp;based&nbsp;upon&nbsp;the&nbsp;values&nbsp;defined&nbsp;in&nbsp;globals</code></div><div class="line number52 index51 alt1"><code class="html comments">var&nbsp;hasRequestedVersion&nbsp;=&nbsp;DetectFlashVer(requiredMajorVersion,&nbsp;requiredMinorVersion,&nbsp;requiredRevision);</code></div><div class="line number53 index52 alt2">&nbsp;</div><div class="line number54 index53 alt1"><code class="html comments">if&nbsp;(&nbsp;hasProductInstall&nbsp;&amp;&amp;&nbsp;!hasRequestedVersion&nbsp;)&nbsp;{</code></div><div class="line number55 index54 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">//&nbsp;DO&nbsp;NOT&nbsp;MODIFY&nbsp;THE&nbsp;FOLLOWING&nbsp;FOUR&nbsp;LINES</code></div><div class="line number56 index55 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">//&nbsp;Location&nbsp;visited&nbsp;after&nbsp;installation&nbsp;is&nbsp;complete&nbsp;if&nbsp;installation&nbsp;is&nbsp;required</code></div><div class="line number57 index56 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">var&nbsp;MMPlayerType&nbsp;=&nbsp;(isIE&nbsp;==&nbsp;true)&nbsp;?&nbsp;"ActiveX"&nbsp;:&nbsp;"PlugIn";</code></div><div class="line number58 index57 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">var&nbsp;MMredirectURL&nbsp;=&nbsp;window.location;</code></div><div class="line number59 index58 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">document.title&nbsp;=&nbsp;document.title.slice(0,&nbsp;47)&nbsp;+&nbsp;"&nbsp;-&nbsp;Flash&nbsp;Player&nbsp;Installation";</code></div><div class="line number60 index59 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">var&nbsp;MMdoctitle&nbsp;=&nbsp;document.title;</code></div><div class="line number61 index60 alt2">&nbsp;</div><div class="line number62 index61 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">AC_FL_RunContent(</code></div><div class="line number63 index62 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"src",&nbsp;"playerProductInstall",</code></div><div class="line number64 index63 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"FlashVars",&nbsp;"MMredirectURL="+MMredirectURL+'&amp;MMplayerType='+MMPlayerType+'&amp;MMdoctitle='+MMdoctitle+"",</code></div><div class="line number65 index64 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"width",&nbsp;"${width}",</code></div><div class="line number66 index65 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"height",&nbsp;"${height}",</code></div><div class="line number67 index66 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"align",&nbsp;"middle",</code></div><div class="line number68 index67 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"id",&nbsp;"${application}",</code></div><div class="line number69 index68 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"quality",&nbsp;"high",</code></div><div class="line number70 index69 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"bgcolor",&nbsp;"${bgcolor}",</code></div><div class="line number71 index70 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"name",&nbsp;"${application}",</code></div><div class="line number72 index71 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"allowScriptAccess","sameDomain",</code></div><div class="line number73 index72 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"type",&nbsp;"application/x-shockwave-flash",</code></div><div class="line number74 index73 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"pluginspage",&nbsp;"http://www.adobe.com/go/getflashplayer"</code></div><div class="line number75 index74 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">);</code></div><div class="line number76 index75 alt1"><code class="html comments">}&nbsp;else&nbsp;if&nbsp;(hasRequestedVersion)&nbsp;{</code></div><div class="line number77 index76 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">//&nbsp;if&nbsp;we've&nbsp;detected&nbsp;an&nbsp;acceptable&nbsp;version</code></div><div class="line number78 index77 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">//&nbsp;embed&nbsp;the&nbsp;Flash&nbsp;Content&nbsp;SWF&nbsp;when&nbsp;all&nbsp;tests&nbsp;are&nbsp;passed</code></div><div class="line number79 index78 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">AC_FL_RunContent(</code></div><div class="line number80 index79 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"src",&nbsp;"${swf}",</code></div><div class="line number81 index80 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"width",&nbsp;"${width}",</code></div><div class="line number82 index81 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"height",&nbsp;"${height}",</code></div><div class="line number83 index82 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"align",&nbsp;"middle",</code></div><div class="line number84 index83 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"id",&nbsp;"${application}",</code></div><div class="line number85 index84 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"quality",&nbsp;"high",</code></div><div class="line number86 index85 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"bgcolor",&nbsp;"${bgcolor}",</code></div><div class="line number87 index86 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"name",&nbsp;"${application}",</code></div><div class="line number88 index87 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"allowScriptAccess","sameDomain",</code></div><div class="line number89 index88 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"type",&nbsp;"application/x-shockwave-flash",</code></div><div class="line number90 index89 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">"pluginspage",&nbsp;"http://www.adobe.com/go/getflashplayer"</code></div><div class="line number91 index90 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">);</code></div><div class="line number92 index91 alt1"><code class="html spaces">&nbsp;&nbsp;</code><code class="html comments">}&nbsp;else&nbsp;{&nbsp;&nbsp;//&nbsp;flash&nbsp;is&nbsp;too&nbsp;old&nbsp;or&nbsp;we&nbsp;can't&nbsp;detect&nbsp;the&nbsp;plugin</code></div><div class="line number93 index92 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">var&nbsp;alternateContent&nbsp;=&nbsp;'Alternate&nbsp;HTML&nbsp;content&nbsp;should&nbsp;be&nbsp;placed&nbsp;here.&nbsp;'</code></div><div class="line number94 index93 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">+&nbsp;'This&nbsp;content&nbsp;requires&nbsp;the&nbsp;Adobe&nbsp;Flash&nbsp;Player.&nbsp;'</code></div><div class="line number95 index94 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">+&nbsp;'&lt;a&nbsp;href=http://www.adobe.com/go/getflash/&gt;Get&nbsp;Flash&lt;/a&gt;';</code></div><div class="line number96 index95 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">document.write(alternateContent);&nbsp;&nbsp;//&nbsp;insert&nbsp;non-flash&nbsp;content</code></div><div class="line number97 index96 alt2"><code class="html spaces">&nbsp;&nbsp;</code><code class="html comments">}</code></div><div class="line number98 index97 alt1"><code class="html spaces">&nbsp;&nbsp;</code>&nbsp;</div><div class="line number99 index98 alt2"><code class="html comments">function&nbsp;getJsName(name){</code></div><div class="line number100 index99 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html comments">alert("flex调用js成功:"+name);</code></div><div class="line number101 index100 alt2"><code class="html comments">}</code></div><div class="line number102 index101 alt1">&nbsp;</div><div class="line number103 index102 alt2"><code class="html comments">function&nbsp;getFlexMsg()</code></div><div class="line number104 index103 alt1"><code class="html comments">{</code></div><div class="line number105 index104 alt2"><code class="html spaces">&nbsp;&nbsp;</code><code class="html comments">Test4.flexFunctionAlias();</code></div><div class="line number106 index105 alt1"><code class="html comments">}</code></div><div class="line number107 index106 alt2"><code class="html comments">//&nbsp;--&gt;</code></div><div class="line number108 index107 alt1"><code class="html plain">&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div><div class="line number109 index108 alt2"><code class="html plain">&lt;</code><code class="html keyword">noscript</code><code class="html plain">&gt;</code></div><div class="line number110 index109 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">object</code>&nbsp;<code class="html color1">classid</code><code class="html plain">=</code><code class="html string">"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"</code></div><div class="line number111 index110 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">id</code><code class="html plain">=</code><code class="html string">"${application}"</code>&nbsp;<code class="html color1">width</code><code class="html plain">=</code><code class="html string">"${width}"</code>&nbsp;<code class="html color1">height</code><code class="html plain">=</code><code class="html string">"${height}"</code></div><div class="line number112 index111 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">codebase</code><code class="html plain">=</code><code class="html string">"http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"</code><code class="html plain">&gt;</code></div><div class="line number113 index112 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">param</code>&nbsp;<code class="html color1">name</code><code class="html plain">=</code><code class="html string">"movie"</code>&nbsp;<code class="html color1">value</code><code class="html plain">=</code><code class="html string">"${swf}.swf"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number114 index113 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">param</code>&nbsp;<code class="html color1">name</code><code class="html plain">=</code><code class="html string">"quality"</code>&nbsp;<code class="html color1">value</code><code class="html plain">=</code><code class="html string">"high"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number115 index114 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">param</code>&nbsp;<code class="html color1">name</code><code class="html plain">=</code><code class="html string">"bgcolor"</code>&nbsp;<code class="html color1">value</code><code class="html plain">=</code><code class="html string">"${bgcolor}"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number116 index115 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">param</code>&nbsp;<code class="html color1">name</code><code class="html plain">=</code><code class="html string">"allowScriptAccess"</code>&nbsp;<code class="html color1">value</code><code class="html plain">=</code><code class="html string">"always"</code>&nbsp;<code class="html plain">/&gt;</code></div><div class="line number117 index116 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">embed</code>&nbsp;<code class="html color1">src</code><code class="html plain">=</code><code class="html string">"${swf}.swf"</code>&nbsp;<code class="html color1">quality</code><code class="html plain">=</code><code class="html string">"high"</code>&nbsp;<code class="html color1">bgcolor</code><code class="html plain">=</code><code class="html string">"${bgcolor}"</code></div><div class="line number118 index117 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">width</code><code class="html plain">=</code><code class="html string">"${width}"</code>&nbsp;<code class="html color1">height</code><code class="html plain">=</code><code class="html string">"${height}"</code>&nbsp;<code class="html color1">name</code><code class="html plain">=</code><code class="html string">"${application}"</code>&nbsp;<code class="html color1">align</code><code class="html plain">=</code><code class="html string">"middle"</code></div><div class="line number119 index118 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">play</code><code class="html plain">=</code><code class="html string">"true"</code></div><div class="line number120 index119 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">loop</code><code class="html plain">=</code><code class="html string">"false"</code></div><div class="line number121 index120 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">quality</code><code class="html plain">=</code><code class="html string">"high"</code></div><div class="line number122 index121 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">allowScriptAccess</code><code class="html plain">=</code><code class="html string">"sameDomain"</code></div><div class="line number123 index122 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">type</code><code class="html plain">=</code><code class="html string">"application/x-shockwave-flash"</code></div><div class="line number124 index123 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html color1">pluginspage</code><code class="html plain">=</code><code class="html string">"http://www.adobe.com/go/getflashplayer"</code><code class="html plain">&gt;</code></div><div class="line number125 index124 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">embed</code><code class="html plain">&gt;</code></div><div class="line number126 index125 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">object</code><code class="html plain">&gt;</code></div><div class="line number127 index126 alt2"><code class="html plain">&lt;/</code><code class="html keyword">noscript</code><code class="html plain">&gt;</code></div><div class="line number128 index127 alt1"><code class="html plain">&lt;</code><code class="html keyword">button</code>&nbsp;<code class="html color1">onclick</code><code class="html plain">=</code><code class="html string">"getFlexMsg()"</code><code class="html plain">&gt;点击调用flex方法&lt;/</code><code class="html keyword">button</code><code class="html plain">&gt;</code></div><div class="line number129 index128 alt2"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div><div class="line number130 index129 alt1"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div><p><br></p><p>本文出自 “<a href="http://programmer.blog.51cto.com/">我的技术博客</a>” 博客，请务必保留此出处<a href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客.html">http://programmer.blog.51cto.com/2859493/1423553</a></p>
+    		</div><!--正文 end-->
+
+		
+<div class="m_sharebtn clear">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tbody><tr>
+		<td width="11%" height="43" align="center" valign="middle"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/ssk.png" alt="分享至"></td>
+		<td width="77%" align="left" valign="top">
+<!-- 			
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_bdysc" data-cmd="bdysc" title="分享到百度云收藏"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+<script>
+var bds_config = {'wbUid':1706976420};
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false, 'bdPic':'http://blog.51cto.com/attachment/201305/173413310.jpg',"bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+ -->
+
+<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1474283369929"><a href="http://programmer.blog.51cto.com/#" class="bds_more" data-cmd="more"></a><a href="http://programmer.blog.51cto.com/#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a><a href="http://programmer.blog.51cto.com/#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="http://programmer.blog.51cto.com/#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="http://programmer.blog.51cto.com/#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://programmer.blog.51cto.com/#" class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a><a href="http://programmer.blog.51cto.com/#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="http://programmer.blog.51cto.com/#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="http://programmer.blog.51cto.com/#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="http://programmer.blog.51cto.com/#" class="bds_bdysc" data-cmd="bdysc" title="分享到百度云收藏"></a><a href="http://programmer.blog.51cto.com/#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+
+
+	<!-- Baidu Button END --></td>
+		<td width="12%" align="right" valign="middle"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/favorite_add_small.gif" border="0" alt="一键收藏，随时查看，分享好友！"></a></td>
+	  </tr>
+	</tbody></table>
+
+</div>			
+    		<div class="showBottom">
+            <!--<div class="reviews"><span class="fl" style="cursor:pointer;"><a onclick="openFavoulist();" id="favourer">tvejepqx</a>
+
+            </span><div id="favourdiv" class="support01">1人</div>
+              <span class="fl">了这篇文章</span></div>-->
+              <table width="720" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td align="right"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/icon01.png" width="15" height="16"> <span style="cursor:pointer;"><a onclick="openFavoulist();" id="favourer">tvejepqx</a></span></td>
+    <td width="70" align="left"><div style="line-height:28px;" id="favourdiv" class="support01">1人</div></td>
+    <td width="60" align="left">了这篇文章</td>
+  </tr>
+</tbody></table>
+
+
+
+
+            <div class="showType">类别：<a href="http://programmer.blog.51cto.com/2859493/d-2" class="operlink">Flex</a>┆阅读(<span id="readNum">134</span>)┆评论(<span id="cmtNum">0</span>)
+
+┆
+<a href="http://programmer.blog.51cto.com/">返回博主首页</a>┆<a href="http://blog.51cto.com/">返回博客首页</a></div>
+            <div class="prevNext">
+
+			上一篇 <a href="http://programmer.blog.51cto.com/2859493/1422836" class="operlink" title="Flex解析JSON">Flex解析JSON</a>
+
+
+			下一篇 <a href="http://programmer.blog.51cto.com/2859493/1423886" class="operlink" title="Flex控制用户可输入到文本字段中的字符集">Flex控制用户可输入到文本字段中的字符集</a>
+
+
+            </div>
+
+            </div>
+
+	  </div><!--showBottom end-->
+      </div><!--modCon-->
+    <span class="modBot"></span>
+    </div><!--artShow end-->
+    <span class="blank"></span>
+	
+	<div class="relatedArt box">
+<a href="javascript:;"><img src="http://programmer.blog.51cto.com/"></a>
+</div>
+
+<div class="relatedArt box">
+    <div class="title" name="zhuanti" id="zhuanti"><h2>职位推荐</h2></div>
+    <div class="modCon">
+<ul>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-4277.html" target="_blank">前端开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-4633.html" target="_blank">Python前端/后端开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-1246.html" target="_blank">Linux 无线驱动开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-2767.html" target="_blank">PHP开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-2689.html" target="_blank">初级Java工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-4598.html" target="_blank">前端开发产品经理</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-4467.html" target="_blank">招聘Siebel开发兼职讲师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-4482.html" target="_blank">开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-3569.html" target="_blank">Web前端开发工程师</a></li>
+
+<li><a href="http://gaozhao.51cto.com/job/view/id-505.html" target="_blank">PHP开发工程师</a></li>
+
+
+</ul>
+
+<span class="blank6"></span>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div><!--相关文章 end-->
+
+
+<div class="artComm box">
+    <div class="title"><a name="replay"></a><h2>文章评论</h2></div>
+    <div class="modCon" id="artcomment">
+		<div>  &nbsp;</div><div>  &nbsp;</div>
+    </div><!--modCon-->
+        <span class="modBot"></span>
+</div><!--commBox end-->
+<a href="http://programmer.blog.51cto.com/" id="com_top_top"></a>
+<!--<div class="artComm box" style="750px;height:90px;">
+<script type="text/javascript">
+    var cpro_id = "u2386995";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>--><form action="http://programmer.blog.51cto.com/comment.php?" method="post" name="form1" id="form1" onsubmit="return commentSubmit(this,&quot;&quot;);">
+<span class="blank1"></span>
+<div class="box writeComm" style="min-height:30px;">
+<a name="comment"></a>
+<input type="hidden" name="action" value="comment">
+<input id="commenttid" type="hidden" name="tid" value="1423553">
+<input type="hidden" name="com_count_ajax" id="com_count_ajax" value="1">
+
+ <div class="title">
+	<h2 class="fl">发表评论&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+	<span class="fl" id="messageTj">
+<div style=" color:red;font-family:微软雅黑 "></div><div id="beacon_eddd3029fd" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+
+</span>
+	<style type="text/css">
+		a.mred:link{ color:#ff0000; text-decoration:underline;}
+		a.mred:visited{color:#ff0000;}
+		a.mred:hover{color:#ff0000;}
+		a.mred:active{color:#ff0000;}
+	</style>
+</div>
+<div style="display:none" rel="" id="ggBox">
+<div style=" color:red;font-family:微软雅黑 "></div><div id="beacon_eddd3029fd" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+
+</div>
+
+ <div class="modCon">
+
+ <div class="commForm">
+<dl>
+<dt>昵&nbsp;&nbsp;称：</dt>
+<dd>
+
+<input type="text" id="commentusername" name="username" value="" class="commInput fl"><span><a href="http://home.51cto.com/index.php?reback=http%253A%252F%252Fprogrammer.blog.51cto.com%252F2859493%252F1423553" style="text-decoration:underline">登录</a>&nbsp;&nbsp;<a href="http://ucenter.51cto.com/reg_01.php?reback=http://blog.51cto.com" target="_blank" style="text-decoration: underline;">快速注册</a></span>
+
+
+
+</dd>
+</dl>
+
+
+
+<dl id="commentyanzheng">
+
+
+<dt>验证码：</dt>
+<dd><input class="code" type="text" value="" id="commentauthnum" name="authnum" onclick="displaysecunum();">
+
+  <img width="78" class="fl" height="29" id="secunum" onclick="refimg()" style="display:none;"><p class="fl"><span style="display:none;" id="spanfont">点击图片可刷新验证码</span><span style="display:inline;" id="clickfont">请点击后输入验证码</span><span class="pl5"><a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank" style="text-decoration: underline;">博客过2级，无需填写验证码</a></span></p></dd>
+</dl>
+<dl>
+<dt>内&nbsp;&nbsp;容：</dt>
+<dd>
+<textarea class="writeCommCon f12" id="commentcontent" name="content"></textarea>
+</dd>
+</dl>
+</div>
+<div class="writeCommBot">
+  <input type="hidden" name="parentid" value="" id="parentid">
+  <input class="commBtn fl" name="submit" type="button" id="commentsubmit" value="" onclick="commentSubmitend2()">
+
+ <p class="fl" style="display:none;"><input class="fl" type="checkbox" name="favour" id="favour" checked="" value="1"><span class="fl">同时赞一个</span></p>
+
+</div>
+<span class="blank"></span>
+
+</div><!--modCon-->
+<span class="modBot"></span>
+</div>
+</form>
+<div style="display:none">
+<a href="http://tongji.baidu.com/hm-web/welcome/ico?s=2283d46608159c3b39fc9f1178809c21" target="_blank"><img border="0" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/21.gif" width="20" height="20"></a>
+
+
+
+</div>
+<iframe id="iframe1" name="iframe1" width="0" height="0" src="wyciwyg://frame/0"></iframe>
+<!--发表评论 end-->
+</div>
+</div>
+<div id="f_close_box" style="width:150px; height:300px; position:fixed; top:42%;left:0; z-index:100; _position:absolute; _margin-top: 0; _top:expression(documentElement.scrollTop+(documentElement.clientHeight-this.offsetHeight)/2+50);">
+
+	<img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKioL1VHFCjRwiyNAAB-jIackwQ674.jpg" border="0" usemap="#Map1">
+    <map name="Map1" id="Map1">
+      <area shape="rect" coords="124,7,143,25" href="javascript:void(0);" onclick="document.getElementById('f_close_box').style.display='none';">
+    </map>
+    
+</div>
+
+
+
+
+<link href="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/blog_top.css" rel="stylesheet" type="text/css">
+<!-- <script src="http://blog.51cto.com/js/blog_top_list.php" type="text/javascript" language="javascript"></script> -->
+
+<div id="message" class="blogpop" style="z-index: 100; width: 389px; height: 196px; position: absolute; bottom: 0px; right: 0px; overflow: hidden; top: 493px; display: none; background-color: rgb(255, 255, 255);"><iframe style="width:800px;height:536px;top:0px;left:0px;position:absolute;visibility:inherit;z-index:-1;" frameborder="0" src="wyciwyg://frame/1"></iframe>
+<div style="height:36px;background:url(http://blog.51cto.com/image/blog_top/popbgx.jpg) repeat-x; position:relative;width:387px;border-right-color:#2668B7;border-right-width:2px;border-right-style:solid 2px #2668B7;"><span style="right:10px;padding:12px 0 0;position:absolute;top:0"><span style="margin-right:80px;color:#828282;width:190px;padding:10px 0 0 10px;font-size:14px">每日博报 精彩不止一点</span><img title="关闭" id="message_close" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/close.jpg" alt="关闭"></span><div style="width:387px;height:36px;left:0;overflow:hidden; text-indent:-999em;background:url(http://blog.51cto.com/image/blog_top/hdtit.jpg) no-repeat;border-right:solid 2px #2668B7;"><a style="display: block; height: 36px;width:138px;" target="_blank" href="http://blog.51cto.com/"></a>
+</div>
+<div style="clear:both;"></div>
+</div>
+	<div id="message_content" style="border-top:none;font-family:Microsoft YaHei;font-size:12px;width:389px;height:160pxpx;text-align:left;overflow:hidden;">
+	<div class="blogpopMain">
+<div class="l">
+<a target="_blank" href="http://51edu.blog.51cto.com/8899635/1852639"><img width="105" height="105" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/wKioL1ffskOi0zfkAACAiqxjbas984.jpg"></a>
+<p>
+<a target="_blank" href="http://51edu.blog.51cto.com/8899635/1852639"> 【计算机二级考前冲刺】 </a></p>
+</div>
+<div class="r">
+<h4 style="text-align:left;">
+<a target="_blank" href="http://hnr520.blog.51cto.com/4484939/1852838">Zabbix监控mysql及故障告警配置 </a>
+</h4>
+<ul>
+<li>
+<a target="_blank" href="http://chawan.blog.51cto.com/9179874/1840895">Rsync企业实战之异地自动化备份</a>
+</li>
+<li>
+<a target="_blank" href="http://dengaosky.blog.51cto.com/9215128/1852306" style="color:red">Rsync企业实战之自动异地备份</a>
+</li>
+<li>
+<a target="_blank" href="http://allenyang.blog.51cto.com/10991027/1840830"> HAProxy高可用负载均衡集群部署</a></li>
+<li><a target="_blank" href="http://bbs.51cto.com/thread-1467604-1.html" style="color:red">【福利】后台开发能力体系结构图
+</a></li>
+</ul>
+</div>
+</div><div id="beacon_3710e06091" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+
+	</div>
+</div>
+<style>
+.backToTop {
+    display: none;
+	WIDTH: 45px;
+	height:45px;
+	BOTTOM: 20px;
+     position: fixed;
+    _position: absolute;
+    right: 140px;
+    bottom: 10px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: .6;
+    filter: Alpha(opacity=60);
+	text-indent:-9999px;
+}
+.tops { background:url(/images/tops.jpg) no-repeat center center; }
+</style>
+
+<div class="backToTop tops" title="返回顶部" style="display: block;">返回顶部</div>
+
+
+
+
+
+
+<div class="clear"></div>
+<!-- <script>
+jQuery(function(){
+	var html= "<div id=\"sogou_se_tgbar\" style=\"text-align:center;margin:0px auto 2px auto;clear:both;background:url(http://home.51cto.com/public/images/notice/sogou_se_tgbar_bg_final1.gif) repeat-x;width:950px;color:#000;font-size:13px;height:36px;z-index:21474836471\"><div style=\"float:left;cursor:pointer;width:910px;text-align:center;border-left:solid #efbf00 1px;height:32px; line-height:32px;txt-align:center;\"><span style=\"\">	<a href=\"http://51ctoblog.blog.51cto.com/26414/1093282\">【新年祝福征集】51CTO社区年底嘉年华活动正在征集博主祝福语，祝福以红包的形式随机的赠送给访问51CTO的网友 点此送祝福>></a></span></div><div onclick=\"document.getElementById('sogou_se_tgbar').style.display = 'none';\" style=\"float:right;width:20px;cursor:pointer;height:28px;padding:4px 8px 0px 8px;border-right:solid #efbf00 1px\"><img style=\"border:none;margin:4px 0px 0px 0px;\" src=\"http://home.51cto.com/public/images/notice/sogou_se_tgbar_close_final1.gif\"></div></div>"
+	jQuery('body').prepend(html);
+})
+</script> -->
+
+<div id="footer">
+  <div id="innerFooter">
+	<center>
+		<small>
+			Copyright By 51CTO.COM 版权所有<br><br>
+			<a href="http://blog.51cto.com/" target="_blank"><img src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/copyright.jpg"></a>
+	  </small>
+	</center>
+  </div>
+</div>
+
+<div style="display:none">
+
+
+<div style="display:none">
+
+
+
+
+</div>
+<iframe frameborder="0" scrolling="no" width="0" height="0" src="JS与FLEX_AS实现互相调用 - 我的技术博客 - 51CTO技术博客_files/pageview.html"></iframe>
+</div>
+
+
+
+
+
+<iframe frameborder="0" id="bdSharePopup_1474285830152bg" class="bdshare_popup_bg" style="height: 326px; width: 228px; top: 3219px; left: 516.5px; display: none;" src="wyciwyg://frame/2"></iframe><div class="bdshare_popup_box" id="bdSharePopup_1474285830152box" style="width: 226px; top: 3219px; left: 516.5px; display: none;"><div class="bdshare_popup_top">分享到</div><ul class="bdshare_popup_list"><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_mshare" data-cmd="mshare">一键分享</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_qzone" data-cmd="qzone">QQ空间</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_tsina" data-cmd="tsina">新浪微博</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_bdysc" data-cmd="bdysc">百度云收藏</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_weixin" data-cmd="weixin">微信</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_renren" data-cmd="renren">人人网</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_tqq" data-cmd="tqq">腾讯微博</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_bdxc" data-cmd="bdxc">百度相册</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_kaixin001" data-cmd="kaixin001">开心网</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_tqf" data-cmd="tqf">腾讯朋友</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_tieba" data-cmd="tieba">百度贴吧</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_douban" data-cmd="douban">豆瓣网</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_bdhome" data-cmd="bdhome">百度新首页</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_sqq" data-cmd="sqq">QQ好友</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_thx" data-cmd="thx">和讯微博</a></li><li><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_ibaidu" data-cmd="ibaidu">百度中心</a></li></ul><div class="bdshare_popup_bottom"><a href="http://programmer.blog.51cto.com/#" onclick="return false;" class="popup_more" data-cmd="more" target="_blank;">更多...</a></div></div></body></html>

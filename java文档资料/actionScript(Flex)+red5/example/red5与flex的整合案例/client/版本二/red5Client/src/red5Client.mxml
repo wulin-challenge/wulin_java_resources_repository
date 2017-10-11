@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" creationComplete="application1_creationCompleteHandler(event)"
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.events.FlexEvent;
+			
+			private static const serverUrl:String = "rtmp://127.0.0.1/testRed5";
+//			private static const serverUrl:String = "rtmp://localhost/testRed5";  
+			private var client:Object;
+			private var conn:NetConnection;
+			[Bindable]
+			private var isConnected:Boolean = false;
+			
+			private var i:int = 0;
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				conn = new NetConnection();
+				client = new Object();
+				client.onBWCheck = onBWCheck;
+				conn.client = client;
+				conn.connect(serverUrl);
+				conn.addEventListener(NetStatusEvent.NET_STATUS,netStatus);
+			}
+			
+			protected function netStatus(event:NetStatusEvent):void{
+				trace(event.info.code);
+				if(event.info.code == "NetConnection.Connect.Success"){
+					isConnected = true;
+					trace("连接服务器成功!");
+				}
+			}
+
+
+			protected function changeId_clickHandler(event:MouseEvent):void
+			{
+				conn.call("change",new Responder(resultHander),"myRed5");
+			}
+			
+			protected function resultHander(str:String):void{
+				trace(i+" ; "+str);
+				i++;
+				resultId.text = str;
+			}
+			
+			public function onBWCheck(obj:Object):void{
+			
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:Button x="334" y="214" label="条用change方法" id="changeId" click="changeId_clickHandler(event)"
+			  enabled="{isConnected}"/>
+	
+	<s:Label id="resultId"  width="200" height="30"/>
+</s:Application>
