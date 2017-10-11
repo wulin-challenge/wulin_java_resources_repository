@@ -1,0 +1,36 @@
+﻿•	上传 README 文件
+如果在创建 Github 仓库时没有勾选创建 README.md 文件，则要先创建 README.md 文件，不然上传文件会报错。如果已经勾选，可以跳过此步骤。
+$ git init
+$ touch README.md
+$ git add README.md
+$ git commit -m 'first_commit'
+$ git remote add origin https://github.com/jerryhanjj/baike_spider.git
+$ git push origin master
+•	上传项目
+跟踪项目文件夹中的所有文件和文件夹
+$ git add . 
+输入本次的提交说明，准备提交暂存区中的更改的已跟踪文件，单引号内为说明内容
+$ git commit -m 'first_commit'
+关联远程仓库，添加后，远程库的名字就是 origin，这是 Git 默认的叫法，也可以改成别的，但是 origin 这个名字一看就知道是远程库。
+$ git remote add origin https://github.com/jerryhanjj/baike_spider.git
+如果关联出现错误 fatal: remote origin already exists，则执行下列语句再进行关联
+git remote rm origin
+把本地库的所有内容推送到远程库上
+$ git push -u origin master
+如果在推送时出现错误 error:failed to push som refs to.......，则执行下列语句
+git pull origin master
+出现 fatal: refusing to merge unrelated histories,就执行下面语句
+
+git pull origin master --allow-unrelated-histories
+
+将远程仓库 Github 上的文件拉下来合并之后重新推送上去
+
+
+--allow-unrelated-histories
+
+[http]
+postBuffer = 524288000
+或者采用命令
+git config http.postBuffer 524288000   --这是500M
+
+git config http.postBuffer 1073741824 --这是1G
