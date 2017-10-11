@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="myConfig"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/upload/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/upload/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0/commons-dbutils-1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j/dom4j-2.0.0-ALPHA-2.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
