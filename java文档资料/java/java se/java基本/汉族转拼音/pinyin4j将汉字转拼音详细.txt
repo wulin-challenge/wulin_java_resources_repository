@@ -1,0 +1,60 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Pingyin4jUtil.java
+
+	将汉字转为拼音,解决了多音字的问题
+	
+	案例:
+	
+		public static void main(String[] args) {
+        	String chinese = "特长(逮捕前条件),特长(逮捕前条件)";
+        	String converterToFirstSpell = Pingyin4jUtil.converterToFirstSpell(chinese);
+        	String converterToSpell = Pingyin4jUtil.converterToSpell(chinese);
+        	System.out.println(converterToFirstSpell);
+        	System.out.println(converterToSpell);
+		}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PingYinUtil.java
+
+	没有解决多音字问题
+	但返回的值比较简单,要求不是很苛刻的情况下比较好用
+	
+	案例
+	
+		this.conditionNameSimpleSpell = PingYinUtil.getFirstSpell(conditionName);
+		this.conditionNameFullSpell = PingYinUtil.getFullSpell(conditionName);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
