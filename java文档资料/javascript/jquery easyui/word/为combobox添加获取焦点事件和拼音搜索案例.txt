@@ -1,0 +1,67 @@
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+1.添加获取焦点事件
+
+	html代码:
+		<input id='aaaa' class="easyui-combobox" />  
+		
+	js代码:
+		 <script type="text/javascript">  
+			 $(function(){  
+						 $('#aaaa').combobox('textbox').bind('focus',function(){  
+							$('#aaaa').combobox('showPanel');  
+						});   
+					});  
+			</script>  
+			
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2.利用conbobox的filters添加拼音搜索案例,此案例实现了使用焦点事件来延迟数据的加载
+
+	html代码:
+		<input type="text" class="easyui-combobox" id="conditionPositionId">
+	
+	
+	js代码:
+		$('#conditionPositionId').combobox('textbox').bind('focus',function(e){  
+		       		   	var lastConditionPosition = null; //上一个定位条件
+		       		   	$("#conditionPositionId").combobox({
+		       				valueField:'id',   
+		       				textField:'conditionName',
+		       				method:'get',
+		       				url: contextPath + "/criminalSearch/allPositionData",
+		       				filter:function(q, row){ //添加简拼和全拼的搜索功能
+		       				    var opts = $(this).combobox('options');  
+		       				    return row[opts.textField].indexOf(q) >= 0||
+		       				    (row['conditionNameSimpleSpell']?row['conditionNameSimpleSpell'].indexOf(q) >= 0:false)||
+		       				    (row['conditionNameFullSpell']?row['conditionNameFullSpell'].indexOf(q) >= 0:false);  
+		       				},
+		       				onSelect:function(record){
+		       					PlatformUI.ajax({
+		       						url: contextPath + "/criminalSearch/singlePositionData",
+		       						type: "get",
+		       						data: {id:record.id},
+		       						afterOperation: function(data, textStatus,jqXHR){
+		       						 
+		       							//选中tab
+		       		     	    		showtabs(data.tabParams1,data.tabParams2,data.tabParams3);
+		       		     	    		var conditionPosition = $("."+data.conditionClass);
+		       		     	    		 
+		       		     	    		//清楚上一个定位条件的样式
+		       		     	    		if(lastConditionPosition != null){
+		       		     	    			lastConditionPosition.css({"background":"none"});
+		       		     	    		}
+		       		     	    		lastConditionPosition = conditionPosition;
+		       		     	    		
+		       		     	    		//显示当前添加,并添加样式
+		       		     	    	    conditionPosition.css({"background":"red"});
+		       		     	            conditionPosition[0].scrollIntoView();
+		       						}
+		       					});
+		       				}
+		       		   	});
+	       	         });  
+					 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
