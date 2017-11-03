@@ -2295,7 +2295,7 @@ Oracle中connect,resource角色权限
 	同时,为了防止同一个表空间下要让hibernate在多个用户要创建相同表名的表,最好是一个用户对应一个表空间
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-使用sys用户查看其它用户的用户名及密码及表空间:
+使用sys用户查看其它用户的用户名及密码及表空间(用户查找表空间/查看表空间):
 
 	select username,password from dba_users;
 	
@@ -3317,8 +3317,63 @@ Oracle中使用expdp/impdp 数据泵导出/导入 数据的步骤: 从11g到10g
 		
 
 <----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+如何查看oracle的exp导出的.dmp文件的用户
 
+	由于某种原因(是由别人很久以前导出的，这个人你已经联系不到)，只有exp导出的.dmp文件，不知道用户导出的用户名或表名的信息，可以使用下面的方法：
+	采用notepad++等文本工具打开,信息如下:
+	
+	[oracle@dg01] exp thomas/thomas owner=thomas file=1.dmp 
+	Export: Release 10.2.0.4.0 - Production on Thu Mar 26 18:29:32 2009
+	Copyright (c) 1982, 2007, Oracle.   All rights reserved.
 
+	Connected to: Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - Production
+	With the Partitioning, OLAP, Data Mining and Real Application Testing options
+	Export done in US7ASCII character set and AL16UTF16 NCHAR character set
+	server uses ZHS16GBK character set (possible charset conversion)
+	About to export specified users ...
+	. exporting pre-schema procedural objects and actions
+	. exporting foreign function library names for user THOMAS 
+	. exporting PUBLIC type synonyms
+	. exporting private type synonyms
+	. exporting object type definitions for user THOMAS 
+	About to export THOMAS's objects ...
+	. exporting database links
+	. exporting sequence numbers
+	. exporting cluster definitions
+	. about to export THOMAS's tables via Conventional Path ...
+	. . exporting table                         TEST       10 rows exported
+	. exporting synonyms
+	. exporting views
+	. exporting stored procedures
+	. exporting operators
+	. exporting referential integrity constraints
+	. exporting triggers
+	. exporting indextypes
+	. exporting bitmap, functional and extensible indexes
+	. exporting posttables actions
+	. exporting materialized views
+	. exporting snapshot logs
+	. exporting job queues
+	. exporting refresh groups and children
+	. exporting dimensions
+	. exporting post-schema procedural objects and actions
+	. exporting statistics
+	Export terminated successfully without warnings.
+	[oracle@dg01] 
+	[oracle@dg01] head -10 1.dmp |strings
+	EXPORT:V10.02.01
+	DTHOMAS     --导出用户
+	RUSERS    --以owner的方式，如果是以表的方式则是：RTABLES
+	8192
+										 Thu Mar 26 18:29:32 20091.dmp
+	#C##
+	#C##
+	+00:00
+	BYTE
+	UNUSED
+	INTERPRETED
+	DISABLE:ALL
+<----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
