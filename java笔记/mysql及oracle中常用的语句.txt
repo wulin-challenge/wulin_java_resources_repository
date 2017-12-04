@@ -102,6 +102,50 @@ mysql 使用 mysqldump/mysql 命令导出导入一个用户下一个库的数据
 		备注: root 是用户名 , platform_cas 是数据库名 , D:\platform.sql 导出的文件
 
 	4.执行导出/导入命令后会让你输入密码,输入即可
+	
+<=====================================================================================================================================================================>
+mysql 1449 ： The user specified as a definer ('root'@'%') does not exist 解决方法
+权限问题，授权 给 root  所有sql 权限
+	mysql> grant all privileges on *.* to root@"%" identified by ".";
+	Query OK, 0 rows affected (0.00 sec)
+
+
+	mysql> flush privileges;
+	Query OK, 0 rows affected (0.00 sec)
+	
+<=====================================================================================================================================================================>
+MySQL——修改root密码的4种方法(以windows为例)	(mysql修改密码)
+
+	方法1： 用SET PASSWORD命令 
+	首先登录MySQL。 
+	格式：mysql> set password for 用户名@localhost = password('新密码'); 
+	例子：mysql> set password for root@localhost = password('123'); 
+
+	方法2：用mysqladmin 
+	格式：mysqladmin -u用户名 -p旧密码 password 新密码 
+	例子：mysqladmin -uroot -p123456 password 123 
+
+	方法3：用UPDATE直接编辑user表 
+	首先登录MySQL。 
+	mysql> use mysql; 
+	mysql> update user set password=password('123') where user='root' and host='localhost'; 
+	mysql> flush privileges; 
+
+	方法4：在忘记root密码的时候，可以这样 
+	以windows为例： 
+	1. 关闭正在运行的MySQL服务。 
+	2. 打开DOS窗口，转到mysql\bin目录。 
+	3. 输入mysqld --skip-grant-tables 回车。--skip-grant-tables 的意思是启动MySQL服务的时候跳过权限表认证。 
+	4. 再开一个DOS窗口（因为刚才那个DOS窗口已经不能动了），转到mysql\bin目录。 
+	5. 输入mysql回车，如果成功，将出现MySQL提示符 >。 
+	6. 连接权限数据库： use mysql; 。 
+	6. 改密码：update user set password=password("123") where user="root";（别忘了最后加分号） 。 
+	7. 刷新权限（必须步骤）：flush privileges;　。 
+	8. 退出 quit。 
+	9. 注销系统，再进入，使用用户名root和刚才设置的新密码123登录。
+	
+	
+	
 
 <=====================================================================================================================================================================>
 注意:如果直接在cmd界面中使用insert into语句,其中values()中除了数值型数据不加 '' 号外,其余的都要加,当然,where 语句后面的条件判断语句也是一样的; 
@@ -264,10 +308,28 @@ MySQL查看表结构SQL语句
 	select * from user_tables;
 
 <=====================================================================================================================================================================>
+mysql如何查看某个库中的所有表
 
+	select * from INFORMATION_SCHEMA.TABLES where table_schema = 'smart_oa' and Table_type = 'BASE TABLE'
+	
+	解析: table_schema : 库的名称 , Table_type表的类型
+	
+<=====================================================================================================================================================================>
+mysql 中如何禁用外键约束
 
+	这是因为MySQL中设置了foreign key关联，造成无法更新或删除数据。可以通过设置FOREIGN_KEY_CHECKS变量来避免这种情况。
 
+	禁用外键约束，我们可以使用:
 
+	SET FOREIGN_KEY_CHECKS=0;
+	启动外键约束，我们可以使用:
+
+	SET FOREIGN_KEY_CHECKS=1;
+	查看当前FOREIGN_KEY_CHECKS的值，可用如下命令：
+
+	SELECT  @@FOREIGN_KEY_CHECKS; 
+
+<=====================================================================================================================================================================>
 
 
 
