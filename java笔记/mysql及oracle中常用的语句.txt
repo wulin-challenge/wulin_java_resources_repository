@@ -114,6 +114,40 @@ mysql 1449 ： The user specified as a definer ('root'@'%') does not exist 解决方
 	Query OK, 0 rows affected (0.00 sec)
 	
 <=====================================================================================================================================================================>
+mysql中授予所有客户端登陆的权限
+	
+	GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "root" with grant option;
+	
+<=====================================================================================================================================================================>
+mysql远程连接报错： Host * is not allowed to connect to this MySQL server，解决方法
+
+	解决此问题有以下2个方法：
+	localhost改成%
+	1.进入mysql的BIN目录
+	注：root为管理员用户名，password为用户root的密码：
+	mysql -u root -p password
+	mysql>use mysql;
+	mysql>update user set host ='%'where user ='root' and host ='localhost';
+	mysql>flush privileges;
+	注：这时候连接此服务器的mysql客户端需要重新启动下，然后再连接此服务器。
+	具体分析
+	1、在本机登入mysql后，更改“mysql”数据库里的“user”表里的“host”项，从”localhost”改为'%'。
+	mysql>
+	mysql>use mysql;
+	mysql>select 'host' from user where user='root';    
+	#查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）
+
+	另一种方法
+	如果你使用的是客户端软件，我们可以在mysql服务器上使用客户端软件进入，在查询分析器中输入：（注意，你必须是root权限用户登录哦，否则是不可以修改的)
+	use mysql;
+	select * from user where user='root'; 
+	在查询结果中（只有一条）直接修改host列值，由localhost改为#，点击apply运行即可修改。然后重启客户端再重新连接即可。
+	或者：
+	use mysql;
+	update user set host = '%' where user ='root' and host='localhost'
+	然后重启客户端再重新连接即可。
+	
+<=====================================================================================================================================================================>
 MySQL——修改root密码的4种方法(以windows为例)	(mysql修改密码)
 
 	方法1： 用SET PASSWORD命令 

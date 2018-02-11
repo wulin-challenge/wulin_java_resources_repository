@@ -4520,6 +4520,10 @@ jqGrid 获取一行数据的案例
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 jqGrid 操作行的常用api
+	0.后台主键Id不是 'Id' 而是 'xxxId' ,jqgridId 如何获取行Id的值
+		multiselect: true,//设置为多选
+		colmodel设置:{ name: "actId", index:"actId",hidden: true,searchoptions :{sopt:['eq','cn']},key:true}, //这里将 这个个 列设置为主键Id
+		var rowIds = allList.jqGrid ('getGridParam', 'selarrrow'); //获取选中的行Id
 
 	1. 获取到所有行数据
 		var obj = $("#list").jqGrid("getRowData");
