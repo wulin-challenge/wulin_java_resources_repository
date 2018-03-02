@@ -1,0 +1,30 @@
+<html>
+<head>
+	<script src="./jquery-1.11.3.min.js"></script>
+	<script src="../js/radialIndicator.js"></script>
+
+</head>
+<body>
+
+<div class="prg-cont rad-prg" id="indicatorContainer">fsdf</div>
+
+<script>
+
+var ri = $('#indicatorContainer').radialIndicator({
+	 barColor: {
+		0: '#FF0000',
+		33: '#FFFF00',
+		66: '#0066FF',
+		100: '#33CC33'
+	},
+	percentage: true}).data('radialIndicator');
+alert(1);
+ri.value(70);
+alert(2);
+ri.value(100);
+
+
+</script>
+
+</body>
+</html>
