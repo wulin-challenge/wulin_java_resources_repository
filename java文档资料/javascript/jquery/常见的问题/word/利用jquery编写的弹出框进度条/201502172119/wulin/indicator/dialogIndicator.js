@@ -21,6 +21,9 @@ var DialogIndicator = function(currentElement,option){
 	//径向指示器对象(进度条对象)
 	var radialIndicator = null;
 	
+	// 进度条的数值
+	var progressNumber = 0;
+	
 	me.entry = function(){
 		//初始化参数
 		init();
@@ -97,8 +100,8 @@ var DialogIndicator = function(currentElement,option){
 		var backGroundHeight = $("body").height();  
 		var backGroundWidth = $("body").width();  
 		$("#"+fullBackGroundDiv).css({   
-			height:backGroundHeight,   
-			width:backGroundWidth,   
+			height:"100%",   
+			width:"100%",   
 			display:"block"   
 		}); 
 		$(currentElement).show();  
@@ -138,6 +141,51 @@ var DialogIndicator = function(currentElement,option){
 		}
 		
 		radialIndicator.value(val);
+	}
+	
+	/**
+	 * 进度条间隔:该函数描述进度条的执行情况
+	 */
+	me.progressInterval = function(progressParam){
+		progressParam = $.extend(defaultProgressParam(), progressParam);
+		
+		var interval = setInterval(function(){
+			me.setRadialIndicatorValue(progressNumber);
+			if(progressNumber>100){
+				 window.clearInterval(interval);
+				 me.destroyDialog();
+			}
+			if(progressParam.waitingInterval == progressNumber ||(progressNumber>=progressParam.waitingInterval && progressNumber<100)){
+				//等待不做任何事情
+			}else{
+				progressNumber += 1;
+			}
+		},progressParam.timeInterval);
+	}
+	
+	/**
+	 * 得到进度条数值
+	 */
+	me.getProgressNumber = function(){
+		return progressNumber;
+	}
+	
+	/**
+	 * 设置进度条数值
+	 */
+	me.setProgressNumber = function(progressNumber2){
+		progressNumber = progressNumber2;
+	}
+	
+	/**
+	 * 默认进度条参数
+	 */
+	var defaultProgressParam = function(progressParam){
+		var defaultParam = {
+				timeInterval:500, //时间间隔
+				waitingInterval:98 //当进度数值增加到98时就等待
+		};
+		return defaultParam;
 	}
 	
 	/**

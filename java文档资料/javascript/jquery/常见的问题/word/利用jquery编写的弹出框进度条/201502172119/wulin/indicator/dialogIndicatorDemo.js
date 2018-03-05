@@ -15,6 +15,24 @@ $(function(){
 		
 		
 	});
+	
+	$("#indicatorButton2").click(function(e){
+		//渲染Ztree的具体位置
+		var dialogIndicator = $(".dialogDemo2").dialogIndicator();
+		
+		dialogIndicator.progressInterval();
+		
+		var interval = setInterval(function(){
+			var progressNumber = dialogIndicator.getProgressNumber();
+			if(progressNumber == 10){
+				dialogIndicator.setProgressNumber(100);
+			}
+		},100);
+		
+		
+		
+		
+	});
 });
 
 
