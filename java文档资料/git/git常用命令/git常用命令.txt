@@ -34,3 +34,85 @@ postBuffer = 524288000
 git config http.postBuffer 524288000   --这是500M
 
 git config http.postBuffer 1073741824 --这是1G
+
+===============================================================================================================================
+git提交本地代码到新分支
+
+	背景：
+	从branchA分支拉了一份代码，做了一些修改，但是不想提交到branchA分支，想新建一个分支branchB保存代码。
+
+	操作方法：
+	添加本地需要提交代码
+
+	提交本地代码
+	git commit -m "add my code to new branchB"
+
+	push 到git仓库
+	git push origin branchA:branchB
+
+	仓库中原本没有branchB，提交后会生成新分支branchB，并将本地基于branchA修改的代码提交到branchB中
+
+	切换新分支(这个很重要)
+	git checkout -b branchB 
+
+===============================================================================================================================
+git 命令行实现建立本地库 第一次上传提交代码,生成分支,提交代码到该分支(可参考)
+
+	一:第一创建本地库,并且向远程第一次提交代码建立项目
+		1.建立一个空的文件夹作为本地仓库
+		2.进入该文件夹 cd /Users/zhanglizhi/Desktop/test本地库
+	  3.git init   //作为git项目
+		4.关联本地与远程仓库 git remote add origin https://github.com/zhanglizhi123/IvarTezt.git
+	  5.第一次提交代码建立文件 touch REARD.md
+	  6.git add REARD.md  //跟新
+	  7.git commit -m "第一次提交” //提交本地库
+	  8.第一次提交远程库生成master $git push -u origin master 
+	  9.查看git log
+
+	  10.第一次将项目文件脱入本地库
+	  11.git add .  //跟新变动
+	  12.git commit -m "提交代码scrollview”  //提交代码
+	  13.建立分支new_分支 git checkout -b new_分支
+	  14.查看分支  git branch
+	  15.git push origin new_分支 将代码提交到改分支
+
+	二:从远程拉取已经有的代码到本地并且建立新的本地库
+	  1.进入想要建立本地库的目录下 cd /Users/zhanglizhi/Desktop/
+	  2.从远程获取代码到本地库相应文件下(没有就自动建立文件名是 test2_本地库)  git clone https://github.com/zhanglizhi123/IvarTezt.git test2_本地库
+	  3.进入该关联的本地库   cd /Users/zhanglizhi/Desktop/test2_本地库 
+	  4.获取远程分支  git branch -a
+	  5.拉取合并远程相应分支代码到本地  git pull origin new_分支
+	  
+===============================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

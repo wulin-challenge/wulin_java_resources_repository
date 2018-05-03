@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic TextBox - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/demo/demo.css">
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>测试输入</h2>
+	<p>测试输入监听的两种方式</p>
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="Register" style="width:400px;padding:30px 60px">
+		 
+		<div style="margin-bottom:20px">
+			<div>1  修改文本框类型</div>
+			<input class="easyui-validate" oninput="onSelectBtypeComboBox(this)" style="width:100%;height:32px">
+		</div>
+	 
+			<div>2 不修改类型</div>
+			<input class="easyui-textbox " data-options="events:{input:function(){a(this.value)}}" style="width:100%;height:32px">
+		</div>
+ 
+	</div>
+	</body>
+	<script>
+	function a(a){
+	console.log(a)
+	}
+	function onSelectBtypeComboBox(a){
+		 console.log(a.value);
+		 
+	}
+	</script>
+	</html>

@@ -2223,7 +2223,7 @@ oracle在cmd中使用的循环语句范例:
 
 
 <=====================================================================================================================================================================>
-Oracle中查看所有表和字段
+Oracle中查看所有表和字段(查询字段/查询表的字段)
 
 	获取表：
 	select table_name from user_tables; //当前用户拥有的表      
@@ -2348,6 +2348,60 @@ Oracle中connect,resource角色权限
 	select privilege from dba_sys_privs where grantee in (select granted_role from dba_role_privs where grantee='DATAUSER' ); 
 	
 	注意:这里resource权限同时也有select,update,insert,delete等权限
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+查看用户权限(查看一个用户所拥有的权限或角色)(如何查看oracle用户具有的权限和角色)
+
+	1.查看所有用户：
+	  select * from dba_users;
+	  select * from all_users;
+	  select * from user_users;
+
+	2.查看用户或角色系统权限(直接赋值给用户或角色的系统权限)：
+	  select * from dba_sys_privs;
+	  select * from user_sys_privs;
+	 
+	3.查看角色(只能查看登陆用户拥有的角色)所包含的权限
+	sql>select * from role_sys_privs;
+
+	4.查看用户对象权限：
+	  select * from dba_tab_privs;
+	  select * from all_tab_privs;
+	  select * from user_tab_privs;
+
+	5.查看所有角色：
+	  select * from dba_roles;
+
+	6.查看用户或角色所拥有的角色：
+	  select * from dba_role_privs;
+	  select * from user_role_privs;
+	 
+	7.查看哪些用户有sysdba或sysoper系统权限(查询时需要相应权限)
+	select * from V$PWFILE_USERS
+	 
+	比如我要查看用户 wzsb的拥有的权限：
+	SQL> select * from dba_sys_privs where grantee='WZSB';
+	 
+	GRANTEE                        PRIVILEGE                                ADMIN_OPTION
+	------------------------------ ---------------------------------------- ------------
+	WZSB                           CREATE TRIGGER                           NO
+	WZSB                           UNLIMITED TABLESPACE                     NO
+
+	比如我要查看用户 wzsb的拥有的角色：
+	SQL> select * from dba_role_privs where grantee='WZSB';
+	 
+	GRANTEE   GRANTED_ROLE   ADMIN_OPTION  DEFAULT_ROLE
+	------------------------------ ------------------------------ ------------ ------------
+	WZSB                           DBA                         NO              YES
+
+	查看一个用户所有的权限及角色
+	select privilege from dba_sys_privs where grantee='WZSB'
+	union
+	select privilege from dba_sys_privs where grantee in 
+	(select granted_role from dba_role_privs where grantee='WZSB' ); 
+	
+	删除(回收)授予用户的权限
+	revoke dba from WZSB
 	
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 如何oracle 某一用户授予查询另一个用户某张表的权限，以及更新另一用户表中某些字段(查看表所对应的用户 及表所在用户)

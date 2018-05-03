@@ -336,6 +336,30 @@ js中如何将 当前日期 格式化为yyyy-MM-dd HH:mm:ss 格式 , 优雅的�
 			 });
 			 
 	alert(len); //这是groups数组的长度
+<----------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+如何采用js获取 驼峰字符串的最后一个驼峰字符串(例如:aaBbCc:得到的是Cc)
+
+	思路:获取字符串的长度,倒序循环字符串直到得到大写字符,并将之前循环的字符一起拼接返回
+
+	/**
+	 * 字符串为驼峰标识(得到最后一个驼峰的字符串:例如:aaBbCc:得到的是Cc)
+	 */
+	var getLastHump = function(humpCharacters){
+		var lastHumpCharacter = "";
+		if(humpCharacters != undefined && humpCharacters != null && humpCharacters.length != 0){
+			for(i=humpCharacters.length-1;i=>0;i--){
+				var character = humpCharacters.charAt(i);
+				if(character<'A' || character>'Z'){
+					lastHumpCharacter = character+lastHumpCharacter;
+					
+				}else{
+					lastHumpCharacter = character+lastHumpCharacter;
+					return lastHumpCharacter;
+				}
+			}
+		}
+		return "";
+	}
 
 <----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 关于做一个自动打开和关闭的提示框(dialog)的思路:

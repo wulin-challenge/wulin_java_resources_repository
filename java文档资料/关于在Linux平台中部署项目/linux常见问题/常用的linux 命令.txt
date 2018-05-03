@@ -24,6 +24,10 @@ ifconfig  //查询Linux系统下的ip
 
 ps -ef | grep mysql:
 先执行ps -ef,在查询出来的结果当中执行grep mysql
+
+ps -ef | grep zookeeper 
+查看zookeeper的进程信息
+
 ps -ef:查看进程信息
 
 pwd:查看当前目录
