@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>jquery 列表选择</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/list-style.css">
+		<script src="jquery/jquery.min.1.10.js"></script>
+		<script src="jquery/jquery-ui.min.1.11.js"></script>
+		<script src="js/list-script.js"></script>
+		<script>
+			$(function(){
+				// 是否开启选项可拖动，选项可双击
+				$('#selectTitle').initList({
+					openDrag: true,
+					openDblClick: true
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h2 style="text-align:center;">列表选择</h2>
+		<div id="selectTitle" class="list-select">
+			<div class="list-title">
+				<h4>挑选你的最爱（选项可拖动、双击、单击进行选择）</h4>
+			</div>
+			<div class="list-body">
+				<ul class="item-box left-box">
+					<!-- 左边框初始化待选项 -->
+					<li class="item" data-id="xigua">西瓜</li>
+					<li class="item" data-id="pingguo">苹果</li>
+					<li class="item" data-id="xiangjiao">香蕉</li>
+					<li class="item" data-id="boluo">菠萝</li>
+					<li class="item" data-id="caomei">草莓</li>
+					<li class="item" data-id="yali">鸭梨</li>
+					<li class="item" data-id="mitao">蜜桃</li>
+					<li class="item" data-id="sangguo">桑果</li>
+					<li class="item" data-id="yangmei">杨梅</li>
+					<li class="item" data-id="putao">葡萄</li>
+						<li class="item" data-id="boluo1">菠萝2</li>
+					<li class="item" data-id="caomei2">草莓2</li>
+					<li class="item" data-id="yali2">鸭梨2</li>
+					<li class="item" data-id="mitao2">蜜桃2</li>
+					<li class="item" data-id="sangguo2">桑果2</li>
+					<li class="item" data-id="yangmei2">杨梅2</li>
+					<li class="item" data-id="putao2">葡萄2</li>
+				</ul>
+				<div class="center-box">
+					<button class="add-one" title="添加选中项">></button>
+					<button class="add-all" title="添加全部">>></button>
+					<button class="remove-one" title="移除选中项"><</button>
+					<button class="remove-all" title="移除全部"><<</button>
+				</div>
+				<ul class="item-box right-box">
+					<!-- 右边框存放已选项 -->
+				</ul>
+			</div>
+			<div class="list-footer">
+				<button class="selected-val" title="获取选择值，输出到控制台">GET</button>
+			</div>
+		</div>
+	</body>
+</html>

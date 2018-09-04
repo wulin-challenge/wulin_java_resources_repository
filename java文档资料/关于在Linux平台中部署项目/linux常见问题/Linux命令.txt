@@ -26,6 +26,7 @@ clock -w 将时间修改保存到 BIOS
 =====================查看Linux系统部分的命令/及磁盘空间等=====================
 cat /etc/redhat-release  即可列出所有版本信息
 df -h : 查看磁盘空间
+df -h /etc : 将/etc下面的可用的磁盘容量以易读的容量格式显示
 cat /proc/meminfo: 查看Linux的内存信息
 
 
@@ -190,6 +191,11 @@ tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包
 zip file1.zip file1 创建一个zip格式的压缩包
 zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包
 unzip file1.zip 解压一个zip格式压缩包
+unzip使用案例:
+	unzip -o -d /home/sunny myfile.zip
+	把myfile.zip文件解压到 /home/sunny/
+	-o:不提示的情况下覆盖文件；
+	-d:-d /home/sunny 指明将文件解压缩到/home/sunny目录下；
 
 返回顶部索引 ^
 

@@ -1,0 +1,5 @@
+一建安装相互依赖库
+rpm -Uvh *.rpm --nodeps --force
+
+//指定nginx的安装路径
+./configure --prefix=/usr/local/nginx/nginx-install/nginx-1.9.5

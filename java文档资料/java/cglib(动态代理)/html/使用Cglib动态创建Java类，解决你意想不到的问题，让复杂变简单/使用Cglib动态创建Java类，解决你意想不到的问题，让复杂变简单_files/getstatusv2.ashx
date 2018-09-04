@@ -1,1 +1,0 @@
-doccheckart([ { "result":0}])

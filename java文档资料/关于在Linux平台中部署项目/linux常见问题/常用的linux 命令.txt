@@ -14,9 +14,9 @@
 
 移动文件或目录：mv /源路径/目录名或文件名 /目的路径
 
-解压.tar.gz包：tar -zfvx /包所在目录路径/filename.tar.gz /目的路径（若想解压到包所在的目录下则可以省略目的 zxvf
+解压.tar.gz包：tar -zxvf /包所在目录路径/filename.tar.gz /目的路径（若想解压到包所在的目录下则可以省略目的 zxvf
 
-tar zfvx 需要解压的包 (要将文件移动到需要解压到的文件目录下即可)
+tar -zxvf 需要解压的包 (要将文件移动到需要解压到的文件目录下即可)
 
 ifconfig  //查询Linux系统下的ip
 
