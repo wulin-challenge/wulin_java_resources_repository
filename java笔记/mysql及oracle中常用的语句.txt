@@ -1512,7 +1512,7 @@ SELECT * FROM emp WHERE 1=2 ;
 			//null 或not null表示该列可以null或not null
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-Oracle中已有数据的字段类型修改
+Oracle中已有数据的字段类型修改[修改字段类型]
 
 	create table t_person(
 	id varchar2(200) primary key,
@@ -1547,6 +1547,24 @@ Oracle中已有数据的字段类型修改
 	alter table t_person drop column myaddress;
 
 	把备份字段myaddress删除
+	
+``````````````````````````````````````````````````````````````````````````````````````````````````````
+修改字段类型并添加约束完整案例:
+	--说明: 将CAS_USER_LOGIN_INFO的主键Id由 long型修改为 varchar2型,并添加上外键约束
+    --修改原字段名name为name_tmp
+	alter table CAS_USER_LOGIN_INFO rename column id to idx;  
+	  
+	--增加一个和原字段名同名的字段name
+	alter table CAS_USER_LOGIN_INFO add id VARCHAR2(32);  
+	  
+	--将原字段name_tmp数据更新到增加的字段name
+	update CAS_USER_LOGIN_INFO set id=idx;  
+	  
+	--更新完，删除原字段name_tmp 
+	alter table CAS_USER_LOGIN_INFO drop column idx;
+
+	--重新设置主键
+	alter table CAS_USER_LOGIN_INFO add constraint CAS_USER_LOGIN_INFO_PK_ID primary  key(id);
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1742,7 +1760,7 @@ ADD (sid number,
 constraint sid_FK foreign key(sid) references clazz(id) on delete cascade);
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-如何修改一个表的某一列的长度和如何为某一个表的某一个列添加说明(即列的注释):
+如何修改一个表的某一列的长度和如何为某一个表的某一个列添加说明(即列的注释)[修改字段长度,修改长度]:
 
 	alter table AUDIT_PROCESSRECORD modify FACTIVEID VARCHAR2(2);
 
@@ -3302,7 +3320,7 @@ oracle表空间名字的后缀 :.ora和.dbf有什么不同？
 	grant connect,resource,dba to OASYS;
 		
 <----------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-ORA-01940无法删除当前已连接用户
+ORA-01940无法删除当前已连接用户[杀session][查找session]
 
 		最近Oracle把哦整爽老。哇哈哈。。
 
