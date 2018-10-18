@@ -1,0 +1,177 @@
+nx所用用户和组，window下不指定
+#user  nobody;
+#工作的子进程数量（通常等于CPU数量或者2倍于CPU）
+worker_processes  2;
+#错误日志存放路径
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+#指定pid存放文件
+pid        logs/nginx.pid;
+events {
+    #使用网络IO模型linux建议epoll，FreeBSD建议采用kqueue，window下不指定。
+    #use epoll;
+    #允许最大连接数
+    worker_connections  2048;
+}
+http {
+    #文件扩展名与文件类型映射表
+    include       mime.types;
+    #默认文件类型
+    default_type  application/octet-stream;
+    #定义日志格式
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+    #长连接超时时间，单位是秒
+    keepalive_timeout  65;
+    # 默认访问日志路径
+    access_log     logs/access.log;
+    #负载均衡相关配置
+    client_header_timeout     3m;
+    client_body_timeout     3m;
+    send_timeout     3m;
+    #上传文件大小限制
+    client_header_buffer_size     1k;
+    #设定请求缓
+    large_client_header_buffers     4 4k;
+    #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。
+    sendfile        on;
+    #防止网络阻塞
+    tcp_nopush     on;
+    #防止网络阻塞
+    tcp_nodelay     on;
+    #启动数据压缩
+    include gzip.conf;
+    #以下是反向代理的配置，可选。
+    include   proxy.conf;
+    #upstream localhost {
+        #upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。
+        #    server localhost:8080 weight=1;
+    #}
+    server {
+        #监听端口
+        listen       80;
+        #域名可以有多个，用空格隔开
+        server_name  localhost;
+        #默认编码
+        charset utf-8;
+        #访问文件根目录
+        root E:/MyEclipse/apache-tomcat-7.0.72-windows-x64/apache-tomcat-7.0.72/webapps;
+        #404页面设置
+        error_page  404              /404.html;
+        #50X页面设置
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+        location ~ ^/(WEB-INF)/ {
+           deny   all;
+        }
+        #此部分主要是dwr的js有写是服务器动态生成的，不能交给nginx处理，这样会出现404，需要单独处理并交给服务器处理。
+        location /ibooker/dwr/ {
+           proxy_pass   http://localhost:8080/ibooker/dwr/;
+        }
+        #本地动静分离反向代理配置（静）
+        #其他的静态文件处理dwr的都交给nginx处理
+        location ~ \.(htm|html|gif|jpg|jpeg|png|ico|rar|css|js|zip|txt|flv|swf|doc|ppt|xls|pdf)$ {
+           access_log   off;
+           expires   24h;
+        }
+        #本地动静分离反向代理配置（动）
+        location /ibooker/ {
+           proxy_connect_timeout   3;
+           proxy_send_timeout   30;
+           proxy_read_timeout   30;
+           proxy_pass   http://localhost:8080/ibooker/;
+        }
+        #访问根目录下的路径也就是webapp，默认跳转到ibooker项目的路径下，也就是跳转到上面的路径
+        location / {
+           rewrite (.*)$ /ibooker$1 permanent;
+        }
+    }
+}
+
+
+
+######################################################################################################3
+# gizp
+
+#开启gzip压缩输出
+gzip              on;
+ #最小压缩文件大小
+gzip_min_length   1024;
+#压缩缓冲区
+gzip_buffers      4 8k;
+#压缩等级
+gzip_comp_level   9;
+前端是squid的情况下要加此参数，否则squid上不缓存gzip文件
+gzip_proxied      any;
+#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。
+gzip_types        application/xml application/javascript application/x-javascript application/atom+xml application/rss+xml;
+gzip_types        text/css text/javascript text/js text/plain text/xml;
+
+######################################################################################################(反向代理的server配置推荐使用如下配置)
+
+
+proxy_redirect          off;
+proxy_set_header        Host $host;
+proxy_set_header        X-Real-IP $remote_addr;
+#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+#允许客户端请求的最大单文件字节数
+client_max_body_size    10m;
+#缓冲区代理缓冲用户端请求的最大字节数，
+client_body_buffer_size 128k;
+ #nginx跟后端服务器连接超时时间(代理连接超时)
+proxy_connect_timeout   300;
+#后端服务器数据回传时间(代理发送超时)
+proxy_send_timeout      300;
+#连接成功后，后端服务器响应时间(代理接收超时)
+proxy_read_timeout      300;
+#设置代理服务器（nginx）保存用户头信息的缓冲区大小
+proxy_buffer_size       4k;
+#proxy_buffers缓冲区，网页平均在32k以下的设置
+proxy_buffers           4 32k;
+#高负荷下缓冲大小（proxy_buffers*2）
+proxy_busy_buffers_size 64k;
+#设定缓存文件夹大小，大于这个值，将从upstream服务器传
+proxy_temp_file_write_size 64k;
+
+######################################################################################################
+
+
+    server {
+        listen       80;
+        #server_name  ~^\d+\.\d+\.\d+\.\d+$;
+        #server_name  localhost;
+        server_name  localhost;
+        access_log  logs/http.access.log;
+	      error_log   logs/http.error.log;
+
+        location / {
+                root   /usr/its/resources/static/nginx-default;
+                index  index.html index.htm;
+        }
+
+        location /goo {
+                # If you use https make sure you disable gzip compression
+                # to be safe against BREACH attack
+                proxy_redirect     off;
+                proxy_set_header   X-Forwarded-Proto $scheme;
+                proxy_set_header   Host              $http_host;
+                proxy_set_header   X-Real-IP         $remote_addr;
+                proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+                proxy_set_header   X-Frame-Options   SAMEORIGIN;
+                proxy_max_temp_file_size 0;
+                proxy_connect_timeout      90;
+                proxy_send_timeout         90;
+                proxy_read_timeout         90;
+                proxy_buffer_size          4k;
+                proxy_buffers              4 32k;
+                proxy_busy_buffers_size    64k;
+                proxy_temp_file_write_size 64k;
+
+                proxy_pass http://127.0.0.1:8280/goo;
+        }
+}
