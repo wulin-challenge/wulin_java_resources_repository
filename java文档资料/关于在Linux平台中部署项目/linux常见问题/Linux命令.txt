@@ -79,6 +79,13 @@ iconv -l 列出已知的编码
 iconv -f fromEncoding -t toEncoding inputFile > outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding.
 find . -maxdepth 1 -name *.jpg -print -exec convert "{}" -resize 80x60 "thumbs/{}" \; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick)
 
+文件上传:
+安装文件上传的命令: 
+yum install lrzsz -y
+
+上传文件到当前目录的命令
+rz -y : 其中 -y 是指当前目录中若有相同的文件则覆盖
+
 
 
 文件搜索
