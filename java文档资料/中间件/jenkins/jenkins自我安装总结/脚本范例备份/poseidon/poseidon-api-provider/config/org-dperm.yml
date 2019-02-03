@@ -1,0 +1,147 @@
+# 该配置文件使用与配置  posidon项目中关于 组织机构 和数据权限 常量配置文件,
+# 这些常量key所对应的值来源于 字典code,组织机构code 和 组织机构节点类型code
+#
+##############################重要说明#start################################################
+# 若一个 配置节点 是list 集合,那么该list 集合自身就具备优先级,例如   
+# poseidon.org.org_person_direct_type.org_node_type_code 获取得到的值是一个list集合
+# org_node_type_code 是一个list集合 ,具体结构如下:
+# org_person_direct_type: 
+#    - org_node_type_code: org-difang-jianyu-ju
+#    - org_node_type_code: org-sheng-jianyu-ju
+# 例如 人员的直属机构 监狱路径如下  
+# 四川省/四川省监狱管理局/锦江监狱/科室/狱政科
+# 四川省监狱管理局 的机构节点类型是 : org-sheng-jianyu-ju  , /锦江监狱  的机构节点类型是 : org-difang-jianyu-ju
+# 由于 org-difang-jianyu-ju 的优先级比  org-sheng-jianyu-ju 高 ,那么找到的直属监狱就是 锦江监狱
+# 
+#
+##############################重要说明#end################################################
+#
+#说明:
+#poseidon : 表示是 poseidon项目的
+# org : 表示 poseidon 项目的的主组织机构模块
+#   org_type_root : 表示组织机构类型的根 的配置常量
+#   org_node_jianqu_type: 组织机构节点监区类型
+#     - org_node_type_code: 组织机构节点监区类型的code值
+#   org_node_keshi_type: 组织机构节点科室类型
+#     - org_node_type_code: 组织机构节点科室类型的code值
+#   org_relation_type: 组织机构关联类型: 该类型下控制着关于 关联组织机构树的具体展示
+#     org_relation_show_level: 关联的组织机构的具体显示层级
+#       - org_node_type_code: 具体要显示的组织节点类型code
+#     org_relation_really_level: 真正用于关联的层级,(这里主要是指关联的监狱,即该层前会带有 combobox框)
+#       - org_node_type_code: 具体要真正关联的组织节点类型code
+#   org_person_direct_type: 人员类型所属的组织机构类型
+#       - org_node_type_code: 具体 人员类型所属的组织机构类型 要真正关联的组织节点类型code
+#   org_data_permission_type: 组织机构数据权限类型: 该类型下控制着关于 数据权限组织机构树的具体展示
+#     org_data_permission_base_show_level: 组织机构数据全职基本展示层级
+#       - org_node_type_code : 具体的 组织机构数据全职基本展示层级 code
+#     org_data_permission_really_parent_level: 真正的组织机构数据权限父亲层级,该层级下的所有节点都被展示出来
+#       - org_node_type_code: 真正的组织机构数据权限父亲层级code,该层级下的所有节点都被展示出来
+#     org_defualt_same_level_priority_type: 组织机构 同层级默认优先级
+#       - node_same_level_priority_type_code: 组织机构 同层级默认优先级code
+#     org_user_default_same_level_priority_type: 组织机构 下拉人员的默认优先级
+#       - node_same_level_priority_type_code: 组织机构 同层级默认优先级code
+# org_node_type : 组织节点类型
+#   node_direct_type : 节点直属类型
+#     parent_child_node_force_direct_type : 父亲与直属孩子强制类型
+#     parent_child_node_force_type : 父亲与孩子强制类型
+#     node_direct_root_type : 节点为直接根节点类型
+#   node_dperm_type : 节点数据权限类型
+#     data_perm_org_node_type : 数据权限节点类型
+#     no_data_perm_org_node_type : 非数据权限节点类型
+#   node_unique_type : 节点唯一类型
+#     global_unique_org_node_type : 全局唯一类型
+#     the_same_level_org_node_type : 同级唯一类型
+#     routine_node_type : 常规节点类型
+#   node_person_type : 节点人员类型
+#     person_org_node_type : 人员类型节点
+#     no_person_org_node_type : 非人员类型节点
+#   node_same_level_priority_type: 节点同层级优先级类型
+#     node_same_level_priority_type_one: 节点同层级优先级1
+#     node_same_level_priority_type_two: 节点同层级优先级2
+#     node_same_level_priority_type_three: 节点同层级优先级3
+#     node_same_level_priority_type_four: 节点同层级优先级4
+#     node_same_level_priority_type_five: 节点同层级优先级5
+#     node_same_level_priority_type_six: 节点同层级优先级6
+  
+  
+poseidon: 
+  org: 
+    org_type_root: org-scs-jianyu-guanliju-jigou-leixing
+    org_node_jianqu_type:
+      - org_node_type_code: org-difang-jianqu
+    org_node_keshi_type: 
+      - org_node_type_code: org-difang-keshi
+      - org_node_type_code: org-shengju-keshi
+    org_relation_type: 
+      org_relation_show_level: 
+        - org_node_type_code: org-difang-jianyu-ju
+        - org_node_type_code: org-sheng-jianyu-ju
+        - org_node_type_code: org-sheng
+      org_relation_really_level: 
+        - org_node_type_code: org-difang-jianyu-ju
+        - org_node_type_code: org-sheng-jianyu-ju
+    org_data_permission_type:
+      org_data_permission_base_show_level:
+        - org_node_type_code: org-sheng-jianyu-ju
+        - org_node_type_code: org-sheng
+      org_data_permission_really_parent_level:
+        - org_node_type_code: org-shengju-keshi
+        - org_node_type_code: org-difang-jianyu-ju
+    org_person_direct_type: 
+      - org_node_type_code: org-difang-jianyu-ju
+      - org_node_type_code: org-sheng-jianyu-ju
+    org_defualt_same_level_priority_type: 
+      - node_same_level_priority_type_code: node_same_level_priority_type_one
+    org_user_default_same_level_priority_type:
+      - node_same_level_priority_type_code: node_same_level_priority_type_one
+      - node_same_level_priority_type_code: node_same_level_priority_type_two
+      - node_same_level_priority_type_code: node_same_level_priority_type_three
+      - node_same_level_priority_type_code: node_same_level_priority_type_four
+      - node_same_level_priority_type_code: node_same_level_priority_type_five
+      - node_same_level_priority_type_code: node_same_level_priority_type_six
+  org_node_type: 
+    node_direct_type: 
+      parent_child_node_force_direct_type: parent_child_node_force_direct_type
+      parent_child_node_force_type: parent_child_node_force_type
+      node_direct_root_type: node_direct_root_type
+    node_dperm_type: 
+      data_perm_org_node_type: data_perm_org_node_type
+      no_data_perm_org_node_type: no_data_perm_org_node_type
+    node_unique_type: 
+      global_unique_org_node_type: global_unique_org_node_type
+      the_same_level_org_node_type: the_same_level_org_node_type
+      routine_node_type: routine_node_type
+    node_person_type: 
+      person_org_node_type: person_org_node_type
+      no_person_org_node_type: no_person_org_node_type
+    node_same_level_priority_type: 
+      node_same_level_priority_type_one: node_same_level_priority_type_one
+      node_same_level_priority_type_two: node_same_level_priority_type_two
+      node_same_level_priority_type_three: node_same_level_priority_type_three
+      node_same_level_priority_type_four: node_same_level_priority_type_four
+      node_same_level_priority_type_five: node_same_level_priority_type_five
+      node_same_level_priority_type_six: node_same_level_priority_type_six
+      
+      
+  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

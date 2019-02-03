@@ -1,0 +1,22 @@
+static_service_url: http://192.168.0.80:2301
+
+dubbo: 
+  zookeeper-address: 10.0.2.102:2181
+  application:
+    name: platform-cas
+    
+server:
+  context-path: /cas
+  port: 8000
+
+cache: 
+  toolkit: 
+    open: false
+    host: 10.0.2.101
+    port: 6379
+
+freemarker:
+  cache: true
+
+hibernate:
+  show_sql: false

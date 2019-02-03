@@ -1,0 +1,45 @@
+static_service_url: http://192.168.0.82:9898
+#static_service_url: http://192.168.0.80:9898
+#static_service_url: http://10.10.0.13:9898
+
+#cas_server_url: http://192.168.0.198:8085/cas
+#cas_server_url: http://192.168.0.82:8085/cas
+#cas_server_url: http://192.168.0.80:8085/cas
+#cas_server_url: http://10.10.0.15:8085/cas
+cas_server_url: http://wulinThinkPad:8085/cas
+
+appId: project-demo-menu
+
+appName: 工程构建demo平台
+
+index_title: 工程构建demo平台
+
+index_name: 工程构建demo平台
+
+index_scaffold: homeIndexScaffold
+
+dubbo: 
+  zookeeper-address: zxq:2181
+  #zookeeper-address: 192.168.0.2:2181
+  #zookeeper-address: 192.168.0.80:2181
+  #zookeeper-address: 192.168.0.82:2181
+  #zookeeper-address: wulinThinkPad:2181
+  application:
+    name: project-demo
+    
+server:
+  context-path: /project-demo
+  port: 7980
+  
+#http_attachment_url: http://wulinThinkPad:6691/attachment_provider
+#http_attachment_url: http://192.168.0.80:6691/attachment_provider
+http_attachment_url: http://192.168.0.82:6691/attachment_provider
+#http_attachment_url: http://10.10.0.14:6691/attachment_provider
+  
+cache: 
+  toolkit: 
+    open: false
+    host: wulinThinkPad
+    port: 6379
+    intercept-clear: false
+    intercept-expireTime: 0

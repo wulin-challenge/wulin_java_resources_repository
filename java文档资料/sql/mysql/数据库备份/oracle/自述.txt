@@ -1,0 +1,13 @@
+请根据现场情况调整批处理文件中的各个变量
+
+如下：
+set USER=（现场oracle用户名）
+set PASSWORD=(现场oracle密码)
+set DATABASE=(现场oracle实例名)
+
+以及以下的备份目录地址：
+if not exist "E:\oracle_backup\data"       mkdir E:\oracle_backup\data  
+if not exist "E:\oracle_backup\log"        mkdir E:\oracle_backup\log  
+
+set DATADIR=E:\oracle_backup\data
+set LOGDIR=E:\oracle_backup\log

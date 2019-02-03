@@ -1,0 +1,244 @@
+### This file is an example authorization file for svnserve.
+### Its format is identical to that of mod_authz_svn authorization
+### files.
+### As shown below each section defines authorizations for the path and
+### (optional) repository specified by the section name.
+### The authorizations follow. An authorization line can refer to:
+###  - a single user,
+###  - a group of users defined in a special [groups] section,
+###  - an alias defined in a special [aliases] section,
+###  - all authenticated users, using the '$authenticated' token,
+###  - only anonymous users, using the '$anonymous' token,
+###  - anyone, using the '*' wildcard.
+###
+### A match can be inverted by prefixing the rule with '~'. Rules can
+### grant read ('r') access, read-write ('rw') access, or no access
+### ('').
+
+[aliases]
+# joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average
+
+[groups]
+# harry_and_sally = harry,sally
+# harry_sally_and_joe = harry,sally,&joe
+
+
+# 超级管理员组
+admin = limingfeng,reviewboard,zhangsan
+# 访客组
+guest = jenkins
+# 平台组
+gp_core = wubo,hejianbing,moushaokun
+# 中间件组
+gp_util = wubo,hejianbing,moushaokun
+# 测试组
+gp_test = xiaxue
+# UI组
+gp_ui = kuangexia
+# 研发负责人组
+gp_leader = wubo,hejianbing,moushaokun,wuwenlong,yedai,liujiaqi,jiaoyubin
+# 普通研发组
+gp_normal = xuyadong
+
+
+
+
+
+
+[/]
+* = r
+@admin = rw
+
+
+# 平台操作权限分配
+[/src/sichuan/core/ares/trunk]
+@gp_core = rw
+[/src/sichuan/core/ares/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/ares/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/ares/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/ares/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/ares/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/ares/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/core/gaia/trunk]
+@gp_core = rw
+[/src/sichuan/core/gaia/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/gaia/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/gaia/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/gaia/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/gaia/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/gaia/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/core/hades/trunk]
+@gp_core = rw
+[/src/sichuan/core/hades/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/hades/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/hades/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/hades/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/hades/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/hades/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/core/hephaestus/trunk]
+@gp_core = rw
+[/src/sichuan/core/hephaestus/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/hephaestus/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/hephaestus/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/hephaestus/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/hephaestus/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/hephaestus/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/core/hera/trunk]
+@gp_core = rw
+[/src/sichuan/core/hera/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/hera/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/hera/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/hera/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/hera/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/hera/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/core/poseidon/trunk]
+@gp_core = rw
+[/src/sichuan/core/poseidon/branches/dev]
+@gp_core = rw
+[/src/sichuan/core/poseidon/branches/sit]
+@gp_core = rw
+[/src/sichuan/core/poseidon/tags]
+@gp_core = rw
+[/src/sichuan/conf/core/poseidon/dev]
+@gp_core = rw
+[/src/sichuan/conf/core/poseidon/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/core/poseidon/prod]
+@gp_core = rw
+@gp_test = rw
+
+
+# 中间件操作权限分配
+[/src/sichuan/util/attach/trunk]
+@gp_core = rw
+[/src/sichuan/util/attach/branches/dev]
+@gp_core = rw
+[/src/sichuan/util/attach/branches/sit]
+@gp_core = rw
+[/src/sichuan/util/attach/tags]
+@gp_core = rw
+[/src/sichuan/conf/util/attach/dev]
+@gp_core = rw
+[/src/sichuan/conf/util/attach/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/util/attach/prod]
+@gp_core = rw
+@gp_test = rw
+
+[/src/sichuan/util/carpo/trunk]
+@gp_core = rw
+[/src/sichuan/util/carpo/branches/dev]
+@gp_core = rw
+[/src/sichuan/util/carpo/branches/sit]
+@gp_core = rw
+[/src/sichuan/util/carpo/tags]
+@gp_core = rw
+[/src/sichuan/conf/util/carpo/dev]
+@gp_core = rw
+[/src/sichuan/conf/util/carpo/sit]
+@gp_test = rw
+@gp_core = rw
+[/src/sichuan/conf/util/carpo/prod]
+@gp_core = rw
+@gp_test = rw
+
+
+############ 以下为各项目具体操作权限分配,各应用系统权限分配应参照综合业务平台进行配置 ###############
+#+++++++++++++++++++++++++++++++++++++++++ 开发流程 +++++++++++++++++++++++++++++++++++++++++#
+### 1.项目负责人：建立主干 ==> 从主干复制成sit分支 ==> 从sit分支复制成dev分支
+### 2.程序猿：开发dev分支 ==> 提交dev分支 ==> 从sit分支合并到本地并解决冲突 ==> 提交dev分支
+### 3.项目负责人：切换到sit分支 ==> 将dev分支一个一个的合并到sit分支 ==> 提交sit分支 ==> Jenkins打包部署到测试环境
+### 4.测试：功能测试 ==> 测试完成，有BUG重复2、3步骤，没有BUG反馈给项目负责人
+### 5.项目负责人：切换到trunk主干，将sit分支合并 ==> 提交trunk主干 ==> Jenkins打包
+#+++++++++++++++++++++++++++++++++++++++++ 目录结构 +++++++++++++++++++++++++++++++++++++++++#
+###|— proj  # 项目名称，下面只存放与该项目相关代码和配置
+###   |— trunk  # 产品主干，由专人合并发布产品，产品的包从此处产生
+###   |— branches # 分支存储，上面trunk衍生出的多个分支
+###	    |- dev #研发分支，提交后合并到测试分支，可能会有多个，多个时命名以"dev-"开头
+###	    |- sit #测试分支，测试的包从此处产生，提交后合并到产品主干,可能会有多个，多个时以"sit-"开头
+###   |— tags # 是某一条分支的稳定版快照
+###|— conf # 项目配置文件
+###   |- proj # 项目名称  
+###   	|- dev # 开发环境配置
+###   	|- sit # 测试环境配置
+###   	|- prod # 产品环境配置 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+
+# 综合业务平台操作权限分配
+[/src/sichuan/proj/ebmp/trunk]
+@gp_leader = rw
+[/src/sichuan/proj/ebmp/branches/dev]
+@gp_leader = rw
+@gp_normal = rw
+[/src/sichuan/proj/ebmp/branches/sit]
+@gp_leader = rw
+[/src/sichuan/proj/ebmp/tags]
+@gp_leader = rw
+[/src/sichuan/conf/ebmp/dev]
+@gp_leader = rw
+@gp_normal = rw
+[/src/sichuan/conf/ebmp/sit]
+@gp_test = rw
+@gp_leader = rw
+[/src/sichuan/conf/ebmp/prod]
+@gp_leader = rw
+@gp_test = rw
+
+
+
+
+# [/foo/bar]
+# harry = rw
+# &joe = r
+# * =
+
+# [repository:/baz/fuz]
+# @harry_and_sally = rw
+# * = r

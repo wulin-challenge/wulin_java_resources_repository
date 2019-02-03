@@ -1,0 +1,12 @@
+请根据现场情况调整批处理文件中的各个变量
+
+如下：
+set HOST=(现场mysql ip)
+set USER=(现场mysql 用户)
+set PASSWORD=(现场mysql password，不能为空)
+set DATABASE=(现场mysql 数据库名称)
+
+以及以下的备份目录地址：
+if not exist "E:\mysql_backup\data"       mkdir E:\mysql_backup\data  
+
+set DATADIR=E:\mysql_backup\data

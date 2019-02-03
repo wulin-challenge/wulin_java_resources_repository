@@ -1,0 +1,25 @@
+static_service_url: http://192.168.0.80:2301
+
+dubbo: 
+  zookeeper-address: 10.0.2.102:2181
+  #zookeeper-address: zxq:2281
+  port: 22980
+  application:
+    name: poseidon-api
+    
+
+spring:
+  main:
+    web-environment: false
+
+cache: 
+  toolkit: 
+    open: false
+    host: 10.0.2.101
+    port: 6379
+
+hibernate:
+  show_sql: false
+  hbm2ddl_auto: none
+
+orgCodeSJ: 5100

@@ -1,0 +1,33 @@
+static_service_url: http://192.168.0.82:9898
+
+dubbo: 
+  #zookeeper-address: 192.168.0.222:2181
+  #zookeeper-address: wulinThinkPad:2181
+  zookeeper-address: zxq:2181
+  connections: 1
+  threadpool: fixed
+  threads: 600
+  port: 20980
+  application:
+    name: poseidon-api
+    
+
+spring:
+  main:
+    web-environment: false
+    
+cache: 
+  toolkit: 
+    host: 192.168.0.49
+    port: 6379
+    open: false
+    startup-clean: true
+    
+
+orgCodeSJ: 5100
+
+hibernate:
+    show_sql: false
+    
+spring.boot.admin.url: http://192.168.0.82:9934
+management.security.enabled: false

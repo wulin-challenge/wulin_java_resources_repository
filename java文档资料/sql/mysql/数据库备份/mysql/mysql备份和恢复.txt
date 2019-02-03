@@ -1,0 +1,16 @@
+如果是远程备份(与mysql服务器不在一台机器上），则备份机器上需要安装mysql客户端。
+备份：
+mysqldump -h%remote_host% -u%romote_user% -p%remote_passwd% --skip-lock-tables --default-character-set=utf8 %remote_db%
+例子：
+C:\Users\Administrator>mysqldump -h192.168.0.94 -uroot -proot --skip-lock-tables --default-character-set=utf8 mahout
+
+恢复：
+mysql -u%local_user% -p%local_passwd% --default-character-set=utf8 %local_db%< pm.sql
+例子：
+C:\Users\Administrator>mysql -h192.168.0.94 -uroot -proot --default-character-set=ut
+f8 mahout < D:\backup.sql
+
+
+
+
+以上脚本在在windows中可以添加任务计划，但是输入的命令必须要有明确的password 如果密码为空 不能够自动执行。
