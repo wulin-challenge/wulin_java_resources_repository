@@ -46,8 +46,8 @@ dealWithTempTransferDir(){
 	   # 判断package_jar_name 与 app_name 是否相等,
 	   # 若不相等,则将temp_transfer_app_dir目录下的package_jar_name.jar和package_jar_name.conf更名为app_name.jar和app_name.conf
 	   if [ $package_jar_name != $app_name ]; then
-			mv $temp_transfer_app_dir/$package_jar_name.jar $temp_transfer_app_dir/$app_name.jar
-			mv $temp_transfer_app_dir/$package_jar_name.conf $temp_transfer_app_dir/$app_name.conf
+			sudo mv $temp_transfer_app_dir/$package_jar_name.jar $temp_transfer_app_dir/$app_name.jar
+			sudo mv $temp_transfer_app_dir/$package_jar_name.conf $temp_transfer_app_dir/$app_name.conf
 	   fi
 	   
        echo  "-----临时传输目录处理完毕!"
