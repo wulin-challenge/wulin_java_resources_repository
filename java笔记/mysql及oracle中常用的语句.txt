@@ -17,6 +17,14 @@ mysql 或者oracle常用sql
 	username="root";
 	password="****";
 
+<=====================================================================================================================================================================>
+连接mysql数据库的url的完整连接所需信息:
+
+	Driver="com.mysql.jdbc.Driver";
+	url=jdbc:mysql://localhost:3306/数据库名?useUnicode=true&characterEncoding=utf8&pinGlobalTxToPhysicalConnection=true
+	username="root";
+	password="****";
+
 
 <=====================================================================================================================================================================>
 解决Mysql中的编码问题:
@@ -60,7 +68,7 @@ MySQL-5.5.22绿色版安装说明及mysql的一些常用的命令:
 
 	3、创建数据库：
 		mysql -uroot -p888
-		CREATE DATABASE `oplife` CHARACTER SET 'utf8' COLLATE 'utf8_bin';
+		CREATE DATABASE `oplife`ACTER SET 'utf8' COLLATE 'utf8_bin';
 
 	4、其它命令说明
 		--导出服务器上数据库的备份文件
@@ -104,7 +112,7 @@ mysql 使用 mysqldump/mysql 命令导出导入一个用户下一个库的数据
 		备注: root 是用户名 , platform_cas 是数据库名 , D:\platform.sql 导出的文件
 		
 	2.创建数据库:
-		CREATE DATABASE jilin_platform CHARACTER SET 'utf8'
+		CREATE DATABASE jilin_platformACTER SET 'utf8'
 		
 	3.导入:
 		mysql -u root -p imp_platform_cas < D:\platform_cas.sql
@@ -309,7 +317,7 @@ Timestamp的使用范例:
 <=====================================================================================================================================================================>
 
 创建数据库语句:
-	create database oa_20140327 default character set utf8;
+	create database oa_20140327 defaultacter set utf8;
 
 <=====================================================================================================================================================================>
 关键字不能用来做别名,最好是不要用到关键字
@@ -1369,7 +1377,7 @@ oracle中对象:
 
 	示例:
 
-	CREATE TABLE t_user(id number(4),name varchar2(10),sex char(2),login_time date);
+	CREATE TABLE t_user(id number(4),name varchar2(10),sex(2),login_time date);
 
 	char 与 varchar2 的区别:
 
@@ -1682,7 +1690,7 @@ create的使用范例:
 
 CREATE TABLE t_person(pid number primary key,
                       pname varchar2(10),
-                      psex char(2));
+                      psex(2));
                       
 SELECT * FROM t_person
 
@@ -1691,7 +1699,7 @@ VALUES(1,'teather','男');
 
 CREATE TABLE t_student(sid number primary key,
                       sname varchar2(10),
-                      ssex char(2));
+                      ssex(2));
                       
 SELECT * FROM t_student
 
@@ -1709,7 +1717,7 @@ ALTER TABLE t_student
 MODIFY(ssex varchar(4))
 
 ALTER TABLE t_student
-ADD(sss char(6))
+ADD(sss(6))
 
 ALTER TABLE t_student
 DROP (SSS)
@@ -1726,7 +1734,7 @@ ADD CONSTRAINT fk_id_FK FOREIGN KEY(fk_id) references t_person(pid)
 create table oaedi.tb_master_item(
        sid number(6) null primary key,
        xmmc varchar2(100) not null,
-       sfsp char(1) default '1' null,
+       sfsp(1) default '1' null,
        fk_id number(6) null,
        constraint fkid_id_fk foreign key(fk_id) references oaedi.tb_master_item(sid) on delete cascade
 );
@@ -1742,7 +1750,7 @@ CREATE TABLE t_ddetailed(
 CREATE TABLE t_teacher(
 		tid number primary key,
 		tname varchar2(10),
-		tsex char(2),
+		tsex(2),
 		fkid number(4),
 		constraint fkid_FK foreign key(fkid) references t_person(pid)
 	);
@@ -2175,7 +2183,7 @@ rownum:
 
 	CREATE SEQUENCE seq_myemp
 
-	CREATE TABLE t_myemp (id number(4) primary key,name varchar2(10),sex char(2));
+	CREATE TABLE t_myemp (id number(4) primary key,name varchar2(10),sex(2));
 
 
 	INSERT INTO t_myemp(id,name,sex) VALUES (seq_myemp.nextval,'haha','男');
@@ -3635,8 +3643,8 @@ Oracle中使用expdp/impdp 数据泵导出/导入 数据的步骤: 从11g到10g
 
 	Connected to: Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - Production
 	With the Partitioning, OLAP, Data Mining and Real Application Testing options
-	Export done in US7ASCII character set and AL16UTF16 NCHAR character set
-	server uses ZHS16GBK character set (possible charset conversion)
+	Export done in US7ASCIIacter set and AL16UTF16 NCHARacter set
+	server uses ZHS16GBKacter set (possibleset conversion)
 	About to export specified users ...
 	. exporting pre-schema procedural objects and actions
 	. exporting foreign function library names for user THOMAS 
@@ -3986,7 +3994,7 @@ oracle用户的管理
 
 		char : 定长 最大2000字符
 		
-			例子: char(10) '小韩' 前四个字符放 '小韩',后添6个空格补全
+			例子:(10) '小韩' 前四个字符放 '小韩',后添6个空格补全
 		
 		varchar2(20) 变成 最大4000字符
 		
@@ -4034,7 +4042,7 @@ oracle判断某字符串是否数字
 	sql>create table student( --表名
 		xh number(4), --学号
 		xm varchar2(20), --姓名
-		sex char(2), --性别
+		sex(2), --性别
 		birthday date, --出生日期
 		sal number(7,2) --奖学
 	);
@@ -4059,7 +4067,7 @@ oracle判断某字符串是否数字
 		``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 		修改字段的类型/或是名字(不能有数据)
 		
-			sql>alter table student modify (xm char(30));
+			sql>alter table student modify (xm(30));
 			
 		``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````	
 		删除一个字段

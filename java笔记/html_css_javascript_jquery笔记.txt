@@ -4390,7 +4390,7 @@ var updateOutPrisonCureApproval = function(list,params){
 服务端 : 
 	//根据流程信息保存业务数据
 		@RequestMapping(value="/saveByProcess",method = RequestMethod.POST)
-		public @ResponseBody Map<String, Object> saveByProcess( Map<String,Object> model ){
+		public @ResponseBody Map<String, Object> saveByProcess(@RequestBody Map<String,Object> model ){
 			System.out.println();
 			
 			return null;

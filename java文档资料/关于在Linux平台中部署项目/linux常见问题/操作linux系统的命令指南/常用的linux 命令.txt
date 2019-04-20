@@ -82,10 +82,34 @@ x参数 是解压到一个文件夹里
 e参数是把所有文件解压到当前目录下 
 注意这个命令比较特殊参数之前不能加-
 
+打包和压缩文件
+bunzip2 file1.bz2 解压一个叫做 'file1.bz2'的文件
+bzip2 file1 压缩一个叫做 'file1' 的文件
+gunzip file1.gz 解压一个叫做 'file1.gz'的文件
+gzip file1 压缩一个叫做 'file1'的文件
+gzip -9 file1 最大程度压缩
+rar a file1.rar test_file 创建一个叫做 'file1.rar' 的包
+rar a file1.rar file1 file2 dir1 同时压缩 'file1', 'file2' 以及目录 'dir1'
+rar x file1.rar 解压rar包
+unrar x file1.rar 解压rar包
+tar -cvf archive.tar file1 创建一个非压缩的 tarball
+tar -cvf archive.tar file1 file2 dir1 创建一个包含了 'file1', 'file2' 以及 'dir1'的档案文件
+tar -tf archive.tar 显示一个包中的内容
+tar -xvf archive.tar 释放一个包
+tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下
+tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包
+tar -xvfj archive.tar.bz2 解压一个bzip2格式的压缩包
+tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包
+tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包
+zip file1.zip file1 创建一个zip格式的压缩包
+zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包
+unzip file1.zip 解压一个zip格式压缩包
+unzip使用案例:
+	unzip -o -d /home/sunny myfile.zip
+	把myfile.zip文件解压到 /home/sunny/
+	-o:不提示的情况下覆盖文件；
+	-d:-d /home/sunny 指明将文件解压缩到/home/sunny目录下；
 
-
-路径，最好是先进入目录再执行操作，否则可能报错，下同）
-解压.zip包：unzip /包所在目录路径/filename.zip /目的路径
 安装.rpm格式的文件：
 （1），先安装alien：sudo apt-get install alien 
 （2），使用命令进入到文件所在目录后把要安装的rpm转成deb：sudo alien filename. rpm filename.deb 
