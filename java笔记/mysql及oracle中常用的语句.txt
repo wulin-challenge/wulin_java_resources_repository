@@ -68,7 +68,7 @@ MySQL-5.5.22绿色版安装说明及mysql的一些常用的命令:
 
 	3、创建数据库：
 		mysql -uroot -p888
-		CREATE DATABASE `oplife`ACTER SET 'utf8' COLLATE 'utf8_bin';
+		CREATE DATABASE `oplife` charset 'utf8' COLLATE 'utf8_bin';
 
 	4、其它命令说明
 		--导出服务器上数据库的备份文件
