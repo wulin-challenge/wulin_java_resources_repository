@@ -1,0 +1,33 @@
+代码块为黑色背景的样式
+
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: rgb(48, 51, 55);
+    border-radius: 3px;
+}
+
+pre.editor-colors {
+    background-color: #1d1f21;
+    color: #96cbfe;
+}
+
+代码块为经典背景的样式
+
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+
+pre.editor-colors {
+      font-size: 12px;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+

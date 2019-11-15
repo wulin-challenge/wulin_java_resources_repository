@@ -1,0 +1,1 @@
+解压后将wubo.ovpn文件放到config目录下
